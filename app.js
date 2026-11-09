@@ -1,4 +1,4 @@
-import { STATE_KEY, initializeState, validateState, recordAnswer, emptyRecord, parseFeed, upsertWords, restoreBackup, approveDeactivations, validateFeedUrl } from './core.js';
+import { STATE_KEY, initializeState, validateState, recordAnswer, emptyRecord, parseFeed, upsertWords, restoreBackup, approveDeactivations, validateFeedUrl, matchesSource } from './core.js';
 
 const $ = id => document.getElementById(id);
 let state, deck = [], index = 0, revealed = false, grading = false;
@@ -7,6 +7,8 @@ let syncPromise = null, syncController, installPrompt, registration, updateReque
 const formatDate = date => date ? new Date(date).toLocaleString('ja-JP') : '未同期';
 const recordFor = id => state.records.find(record => record.wordId === id) || emptyRecord(id);
 const currentWord = () => state.words.find(word => word.id === deck[index] && word.active);
+const sourceLabel = word => ({ex:'準1級EX',reading:'長文'})[word] || '未分類';
+const sourceText = word => (word.sources || '').split('|').filter(Boolean).map(sourceLabel).join('・') || '未分類';
 function notice(message, error = false) {
   $('notice').textContent = message; $('notice').hidden = !message;
   $('notice').classList.toggle('error', error);
@@ -38,13 +40,13 @@ function renderSummary() {
 }
 function updateRangeLimits() {
   if (!state) return;
-  const total = state.words.filter(word => word.active).length;
+  const total = state.words.filter(word => word.active && matchesSource(word, $('source-filter').value)).length;
   const maximum = Math.max(total, 1);
   $('start-number').max = String(maximum); $('end-number').max = String(maximum);
-  $('range-help').textContent = total ? `1〜${total}番から選べます。終了を空欄にすると最後まで出題します。` : '現在、出題できる単語がありません。';
+  $('range-help').textContent = total ? `選択した登録元の1〜${total}番から出題できます。終了を空欄にすると最後まで出題します。` : 'この登録元に出題できる単語はありません。';
 }
 function start() {
-  const activeWords = state.words.filter(word => word.active);
+  const activeWords = state.words.filter(word => word.active && matchesSource(word, $('source-filter').value));
   activeNumberById = new Map(activeWords.map((word, position) => [word.id, position + 1]));
   const total = activeWords.length;
   let first = Number.parseInt($('start-number').value, 10);
@@ -63,6 +65,7 @@ function renderCard() {
   const word = currentWord();
   $('front').textContent = word?.word || (deck.length ? '今日の復習、完了。' : '対象の単語はありません');
   $('meaning').textContent = word?.meaning || '';
+  $('card-source').textContent = word ? sourceText(word) : '';
   $('meaning').hidden = !revealed || !word;
   $('progress').textContent = word ? `No.${activeNumberById.get(word.id)} · ${String(index + 1).padStart(2, '0')} / ${deck.length} WORDS` : `全 ${deck.length} 語`;
   $('card-wrong').textContent = word ? `この単語の累積誤答 ${recordFor(word.id).wrongCount} 回` : '';
@@ -76,9 +79,9 @@ function renderCard() {
 }
 function renderHistory() {
   const query = $('search').value.trim().toLowerCase();
-  const numbers = new Map(state.words.filter(word => word.active).map((word, position) => [word.id, position + 1]));
+  const numbers = new Map(state.words.filter(word => word.active && matchesSource(word, $('history-source').value)).map((word, position) => [word.id, position + 1]));
   const positions = new Map(state.words.map((word, position) => [word.id, position]));
-  const words = state.words.filter(word => ($('show-inactive').checked || word.active) && `${word.word} ${word.meaning}`.toLowerCase().includes(query));
+  const words = state.words.filter(word => ($('show-inactive').checked || word.active) && matchesSource(word, $('history-source').value) && `${word.word} ${word.meaning}`.toLowerCase().includes(query));
   const byNumber = (a, b) => (numbers.get(a.id) ?? Number.MAX_SAFE_INTEGER) - (numbers.get(b.id) ?? Number.MAX_SAFE_INTEGER) || positions.get(a.id) - positions.get(b.id);
   const byWrongCount = (a, b) => recordFor(b.id).wrongCount - recordFor(a.id).wrongCount || byNumber(a, b);
   const byWrongRate = (a, b) => {
@@ -99,6 +102,9 @@ function renderHistory() {
     cell.className = 'history-word';
     name.textContent = word.word; meaning.textContent = word.meaning;
     cell.append(name, meaning);
+    const source = document.createElement('span');
+    source.className = 'source-tag'; source.textContent = sourceText(word);
+    cell.append(source);
     if (!word.active) { const label = document.createElement('span'); label.className = 'inactive'; label.textContent = '非表示'; cell.append(label); }
     row.append(number, cell);
     for (const [position, value] of [total, record.correctCount, record.wrongCount, total ? `${(100 * record.correctCount / total).toFixed(1)}%` : '—'].entries()) {
@@ -192,8 +198,9 @@ function bindEvents() {
   $('card').onclick = () => { if (currentWord()) { revealed = !revealed; renderCard(); } };
   $('wrong').onclick = () => grade(false); $('correct').onclick = () => grade(true);
   $('restart').onclick = $('again').onclick = start; $('mode').onchange = start;
+  $('source-filter').onchange = () => { $('start-number').value = '1'; $('end-number').value = ''; updateRangeLimits(); start(); };
   $('skip').onclick = () => { index++; revealed = false; renderCard(); };
-  $('search').oninput = $('show-inactive').onchange = $('history-sort').onchange = renderHistory;
+  $('search').oninput = $('show-inactive').onchange = $('history-sort').onchange = $('history-source').onchange = renderHistory;
   $('sync-now').onclick = () => sync(true);
   $('sync-form').onsubmit = async event => {
     event.preventDefault();
@@ -290,10 +297,16 @@ async function boot() {
   connection();
   try {
     let initial = [];
-    if (!localStorage.getItem(STATE_KEY)) {
+    const alreadySaved = !!localStorage.getItem(STATE_KEY);
+    try {
+      // Also load the EX seed on older installed devices to restore missing
+      // provenance without touching translations, IDs or learning records.
       const response = await fetch('./initial_words.json');
-      if (!response.ok) throw new Error('初期単語を読み込めません。接続を確認して再読み込みしてください。');
+      if (!response.ok) throw new Error('初期単語を取得できませんでした。');
       initial = await response.json();
+    } catch (error) {
+      if (!alreadySaved) throw new Error('初期単語を読み込めません。接続を確認して再読み込みしてください。');
+      // An already-installed app must still start from its saved vocabulary.
     }
     state = initializeState(localStorage, initial);
     $('feed-url').value = state.settings.feedUrl;

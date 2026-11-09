@@ -2,1541 +2,1849 @@
   {
     "id": "clumsy",
     "word": "clumsy",
-    "meaning": "不器用な、ぎこちない"
+    "meaning": "不器用な、ぎこちない",
+    "sources": "ex"
   },
   {
     "id": "custody",
     "word": "custody",
-    "meaning": "保護、監護、拘留"
+    "meaning": "保護、監護、拘留",
+    "sources": "ex"
   },
   {
     "id": "petition",
     "word": "petition",
-    "meaning": "請願、嘆願"
+    "meaning": "請願、嘆願",
+    "sources": "ex"
   },
   {
     "id": "compartment",
     "word": "compartment",
-    "meaning": "区画、仕切られた部分"
+    "meaning": "区画、仕切られた部分",
+    "sources": "ex"
   },
   {
     "id": "segment",
     "word": "segment",
-    "meaning": "部分、区分"
+    "meaning": "部分、区分",
+    "sources": "ex"
   },
   {
     "id": "uphold",
     "word": "uphold",
-    "meaning": "支持する、維持する"
+    "meaning": "支持する、維持する",
+    "sources": "ex"
   },
   {
     "id": "contemplate",
     "word": "contemplate",
-    "meaning": "熟考する、じっと見つめる"
+    "meaning": "熟考する、じっと見つめる",
+    "sources": "ex"
   },
   {
     "id": "concede",
     "word": "concede",
-    "meaning": "しぶしぶ認める、譲歩する"
+    "meaning": "しぶしぶ認める、譲歩する",
+    "sources": "ex"
   },
   {
     "id": "reconcile",
     "word": "reconcile",
-    "meaning": "和解させる、調和させる"
+    "meaning": "和解させる、調和させる",
+    "sources": "ex"
   },
   {
     "id": "conform",
     "word": "conform",
-    "meaning": "従う、一致する"
+    "meaning": "従う、一致する",
+    "sources": "ex"
   },
   {
     "id": "hectic",
     "word": "hectic",
-    "meaning": "非常に忙しい、慌ただしい"
+    "meaning": "非常に忙しい、慌ただしい",
+    "sources": "ex"
   },
   {
     "id": "detain",
     "word": "detain",
-    "meaning": "引き留める、拘留する"
+    "meaning": "引き留める、拘留する",
+    "sources": "ex"
   },
   {
     "id": "corrupt",
     "word": "corrupt",
-    "meaning": "腐敗した、堕落させる"
+    "meaning": "腐敗した、堕落させる",
+    "sources": "ex"
   },
   {
     "id": "stale",
     "word": "stale",
-    "meaning": "新鮮でない、古くなった"
+    "meaning": "新鮮でない、古くなった",
+    "sources": "ex"
   },
   {
     "id": "serene",
     "word": "serene",
-    "meaning": "穏やかな、静かな"
+    "meaning": "穏やかな、静かな",
+    "sources": "ex"
   },
   {
     "id": "ransom",
     "word": "ransom",
-    "meaning": "身代金"
+    "meaning": "身代金",
+    "sources": "ex"
   },
   {
     "id": "nutritious",
     "word": "nutritious",
-    "meaning": "栄養のある"
+    "meaning": "栄養のある",
+    "sources": "ex"
   },
   {
     "id": "abundant",
     "word": "abundant",
-    "meaning": "豊富な"
+    "meaning": "豊富な",
+    "sources": "ex"
   },
   {
     "id": "discontent",
     "word": "discontent",
-    "meaning": "不満、不満な"
+    "meaning": "不満、不満な",
+    "sources": "ex"
   },
   {
     "id": "unanimously",
     "word": "unanimously",
-    "meaning": "満場一致で"
+    "meaning": "満場一致で",
+    "sources": "ex"
   },
   {
     "id": "prestigious",
     "word": "prestigious",
-    "meaning": "名声のある、権威ある"
+    "meaning": "名声のある、権威ある",
+    "sources": "ex"
   },
   {
     "id": "complication",
     "word": "complication",
-    "meaning": "複雑化、厄介な問題"
+    "meaning": "複雑化、厄介な問題",
+    "sources": "ex"
   },
   {
     "id": "tempting",
     "word": "tempting",
-    "meaning": "魅力的な、誘惑するような"
+    "meaning": "魅力的な、誘惑するような",
+    "sources": "ex"
   },
   {
     "id": "innate",
     "word": "innate",
-    "meaning": "生まれつきの、先天的な"
+    "meaning": "生まれつきの、先天的な",
+    "sources": "ex"
   },
   {
     "id": "detour",
     "word": "detour",
-    "meaning": "回り道、迂回"
+    "meaning": "回り道、迂回",
+    "sources": "ex"
   },
   {
     "id": "compulsory",
     "word": "compulsory",
-    "meaning": "義務的な、強制的な"
+    "meaning": "義務的な、強制的な",
+    "sources": "ex"
   },
   {
     "id": "filthy",
     "word": "filthy",
-    "meaning": "非常に汚い、不潔な"
+    "meaning": "非常に汚い、不潔な",
+    "sources": "ex"
   },
   {
     "id": "comply with",
     "word": "comply with",
-    "meaning": "〜に従う、応じる"
+    "meaning": "〜に従う、応じる",
+    "sources": "ex"
   },
   {
     "id": "tedious",
     "word": "tedious",
-    "meaning": "退屈な、うんざりするほど長い"
+    "meaning": "退屈な、うんざりするほど長い",
+    "sources": "ex"
   },
   {
     "id": "precision",
     "word": "precision",
-    "meaning": "正確さ、精密さ"
+    "meaning": "正確さ、精密さ",
+    "sources": "ex"
   },
   {
     "id": "interrogate",
     "word": "interrogate",
-    "meaning": "尋問する、問いただす"
+    "meaning": "尋問する、問いただす",
+    "sources": "ex"
   },
   {
     "id": "composed",
     "word": "composed",
-    "meaning": "落ち着いた、構成された"
+    "meaning": "落ち着いた、構成された",
+    "sources": "ex"
   },
   {
     "id": "vocation",
     "word": "vocation",
-    "meaning": "職業、天職"
+    "meaning": "職業、天職",
+    "sources": "ex"
   },
   {
     "id": "obsolete",
     "word": "obsolete",
-    "meaning": "時代遅れの、廃れた"
+    "meaning": "時代遅れの、廃れた",
+    "sources": "ex"
   },
   {
     "id": "unwittingly",
     "word": "unwittingly",
-    "meaning": "知らずに、意図せず"
+    "meaning": "知らずに、意図せず",
+    "sources": "ex"
   },
   {
     "id": "correspondence",
     "word": "correspondence",
-    "meaning": "通信、文通、一致"
+    "meaning": "通信、文通、一致",
+    "sources": "ex"
   },
   {
     "id": "perish",
     "word": "perish",
-    "meaning": "死ぬ、滅びる"
+    "meaning": "死ぬ、滅びる",
+    "sources": "ex"
   },
   {
     "id": "lease",
     "word": "lease",
-    "meaning": "賃貸借契約、賃貸する"
+    "meaning": "賃貸借契約、賃貸する",
+    "sources": "ex"
   },
   {
     "id": "certify",
     "word": "certify",
-    "meaning": "証明する、認定する"
+    "meaning": "証明する、認定する",
+    "sources": "ex"
   },
   {
     "id": "provoke",
     "word": "provoke",
-    "meaning": "引き起こす、挑発する"
+    "meaning": "引き起こす、挑発する",
+    "sources": "ex"
   },
   {
     "id": "exclusive",
     "word": "exclusive",
-    "meaning": "排他的な、独占的な"
+    "meaning": "排他的な、独占的な",
+    "sources": "ex"
   },
   {
     "id": "inflict",
     "word": "inflict",
-    "meaning": "（苦痛・損害などを）与える"
+    "meaning": "（苦痛・損害などを）与える",
+    "sources": "ex"
   },
   {
     "id": "refuse",
     "word": "refuse",
-    "meaning": "拒否する"
+    "meaning": "拒否する",
+    "sources": "ex"
   },
   {
     "id": "demote",
     "word": "demote",
-    "meaning": "降格させる"
+    "meaning": "降格させる",
+    "sources": "ex"
   },
   {
     "id": "mingle",
     "word": "mingle",
-    "meaning": "混ざる、交流する"
+    "meaning": "混ざる、交流する",
+    "sources": "ex"
   },
   {
     "id": "temperament",
     "word": "temperament",
-    "meaning": "気質、性格"
+    "meaning": "気質、性格",
+    "sources": "ex"
   },
   {
     "id": "formulate",
     "word": "formulate",
-    "meaning": "考案する、明確にまとめる"
+    "meaning": "考案する、明確にまとめる",
+    "sources": "ex"
   },
   {
     "id": "omit",
     "word": "omit",
-    "meaning": "省略する、除外する"
+    "meaning": "省略する、除外する",
+    "sources": "ex"
   },
   {
     "id": "obedient",
     "word": "obedient",
-    "meaning": "従順な"
+    "meaning": "従順な",
+    "sources": "ex"
   },
   {
     "id": "ration",
     "word": "ration",
-    "meaning": "配給量、配給する"
+    "meaning": "配給量、配給する",
+    "sources": "ex"
   },
   {
     "id": "affluent",
     "word": "affluent",
-    "meaning": "裕福な、豊かな"
+    "meaning": "裕福な、豊かな",
+    "sources": "ex"
   },
   {
     "id": "privilege",
     "word": "privilege",
-    "meaning": "特権、特典"
+    "meaning": "特権、特典",
+    "sources": "ex"
   },
   {
     "id": "procession",
     "word": "procession",
-    "meaning": "行列、行進"
+    "meaning": "行列、行進",
+    "sources": "ex"
   },
   {
     "id": "vain",
     "word": "vain",
-    "meaning": "うぬぼれの強い、無駄な"
+    "meaning": "うぬぼれの強い、無駄な",
+    "sources": "ex"
   },
   {
     "id": "confer",
     "word": "confer",
-    "meaning": "協議する、授与する"
+    "meaning": "協議する、授与する",
+    "sources": "ex"
   },
   {
     "id": "allegation",
     "word": "allegation",
-    "meaning": "申し立て、疑惑"
+    "meaning": "申し立て、疑惑",
+    "sources": "ex"
   },
   {
     "id": "feasible",
     "word": "feasible",
-    "meaning": "実行可能な"
+    "meaning": "実行可能な",
+    "sources": "ex"
   },
   {
     "id": "mercy",
     "word": "mercy",
-    "meaning": "慈悲、情け"
+    "meaning": "慈悲、情け",
+    "sources": "ex"
   },
   {
     "id": "prosecute",
     "word": "prosecute",
-    "meaning": "起訴する、訴追する"
+    "meaning": "起訴する、訴追する",
+    "sources": "ex"
   },
   {
     "id": "delegate",
     "word": "delegate",
-    "meaning": "代表者、委任する"
+    "meaning": "代表者、委任する",
+    "sources": "ex"
   },
   {
     "id": "alternate",
     "word": "alternate",
-    "meaning": "交互の、交互に起こる"
+    "meaning": "交互の、交互に起こる",
+    "sources": "ex"
   },
   {
     "id": "withdraw",
     "word": "withdraw",
-    "meaning": "引き下がる、撤回する、引き出す"
+    "meaning": "引き下がる、撤回する、引き出す",
+    "sources": "ex"
   },
   {
     "id": "validity",
     "word": "validity",
-    "meaning": "妥当性、有効性"
+    "meaning": "妥当性、有効性",
+    "sources": "ex"
   },
   {
     "id": "objective",
     "word": "objective",
-    "meaning": "目的、客観的な"
+    "meaning": "目的、客観的な",
+    "sources": "ex"
   },
   {
     "id": "devoted",
     "word": "devoted",
-    "meaning": "献身的な、熱心な"
+    "meaning": "献身的な、熱心な",
+    "sources": "ex"
   },
   {
     "id": "subsidize",
     "word": "subsidize",
-    "meaning": "助成金を出す、補助する"
+    "meaning": "助成金を出す、補助する",
+    "sources": "ex"
   },
   {
     "id": "defendant",
     "word": "defendant",
-    "meaning": "被告人、被告"
+    "meaning": "被告人、被告",
+    "sources": "ex"
   },
   {
     "id": "wretched",
     "word": "wretched",
-    "meaning": "惨めな、ひどい"
+    "meaning": "惨めな、ひどい",
+    "sources": "ex"
   },
   {
     "id": "dejected",
     "word": "dejected",
-    "meaning": "落胆した、意気消沈した"
+    "meaning": "落胆した、意気消沈した",
+    "sources": "ex"
   },
   {
     "id": "consecutive",
     "word": "consecutive",
-    "meaning": "連続した"
+    "meaning": "連続した",
+    "sources": "ex"
   },
   {
     "id": "nuisance",
     "word": "nuisance",
-    "meaning": "迷惑、厄介なもの"
+    "meaning": "迷惑、厄介なもの",
+    "sources": "ex"
   },
   {
     "id": "waver",
     "word": "waver",
-    "meaning": "揺れる、ためらう"
+    "meaning": "揺れる、ためらう",
+    "sources": "ex"
   },
   {
     "id": "weaver",
     "word": "weaver",
-    "meaning": "織工、織る人"
+    "meaning": "織工、織る人",
+    "sources": "ex"
   },
   {
     "id": "unwarranted",
     "word": "unwarranted",
-    "meaning": "不当な、根拠のない"
+    "meaning": "不当な、根拠のない",
+    "sources": "ex"
   },
   {
     "id": "proficient",
     "word": "proficient",
-    "meaning": "熟達した、堪能な"
+    "meaning": "熟達した、堪能な",
+    "sources": "ex"
   },
   {
     "id": "mediocre",
     "word": "mediocre",
-    "meaning": "平凡な、二流の"
+    "meaning": "平凡な、二流の",
+    "sources": "ex"
   },
   {
     "id": "hinder",
     "word": "hinder",
-    "meaning": "妨げる、邪魔する"
+    "meaning": "妨げる、邪魔する",
+    "sources": "ex"
   },
   {
     "id": "perpetual",
     "word": "perpetual",
-    "meaning": "永続的な、絶え間ない"
+    "meaning": "永続的な、絶え間ない",
+    "sources": "ex"
   },
   {
     "id": "prevail",
     "word": "prevail",
-    "meaning": "普及している、打ち勝つ"
+    "meaning": "普及している、打ち勝つ",
+    "sources": "ex"
   },
   {
     "id": "resolute",
     "word": "resolute",
-    "meaning": "断固とした、決意の固い"
+    "meaning": "断固とした、決意の固い",
+    "sources": "ex"
   },
   {
     "id": "dismal",
     "word": "dismal",
-    "meaning": "陰気な、惨めな、ひどい"
+    "meaning": "陰気な、惨めな、ひどい",
+    "sources": "ex"
   },
   {
     "id": "fabricate",
     "word": "fabricate",
-    "meaning": "でっち上げる、製造する"
+    "meaning": "でっち上げる、製造する",
+    "sources": "ex"
   },
   {
     "id": "clerical",
     "word": "clerical",
-    "meaning": "事務の、聖職者の"
+    "meaning": "事務の、聖職者の",
+    "sources": "ex"
   },
   {
     "id": "inquiry",
     "word": "inquiry",
-    "meaning": "問い合わせ、調査"
+    "meaning": "問い合わせ、調査",
+    "sources": "ex"
   },
   {
     "id": "subscription",
     "word": "subscription",
-    "meaning": "定期購読、会費"
+    "meaning": "定期購読、会費",
+    "sources": "ex"
   },
   {
     "id": "coverage",
     "word": "coverage",
-    "meaning": "報道、適用範囲、補償範囲"
+    "meaning": "報道、適用範囲、補償範囲",
+    "sources": "ex"
   },
   {
     "id": "hesitant",
     "word": "hesitant",
-    "meaning": "ためらっている、気乗りしない"
+    "meaning": "ためらっている、気乗りしない",
+    "sources": "ex"
   },
   {
     "id": "downturn",
     "word": "downturn",
-    "meaning": "景気などの下降、悪化"
+    "meaning": "景気などの下降、悪化",
+    "sources": "ex"
   },
   {
     "id": "prescribe",
     "word": "prescribe",
-    "meaning": "処方する、規定する"
+    "meaning": "処方する、規定する",
+    "sources": "ex"
   },
   {
     "id": "compliment",
     "word": "compliment",
-    "meaning": "褒め言葉、褒める"
+    "meaning": "褒め言葉、褒める",
+    "sources": "ex"
   },
   {
     "id": "narrowly",
     "word": "narrowly",
-    "meaning": "かろうじて、僅差で"
+    "meaning": "かろうじて、僅差で",
+    "sources": "ex"
   },
   {
     "id": "modify",
     "word": "modify",
-    "meaning": "修正する、変更する"
+    "meaning": "修正する、変更する",
+    "sources": "ex"
   },
   {
     "id": "quota",
     "word": "quota",
-    "meaning": "割当量、定員"
+    "meaning": "割当量、定員",
+    "sources": "ex"
   },
   {
     "id": "disturbance",
     "word": "disturbance",
-    "meaning": "妨害、騒乱、混乱"
+    "meaning": "妨害、騒乱、混乱",
+    "sources": "ex"
   },
   {
     "id": "substitute",
     "word": "substitute",
-    "meaning": "代わりのもの、代用する"
+    "meaning": "代わりのもの、代用する",
+    "sources": "ex"
   },
   {
     "id": "convey",
     "word": "convey",
-    "meaning": "伝える、運ぶ"
+    "meaning": "伝える、運ぶ",
+    "sources": "ex"
   },
   {
     "id": "indispensable",
     "word": "indispensable",
-    "meaning": "不可欠な"
+    "meaning": "不可欠な",
+    "sources": "ex"
   },
   {
     "id": "faulty",
     "word": "faulty",
-    "meaning": "欠陥のある、誤った"
+    "meaning": "欠陥のある、誤った",
+    "sources": "ex"
   },
   {
     "id": "sincerely",
     "word": "sincerely",
-    "meaning": "誠実に、心から"
+    "meaning": "誠実に、心から",
+    "sources": "ex"
   },
   {
     "id": "commemorate",
     "word": "commemorate",
-    "meaning": "記念する、追悼する"
+    "meaning": "記念する、追悼する",
+    "sources": "ex"
   },
   {
     "id": "observance",
     "word": "observance",
-    "meaning": "遵守、行事・儀式の実施"
+    "meaning": "遵守、行事・儀式の実施",
+    "sources": "ex"
   },
   {
     "id": "assure",
     "word": "assure",
-    "meaning": "保証する、安心させる"
+    "meaning": "保証する、安心させる",
+    "sources": "ex"
   },
   {
     "id": "bleak",
     "word": "bleak",
-    "meaning": "荒涼とした、見通しの暗い"
+    "meaning": "荒涼とした、見通しの暗い",
+    "sources": "ex"
   },
   {
     "id": "afflict",
     "word": "afflict",
-    "meaning": "苦しめる、悩ませる"
+    "meaning": "苦しめる、悩ませる",
+    "sources": "ex"
   },
   {
     "id": "formidable",
     "word": "formidable",
-    "meaning": "手ごわい、恐るべき"
+    "meaning": "手ごわい、恐るべき",
+    "sources": "ex"
   },
   {
     "id": "converge",
     "word": "converge",
-    "meaning": "一点に集まる、収束する"
+    "meaning": "一点に集まる、収束する",
+    "sources": "ex"
   },
   {
     "id": "overcast",
     "word": "overcast",
-    "meaning": "曇った、雲に覆われた"
+    "meaning": "曇った、雲に覆われた",
+    "sources": "ex"
   },
   {
     "id": "endow",
     "word": "endow",
-    "meaning": "授ける、寄付する"
+    "meaning": "授ける、寄付する",
+    "sources": "ex"
   },
   {
     "id": "uplifting",
     "word": "uplifting",
-    "meaning": "気分を高揚させる"
+    "meaning": "気分を高揚させる",
+    "sources": "ex"
   },
   {
     "id": "burglary",
     "word": "burglary",
-    "meaning": "住居侵入窃盗"
+    "meaning": "住居侵入窃盗",
+    "sources": "ex"
   },
   {
     "id": "authorize",
     "word": "authorize",
-    "meaning": "許可する、権限を与える"
+    "meaning": "許可する、権限を与える",
+    "sources": "ex"
   },
   {
     "id": "devour",
     "word": "devour",
-    "meaning": "むさぼり食う、夢中で読む"
+    "meaning": "むさぼり食う、夢中で読む",
+    "sources": "ex"
   },
   {
     "id": "scrutiny",
     "word": "scrutiny",
-    "meaning": "精密な調査、厳しい監視"
+    "meaning": "精密な調査、厳しい監視",
+    "sources": "ex"
   },
   {
     "id": "profess",
     "word": "profess",
-    "meaning": "公言する、信奉すると表明する"
+    "meaning": "公言する、信奉すると表明する",
+    "sources": "ex"
   },
   {
     "id": "reap",
     "word": "reap",
-    "meaning": "収穫する、成果を得る"
+    "meaning": "収穫する、成果を得る",
+    "sources": "ex"
   },
   {
     "id": "crave",
     "word": "crave",
-    "meaning": "切望する"
+    "meaning": "切望する",
+    "sources": "ex"
   },
   {
     "id": "excerpt",
     "word": "excerpt",
-    "meaning": "抜粋、引用部分"
+    "meaning": "抜粋、引用部分",
+    "sources": "ex"
   },
   {
     "id": "ordeal",
     "word": "ordeal",
-    "meaning": "厳しい試練、苦難"
+    "meaning": "厳しい試練、苦難",
+    "sources": "ex"
   },
   {
     "id": "mourn",
     "word": "mourn",
-    "meaning": "嘆き悲しむ、悼む"
+    "meaning": "嘆き悲しむ、悼む",
+    "sources": "ex"
   },
   {
     "id": "recurrent",
     "word": "recurrent",
-    "meaning": "繰り返し起こる"
+    "meaning": "繰り返し起こる",
+    "sources": "ex"
   },
   {
     "id": "amendment",
     "word": "amendment",
-    "meaning": "修正、改正"
+    "meaning": "修正、改正",
+    "sources": "ex"
   },
   {
     "id": "conceited",
     "word": "conceited",
-    "meaning": "うぬぼれの強い"
+    "meaning": "うぬぼれの強い",
+    "sources": "ex"
   },
   {
     "id": "herald",
     "word": "herald",
-    "meaning": "前触れとなる、告げる"
+    "meaning": "前触れとなる、告げる",
+    "sources": "ex"
   },
   {
     "id": "paranoid",
     "word": "paranoid",
-    "meaning": "被害妄想的な、極度に疑い深い"
+    "meaning": "被害妄想的な、極度に疑い深い",
+    "sources": "ex"
   },
   {
     "id": "deception",
     "word": "deception",
-    "meaning": "欺き、詐欺"
+    "meaning": "欺き、詐欺",
+    "sources": "ex"
   },
   {
     "id": "fanatical",
     "word": "fanatical",
-    "meaning": "狂信的な、熱狂的な"
+    "meaning": "狂信的な、熱狂的な",
+    "sources": "ex"
   },
   {
     "id": "crumble",
     "word": "crumble",
-    "meaning": "崩れる、粉々になる"
+    "meaning": "崩れる、粉々になる",
+    "sources": "ex"
   },
   {
     "id": "pending",
     "word": "pending",
-    "meaning": "保留中の、〜までの間"
+    "meaning": "保留中の、〜までの間",
+    "sources": "ex"
   },
   {
     "id": "intelligible",
     "word": "intelligible",
-    "meaning": "理解できる、明瞭な"
+    "meaning": "理解できる、明瞭な",
+    "sources": "ex"
   },
   {
     "id": "uproar",
     "word": "uproar",
-    "meaning": "騒動、大騒ぎ"
+    "meaning": "騒動、大騒ぎ",
+    "sources": "ex"
   },
   {
     "id": "intricate",
     "word": "intricate",
-    "meaning": "複雑な、入り組んだ"
+    "meaning": "複雑な、入り組んだ",
+    "sources": "ex"
   },
   {
     "id": "glare",
     "word": "glare",
-    "meaning": "にらみつける、まぶしい光"
+    "meaning": "にらみつける、まぶしい光",
+    "sources": "ex"
   },
   {
     "id": "abstain",
     "word": "abstain",
-    "meaning": "控える、棄権する"
+    "meaning": "控える、棄権する",
+    "sources": "ex"
   },
   {
     "id": "preclude",
     "word": "preclude",
-    "meaning": "妨げる、不可能にする"
+    "meaning": "妨げる、不可能にする",
+    "sources": "ex"
   },
   {
     "id": "bid",
     "word": "bid",
-    "meaning": "入札する、試み"
+    "meaning": "入札する、試み",
+    "sources": "ex"
   },
   {
     "id": "hypocritical",
     "word": "hypocritical",
-    "meaning": "偽善的な"
+    "meaning": "偽善的な",
+    "sources": "ex"
   },
   {
     "id": "deserted",
     "word": "deserted",
-    "meaning": "人けのない、見捨てられた"
+    "meaning": "人けのない、見捨てられた",
+    "sources": "ex"
   },
   {
     "id": "savage",
     "word": "savage",
-    "meaning": "残忍な、野蛮な"
+    "meaning": "残忍な、野蛮な",
+    "sources": "ex"
   },
   {
     "id": "shriek",
     "word": "shriek",
-    "meaning": "金切り声を上げる"
+    "meaning": "金切り声を上げる",
+    "sources": "ex"
   },
   {
     "id": "stingy",
     "word": "stingy",
-    "meaning": "けちな"
+    "meaning": "けちな",
+    "sources": "ex"
   },
   {
     "id": "arouse",
     "word": "arouse",
-    "meaning": "呼び起こす、刺激する"
+    "meaning": "呼び起こす、刺激する",
+    "sources": "ex"
   },
   {
     "id": "foil",
     "word": "foil",
-    "meaning": "阻止する、失敗させる"
+    "meaning": "阻止する、失敗させる",
+    "sources": "ex"
   },
   {
     "id": "implication",
     "word": "implication",
-    "meaning": "含意、影響、関与"
+    "meaning": "含意、影響、関与",
+    "sources": "ex"
   },
   {
     "id": "ascertain",
     "word": "ascertain",
-    "meaning": "確かめる、突き止める"
+    "meaning": "確かめる、突き止める",
+    "sources": "ex"
   },
   {
     "id": "cramp",
     "word": "cramp",
-    "meaning": "けいれん、窮屈にする"
+    "meaning": "けいれん、窮屈にする",
+    "sources": "ex"
   },
   {
     "id": "intimidate",
     "word": "intimidate",
-    "meaning": "威圧する、おびえさせる"
+    "meaning": "威圧する、おびえさせる",
+    "sources": "ex"
   },
   {
     "id": "sluggish",
     "word": "sluggish",
-    "meaning": "動きの鈍い、低迷した"
+    "meaning": "動きの鈍い、低迷した",
+    "sources": "ex"
   },
   {
     "id": "moderation",
     "word": "moderation",
-    "meaning": "節度、適度"
+    "meaning": "節度、適度",
+    "sources": "ex"
   },
   {
     "id": "yearn",
     "word": "yearn",
-    "meaning": "切望する、恋しく思う"
+    "meaning": "切望する、恋しく思う",
+    "sources": "ex"
   },
   {
     "id": "castrate",
     "word": "castrate",
-    "meaning": "去勢する"
+    "meaning": "去勢する",
+    "sources": "ex"
   },
   {
     "id": "ambiguous",
     "word": "ambiguous",
-    "meaning": "曖昧な、複数の意味に取れる"
+    "meaning": "曖昧な、複数の意味に取れる",
+    "sources": "ex"
   },
   {
     "id": "autonomy",
     "word": "autonomy",
-    "meaning": "自治、自律"
+    "meaning": "自治、自律",
+    "sources": "ex"
   },
   {
     "id": "nauseous",
     "word": "nauseous",
-    "meaning": "吐き気を催す"
+    "meaning": "吐き気を催す",
+    "sources": "ex"
   },
   {
     "id": "immerse",
     "word": "immerse",
-    "meaning": "浸す、没頭させる"
+    "meaning": "浸す、没頭させる",
+    "sources": "ex"
   },
   {
     "id": "endorse",
     "word": "endorse",
-    "meaning": "支持する、裏書きする"
+    "meaning": "支持する、裏書きする",
+    "sources": "ex"
   },
   {
     "id": "feeble",
     "word": "feeble",
-    "meaning": "弱々しい、力のない"
+    "meaning": "弱々しい、力のない",
+    "sources": "ex"
   },
   {
     "id": "curtail",
     "word": "curtail",
-    "meaning": "削減する、短縮する"
+    "meaning": "削減する、短縮する",
+    "sources": "ex"
   },
   {
     "id": "dispatch",
     "word": "dispatch",
-    "meaning": "派遣する、発送する"
+    "meaning": "派遣する、発送する",
+    "sources": "ex"
   },
   {
     "id": "arrogant",
     "word": "arrogant",
-    "meaning": "傲慢な、横柄な"
+    "meaning": "傲慢な、横柄な",
+    "sources": "ex"
   },
   {
     "id": "disgrace",
     "word": "disgrace",
-    "meaning": "不名誉、恥をかかせる"
+    "meaning": "不名誉、恥をかかせる",
+    "sources": "ex"
   },
   {
     "id": "restrain",
     "word": "restrain",
-    "meaning": "抑制する、制止する"
+    "meaning": "抑制する、制止する",
+    "sources": "ex"
   },
   {
     "id": "cowardly",
     "word": "cowardly",
-    "meaning": "臆病な"
+    "meaning": "臆病な",
+    "sources": "ex"
   },
   {
     "id": "deformation",
     "word": "deformation",
-    "meaning": "変形、ゆがみ"
+    "meaning": "変形、ゆがみ",
+    "sources": "ex"
   },
   {
     "id": "appliance",
     "word": "appliance",
-    "meaning": "器具、電化製品"
+    "meaning": "器具、電化製品",
+    "sources": "ex"
   },
   {
     "id": "remodel",
     "word": "remodel",
-    "meaning": "改造する、改装する"
+    "meaning": "改造する、改装する",
+    "sources": "ex"
   },
   {
     "id": "suspicious",
     "word": "suspicious",
-    "meaning": "疑わしい、不審な"
+    "meaning": "疑わしい、不審な",
+    "sources": "ex"
   },
   {
     "id": "herd",
     "word": "herd",
-    "meaning": "群れ、群れをなして移動する"
+    "meaning": "群れ、群れをなして移動する",
+    "sources": "ex"
   },
   {
     "id": "bureau",
     "word": "bureau",
-    "meaning": "事務局、局、たんす"
+    "meaning": "事務局、局、たんす",
+    "sources": "ex"
   },
   {
     "id": "wreck",
     "word": "wreck",
-    "meaning": "破壊する、残骸"
+    "meaning": "破壊する、残骸",
+    "sources": "ex"
   },
   {
     "id": "impair",
     "word": "impair",
-    "meaning": "損なう、悪化させる"
+    "meaning": "損なう、悪化させる",
+    "sources": "ex"
   },
   {
     "id": "distress",
     "word": "distress",
-    "meaning": "苦痛、苦しめる"
+    "meaning": "苦痛、苦しめる",
+    "sources": "ex"
   },
   {
     "id": "rotten",
     "word": "rotten",
-    "meaning": "腐った、ひどい"
+    "meaning": "腐った、ひどい",
+    "sources": "ex"
   },
   {
     "id": "tentative",
     "word": "tentative",
-    "meaning": "暫定的な、ためらいがちな"
+    "meaning": "暫定的な、ためらいがちな",
+    "sources": "ex"
   },
   {
     "id": "defective",
     "word": "defective",
-    "meaning": "欠陥のある"
+    "meaning": "欠陥のある",
+    "sources": "ex"
   },
   {
     "id": "slack",
     "word": "slack",
-    "meaning": "緩んだ、怠慢な"
+    "meaning": "緩んだ、怠慢な",
+    "sources": "ex"
   },
   {
     "id": "beggar",
     "word": "beggar",
-    "meaning": "物乞い、乞食"
+    "meaning": "物乞い、乞食",
+    "sources": "ex"
   },
   {
     "id": "dubious",
     "word": "dubious",
-    "meaning": "疑わしい、怪しげな"
+    "meaning": "疑わしい、怪しげな",
+    "sources": "ex"
   },
   {
     "id": "concise",
     "word": "concise",
-    "meaning": "簡潔な"
+    "meaning": "簡潔な",
+    "sources": "ex"
   },
   {
     "id": "shrink",
     "word": "shrink",
-    "meaning": "縮む、縮小する"
+    "meaning": "縮む、縮小する",
+    "sources": "ex"
   },
   {
     "id": "gloomy",
     "word": "gloomy",
-    "meaning": "陰気な、憂鬱な"
+    "meaning": "陰気な、憂鬱な",
+    "sources": "ex"
   },
   {
     "id": "procedure",
     "word": "procedure",
-    "meaning": "手順、手続き"
+    "meaning": "手順、手続き",
+    "sources": "ex"
   },
   {
     "id": "barely",
     "word": "barely",
-    "meaning": "かろうじて、ほとんど〜ない"
+    "meaning": "かろうじて、ほとんど〜ない",
+    "sources": "ex"
   },
   {
     "id": "interfere",
     "word": "interfere",
-    "meaning": "干渉する、邪魔する"
+    "meaning": "干渉する、邪魔する",
+    "sources": "ex"
   },
   {
     "id": "preference",
     "word": "preference",
-    "meaning": "好み、優先"
+    "meaning": "好み、優先",
+    "sources": "ex"
   },
   {
     "id": "interrupt",
     "word": "interrupt",
-    "meaning": "遮る、中断させる"
+    "meaning": "遮る、中断させる",
+    "sources": "ex"
   },
   {
     "id": "commission",
     "word": "commission",
-    "meaning": "委員会、任務、手数料"
+    "meaning": "委員会、任務、手数料",
+    "sources": "ex"
   },
   {
     "id": "decent",
     "word": "decent",
-    "meaning": "まともな、きちんとした"
+    "meaning": "まともな、きちんとした",
+    "sources": "ex"
   },
   {
     "id": "compound",
     "word": "compound",
-    "meaning": "化合物、複合の"
+    "meaning": "化合物、複合の",
+    "sources": "ex"
   },
   {
     "id": "crude",
     "word": "crude",
-    "meaning": "粗野な、未加工の"
+    "meaning": "粗野な、未加工の",
+    "sources": "ex"
   },
   {
     "id": "dazed",
     "word": "dazed",
-    "meaning": "ぼう然とした"
+    "meaning": "ぼう然とした",
+    "sources": "ex"
   },
   {
     "id": "console",
     "word": "console",
-    "meaning": "慰める"
+    "meaning": "慰める",
+    "sources": "ex"
   },
   {
     "id": "chore",
     "word": "chore",
-    "meaning": "雑用、面倒な仕事"
+    "meaning": "雑用、面倒な仕事",
+    "sources": "ex"
   },
   {
     "id": "embrace",
     "word": "embrace",
-    "meaning": "抱きしめる、受け入れる"
+    "meaning": "抱きしめる、受け入れる",
+    "sources": "ex"
   },
   {
     "id": "surrender",
     "word": "surrender",
-    "meaning": "降伏する、引き渡す"
+    "meaning": "降伏する、引き渡す",
+    "sources": "ex"
   },
   {
     "id": "graphic",
     "word": "graphic",
-    "meaning": "図解の、生々しい"
+    "meaning": "図解の、生々しい",
+    "sources": "ex"
   },
   {
     "id": "fraud",
     "word": "fraud",
-    "meaning": "詐欺、不正行為"
+    "meaning": "詐欺、不正行為",
+    "sources": "ex"
   },
   {
     "id": "brisk",
     "word": "brisk",
-    "meaning": "活発な　肌寒い"
+    "meaning": "活発な　肌寒い",
+    "sources": "ex"
   },
   {
     "id": "slump",
     "word": "slump",
-    "meaning": "急落する、落ち込む"
+    "meaning": "急落する、落ち込む",
+    "sources": "ex"
   },
   {
     "id": "impede",
     "word": "impede",
-    "meaning": "妨げる"
+    "meaning": "妨げる",
+    "sources": "ex"
   },
   {
     "id": "furious",
     "word": "furious",
-    "meaning": "激怒した、猛烈な"
+    "meaning": "激怒した、猛烈な",
+    "sources": "ex"
   },
   {
     "id": "flaw",
     "word": "flaw",
-    "meaning": "欠陥、欠点"
+    "meaning": "欠陥、欠点",
+    "sources": "ex"
   },
   {
     "id": "assert",
     "word": "assert",
-    "meaning": "断言する、主張する"
+    "meaning": "断言する、主張する",
+    "sources": "ex"
   },
   {
     "id": "obscure",
     "word": "obscure",
-    "meaning": "不明瞭な、覆い隠す"
+    "meaning": "不明瞭な、覆い隠す",
+    "sources": "ex"
   },
   {
     "id": "disgust",
     "word": "disgust",
-    "meaning": "嫌悪感、うんざりさせる"
+    "meaning": "嫌悪感、うんざりさせる",
+    "sources": "ex"
   },
   {
     "id": "intimate",
     "word": "intimate",
-    "meaning": "親密な、ほのめかす"
+    "meaning": "親密な、ほのめかす",
+    "sources": "ex"
   },
   {
     "id": "exclaim",
     "word": "exclaim",
-    "meaning": "叫ぶ、声を上げる"
+    "meaning": "叫ぶ、声を上げる",
+    "sources": "ex"
   },
   {
     "id": "sprain",
     "word": "sprain",
-    "meaning": "捻挫する、捻挫"
+    "meaning": "捻挫する、捻挫",
+    "sources": "ex"
   },
   {
     "id": "inhale",
     "word": "inhale",
-    "meaning": "吸い込む"
+    "meaning": "吸い込む",
+    "sources": "ex"
   },
   {
     "id": "fussy",
     "word": "fussy",
-    "meaning": "細かいことにうるさい"
+    "meaning": "細かいことにうるさい",
+    "sources": "ex"
   },
   {
     "id": "rally",
     "word": "rally",
-    "meaning": "集会、回復する、結集する"
+    "meaning": "集会、回復する、結集する",
+    "sources": "ex"
   },
   {
     "id": "salute",
     "word": "salute",
-    "meaning": "敬礼する、敬意を表する"
+    "meaning": "敬礼する、敬意を表する",
+    "sources": "ex"
   },
   {
     "id": "hostage",
     "word": "hostage",
-    "meaning": "人質"
+    "meaning": "人質",
+    "sources": "ex"
   },
   {
     "id": "slant",
     "word": "slant",
-    "meaning": "傾斜、偏った見方"
+    "meaning": "傾斜、偏った見方",
+    "sources": "ex"
   },
   {
     "id": "comrade",
     "word": "comrade",
-    "meaning": "仲間、同志"
+    "meaning": "仲間、同志",
+    "sources": "ex"
   },
   {
     "id": "deformity",
     "word": "deformity",
-    "meaning": "変形、奇形"
+    "meaning": "変形、奇形",
+    "sources": "ex"
   },
   {
     "id": "agitate",
     "word": "agitate",
-    "meaning": "動揺させる、扇動する"
+    "meaning": "動揺させる、扇動する",
+    "sources": "ex"
   },
   {
     "id": "recede",
     "word": "recede",
-    "meaning": "後退する、遠ざかる"
+    "meaning": "後退する、遠ざかる",
+    "sources": "ex"
   },
   {
     "id": "frantic",
     "word": "frantic",
-    "meaning": "取り乱した、必死の"
+    "meaning": "取り乱した、必死の",
+    "sources": "ex"
   },
   {
     "id": "adorable",
     "word": "adorable",
-    "meaning": "とてもかわいらしい"
+    "meaning": "とてもかわいらしい",
+    "sources": "ex"
   },
   {
     "id": "deflect",
     "word": "deflect",
-    "meaning": "そらす、方向を変える"
+    "meaning": "そらす、方向を変える",
+    "sources": "ex"
   },
   {
     "id": "spiteful",
     "word": "spiteful",
-    "meaning": "意地悪な、悪意のある"
+    "meaning": "意地悪な、悪意のある",
+    "sources": "ex"
   },
   {
     "id": "sanction",
     "word": "sanction",
-    "meaning": "制裁、認可する"
+    "meaning": "制裁、認可する",
+    "sources": "ex"
   },
   {
     "id": "influx",
     "word": "influx",
-    "meaning": "流入、殺到"
+    "meaning": "流入、殺到",
+    "sources": "ex"
   },
   {
     "id": "ditch",
     "word": "ditch",
-    "meaning": "溝、捨てる"
+    "meaning": "溝、捨てる",
+    "sources": "ex"
   },
   {
     "id": "discharge",
     "word": "discharge",
-    "meaning": "放出する、解雇する、退院させる"
+    "meaning": "放出する、解雇する、退院させる",
+    "sources": "ex"
   },
   {
     "id": "analogy",
     "word": "analogy",
-    "meaning": "類推、類似"
+    "meaning": "類推、類似",
+    "sources": "ex"
   },
   {
     "id": "sinister",
     "word": "sinister",
-    "meaning": "不吉な、邪悪な"
+    "meaning": "不吉な、邪悪な",
+    "sources": "ex"
   },
   {
     "id": "lean",
     "word": "lean",
-    "meaning": "傾く、寄りかかる、やせた"
+    "meaning": "傾く、寄りかかる、やせた",
+    "sources": "ex"
   },
   {
     "id": "dutiful",
     "word": "dutiful",
-    "meaning": "義務に忠実な、従順な"
+    "meaning": "義務に忠実な、従順な",
+    "sources": "ex"
   },
   {
     "id": "splinter",
     "word": "splinter",
-    "meaning": "破片、とげ；裂ける"
+    "meaning": "破片、とげ；裂ける",
+    "sources": "ex"
   },
   {
     "id": "brace",
     "word": "brace",
-    "meaning": "支える、身構える；補強具"
+    "meaning": "支える、身構える；補強具",
+    "sources": "ex"
   },
   {
     "id": "liable",
     "word": "liable",
-    "meaning": "〜しがちな；法的責任がある"
+    "meaning": "〜しがちな；法的責任がある",
+    "sources": "ex"
   },
   {
     "id": "redeem",
     "word": "redeem",
-    "meaning": "取り戻す、償う"
+    "meaning": "取り戻す、償う",
+    "sources": "ex"
   },
   {
     "id": "depot",
     "word": "depot",
-    "meaning": "倉庫、車庫、停車場"
+    "meaning": "倉庫、車庫、停車場",
+    "sources": "ex"
   },
   {
     "id": "forsake",
     "word": "forsake",
-    "meaning": "見捨てる、放棄する"
+    "meaning": "見捨てる、放棄する",
+    "sources": "ex"
   },
   {
     "id": "retrace",
     "word": "retrace",
-    "meaning": "たどり直す、引き返す"
+    "meaning": "たどり直す、引き返す",
+    "sources": "ex"
   },
   {
     "id": "naive",
     "word": "naive",
-    "meaning": "世間知らずの、純真な"
+    "meaning": "世間知らずの、純真な",
+    "sources": "ex"
   },
   {
     "id": "uptight",
     "word": "uptight",
-    "meaning": "神経質な、緊張した、堅苦しい"
+    "meaning": "神経質な、緊張した、堅苦しい",
+    "sources": "ex"
   },
   {
     "id": "inhibit",
     "word": "inhibit",
-    "meaning": "抑制する、妨げる"
+    "meaning": "抑制する、妨げる",
+    "sources": "ex"
   },
   {
     "id": "aggravate",
     "word": "aggravate",
-    "meaning": "悪化させる、いら立たせる"
+    "meaning": "悪化させる、いら立たせる",
+    "sources": "ex"
   },
   {
     "id": "horrify",
     "word": "horrify",
-    "meaning": "ぞっとさせる"
+    "meaning": "ぞっとさせる",
+    "sources": "ex"
   },
   {
     "id": "vulgar",
     "word": "vulgar",
-    "meaning": "下品な、俗悪な"
+    "meaning": "下品な、俗悪な",
+    "sources": "ex"
   },
   {
     "id": "cordial",
     "word": "cordial",
-    "meaning": "心のこもった、友好的な"
+    "meaning": "心のこもった、友好的な",
+    "sources": "ex"
   },
   {
     "id": "dismayed",
     "word": "dismayed",
-    "meaning": "うろたえた、落胆した"
+    "meaning": "うろたえた、落胆した",
+    "sources": "ex"
   },
   {
     "id": "taint",
     "word": "taint",
-    "meaning": "汚す、損なう"
+    "meaning": "汚す、損なう",
+    "sources": "ex"
   },
   {
     "id": "striking",
     "word": "striking",
-    "meaning": "際立った、目立つ"
+    "meaning": "際立った、目立つ",
+    "sources": "ex"
   },
   {
     "id": "indulgent",
     "word": "indulgent",
-    "meaning": "甘い、寛大な"
+    "meaning": "甘い、寛大な",
+    "sources": "ex"
   },
   {
     "id": "discreet",
     "word": "discreet",
-    "meaning": "慎重な、思慮深い"
+    "meaning": "慎重な、思慮深い",
+    "sources": "ex"
   },
   {
     "id": "complement",
     "word": "complement",
-    "meaning": "補完する、補完物"
+    "meaning": "補完する、補完物",
+    "sources": "ex"
   },
   {
     "id": "unsound",
     "word": "unsound",
-    "meaning": "不健全な、根拠のない"
+    "meaning": "不健全な、根拠のない",
+    "sources": "ex"
   },
   {
     "id": "wield",
     "word": "wield",
-    "meaning": "振るう、行使する"
+    "meaning": "振るう、行使する",
+    "sources": "ex"
   },
   {
     "id": "contempt",
     "word": "contempt",
-    "meaning": "軽蔑、侮辱"
+    "meaning": "軽蔑、侮辱",
+    "sources": "ex"
   },
   {
     "id": "insight",
     "word": "insight",
-    "meaning": "洞察、見識"
+    "meaning": "洞察、見識",
+    "sources": "ex"
   },
   {
     "id": "dismantle",
     "word": "dismantle",
-    "meaning": "解体する、撤去する"
+    "meaning": "解体する、撤去する",
+    "sources": "ex"
   },
   {
     "id": "cunning",
     "word": "cunning",
-    "meaning": "ずる賢い、狡猾な"
+    "meaning": "ずる賢い、狡猾な",
+    "sources": "ex"
   },
   {
     "id": "scorn",
     "word": "scorn",
-    "meaning": "軽蔑する；軽蔑"
+    "meaning": "軽蔑する；軽蔑",
+    "sources": "ex"
   },
   {
     "id": "deteriorate",
     "word": "deteriorate",
-    "meaning": "悪化する、劣化する"
+    "meaning": "悪化する、劣化する",
+    "sources": "ex"
   },
   {
     "id": "pathetic",
     "word": "pathetic",
-    "meaning": "哀れな、痛ましい"
+    "meaning": "哀れな、痛ましい",
+    "sources": "ex"
   },
   {
     "id": "commencement",
     "word": "commencement",
-    "meaning": "開始、卒業式"
+    "meaning": "開始、卒業式",
+    "sources": "ex"
   },
   {
     "id": "premature",
     "word": "premature",
-    "meaning": "早すぎる、時期尚早の"
+    "meaning": "早すぎる、時期尚早の",
+    "sources": "ex"
   },
   {
     "id": "deploy",
     "word": "deploy",
-    "meaning": "配置する、展開する"
+    "meaning": "配置する、展開する",
+    "sources": "ex"
   },
   {
     "id": "sterile",
     "word": "sterile",
-    "meaning": "不毛の、無菌の"
+    "meaning": "不毛の、無菌の",
+    "sources": "ex"
   },
   {
     "id": "dreary",
     "word": "dreary",
-    "meaning": "陰気な、退屈な"
+    "meaning": "陰気な、退屈な",
+    "sources": "ex"
   },
   {
     "id": "simmer",
     "word": "simmer",
-    "meaning": "ことこと煮る、くすぶる"
+    "meaning": "ことこと煮る、くすぶる",
+    "sources": "ex"
   },
   {
     "id": "humble",
     "word": "humble",
-    "meaning": "謙虚な、質素な"
+    "meaning": "謙虚な、質素な",
+    "sources": "ex"
   },
   {
     "id": "attendant",
     "word": "attendant",
-    "meaning": "係員、付き添い人"
+    "meaning": "係員、付き添い人",
+    "sources": "ex"
   },
   {
     "id": "vigilant",
     "word": "vigilant",
-    "meaning": "用心深い、警戒している"
+    "meaning": "用心深い、警戒している",
+    "sources": "ex"
   },
   {
     "id": "cumulative",
     "word": "cumulative",
-    "meaning": "累積する、累加的な"
+    "meaning": "累積する、累加的な",
+    "sources": "ex"
   },
   {
     "id": "candid",
     "word": "candid",
-    "meaning": "率直な、遠慮のない"
+    "meaning": "率直な、遠慮のない",
+    "sources": "ex"
   },
   {
     "id": "jumble",
     "word": "jumble",
-    "meaning": "ごちゃ混ぜにする；混乱"
+    "meaning": "ごちゃ混ぜにする；混乱",
+    "sources": "ex"
   },
   {
     "id": "miniature",
     "word": "miniature",
-    "meaning": "小型の、縮小模型"
+    "meaning": "小型の、縮小模型",
+    "sources": "ex"
   },
   {
     "id": "confirm",
     "word": "confirm",
-    "meaning": "確認する、裏付ける"
+    "meaning": "確認する、裏付ける",
+    "sources": "ex"
   },
   {
     "id": "emphasize",
     "word": "emphasize",
-    "meaning": "強調する"
+    "meaning": "強調する",
+    "sources": "ex"
   },
   {
     "id": "reliable",
     "word": "reliable",
-    "meaning": "信頼できる、頼りになる"
+    "meaning": "信頼できる、頼りになる",
+    "sources": "ex"
   },
   {
     "id": "adapt",
     "word": "adapt",
-    "meaning": "適応する、適合させる"
+    "meaning": "適応する、適合させる",
+    "sources": "ex"
   },
   {
     "id": "commit",
     "word": "commit",
-    "meaning": "専念する、犯す、約束する"
+    "meaning": "専念する、犯す、約束する",
+    "sources": "ex"
   },
   {
     "id": "exposure",
     "word": "exposure",
-    "meaning": "さらされること、露出"
+    "meaning": "さらされること、露出",
+    "sources": "ex"
   },
   {
     "id": "secure",
     "word": "secure",
-    "meaning": "確保する、安全な"
+    "meaning": "確保する、安全な",
+    "sources": "ex"
   },
   {
     "id": "commute",
     "word": "commute",
-    "meaning": "通勤・通学する"
+    "meaning": "通勤・通学する",
+    "sources": "ex"
   },
   {
     "id": "settlement",
     "word": "settlement",
-    "meaning": "解決、合意、入植地"
+    "meaning": "解決、合意、入植地",
+    "sources": "ex"
   },
   {
     "id": "overlook",
     "word": "overlook",
-    "meaning": "見落とす、見渡す"
+    "meaning": "見落とす、見渡す",
+    "sources": "ex"
   },
   {
     "id": "inhabitant",
     "word": "inhabitant",
-    "meaning": "住民、居住者"
+    "meaning": "住民、居住者",
+    "sources": "ex"
   },
   {
     "id": "witness",
     "word": "witness",
-    "meaning": "目撃者、目撃する"
+    "meaning": "目撃者、目撃する",
+    "sources": "ex"
   },
   {
     "id": "likelihood",
     "word": "likelihood",
-    "meaning": "可能性、見込み"
+    "meaning": "可能性、見込み",
+    "sources": "ex"
   },
   {
     "id": "proponent",
     "word": "proponent",
-    "meaning": "支持者、提唱者"
+    "meaning": "支持者、提唱者",
+    "sources": "ex"
   },
   {
     "id": "refund",
     "word": "refund",
-    "meaning": "返金する、払い戻す；返金、払い戻し"
+    "meaning": "返金する、払い戻す；返金、払い戻し",
+    "sources": "ex"
   },
   {
     "id": "lobby",
     "word": "lobby",
-    "meaning": "働きかける、ロビー活動をする"
+    "meaning": "働きかける、ロビー活動をする",
+    "sources": "ex"
   },
   {
     "id": "plot",
     "word": "plot",
-    "meaning": "陰謀、筋書き、企てる"
+    "meaning": "陰謀、筋書き、企てる",
+    "sources": "ex"
   },
   {
     "id": "distinct",
     "word": "distinct",
-    "meaning": "明確に異なる、はっきりした"
+    "meaning": "明確に異なる、はっきりした",
+    "sources": "ex"
   },
   {
     "id": "advocate",
     "word": "advocate",
-    "meaning": "支持する、提唱する、支持者"
+    "meaning": "支持する、提唱する、支持者",
+    "sources": "ex"
   },
   {
     "id": "rivalry",
     "word": "rivalry",
-    "meaning": "競争、対抗関係"
+    "meaning": "競争、対抗関係",
+    "sources": "ex"
   },
   {
     "id": "fraction",
     "word": "fraction",
-    "meaning": "一部分、分数"
+    "meaning": "一部分、分数",
+    "sources": "ex"
   },
   {
     "id": "legitimate",
     "word": "legitimate",
-    "meaning": "合法的な、正当な"
+    "meaning": "合法的な、正当な",
+    "sources": "ex"
   },
   {
     "id": "activate",
     "word": "activate",
-    "meaning": "作動させる、活性化する"
+    "meaning": "作動させる、活性化する",
+    "sources": "ex"
   },
   {
     "id": "celebrity",
     "word": "celebrity",
-    "meaning": "有名人、名声"
+    "meaning": "有名人、名声",
+    "sources": "ex"
   },
   {
     "id": "recession",
     "word": "recession",
-    "meaning": "景気後退、不況"
+    "meaning": "景気後退、不況",
+    "sources": "ex"
   },
   {
     "id": "vomit",
     "word": "vomit",
-    "meaning": "吐く、嘔吐する"
+    "meaning": "吐く、嘔吐する",
+    "sources": "ex"
   },
   {
     "id": "viable",
     "word": "viable",
-    "meaning": "実行可能な、生存可能な"
+    "meaning": "実行可能な、生存可能な",
+    "sources": "ex"
   },
   {
     "id": "terrain",
     "word": "terrain",
-    "meaning": "地形、土地"
+    "meaning": "地形、土地",
+    "sources": "ex"
   },
   {
     "id": "toll",
     "word": "toll",
-    "meaning": "通行料、犠牲者数"
+    "meaning": "通行料、犠牲者数",
+    "sources": "ex"
   },
   {
     "id": "desperate",
     "word": "desperate",
-    "meaning": "必死の、絶望的な"
+    "meaning": "必死の、絶望的な",
+    "sources": "ex"
   },
   {
     "id": "surveillance",
     "word": "surveillance",
-    "meaning": "監視、見張り"
+    "meaning": "監視、見張り",
+    "sources": "ex"
   },
   {
     "id": "closure",
     "word": "closure",
-    "meaning": "閉鎖、終結"
+    "meaning": "閉鎖、終結",
+    "sources": "ex"
   },
   {
     "id": "confidential",
     "word": "confidential",
-    "meaning": "秘密の、機密の"
+    "meaning": "秘密の、機密の",
+    "sources": "ex"
   },
   {
     "id": "corridor",
     "word": "corridor",
-    "meaning": "廊下、回廊"
+    "meaning": "廊下、回廊",
+    "sources": "ex"
   },
   {
     "id": "specimen",
     "word": "specimen",
-    "meaning": "標本、見本"
+    "meaning": "標本、見本",
+    "sources": "ex"
   },
   {
     "id": "publicity",
     "word": "publicity",
-    "meaning": "宣伝、世間の注目"
+    "meaning": "宣伝、世間の注目",
+    "sources": "ex"
   },
   {
     "id": "currency",
     "word": "currency",
-    "meaning": "通貨、流通"
+    "meaning": "通貨、流通",
+    "sources": "ex"
   }
 ]

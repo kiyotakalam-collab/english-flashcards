@@ -2,6 +2,25 @@ export const STATE_KEY = 'ex_flashcards_pwa_v2';
 export const LEGACY_KEY = 'study_flashcards_mistakes_v1';
 export const normalizeWord = word => word.trim().toLowerCase().replaceAll('ß', 'ss').replaceAll('ς', 'σ');
 const clone = value => structuredClone(value);
+const SOURCE_ORDER = ['ex', 'reading'];
+/** Source tags are additive. Empty/missing tags mean unclassified, not deletion. */
+export function normalizeSources(value) {
+  if (value == null || value === '') return '';
+  const parts = Array.isArray(value) ? value : typeof value === 'string' ? value.split('|') : null;
+  if (!parts) throw new Error('sources は ex、reading、ex|reading、または空欄を指定してください。');
+  const tags = new Set(parts.map(part => {
+    if (typeof part !== 'string') throw new Error('sources に不正な値があります。');
+    return part.trim().toLowerCase();
+  }).filter(Boolean));
+  if ([...tags].some(tag => !SOURCE_ORDER.includes(tag))) throw new Error('sources に未対応の登録元があります。');
+  return SOURCE_ORDER.filter(tag => tags.has(tag)).join('|');
+}
+export function mergeSources(...values) {
+  return normalizeSources(values.flatMap(value => normalizeSources(value).split('|')).filter(Boolean));
+}
+export function matchesSource(word, source) {
+  return source === 'all' || (SOURCE_ORDER.includes(source) && normalizeSources(word.sources).split('|').includes(source));
+}
 const required = (value, name) => {
   if (typeof value !== 'string' || !value.trim()) throw new Error(`${name} が空、または文字列ではありません。`);
   return value.trim();
@@ -23,7 +42,7 @@ export function validateWords(rows) {
     if (!row || typeof row !== 'object') throw new Error('単語データの形式が不正です。');
     const word = {
       id: required(row.id, 'id'), word: required(row.word, 'word'), meaning: required(row.meaning, 'meaning'),
-      range: String(row.range ?? '').trim(), active: activeValue(row.active), updated_at: String(row.updated_at ?? '').trim()
+      range: String(row.range ?? '').trim(), active: activeValue(row.active), updated_at: String(row.updated_at ?? '').trim(), sources: normalizeSources(row.sources)
     };
     const previous = ids.get(word.id), normalized = normalizeWord(word.word);
     if (previous && JSON.stringify(previous) !== JSON.stringify(word)) throw new Error(`id が重複しています: ${word.id}`);
@@ -121,7 +140,10 @@ export function upsertWords(state, incoming) {
   // Resolve by id only. A new id for an existing spelling is a source error,
   // never permission to detach its learning history.
   const incomingById = new Map(incoming.map(word => [word.id, word]));
-  const finalWords = next.words.map(word => incomingById.get(word.id) || word);
+  const finalWords = next.words.map(word => {
+    const updated = incomingById.get(word.id);
+    return updated ? { ...updated, sources: mergeSources(word.sources, updated.sources) } : word;
+  });
   finalWords.push(...incoming.filter(word => !ids.has(word.id)));
   validateWords(finalWords);
   let added = 0, updated = 0;
@@ -132,7 +154,7 @@ export function upsertWords(state, incoming) {
     if (old) {
       if (!word.active && old.active) pending.add(word.id);
       else pending.delete(word.id);
-      const replacement = { ...word, active: word.active ? true : old.active };
+      const replacement = { ...word, sources: mergeSources(old.sources, word.sources), active: word.active ? true : old.active };
       if (JSON.stringify(old) !== JSON.stringify(replacement)) updated++;
       next.words[next.words.findIndex(row => row.id === word.id)] = replacement;
     } else { next.words.push(word); added++; }
@@ -171,7 +193,7 @@ export function restoreBackup(state, data) {
         let id = `legacy:${normalized}`;
         while (next.words.some(word => word.id === id)) id += ':';
         const meaning = typeof row.meaning === 'string' ? row.meaning.trim() : '';
-        target = { id, word, meaning: meaning || '（訳は未登録）', range: '', active: true, updated_at: '' };
+        target = { id, word, meaning: meaning || '（訳は未登録）', range: '', active: true, updated_at: '', sources: '' };
         next.words.push(target); names.set(normalized, target);
       }
       mergeRecord(next, { ...emptyRecord(target.id), correctCount, wrongCount });
@@ -180,7 +202,11 @@ export function restoreBackup(state, data) {
     const backup = validateState(data);
     // Existing master data wins; backups can add missing words, never roll back
     // a corrected translation, spelling, activation or synchronization settings.
-    for (const word of backup.words) if (!next.words.some(row => row.id === word.id)) next.words.push(word);
+    for (const word of backup.words) {
+      const existing = next.words.find(row => row.id === word.id);
+      if (existing) existing.sources = mergeSources(existing.sources, word.sources);
+      else next.words.push(word);
+    }
     validateWords(next.words);
     for (const record of backup.records) mergeRecord(next, record);
   }
@@ -189,6 +215,7 @@ export function restoreBackup(state, data) {
 export function initializeState(storage, initialWords) {
   const saved = storage.getItem(STATE_KEY);
   let state = saved ? validateState(JSON.parse(saved)) : createState(initialWords);
+  let changed = false;
   if (!state.legacyMigrated) {
     const legacy = storage.getItem(LEGACY_KEY);
     if (legacy) {
@@ -197,8 +224,18 @@ export function initializeState(storage, initialWords) {
       if (data.length) state = restoreBackup(state, data);
     }
     state.legacyMigrated = true;
-    storage.setItem(STATE_KEY, JSON.stringify(state));
+    changed = true;
   }
+  // The original bundled 308 words are EX vocabulary even on old saved devices.
+  // Never replace saved word text, IDs, scores or other provenance.
+  const seedSources = new Map(initialWords.map(word => [word.id, normalizeSources(word.sources)]));
+  state.words = state.words.map(word => {
+    const sources = mergeSources(word.sources, seedSources.get(word.id));
+    if (sources === word.sources) return word;
+    changed = true;
+    return { ...word, sources };
+  });
+  if (changed) storage.setItem(STATE_KEY, JSON.stringify(state));
   return state;
 }
 export function validateFeedUrl(value) {

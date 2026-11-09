@@ -276,3 +276,39 @@ test('application update replaces offline assets while preserving history and un
     await expect(page.locator('#card-wrong')).toContainText('1 回');
   } finally { await page.context().setOffline(false); await new Promise(resolve => server.close(resolve)); }
 });
+
+test('EX/reading selectors share a card and preserve cumulative mistakes on reload', async ({page}) => {
+  await open(page);
+  await expect(page.locator('#card-source')).toHaveText('準1級EX');
+  await page.locator('#source-filter').selectOption('reading');
+  await expect(page.locator('#front')).toHaveText('対象の単語はありません');
+  await page.locator('#source-filter').selectOption('ex');
+  await expect(page.locator('#front')).toHaveText('clumsy');
+  await page.locator('#card').click(); await page.locator('#wrong').click();
+  await expect(page.locator('#wrong-count')).toHaveText('1');
+  await page.evaluate(key => {
+    const state = JSON.parse(localStorage.getItem(key));
+    const clumsy = state.words.find(word => word.id === 'clumsy');
+    clumsy.sources = 'ex|reading';
+    state.words.push({id:'from-reading', word:'from-reading', meaning:'長文語', sources:'reading', active:true, range:'', updated_at:''});
+    localStorage.setItem(key, JSON.stringify(state));
+  }, key);
+  await page.reload();
+  await expect(page.locator('#word-count')).toHaveText('309');
+  await page.locator('#source-filter').selectOption('reading');
+  await expect(page.locator('#progress')).toContainText('01 / 2');
+  await expect(page.locator('#card-source')).toHaveText('準1級EX・長文');
+  await expect(page.locator('#card-wrong')).toContainText('1 回');
+  await page.locator('#skip').click();
+  await expect(page.locator('#front')).toHaveText('from-reading');
+  await expect(page.locator('#card-source')).toHaveText('長文');
+  await page.getByRole('button', {name:'単語と記録',exact:true}).click();
+  await page.locator('#history-source').selectOption('reading');
+  await expect(page.locator('#history-rows tr')).toHaveCount(2);
+  await expect(page.locator('#history-rows tr').first()).toContainText('準1級EX・長文');
+  await page.locator('#history-source').selectOption('ex');
+  await expect(page.locator('#history-rows tr')).toHaveCount(308);
+  await expect(page.locator('#history-rows tr').first()).toContainText('1');
+  expect((await saved(page)).records.find(r => r.wordId==='clumsy')).toMatchObject({wrongCount:1,correctCount:0});
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
