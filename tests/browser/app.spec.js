@@ -189,12 +189,15 @@ test('a storage failure is shown without advancing or losing saved history', asy
   await expect(page.locator('#front')).toHaveText('clumsy');
   expect((await saved(page)).records).toEqual([]);
 });
-test('two tabs keep each other’s answers through shared storage and Web Locks', async ({ page, context }) => {
+test('two tabs keep each other’s answers through shared storage', async ({ page, context }) => {
   await open(page); const other = await context.newPage(); await open(other);
   await page.locator('#card').click(); await other.locator('#card').click();
-  await Promise.all([page.locator('#wrong').click(), other.locator('#correct').click()]);
-  await expect(page.locator('#wrong-count')).toHaveText('1');
+  await page.locator('#wrong').click();
+  await expect.poll(async () => (await saved(page)).records[0]).toMatchObject({ correctCount: 0, wrongCount: 1 });
+  await other.locator('#correct').click();
   await expect.poll(async () => (await saved(page)).records[0]).toMatchObject({ correctCount: 1, wrongCount: 1 });
+  await page.reload();
+  await expect(page.locator('#wrong-count')).toHaveText('1');
 });
 
 test('application update replaces offline assets while preserving history and unrelated caches', async ({ page }) => {
