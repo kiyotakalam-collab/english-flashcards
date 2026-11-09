@@ -79,7 +79,7 @@ function renderCard() {
 }
 function renderHistory() {
   const query = $('search').value.trim().toLowerCase();
-  const numbers = new Map(state.words.filter(word => word.active).map((word, position) => [word.id, position + 1]));
+  const numbers = new Map(state.words.filter(word => word.active && matchesSource(word, $('history-source').value)).map((word, position) => [word.id, position + 1]));
   const positions = new Map(state.words.map((word, position) => [word.id, position]));
   const words = state.words.filter(word => ($('show-inactive').checked || word.active) && matchesSource(word, $('history-source').value) && `${word.word} ${word.meaning}`.toLowerCase().includes(query));
   const byNumber = (a, b) => (numbers.get(a.id) ?? Number.MAX_SAFE_INTEGER) - (numbers.get(b.id) ?? Number.MAX_SAFE_INTEGER) || positions.get(a.id) - positions.get(b.id);
