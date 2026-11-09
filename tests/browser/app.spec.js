@@ -59,6 +59,28 @@ test('starts from a chosen number and stops at the optional ending number', asyn
   await expect(page.locator('#history-rows .history-number')).toHaveText('101');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
+test('history can be sorted by number, cumulative mistakes, and mistake rate', async ({ page }) => {
+  await open(page);
+  await page.evaluate(key => {
+    const state = JSON.parse(localStorage.getItem(key));
+    state.records = [
+      { wordId: 'clumsy', correctCount: 8, wrongCount: 2, lastReviewedAt: '2026-11-09T00:00:00.000Z', lastResult: 'correct' },
+      { wordId: 'custody', correctCount: 0, wrongCount: 1, lastReviewedAt: '2026-11-09T00:01:00.000Z', lastResult: 'wrong' }
+    ];
+    localStorage.setItem(key, JSON.stringify(state));
+  }, key);
+  await page.reload();
+  await page.getByRole('button', { name: '単語と記録', exact: true }).click();
+  const firstId = () => page.locator('#history-rows tr').first().getAttribute('data-word-id');
+
+  await expect.poll(firstId).toBe('clumsy');
+  await page.locator('#history-sort').selectOption('wrong-count');
+  await expect.poll(firstId).toBe('clumsy');
+  await page.locator('#history-sort').selectOption('wrong-rate');
+  await expect.poll(firstId).toBe('custody');
+  await page.locator('#history-sort').selectOption('number');
+  await expect.poll(firstId).toBe('clumsy');
+});
 test('live feed additions are idempotent and translation correction retains counters', async ({ page }) => {
   await open(page); await page.locator('#card').click(); await page.locator('#wrong').click();
   const feed = [{ id: 'clumsy', word: 'clumsy', meaning: '不器用な【更新】' }, { id: 'new-word', word: 'new word', meaning: '新しい単語' }];

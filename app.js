@@ -77,8 +77,18 @@ function renderCard() {
 function renderHistory() {
   const query = $('search').value.trim().toLowerCase();
   const numbers = new Map(state.words.filter(word => word.active).map((word, position) => [word.id, position + 1]));
+  const positions = new Map(state.words.map((word, position) => [word.id, position]));
   const words = state.words.filter(word => ($('show-inactive').checked || word.active) && `${word.word} ${word.meaning}`.toLowerCase().includes(query));
-  words.sort((a, b) => recordFor(b.id).wrongCount - recordFor(a.id).wrongCount || a.word.localeCompare(b.word));
+  const byNumber = (a, b) => (numbers.get(a.id) ?? Number.MAX_SAFE_INTEGER) - (numbers.get(b.id) ?? Number.MAX_SAFE_INTEGER) || positions.get(a.id) - positions.get(b.id);
+  const byWrongCount = (a, b) => recordFor(b.id).wrongCount - recordFor(a.id).wrongCount || byNumber(a, b);
+  const byWrongRate = (a, b) => {
+    const aRecord = recordFor(a.id), bRecord = recordFor(b.id);
+    const aTotal = aRecord.correctCount + aRecord.wrongCount, bTotal = bRecord.correctCount + bRecord.wrongCount;
+    if (!aTotal || !bTotal) return bTotal - aTotal || byNumber(a, b);
+    return bRecord.wrongCount / bTotal - aRecord.wrongCount / aTotal || byWrongCount(a, b);
+  };
+  const comparator = { number: byNumber, 'wrong-count': byWrongCount, 'wrong-rate': byWrongRate }[$('history-sort').value] || byNumber;
+  words.sort(comparator);
   $('history-count').textContent = `${words.length} 語`;
   const fragment = document.createDocumentFragment();
   for (const word of words) {
@@ -183,7 +193,7 @@ function bindEvents() {
   $('wrong').onclick = () => grade(false); $('correct').onclick = () => grade(true);
   $('restart').onclick = $('again').onclick = start; $('mode').onchange = start;
   $('skip').onclick = () => { index++; revealed = false; renderCard(); };
-  $('search').oninput = $('show-inactive').onchange = renderHistory;
+  $('search').oninput = $('show-inactive').onchange = $('history-sort').onchange = renderHistory;
   $('sync-now').onclick = () => sync(true);
   $('sync-form').onsubmit = async event => {
     event.preventDefault();
