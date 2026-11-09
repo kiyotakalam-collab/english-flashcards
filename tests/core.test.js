@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { STATE_KEY, LEGACY_KEY, createState, initializeState, recordAnswer, upsertWords, parseFeed, parseCSV, restoreBackup, validateState, validateFeedUrl, approveDeactivations } from '../core.js';
+import { STATE_KEY, LEGACY_KEY, createState, initializeState, recordAnswer, upsertWords, parseFeed, parseCSV, restoreBackup, validateState, validateFeedUrl, approveDeactivations, normalizeSources, mergeSources, matchesSource } from '../core.js';
 
 const initial = JSON.parse(readFileSync(new URL('../initial_words.json', import.meta.url)));
 const memory = entries => {
@@ -122,4 +122,52 @@ test('public URLs must be HTTPS without embedded credentials', () => {
   for (const url of ['javascript:alert(1)', 'http://example.org/feed', '/feed', 'https://user:password@example.org/feed']) assert.throws(() => validateFeedUrl(url));
   assert.equal(validateFeedUrl(''), '');
   assert.equal(validateFeedUrl(' https://example.org/feed '), 'https://example.org/feed');
+});
+
+test('source tags filter EX and reading without creating duplicate cards or scores', () => {
+  let state = createState(initial);
+  assert.equal(state.words.filter(word => matchesSource(word, 'ex')).length, 308);
+  assert.equal(state.words.filter(word => matchesSource(word, 'reading')).length, 0);
+  state = recordAnswer(state, 'clumsy', false);
+  const reading = { id: 'reading-only', word: 'reading-only', meaning: '長文の語', sources: 'reading' };
+  state = upsertWords(state, [reading, {id:'clumsy', word:'clumsy', meaning:'訳', sources:'reading'}]).state;
+  assert.equal(state.words.length, 309);
+  assert.equal(state.words[0].sources, 'ex|reading');
+  assert.equal(state.records[0].wrongCount, 1);
+  assert.equal(state.words.filter(word => matchesSource(word, 'ex')).length, 308);
+  assert.equal(state.words.filter(word => matchesSource(word, 'reading')).length, 2);
+  const legacyFeed = upsertWords(state, [{id:'clumsy',word:'clumsy',meaning:'別の訳'}]).state;
+  assert.equal(legacyFeed.words[0].sources, 'ex|reading', 'old feed cannot erase provenance');
+  assert.equal(legacyFeed.records[0].wrongCount, 1);
+  assert.equal(upsertWords(legacyFeed, [reading]).state.words.length, 309);
+});
+test('old saved states and backups gain only seed EX labels without losing learning records', () => {
+  let state = createState(initial);
+  state.words = state.words.map(({sources, ...word}) => word);
+  state.words.push({id:'reading-user',word:'reading-user',meaning:'学習語',range:'',active:true,updated_at:''});
+  state = recordAnswer(state, 'clumsy', false);
+  state = recordAnswer(state, 'clumsy', false);
+  state = recordAnswer(state, 'clumsy', true);
+  const store = memory({[STATE_KEY]: JSON.stringify({...state,legacyMigrated:true})});
+  const loaded = initializeState(store, initial);
+  assert.equal(loaded.words[0].sources, 'ex');
+  assert.equal(loaded.words.at(-1).sources, '');
+  assert.equal(loaded.records[0].wrongCount, 2);
+  assert.equal(loaded.records[0].correctCount, 1);
+  assert.deepEqual(initializeState(store, initial), loaded);
+  const recovered = restoreBackup(createState(initial), state);
+  assert.equal(recovered.records[0].wrongCount, 2);
+  assert.equal(recovered.words.at(-1).sources, '');
+});
+test('source feed accepts optional column and multiple sources, rejects unknown codes', () => {
+  assert.equal(normalizeSources('reading|ex|reading'), 'ex|reading');
+  assert.equal(mergeSources('ex','reading'), 'ex|reading');
+  const feed = 'id,word,meaning,range,active,updated_at,sources\\na,a,訳,,TRUE,,reading\\nb,b,訳,,TRUE,,ex|reading\\n';
+  const rows = parseFeed(feed);
+  assert.equal(rows[0].sources, 'reading');
+  assert.equal(rows[1].sources, 'ex|reading');
+  assert.equal(parseFeed('id,word,meaning\\na,a,訳\\n')[0].sources, '');
+  for (const value of ['ex|other', 'reading,ex', 4, {}]) {
+    assert.throws(() => normalizeSources(value));
+  }
 });
