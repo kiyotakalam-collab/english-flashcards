@@ -1,0 +1,1542 @@
+[
+  {
+    "id": "clumsy",
+    "word": "clumsy",
+    "meaning": "不器用な、ぎこちない"
+  },
+  {
+    "id": "custody",
+    "word": "custody",
+    "meaning": "保護、監護、拘留"
+  },
+  {
+    "id": "petition",
+    "word": "petition",
+    "meaning": "請願、嘆願"
+  },
+  {
+    "id": "compartment",
+    "word": "compartment",
+    "meaning": "区画、仕切られた部分"
+  },
+  {
+    "id": "segment",
+    "word": "segment",
+    "meaning": "部分、区分"
+  },
+  {
+    "id": "uphold",
+    "word": "uphold",
+    "meaning": "支持する、維持する"
+  },
+  {
+    "id": "contemplate",
+    "word": "contemplate",
+    "meaning": "熟考する、じっと見つめる"
+  },
+  {
+    "id": "concede",
+    "word": "concede",
+    "meaning": "しぶしぶ認める、譲歩する"
+  },
+  {
+    "id": "reconcile",
+    "word": "reconcile",
+    "meaning": "和解させる、調和させる"
+  },
+  {
+    "id": "conform",
+    "word": "conform",
+    "meaning": "従う、一致する"
+  },
+  {
+    "id": "hectic",
+    "word": "hectic",
+    "meaning": "非常に忙しい、慌ただしい"
+  },
+  {
+    "id": "detain",
+    "word": "detain",
+    "meaning": "引き留める、拘留する"
+  },
+  {
+    "id": "corrupt",
+    "word": "corrupt",
+    "meaning": "腐敗した、堕落させる"
+  },
+  {
+    "id": "stale",
+    "word": "stale",
+    "meaning": "新鮮でない、古くなった"
+  },
+  {
+    "id": "serene",
+    "word": "serene",
+    "meaning": "穏やかな、静かな"
+  },
+  {
+    "id": "ransom",
+    "word": "ransom",
+    "meaning": "身代金"
+  },
+  {
+    "id": "nutritious",
+    "word": "nutritious",
+    "meaning": "栄養のある"
+  },
+  {
+    "id": "abundant",
+    "word": "abundant",
+    "meaning": "豊富な"
+  },
+  {
+    "id": "discontent",
+    "word": "discontent",
+    "meaning": "不満、不満な"
+  },
+  {
+    "id": "unanimously",
+    "word": "unanimously",
+    "meaning": "満場一致で"
+  },
+  {
+    "id": "prestigious",
+    "word": "prestigious",
+    "meaning": "名声のある、権威ある"
+  },
+  {
+    "id": "complication",
+    "word": "complication",
+    "meaning": "複雑化、厄介な問題"
+  },
+  {
+    "id": "tempting",
+    "word": "tempting",
+    "meaning": "魅力的な、誘惑するような"
+  },
+  {
+    "id": "innate",
+    "word": "innate",
+    "meaning": "生まれつきの、先天的な"
+  },
+  {
+    "id": "detour",
+    "word": "detour",
+    "meaning": "回り道、迂回"
+  },
+  {
+    "id": "compulsory",
+    "word": "compulsory",
+    "meaning": "義務的な、強制的な"
+  },
+  {
+    "id": "filthy",
+    "word": "filthy",
+    "meaning": "非常に汚い、不潔な"
+  },
+  {
+    "id": "comply with",
+    "word": "comply with",
+    "meaning": "〜に従う、応じる"
+  },
+  {
+    "id": "tedious",
+    "word": "tedious",
+    "meaning": "退屈な、うんざりするほど長い"
+  },
+  {
+    "id": "precision",
+    "word": "precision",
+    "meaning": "正確さ、精密さ"
+  },
+  {
+    "id": "interrogate",
+    "word": "interrogate",
+    "meaning": "尋問する、問いただす"
+  },
+  {
+    "id": "composed",
+    "word": "composed",
+    "meaning": "落ち着いた、構成された"
+  },
+  {
+    "id": "vocation",
+    "word": "vocation",
+    "meaning": "職業、天職"
+  },
+  {
+    "id": "obsolete",
+    "word": "obsolete",
+    "meaning": "時代遅れの、廃れた"
+  },
+  {
+    "id": "unwittingly",
+    "word": "unwittingly",
+    "meaning": "知らずに、意図せず"
+  },
+  {
+    "id": "correspondence",
+    "word": "correspondence",
+    "meaning": "通信、文通、一致"
+  },
+  {
+    "id": "perish",
+    "word": "perish",
+    "meaning": "死ぬ、滅びる"
+  },
+  {
+    "id": "lease",
+    "word": "lease",
+    "meaning": "賃貸借契約、賃貸する"
+  },
+  {
+    "id": "certify",
+    "word": "certify",
+    "meaning": "証明する、認定する"
+  },
+  {
+    "id": "provoke",
+    "word": "provoke",
+    "meaning": "引き起こす、挑発する"
+  },
+  {
+    "id": "exclusive",
+    "word": "exclusive",
+    "meaning": "排他的な、独占的な"
+  },
+  {
+    "id": "inflict",
+    "word": "inflict",
+    "meaning": "（苦痛・損害などを）与える"
+  },
+  {
+    "id": "refuse",
+    "word": "refuse",
+    "meaning": "拒否する"
+  },
+  {
+    "id": "demote",
+    "word": "demote",
+    "meaning": "降格させる"
+  },
+  {
+    "id": "mingle",
+    "word": "mingle",
+    "meaning": "混ざる、交流する"
+  },
+  {
+    "id": "temperament",
+    "word": "temperament",
+    "meaning": "気質、性格"
+  },
+  {
+    "id": "formulate",
+    "word": "formulate",
+    "meaning": "考案する、明確にまとめる"
+  },
+  {
+    "id": "omit",
+    "word": "omit",
+    "meaning": "省略する、除外する"
+  },
+  {
+    "id": "obedient",
+    "word": "obedient",
+    "meaning": "従順な"
+  },
+  {
+    "id": "ration",
+    "word": "ration",
+    "meaning": "配給量、配給する"
+  },
+  {
+    "id": "affluent",
+    "word": "affluent",
+    "meaning": "裕福な、豊かな"
+  },
+  {
+    "id": "privilege",
+    "word": "privilege",
+    "meaning": "特権、特典"
+  },
+  {
+    "id": "procession",
+    "word": "procession",
+    "meaning": "行列、行進"
+  },
+  {
+    "id": "vain",
+    "word": "vain",
+    "meaning": "うぬぼれの強い、無駄な"
+  },
+  {
+    "id": "confer",
+    "word": "confer",
+    "meaning": "協議する、授与する"
+  },
+  {
+    "id": "allegation",
+    "word": "allegation",
+    "meaning": "申し立て、疑惑"
+  },
+  {
+    "id": "feasible",
+    "word": "feasible",
+    "meaning": "実行可能な"
+  },
+  {
+    "id": "mercy",
+    "word": "mercy",
+    "meaning": "慈悲、情け"
+  },
+  {
+    "id": "prosecute",
+    "word": "prosecute",
+    "meaning": "起訴する、訴追する"
+  },
+  {
+    "id": "delegate",
+    "word": "delegate",
+    "meaning": "代表者、委任する"
+  },
+  {
+    "id": "alternate",
+    "word": "alternate",
+    "meaning": "交互の、交互に起こる"
+  },
+  {
+    "id": "withdraw",
+    "word": "withdraw",
+    "meaning": "引き下がる、撤回する、引き出す"
+  },
+  {
+    "id": "validity",
+    "word": "validity",
+    "meaning": "妥当性、有効性"
+  },
+  {
+    "id": "objective",
+    "word": "objective",
+    "meaning": "目的、客観的な"
+  },
+  {
+    "id": "devoted",
+    "word": "devoted",
+    "meaning": "献身的な、熱心な"
+  },
+  {
+    "id": "subsidize",
+    "word": "subsidize",
+    "meaning": "助成金を出す、補助する"
+  },
+  {
+    "id": "defendant",
+    "word": "defendant",
+    "meaning": "被告人、被告"
+  },
+  {
+    "id": "wretched",
+    "word": "wretched",
+    "meaning": "惨めな、ひどい"
+  },
+  {
+    "id": "dejected",
+    "word": "dejected",
+    "meaning": "落胆した、意気消沈した"
+  },
+  {
+    "id": "consecutive",
+    "word": "consecutive",
+    "meaning": "連続した"
+  },
+  {
+    "id": "nuisance",
+    "word": "nuisance",
+    "meaning": "迷惑、厄介なもの"
+  },
+  {
+    "id": "waver",
+    "word": "waver",
+    "meaning": "揺れる、ためらう"
+  },
+  {
+    "id": "weaver",
+    "word": "weaver",
+    "meaning": "織工、織る人"
+  },
+  {
+    "id": "unwarranted",
+    "word": "unwarranted",
+    "meaning": "不当な、根拠のない"
+  },
+  {
+    "id": "proficient",
+    "word": "proficient",
+    "meaning": "熟達した、堪能な"
+  },
+  {
+    "id": "mediocre",
+    "word": "mediocre",
+    "meaning": "平凡な、二流の"
+  },
+  {
+    "id": "hinder",
+    "word": "hinder",
+    "meaning": "妨げる、邪魔する"
+  },
+  {
+    "id": "perpetual",
+    "word": "perpetual",
+    "meaning": "永続的な、絶え間ない"
+  },
+  {
+    "id": "prevail",
+    "word": "prevail",
+    "meaning": "普及している、打ち勝つ"
+  },
+  {
+    "id": "resolute",
+    "word": "resolute",
+    "meaning": "断固とした、決意の固い"
+  },
+  {
+    "id": "dismal",
+    "word": "dismal",
+    "meaning": "陰気な、惨めな、ひどい"
+  },
+  {
+    "id": "fabricate",
+    "word": "fabricate",
+    "meaning": "でっち上げる、製造する"
+  },
+  {
+    "id": "clerical",
+    "word": "clerical",
+    "meaning": "事務の、聖職者の"
+  },
+  {
+    "id": "inquiry",
+    "word": "inquiry",
+    "meaning": "問い合わせ、調査"
+  },
+  {
+    "id": "subscription",
+    "word": "subscription",
+    "meaning": "定期購読、会費"
+  },
+  {
+    "id": "coverage",
+    "word": "coverage",
+    "meaning": "報道、適用範囲、補償範囲"
+  },
+  {
+    "id": "hesitant",
+    "word": "hesitant",
+    "meaning": "ためらっている、気乗りしない"
+  },
+  {
+    "id": "downturn",
+    "word": "downturn",
+    "meaning": "景気などの下降、悪化"
+  },
+  {
+    "id": "prescribe",
+    "word": "prescribe",
+    "meaning": "処方する、規定する"
+  },
+  {
+    "id": "compliment",
+    "word": "compliment",
+    "meaning": "褒め言葉、褒める"
+  },
+  {
+    "id": "narrowly",
+    "word": "narrowly",
+    "meaning": "かろうじて、僅差で"
+  },
+  {
+    "id": "modify",
+    "word": "modify",
+    "meaning": "修正する、変更する"
+  },
+  {
+    "id": "quota",
+    "word": "quota",
+    "meaning": "割当量、定員"
+  },
+  {
+    "id": "disturbance",
+    "word": "disturbance",
+    "meaning": "妨害、騒乱、混乱"
+  },
+  {
+    "id": "substitute",
+    "word": "substitute",
+    "meaning": "代わりのもの、代用する"
+  },
+  {
+    "id": "convey",
+    "word": "convey",
+    "meaning": "伝える、運ぶ"
+  },
+  {
+    "id": "indispensable",
+    "word": "indispensable",
+    "meaning": "不可欠な"
+  },
+  {
+    "id": "faulty",
+    "word": "faulty",
+    "meaning": "欠陥のある、誤った"
+  },
+  {
+    "id": "sincerely",
+    "word": "sincerely",
+    "meaning": "誠実に、心から"
+  },
+  {
+    "id": "commemorate",
+    "word": "commemorate",
+    "meaning": "記念する、追悼する"
+  },
+  {
+    "id": "observance",
+    "word": "observance",
+    "meaning": "遵守、行事・儀式の実施"
+  },
+  {
+    "id": "assure",
+    "word": "assure",
+    "meaning": "保証する、安心させる"
+  },
+  {
+    "id": "bleak",
+    "word": "bleak",
+    "meaning": "荒涼とした、見通しの暗い"
+  },
+  {
+    "id": "afflict",
+    "word": "afflict",
+    "meaning": "苦しめる、悩ませる"
+  },
+  {
+    "id": "formidable",
+    "word": "formidable",
+    "meaning": "手ごわい、恐るべき"
+  },
+  {
+    "id": "converge",
+    "word": "converge",
+    "meaning": "一点に集まる、収束する"
+  },
+  {
+    "id": "overcast",
+    "word": "overcast",
+    "meaning": "曇った、雲に覆われた"
+  },
+  {
+    "id": "endow",
+    "word": "endow",
+    "meaning": "授ける、寄付する"
+  },
+  {
+    "id": "uplifting",
+    "word": "uplifting",
+    "meaning": "気分を高揚させる"
+  },
+  {
+    "id": "burglary",
+    "word": "burglary",
+    "meaning": "住居侵入窃盗"
+  },
+  {
+    "id": "authorize",
+    "word": "authorize",
+    "meaning": "許可する、権限を与える"
+  },
+  {
+    "id": "devour",
+    "word": "devour",
+    "meaning": "むさぼり食う、夢中で読む"
+  },
+  {
+    "id": "scrutiny",
+    "word": "scrutiny",
+    "meaning": "精密な調査、厳しい監視"
+  },
+  {
+    "id": "profess",
+    "word": "profess",
+    "meaning": "公言する、信奉すると表明する"
+  },
+  {
+    "id": "reap",
+    "word": "reap",
+    "meaning": "収穫する、成果を得る"
+  },
+  {
+    "id": "crave",
+    "word": "crave",
+    "meaning": "切望する"
+  },
+  {
+    "id": "excerpt",
+    "word": "excerpt",
+    "meaning": "抜粋、引用部分"
+  },
+  {
+    "id": "ordeal",
+    "word": "ordeal",
+    "meaning": "厳しい試練、苦難"
+  },
+  {
+    "id": "mourn",
+    "word": "mourn",
+    "meaning": "嘆き悲しむ、悼む"
+  },
+  {
+    "id": "recurrent",
+    "word": "recurrent",
+    "meaning": "繰り返し起こる"
+  },
+  {
+    "id": "amendment",
+    "word": "amendment",
+    "meaning": "修正、改正"
+  },
+  {
+    "id": "conceited",
+    "word": "conceited",
+    "meaning": "うぬぼれの強い"
+  },
+  {
+    "id": "herald",
+    "word": "herald",
+    "meaning": "前触れとなる、告げる"
+  },
+  {
+    "id": "paranoid",
+    "word": "paranoid",
+    "meaning": "被害妄想的な、極度に疑い深い"
+  },
+  {
+    "id": "deception",
+    "word": "deception",
+    "meaning": "欺き、詐欺"
+  },
+  {
+    "id": "fanatical",
+    "word": "fanatical",
+    "meaning": "狂信的な、熱狂的な"
+  },
+  {
+    "id": "crumble",
+    "word": "crumble",
+    "meaning": "崩れる、粉々になる"
+  },
+  {
+    "id": "pending",
+    "word": "pending",
+    "meaning": "保留中の、〜までの間"
+  },
+  {
+    "id": "intelligible",
+    "word": "intelligible",
+    "meaning": "理解できる、明瞭な"
+  },
+  {
+    "id": "uproar",
+    "word": "uproar",
+    "meaning": "騒動、大騒ぎ"
+  },
+  {
+    "id": "intricate",
+    "word": "intricate",
+    "meaning": "複雑な、入り組んだ"
+  },
+  {
+    "id": "glare",
+    "word": "glare",
+    "meaning": "にらみつける、まぶしい光"
+  },
+  {
+    "id": "abstain",
+    "word": "abstain",
+    "meaning": "控える、棄権する"
+  },
+  {
+    "id": "preclude",
+    "word": "preclude",
+    "meaning": "妨げる、不可能にする"
+  },
+  {
+    "id": "bid",
+    "word": "bid",
+    "meaning": "入札する、試み"
+  },
+  {
+    "id": "hypocritical",
+    "word": "hypocritical",
+    "meaning": "偽善的な"
+  },
+  {
+    "id": "deserted",
+    "word": "deserted",
+    "meaning": "人けのない、見捨てられた"
+  },
+  {
+    "id": "savage",
+    "word": "savage",
+    "meaning": "残忍な、野蛮な"
+  },
+  {
+    "id": "shriek",
+    "word": "shriek",
+    "meaning": "金切り声を上げる"
+  },
+  {
+    "id": "stingy",
+    "word": "stingy",
+    "meaning": "けちな"
+  },
+  {
+    "id": "arouse",
+    "word": "arouse",
+    "meaning": "呼び起こす、刺激する"
+  },
+  {
+    "id": "foil",
+    "word": "foil",
+    "meaning": "阻止する、失敗させる"
+  },
+  {
+    "id": "implication",
+    "word": "implication",
+    "meaning": "含意、影響、関与"
+  },
+  {
+    "id": "ascertain",
+    "word": "ascertain",
+    "meaning": "確かめる、突き止める"
+  },
+  {
+    "id": "cramp",
+    "word": "cramp",
+    "meaning": "けいれん、窮屈にする"
+  },
+  {
+    "id": "intimidate",
+    "word": "intimidate",
+    "meaning": "威圧する、おびえさせる"
+  },
+  {
+    "id": "sluggish",
+    "word": "sluggish",
+    "meaning": "動きの鈍い、低迷した"
+  },
+  {
+    "id": "moderation",
+    "word": "moderation",
+    "meaning": "節度、適度"
+  },
+  {
+    "id": "yearn",
+    "word": "yearn",
+    "meaning": "切望する、恋しく思う"
+  },
+  {
+    "id": "castrate",
+    "word": "castrate",
+    "meaning": "去勢する"
+  },
+  {
+    "id": "ambiguous",
+    "word": "ambiguous",
+    "meaning": "曖昧な、複数の意味に取れる"
+  },
+  {
+    "id": "autonomy",
+    "word": "autonomy",
+    "meaning": "自治、自律"
+  },
+  {
+    "id": "nauseous",
+    "word": "nauseous",
+    "meaning": "吐き気を催す"
+  },
+  {
+    "id": "immerse",
+    "word": "immerse",
+    "meaning": "浸す、没頭させる"
+  },
+  {
+    "id": "endorse",
+    "word": "endorse",
+    "meaning": "支持する、裏書きする"
+  },
+  {
+    "id": "feeble",
+    "word": "feeble",
+    "meaning": "弱々しい、力のない"
+  },
+  {
+    "id": "curtail",
+    "word": "curtail",
+    "meaning": "削減する、短縮する"
+  },
+  {
+    "id": "dispatch",
+    "word": "dispatch",
+    "meaning": "派遣する、発送する"
+  },
+  {
+    "id": "arrogant",
+    "word": "arrogant",
+    "meaning": "傲慢な、横柄な"
+  },
+  {
+    "id": "disgrace",
+    "word": "disgrace",
+    "meaning": "不名誉、恥をかかせる"
+  },
+  {
+    "id": "restrain",
+    "word": "restrain",
+    "meaning": "抑制する、制止する"
+  },
+  {
+    "id": "cowardly",
+    "word": "cowardly",
+    "meaning": "臆病な"
+  },
+  {
+    "id": "deformation",
+    "word": "deformation",
+    "meaning": "変形、ゆがみ"
+  },
+  {
+    "id": "appliance",
+    "word": "appliance",
+    "meaning": "器具、電化製品"
+  },
+  {
+    "id": "remodel",
+    "word": "remodel",
+    "meaning": "改造する、改装する"
+  },
+  {
+    "id": "suspicious",
+    "word": "suspicious",
+    "meaning": "疑わしい、不審な"
+  },
+  {
+    "id": "herd",
+    "word": "herd",
+    "meaning": "群れ、群れをなして移動する"
+  },
+  {
+    "id": "bureau",
+    "word": "bureau",
+    "meaning": "事務局、局、たんす"
+  },
+  {
+    "id": "wreck",
+    "word": "wreck",
+    "meaning": "破壊する、残骸"
+  },
+  {
+    "id": "impair",
+    "word": "impair",
+    "meaning": "損なう、悪化させる"
+  },
+  {
+    "id": "distress",
+    "word": "distress",
+    "meaning": "苦痛、苦しめる"
+  },
+  {
+    "id": "rotten",
+    "word": "rotten",
+    "meaning": "腐った、ひどい"
+  },
+  {
+    "id": "tentative",
+    "word": "tentative",
+    "meaning": "暫定的な、ためらいがちな"
+  },
+  {
+    "id": "defective",
+    "word": "defective",
+    "meaning": "欠陥のある"
+  },
+  {
+    "id": "slack",
+    "word": "slack",
+    "meaning": "緩んだ、怠慢な"
+  },
+  {
+    "id": "beggar",
+    "word": "beggar",
+    "meaning": "物乞い、乞食"
+  },
+  {
+    "id": "dubious",
+    "word": "dubious",
+    "meaning": "疑わしい、怪しげな"
+  },
+  {
+    "id": "concise",
+    "word": "concise",
+    "meaning": "簡潔な"
+  },
+  {
+    "id": "shrink",
+    "word": "shrink",
+    "meaning": "縮む、縮小する"
+  },
+  {
+    "id": "gloomy",
+    "word": "gloomy",
+    "meaning": "陰気な、憂鬱な"
+  },
+  {
+    "id": "procedure",
+    "word": "procedure",
+    "meaning": "手順、手続き"
+  },
+  {
+    "id": "barely",
+    "word": "barely",
+    "meaning": "かろうじて、ほとんど〜ない"
+  },
+  {
+    "id": "interfere",
+    "word": "interfere",
+    "meaning": "干渉する、邪魔する"
+  },
+  {
+    "id": "preference",
+    "word": "preference",
+    "meaning": "好み、優先"
+  },
+  {
+    "id": "interrupt",
+    "word": "interrupt",
+    "meaning": "遮る、中断させる"
+  },
+  {
+    "id": "commission",
+    "word": "commission",
+    "meaning": "委員会、任務、手数料"
+  },
+  {
+    "id": "decent",
+    "word": "decent",
+    "meaning": "まともな、きちんとした"
+  },
+  {
+    "id": "compound",
+    "word": "compound",
+    "meaning": "化合物、複合の"
+  },
+  {
+    "id": "crude",
+    "word": "crude",
+    "meaning": "粗野な、未加工の"
+  },
+  {
+    "id": "dazed",
+    "word": "dazed",
+    "meaning": "ぼう然とした"
+  },
+  {
+    "id": "console",
+    "word": "console",
+    "meaning": "慰める"
+  },
+  {
+    "id": "chore",
+    "word": "chore",
+    "meaning": "雑用、面倒な仕事"
+  },
+  {
+    "id": "embrace",
+    "word": "embrace",
+    "meaning": "抱きしめる、受け入れる"
+  },
+  {
+    "id": "surrender",
+    "word": "surrender",
+    "meaning": "降伏する、引き渡す"
+  },
+  {
+    "id": "graphic",
+    "word": "graphic",
+    "meaning": "図解の、生々しい"
+  },
+  {
+    "id": "fraud",
+    "word": "fraud",
+    "meaning": "詐欺、不正行為"
+  },
+  {
+    "id": "brisk",
+    "word": "brisk",
+    "meaning": "活発な　肌寒い"
+  },
+  {
+    "id": "slump",
+    "word": "slump",
+    "meaning": "急落する、落ち込む"
+  },
+  {
+    "id": "impede",
+    "word": "impede",
+    "meaning": "妨げる"
+  },
+  {
+    "id": "furious",
+    "word": "furious",
+    "meaning": "激怒した、猛烈な"
+  },
+  {
+    "id": "flaw",
+    "word": "flaw",
+    "meaning": "欠陥、欠点"
+  },
+  {
+    "id": "assert",
+    "word": "assert",
+    "meaning": "断言する、主張する"
+  },
+  {
+    "id": "obscure",
+    "word": "obscure",
+    "meaning": "不明瞭な、覆い隠す"
+  },
+  {
+    "id": "disgust",
+    "word": "disgust",
+    "meaning": "嫌悪感、うんざりさせる"
+  },
+  {
+    "id": "intimate",
+    "word": "intimate",
+    "meaning": "親密な、ほのめかす"
+  },
+  {
+    "id": "exclaim",
+    "word": "exclaim",
+    "meaning": "叫ぶ、声を上げる"
+  },
+  {
+    "id": "sprain",
+    "word": "sprain",
+    "meaning": "捻挫する、捻挫"
+  },
+  {
+    "id": "inhale",
+    "word": "inhale",
+    "meaning": "吸い込む"
+  },
+  {
+    "id": "fussy",
+    "word": "fussy",
+    "meaning": "細かいことにうるさい"
+  },
+  {
+    "id": "rally",
+    "word": "rally",
+    "meaning": "集会、回復する、結集する"
+  },
+  {
+    "id": "salute",
+    "word": "salute",
+    "meaning": "敬礼する、敬意を表する"
+  },
+  {
+    "id": "hostage",
+    "word": "hostage",
+    "meaning": "人質"
+  },
+  {
+    "id": "slant",
+    "word": "slant",
+    "meaning": "傾斜、偏った見方"
+  },
+  {
+    "id": "comrade",
+    "word": "comrade",
+    "meaning": "仲間、同志"
+  },
+  {
+    "id": "deformity",
+    "word": "deformity",
+    "meaning": "変形、奇形"
+  },
+  {
+    "id": "agitate",
+    "word": "agitate",
+    "meaning": "動揺させる、扇動する"
+  },
+  {
+    "id": "recede",
+    "word": "recede",
+    "meaning": "後退する、遠ざかる"
+  },
+  {
+    "id": "frantic",
+    "word": "frantic",
+    "meaning": "取り乱した、必死の"
+  },
+  {
+    "id": "adorable",
+    "word": "adorable",
+    "meaning": "とてもかわいらしい"
+  },
+  {
+    "id": "deflect",
+    "word": "deflect",
+    "meaning": "そらす、方向を変える"
+  },
+  {
+    "id": "spiteful",
+    "word": "spiteful",
+    "meaning": "意地悪な、悪意のある"
+  },
+  {
+    "id": "sanction",
+    "word": "sanction",
+    "meaning": "制裁、認可する"
+  },
+  {
+    "id": "influx",
+    "word": "influx",
+    "meaning": "流入、殺到"
+  },
+  {
+    "id": "ditch",
+    "word": "ditch",
+    "meaning": "溝、捨てる"
+  },
+  {
+    "id": "discharge",
+    "word": "discharge",
+    "meaning": "放出する、解雇する、退院させる"
+  },
+  {
+    "id": "analogy",
+    "word": "analogy",
+    "meaning": "類推、類似"
+  },
+  {
+    "id": "sinister",
+    "word": "sinister",
+    "meaning": "不吉な、邪悪な"
+  },
+  {
+    "id": "lean",
+    "word": "lean",
+    "meaning": "傾く、寄りかかる、やせた"
+  },
+  {
+    "id": "dutiful",
+    "word": "dutiful",
+    "meaning": "義務に忠実な、従順な"
+  },
+  {
+    "id": "splinter",
+    "word": "splinter",
+    "meaning": "破片、とげ；裂ける"
+  },
+  {
+    "id": "brace",
+    "word": "brace",
+    "meaning": "支える、身構える；補強具"
+  },
+  {
+    "id": "liable",
+    "word": "liable",
+    "meaning": "〜しがちな；法的責任がある"
+  },
+  {
+    "id": "redeem",
+    "word": "redeem",
+    "meaning": "取り戻す、償う"
+  },
+  {
+    "id": "depot",
+    "word": "depot",
+    "meaning": "倉庫、車庫、停車場"
+  },
+  {
+    "id": "forsake",
+    "word": "forsake",
+    "meaning": "見捨てる、放棄する"
+  },
+  {
+    "id": "retrace",
+    "word": "retrace",
+    "meaning": "たどり直す、引き返す"
+  },
+  {
+    "id": "naive",
+    "word": "naive",
+    "meaning": "世間知らずの、純真な"
+  },
+  {
+    "id": "uptight",
+    "word": "uptight",
+    "meaning": "神経質な、緊張した、堅苦しい"
+  },
+  {
+    "id": "inhibit",
+    "word": "inhibit",
+    "meaning": "抑制する、妨げる"
+  },
+  {
+    "id": "aggravate",
+    "word": "aggravate",
+    "meaning": "悪化させる、いら立たせる"
+  },
+  {
+    "id": "horrify",
+    "word": "horrify",
+    "meaning": "ぞっとさせる"
+  },
+  {
+    "id": "vulgar",
+    "word": "vulgar",
+    "meaning": "下品な、俗悪な"
+  },
+  {
+    "id": "cordial",
+    "word": "cordial",
+    "meaning": "心のこもった、友好的な"
+  },
+  {
+    "id": "dismayed",
+    "word": "dismayed",
+    "meaning": "うろたえた、落胆した"
+  },
+  {
+    "id": "taint",
+    "word": "taint",
+    "meaning": "汚す、損なう"
+  },
+  {
+    "id": "striking",
+    "word": "striking",
+    "meaning": "際立った、目立つ"
+  },
+  {
+    "id": "indulgent",
+    "word": "indulgent",
+    "meaning": "甘い、寛大な"
+  },
+  {
+    "id": "discreet",
+    "word": "discreet",
+    "meaning": "慎重な、思慮深い"
+  },
+  {
+    "id": "complement",
+    "word": "complement",
+    "meaning": "補完する、補完物"
+  },
+  {
+    "id": "unsound",
+    "word": "unsound",
+    "meaning": "不健全な、根拠のない"
+  },
+  {
+    "id": "wield",
+    "word": "wield",
+    "meaning": "振るう、行使する"
+  },
+  {
+    "id": "contempt",
+    "word": "contempt",
+    "meaning": "軽蔑、侮辱"
+  },
+  {
+    "id": "insight",
+    "word": "insight",
+    "meaning": "洞察、見識"
+  },
+  {
+    "id": "dismantle",
+    "word": "dismantle",
+    "meaning": "解体する、撤去する"
+  },
+  {
+    "id": "cunning",
+    "word": "cunning",
+    "meaning": "ずる賢い、狡猾な"
+  },
+  {
+    "id": "scorn",
+    "word": "scorn",
+    "meaning": "軽蔑する；軽蔑"
+  },
+  {
+    "id": "deteriorate",
+    "word": "deteriorate",
+    "meaning": "悪化する、劣化する"
+  },
+  {
+    "id": "pathetic",
+    "word": "pathetic",
+    "meaning": "哀れな、痛ましい"
+  },
+  {
+    "id": "commencement",
+    "word": "commencement",
+    "meaning": "開始、卒業式"
+  },
+  {
+    "id": "premature",
+    "word": "premature",
+    "meaning": "早すぎる、時期尚早の"
+  },
+  {
+    "id": "deploy",
+    "word": "deploy",
+    "meaning": "配置する、展開する"
+  },
+  {
+    "id": "sterile",
+    "word": "sterile",
+    "meaning": "不毛の、無菌の"
+  },
+  {
+    "id": "dreary",
+    "word": "dreary",
+    "meaning": "陰気な、退屈な"
+  },
+  {
+    "id": "simmer",
+    "word": "simmer",
+    "meaning": "ことこと煮る、くすぶる"
+  },
+  {
+    "id": "humble",
+    "word": "humble",
+    "meaning": "謙虚な、質素な"
+  },
+  {
+    "id": "attendant",
+    "word": "attendant",
+    "meaning": "係員、付き添い人"
+  },
+  {
+    "id": "vigilant",
+    "word": "vigilant",
+    "meaning": "用心深い、警戒している"
+  },
+  {
+    "id": "cumulative",
+    "word": "cumulative",
+    "meaning": "累積する、累加的な"
+  },
+  {
+    "id": "candid",
+    "word": "candid",
+    "meaning": "率直な、遠慮のない"
+  },
+  {
+    "id": "jumble",
+    "word": "jumble",
+    "meaning": "ごちゃ混ぜにする；混乱"
+  },
+  {
+    "id": "miniature",
+    "word": "miniature",
+    "meaning": "小型の、縮小模型"
+  },
+  {
+    "id": "confirm",
+    "word": "confirm",
+    "meaning": "確認する、裏付ける"
+  },
+  {
+    "id": "emphasize",
+    "word": "emphasize",
+    "meaning": "強調する"
+  },
+  {
+    "id": "reliable",
+    "word": "reliable",
+    "meaning": "信頼できる、頼りになる"
+  },
+  {
+    "id": "adapt",
+    "word": "adapt",
+    "meaning": "適応する、適合させる"
+  },
+  {
+    "id": "commit",
+    "word": "commit",
+    "meaning": "専念する、犯す、約束する"
+  },
+  {
+    "id": "exposure",
+    "word": "exposure",
+    "meaning": "さらされること、露出"
+  },
+  {
+    "id": "secure",
+    "word": "secure",
+    "meaning": "確保する、安全な"
+  },
+  {
+    "id": "commute",
+    "word": "commute",
+    "meaning": "通勤・通学する"
+  },
+  {
+    "id": "settlement",
+    "word": "settlement",
+    "meaning": "解決、合意、入植地"
+  },
+  {
+    "id": "overlook",
+    "word": "overlook",
+    "meaning": "見落とす、見渡す"
+  },
+  {
+    "id": "inhabitant",
+    "word": "inhabitant",
+    "meaning": "住民、居住者"
+  },
+  {
+    "id": "witness",
+    "word": "witness",
+    "meaning": "目撃者、目撃する"
+  },
+  {
+    "id": "likelihood",
+    "word": "likelihood",
+    "meaning": "可能性、見込み"
+  },
+  {
+    "id": "proponent",
+    "word": "proponent",
+    "meaning": "支持者、提唱者"
+  },
+  {
+    "id": "refund",
+    "word": "refund",
+    "meaning": "返金する、払い戻す；返金、払い戻し"
+  },
+  {
+    "id": "lobby",
+    "word": "lobby",
+    "meaning": "働きかける、ロビー活動をする"
+  },
+  {
+    "id": "plot",
+    "word": "plot",
+    "meaning": "陰謀、筋書き、企てる"
+  },
+  {
+    "id": "distinct",
+    "word": "distinct",
+    "meaning": "明確に異なる、はっきりした"
+  },
+  {
+    "id": "advocate",
+    "word": "advocate",
+    "meaning": "支持する、提唱する、支持者"
+  },
+  {
+    "id": "rivalry",
+    "word": "rivalry",
+    "meaning": "競争、対抗関係"
+  },
+  {
+    "id": "fraction",
+    "word": "fraction",
+    "meaning": "一部分、分数"
+  },
+  {
+    "id": "legitimate",
+    "word": "legitimate",
+    "meaning": "合法的な、正当な"
+  },
+  {
+    "id": "activate",
+    "word": "activate",
+    "meaning": "作動させる、活性化する"
+  },
+  {
+    "id": "celebrity",
+    "word": "celebrity",
+    "meaning": "有名人、名声"
+  },
+  {
+    "id": "recession",
+    "word": "recession",
+    "meaning": "景気後退、不況"
+  },
+  {
+    "id": "vomit",
+    "word": "vomit",
+    "meaning": "吐く、嘔吐する"
+  },
+  {
+    "id": "viable",
+    "word": "viable",
+    "meaning": "実行可能な、生存可能な"
+  },
+  {
+    "id": "terrain",
+    "word": "terrain",
+    "meaning": "地形、土地"
+  },
+  {
+    "id": "toll",
+    "word": "toll",
+    "meaning": "通行料、犠牲者数"
+  },
+  {
+    "id": "desperate",
+    "word": "desperate",
+    "meaning": "必死の、絶望的な"
+  },
+  {
+    "id": "surveillance",
+    "word": "surveillance",
+    "meaning": "監視、見張り"
+  },
+  {
+    "id": "closure",
+    "word": "closure",
+    "meaning": "閉鎖、終結"
+  },
+  {
+    "id": "confidential",
+    "word": "confidential",
+    "meaning": "秘密の、機密の"
+  },
+  {
+    "id": "corridor",
+    "word": "corridor",
+    "meaning": "廊下、回廊"
+  },
+  {
+    "id": "specimen",
+    "word": "specimen",
+    "meaning": "標本、見本"
+  },
+  {
+    "id": "publicity",
+    "word": "publicity",
+    "meaning": "宣伝、世間の注目"
+  },
+  {
+    "id": "currency",
+    "word": "currency",
+    "meaning": "通貨、流通"
+  }
+]
