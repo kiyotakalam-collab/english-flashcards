@@ -177,6 +177,20 @@ test('real service worker supports offline cold start, grading and fresh-context
   expect((await saved(fresh)).records[0].wrongCount).toBe(1);
   await freshContext.close();
 });
+test('refresh helper replaces the app shell without deleting learning history', async ({ page }) => {
+  await open(page);
+  await page.locator('#card').click(); await page.locator('#wrong').click();
+  await expect(page.locator('#wrong-count')).toHaveText('1');
+  await page.evaluate(() => navigator.serviceWorker.ready);
+
+  await page.goto('./refresh.html');
+  await expect(page.getByRole('heading', { name: 'アプリを最新版に更新' })).toBeVisible();
+  await page.getByRole('button', { name: '最新版に更新する' }).click();
+  await expect(page).toHaveURL(/\/english-flashcards\/\?updated=\d+$/);
+  await expect(page.locator('#word-count')).toHaveText('308');
+  await expect(page.locator('#wrong-count')).toHaveText('1');
+  await page.evaluate(() => navigator.serviceWorker.ready);
+});
 test('install manifest resolves project-relative URLs and valid PNG icons', async ({ page, request, browser }) => {
   await open(page);
   const manifestURL = await page.locator('link[rel="manifest"]').evaluate(link => link.href);

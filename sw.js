@@ -2,7 +2,7 @@
 const VERSION = '__BUILD_VERSION__';
 const CACHE_PREFIX = `kotoba-shell:${new URL(self.registration.scope).pathname}:`;
 const CACHE_NAME = CACHE_PREFIX + VERSION;
-const ASSETS = ['./', './index.html', './styles.css', './app.js', './core.js', './initial_words.json', './manifest.webmanifest', './icons/icon.svg', './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-512.png'];
+const ASSETS = ['./', './index.html', './refresh.html', './styles.css', './app.js', './core.js', './initial_words.json', './manifest.webmanifest', './icons/icon.svg', './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-512.png'];
 const assetURLs = new Set(ASSETS.map(asset => new URL(asset, self.registration.scope).href));
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)));

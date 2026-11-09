@@ -277,6 +277,9 @@ async function setupOffline() {
       const worker = registration.installing;
       worker?.addEventListener('statechange', () => { if (worker.state === 'installed') showUpdate(); });
     });
+    if (navigator.onLine) {
+      try { await registration.update(); showUpdate(); } catch { /* Continue with the installed offline version. */ }
+    }
     navigator.serviceWorker.addEventListener('controllerchange', () => { if (updateRequested) location.reload(); });
     $('update-app').onclick = () => { updateRequested = true; registration.waiting?.postMessage({ type: 'SKIP_WAITING' }); };
     await navigator.serviceWorker.ready;
