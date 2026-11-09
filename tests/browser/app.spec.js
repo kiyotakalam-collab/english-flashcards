@@ -33,6 +33,7 @@ test('Android layout, reveal and cumulative grading survive reload; history sear
   await page.getByRole('button', { name: '単語と記録', exact: true }).click();
   await page.locator('#search').fill('clumsy');
   await expect(page.locator('#history-rows tr')).toHaveCount(1);
+  await expect(page.locator('#history-rows .history-number')).toHaveText('1');
   await expect(page.locator('#history-rows tr')).toContainText('16.7%');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
@@ -53,6 +54,9 @@ test('starts from a chosen number and stops at the optional ending number', asyn
   await page.locator('#end-number').fill('');
   await page.locator('#restart').click();
   await expect(page.locator('#progress')).toContainText('01 / 208');
+  await page.getByRole('button', { name: '単語と記録', exact: true }).click();
+  await page.locator('#search').fill('observance');
+  await expect(page.locator('#history-rows .history-number')).toHaveText('101');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 test('live feed additions are idempotent and translation correction retains counters', async ({ page }) => {

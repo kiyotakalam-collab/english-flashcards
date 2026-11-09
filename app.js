@@ -76,6 +76,7 @@ function renderCard() {
 }
 function renderHistory() {
   const query = $('search').value.trim().toLowerCase();
+  const numbers = new Map(state.words.filter(word => word.active).map((word, position) => [word.id, position + 1]));
   const words = state.words.filter(word => ($('show-inactive').checked || word.active) && `${word.word} ${word.meaning}`.toLowerCase().includes(query));
   words.sort((a, b) => recordFor(b.id).wrongCount - recordFor(a.id).wrongCount || a.word.localeCompare(b.word));
   $('history-count').textContent = `${words.length} 語`;
@@ -83,11 +84,13 @@ function renderHistory() {
   for (const word of words) {
     const record = recordFor(word.id), total = record.correctCount + record.wrongCount;
     const row = document.createElement('tr'); row.dataset.wordId = word.id;
+    const number = document.createElement('td'); number.className = 'history-number'; number.textContent = numbers.get(word.id) ?? '—';
     const cell = document.createElement('td'), name = document.createElement('strong'), meaning = document.createElement('small');
+    cell.className = 'history-word';
     name.textContent = word.word; meaning.textContent = word.meaning;
     cell.append(name, meaning);
     if (!word.active) { const label = document.createElement('span'); label.className = 'inactive'; label.textContent = '非表示'; cell.append(label); }
-    row.append(cell);
+    row.append(number, cell);
     for (const [position, value] of [total, record.correctCount, record.wrongCount, total ? `${(100 * record.correctCount / total).toFixed(1)}%` : '—'].entries()) {
       const td = document.createElement('td'); td.textContent = value;
       if (position === 2) td.className = 'wrong-cell';
@@ -97,7 +100,7 @@ function renderHistory() {
   }
   if (!words.length) {
     const row = document.createElement('tr'), cell = document.createElement('td');
-    cell.colSpan = 5; cell.textContent = '該当する単語はありません。'; row.append(cell); fragment.append(row);
+    cell.colSpan = 6; cell.textContent = '該当する単語はありません。'; row.append(cell); fragment.append(row);
   }
   $('history-rows').replaceChildren(fragment);
 }
