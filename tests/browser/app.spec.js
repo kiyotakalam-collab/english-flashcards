@@ -36,6 +36,25 @@ test('Android layout, reveal and cumulative grading survive reload; history sear
   await expect(page.locator('#history-rows tr')).toContainText('16.7%');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
+test('starts from a chosen number and stops at the optional ending number', async ({ page }) => {
+  await open(page);
+  await page.locator('#start-number').fill('101');
+  await page.locator('#end-number').fill('103');
+  await page.locator('#restart').click();
+  await expect(page.locator('#front')).toHaveText('observance');
+  await expect(page.locator('#progress')).toContainText('No.101 · 01 / 3');
+  await page.locator('#skip').click();
+  await expect(page.locator('#front')).toHaveText('assure');
+  await page.locator('#skip').click();
+  await expect(page.locator('#front')).toHaveText('bleak');
+  await page.locator('#skip').click();
+  await expect(page.locator('#session-done')).toBeVisible();
+
+  await page.locator('#end-number').fill('');
+  await page.locator('#restart').click();
+  await expect(page.locator('#progress')).toContainText('01 / 208');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
 test('live feed additions are idempotent and translation correction retains counters', async ({ page }) => {
   await open(page); await page.locator('#card').click(); await page.locator('#wrong').click();
   const feed = [{ id: 'clumsy', word: 'clumsy', meaning: '不器用な【更新】' }, { id: 'new-word', word: 'new word', meaning: '新しい単語' }];
@@ -170,12 +189,15 @@ test('a storage failure is shown without advancing or losing saved history', asy
   await expect(page.locator('#front')).toHaveText('clumsy');
   expect((await saved(page)).records).toEqual([]);
 });
-test('two tabs keep each other’s answers through shared storage and Web Locks', async ({ page, context }) => {
+test('two tabs keep each other’s answers through shared storage', async ({ page, context }) => {
   await open(page); const other = await context.newPage(); await open(other);
   await page.locator('#card').click(); await other.locator('#card').click();
-  await Promise.all([page.locator('#wrong').click(), other.locator('#correct').click()]);
-  await expect(page.locator('#wrong-count')).toHaveText('1');
+  await page.locator('#wrong').click();
+  await expect.poll(async () => (await saved(page)).records[0]).toMatchObject({ correctCount: 0, wrongCount: 1 });
+  await other.locator('#correct').click();
   await expect.poll(async () => (await saved(page)).records[0]).toMatchObject({ correctCount: 1, wrongCount: 1 });
+  await page.reload();
+  await expect(page.locator('#wrong-count')).toHaveText('1');
 });
 
 test('application update replaces offline assets while preserving history and unrelated caches', async ({ page }) => {

@@ -2,6 +2,7 @@ import { STATE_KEY, initializeState, validateState, recordAnswer, emptyRecord, p
 
 const $ = id => document.getElementById(id);
 let state, deck = [], index = 0, revealed = false, grading = false;
+let activeNumberById = new Map();
 let syncPromise = null, syncController, installPrompt, registration, updateRequested = false;
 const formatDate = date => date ? new Date(date).toLocaleString('ja-JP') : '未同期';
 const recordFor = id => state.records.find(record => record.wordId === id) || emptyRecord(id);
@@ -33,9 +34,27 @@ function renderSummary() {
   $('word-count').textContent = state.words.filter(word => word.active).length.toLocaleString();
   $('wrong-count').textContent = total.wrong.toLocaleString();
   $('accuracy').textContent = total.correct + total.wrong ? (100 * total.correct / (total.correct + total.wrong)).toFixed(1) : '—';
+  updateRangeLimits();
+}
+function updateRangeLimits() {
+  if (!state) return;
+  const total = state.words.filter(word => word.active).length;
+  const maximum = Math.max(total, 1);
+  $('start-number').max = String(maximum); $('end-number').max = String(maximum);
+  $('range-help').textContent = total ? `1〜${total}番から選べます。終了を空欄にすると最後まで出題します。` : '現在、出題できる単語がありません。';
 }
 function start() {
-  deck = state.words.filter(word => word.active && ($('mode').value !== 'missed' || recordFor(word.id).wrongCount > 0)).map(word => word.id);
+  const activeWords = state.words.filter(word => word.active);
+  activeNumberById = new Map(activeWords.map((word, position) => [word.id, position + 1]));
+  const total = activeWords.length;
+  let first = Number.parseInt($('start-number').value, 10);
+  let last = Number.parseInt($('end-number').value, 10);
+  first = Number.isInteger(first) ? Math.min(Math.max(first, 1), Math.max(total, 1)) : 1;
+  last = Number.isInteger(last) ? Math.min(Math.max(last, first), total) : total;
+  $('start-number').value = String(first);
+  if ($('end-number').value) $('end-number').value = String(last);
+  const selected = total ? activeWords.slice(first - 1, last) : [];
+  deck = selected.filter(word => $('mode').value !== 'missed' || recordFor(word.id).wrongCount > 0).map(word => word.id);
   if ($('mode').value === 'weak') deck.sort((a, b) => recordFor(b).wrongCount - recordFor(a).wrongCount);
   index = 0; revealed = false; renderCard();
 }
@@ -45,9 +64,9 @@ function renderCard() {
   $('front').textContent = word?.word || (deck.length ? '今日の復習、完了。' : '対象の単語はありません');
   $('meaning').textContent = word?.meaning || '';
   $('meaning').hidden = !revealed || !word;
-  $('progress').textContent = word ? `${String(index + 1).padStart(2, '0')} / ${deck.length} WORDS` : `全 ${deck.length} 語`;
+  $('progress').textContent = word ? `No.${activeNumberById.get(word.id)} · ${String(index + 1).padStart(2, '0')} / ${deck.length} WORDS` : `全 ${deck.length} 語`;
   $('card-wrong').textContent = word ? `この単語の累積誤答 ${recordFor(word.id).wrongCount} 回` : '';
-  $('card-hint').textContent = word ? revealed ? '思い出せましたか？ 下のボタンで記録' : 'タップして意味を確認' : '「最初から」で新しい学習を始められます';
+  $('card-hint').textContent = word ? revealed ? '思い出せましたか？ 下のボタンで記録' : 'タップして意味を確認' : '番号範囲を変えて、もう一度開始できます';
   $('card').disabled = !word;
   $('card').setAttribute('aria-expanded', String(revealed));
   $('card').setAttribute('aria-label', word ? `${word.word}：${revealed ? '意味を隠す' : '意味を表示'}` : '学習終了');
