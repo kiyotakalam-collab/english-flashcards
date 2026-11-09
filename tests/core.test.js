@@ -162,11 +162,11 @@ test('old saved states and backups gain only seed EX labels without losing learn
 test('source feed accepts optional column and multiple sources, rejects unknown codes', () => {
   assert.equal(normalizeSources('reading|ex|reading'), 'ex|reading');
   assert.equal(mergeSources('ex','reading'), 'ex|reading');
-  const feed = 'id,word,meaning,range,active,updated_at,sources\\na,a,訳,,TRUE,,reading\\nb,b,訳,,TRUE,,ex|reading\\n';
+  const feed = 'id,word,meaning,range,active,updated_at,sources\na,a,訳,,TRUE,,reading\nb,b,訳,,TRUE,,ex|reading\n';
   const rows = parseFeed(feed);
   assert.equal(rows[0].sources, 'reading');
   assert.equal(rows[1].sources, 'ex|reading');
-  assert.equal(parseFeed('id,word,meaning\\na,a,訳\\n')[0].sources, '');
+  assert.equal(parseFeed('id,word,meaning\na,a,訳\n')[0].sources, '');
   for (const value of ['ex|other', 'reading,ex', 4, {}]) {
     assert.throws(() => normalizeSources(value));
   }
