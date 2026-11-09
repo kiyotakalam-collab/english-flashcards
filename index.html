@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#245c4b">
+  <meta name="description" content="準1級EXの苦手単語を、累積誤答回数と一緒に復習。オフラインでも使える単語帳。">
+  <title>ことばの記録 | 準1級EX</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="ことばの記録 ホーム"><span class="brand-mark" aria-hidden="true">k.</span><span>ことばの記録<small>準1級 EX · MY WORD NOTEBOOK</small></span></a>
+    <span class="connection" id="connection">接続を確認中</span>
+  </header>
+  <main>
+    <section class="intro"><div><p class="eyebrow">LITTLE BY LITTLE, EVERY DAY.</p><h1>苦手なことばを、<br class="mobile-break">ひとつずつ。</h1><p class="subtext">間違えた数も、覚えていくための記録に。</p></div><span class="intro-number" aria-hidden="true">Aa<span>YOUR DAILY PRACTICE</span></span></section>
+    <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+    <div id="fatal" class="notice error" role="alert" hidden></div>
+    <section class="stats" aria-label="学習の合計">
+      <div><span class="stat-label">収録単語</span><p><strong id="word-count">—</strong><span>語</span></p></div>
+      <div><span class="stat-label">累積誤答</span><p><strong id="wrong-count">—</strong><span>回</span></p></div>
+      <div><span class="stat-label">正答率</span><p><strong id="accuracy">—</strong><span id="accuracy-unit">%</span></p></div>
+    </section>
+    <nav class="tabs" aria-label="メインメニュー"><button class="tab active" data-panel="study" aria-current="page">学習する</button><button class="tab" data-panel="history">単語と記録</button><button class="tab" data-panel="settings">同期・設定</button></nav>
+    <section id="study" class="tab-panel" aria-label="フラッシュカード">
+      <div class="section-top"><label class="select-wrap">出題対象 <select id="mode"><option value="all">すべての単語</option><option value="missed">誤答経験のある単語</option><option value="weak">累積誤答が多い順</option></select></label><button id="restart" class="text-button">最初から ↻</button></div>
+      <div class="study-meta"><span id="progress">準備しています</span><span id="card-wrong"></span></div>
+      <button id="card" class="flashcard" aria-label="意味を表示" aria-expanded="false" disabled><span class="card-label">ENGLISH → JAPANESE</span><span id="front" class="term">読み込み中…</span><span id="meaning" class="meaning" hidden></span><span id="card-hint" class="card-hint">タップして意味を確認</span><span class="card-corner" aria-hidden="true">↗</span></button>
+      <div class="answer-actions"><button id="wrong" class="answer wrong" disabled><span aria-hidden="true">×</span> 間違えた</button><button id="correct" class="answer correct" disabled><span aria-hidden="true">○</span> 覚えていた</button></div>
+      <div class="study-bottom"><span>正解しても、累積誤答回数は残ります。</span><button id="skip" class="text-button" disabled>スキップ →</button></div>
+      <div id="session-done" class="session-done" hidden><strong>おつかれさまでした。</strong><p>今日の積み重ねが、次の自信に。</p><button id="again" class="primary">もう一度学習する</button></div>
+    </section>
+    <section id="history" class="tab-panel" aria-label="単語と学習記録" hidden>
+      <div class="section-top"><h2>単語と記録</h2><span class="quiet" id="history-count"></span></div>
+      <label class="search-label"><span>単語・意味を検索</span><input id="search" type="search" placeholder="例：clumsy、不器用" autocomplete="off"></label>
+      <label class="checkbox"><input type="checkbox" id="show-inactive">非表示の単語も表示</label>
+      <div class="table-wrap"><table><thead><tr><th scope="col">単語 / 意味</th><th scope="col">出題</th><th scope="col">正答</th><th scope="col">累積誤答</th><th scope="col">正答率</th></tr></thead><tbody id="history-rows"></tbody></table></div>
+      <p class="quiet">累積誤答が多い順に表示。履歴はこの端末・ブラウザに保存されます。</p>
+    </section>
+    <section id="settings" class="tab-panel" aria-label="同期と設定" hidden>
+      <section class="settings-card"><div class="section-top"><h2>Google Sheets と同期</h2><span class="tag">読み取り専用</span></div><p class="quiet">単語マスターに追加・修正されたことばを、この単語帳へ。</p>
+        <form id="sync-form"><label for="feed-url">公開CSV / JSONのURL</label><input id="feed-url" type="url" placeholder="https://docs.google.com/spreadsheets/d/e/…/pub?output=csv" autocomplete="off"><p class="field-help">編集用URLではなく、認証なしで読める公開フィードを設定してください。</p><div class="button-row"><button class="primary" type="submit">保存して同期</button><button id="sync-now" type="button">今すぐ同期 ↻</button></div></form>
+        <dl class="sync-details"><div><dt>最終同期成功</dt><dd id="last-sync">未同期</dd></div><div><dt>前回の追加</dt><dd id="last-added">—</dd></div><div><dt>同期状況</dt><dd id="sync-status" role="status">未設定</dd></div></dl>
+        <p class="quiet">起動時・アプリに戻った時・接続が回復した時にも自動同期します。取得に失敗しても保存済みの単語と履歴で学習を続けられます。</p>
+        <div id="pending-box" class="notice" hidden><p id="pending-description"></p><button id="approve-inactive">対象を確認して非表示にする</button></div>
+      </section>
+      <section class="settings-card"><h2>バックアップ・旧HTMLからの移行</h2><p class="quiet">旧HTMLの「バックアップ (JSON)」で保存したファイルも取り込めます。取り込みは現在の履歴と統合し、正答・誤答回数が減らないよう、それぞれ大きい方を残します。</p><div class="button-row"><button id="backup">JSONを書き出す ↓</button><label class="file-button" for="restore">JSONを取り込む ↑</label><input id="restore" type="file" accept=".json,application/json" class="file-input"></div><p class="field-help">別端末の回数を合計する機能ではありません。同じバックアップを再度取り込んでも回数は増えません。ブラウザのデータ削除や端末変更に備えて定期的に書き出してください。</p></section>
+      <section class="settings-card"><h2>ホーム画面から使う</h2><p class="quiet">AndroidのChromeで開き、メニューの「ホーム画面に追加」→「インストール」を選択。初回に読み込んだ後はオフラインでも学習できます。</p><button id="install" hidden>アプリをインストール</button><p id="offline-status" class="field-help">オフラインの準備中…</p><button id="update-app" hidden>新しいバージョンに更新</button><button id="persist" class="text-button">端末にデータの長期保存をリクエスト</button><p id="persist-status" class="field-help"></p></section>
+    </section>
+  </main>
+  <footer><span>ことばの記録</span><span>小さな復習を、毎日の習慣に。</span></footer>
+  <noscript><p class="notice error">この単語帳にはJavaScriptが必要です。ブラウザの設定を確認してください。</p></noscript>
+</body>
+</html>
