@@ -46,7 +46,7 @@
       <label class="search-label"><span>単語・意味を検索</span><input id="search" type="search" placeholder="例：clumsy、不器用" autocomplete="off"></label>
       <div class="history-options"><label class="select-wrap">登録元 <select id="history-source" aria-label="記録の登録元"><option value="all">すべて</option><option value="ex">準1級EX</option><option value="reading">長文</option></select></label><label class="select-wrap">並べ替え <select id="history-sort"><option value="number">No.順</option><option value="wrong-count">累積誤答が多い順</option><option value="wrong-rate">誤答率が高い順</option></select></label><label class="checkbox"><input type="checkbox" id="show-inactive">非表示の単語も表示</label></div>
       <div class="table-wrap"><table><thead><tr><th scope="col" class="history-number">No.</th><th scope="col" class="history-word">単語 / 意味</th><th scope="col">出題</th><th scope="col">正答</th><th scope="col">累積誤答</th><th scope="col">正答率</th></tr></thead><tbody id="history-rows"></tbody></table></div>
-      <p class="quiet">No.は学習画面の出題番号と共通です。誤答率は「累積誤答 ÷ 出題回数」で計算し、未学習の単語は誤答率順の最後に表示します。履歴はこの端末・ブラウザに保存されます。</p>
+      <p class="quiet">No.は選択中の登録元内での番号です。学習画面も同じ登録元を選ぶと一致します。誤答率は「累積誤答 ÷ 出題回数」で計算し、未学習の単語は誤答率順の最後に表示します。履歴はこの端末・ブラウザに保存されます。</p>
     </section>
     <section id="settings" class="tab-panel" aria-label="同期と設定" hidden>
       <section class="settings-card"><div class="section-top"><h2>Google Sheets と同期</h2><span class="tag">読み取り専用</span></div><p class="quiet">単語マスターに追加・修正されたことばを、この単語帳へ。</p>
