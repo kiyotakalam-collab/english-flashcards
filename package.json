@@ -8,9 +8,13 @@
     "build": "node scripts/build.mjs",
     "test": "node --test tests/*.test.js && playwright test",
     "test:unit": "node --test tests/*.test.js",
-    "test:browser": "playwright test"
+    "test:browser": "playwright test",
+    "ai:check": "node scripts/check-ai.mjs",
+    "ai:deploy": "wrangler deploy --config server/ai/wrangler.jsonc"
   },
   "devDependencies": {
-    "@playwright/test": "^1.56.1"
+    "@playwright/test": "^1.56.1",
+    "miniflare": "^5.20261110.0-beta",
+    "wrangler": "^4.160.0"
   }
 }

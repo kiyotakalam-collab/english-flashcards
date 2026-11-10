@@ -35,6 +35,9 @@ jobs:
           fi
           exit "$test_status"
       - run: npm run build
+      - run: npm run ai:check
+        env:
+          WRANGLER_SEND_METRICS: 'false'
       - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request'
         with:

@@ -44,7 +44,7 @@ test.beforeEach(async ({ page }) => {
     for (const method of ['getItem', 'setItem', 'removeItem', 'clear', 'key']) {
       const original = Storage.prototype[method];
       Storage.prototype[method] = function (...args) {
-        if (this === localStorage && (args[0] !== writingKey || method === 'clear')) accesses.push({ method, key: args[0] ?? null });
+        if (this === localStorage && (![writingKey, 'kotoba_writing_ai_endpoint_v1'].includes(args[0]) || method === 'clear')) accesses.push({ method, key: args[0] ?? null });
         return original.apply(this, args);
       };
     }

@@ -1,0 +1,16 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "kotoba-writing-ai",
+  "main": "worker.js",
+  "compatibility_date": "2026-11-01",
+  "workers_dev": true,
+  "vars": {
+    "ALLOWED_ORIGIN": "https://kiyotakalam-collab.github.io",
+    "OPENAI_MODEL": "gpt-4.1-mini",
+    "DAILY_LIMIT": "100",
+    "MINUTE_LIMIT": "10"
+  },
+  "durable_objects": { "bindings": [{ "name": "GRADING", "class_name": "GradingService" }] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["GradingService"] }],
+  "observability": { "enabled": false }
+}
