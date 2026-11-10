@@ -31,7 +31,7 @@ jobs:
           npm test 2>&1 | tee test-output.log
           test_status=${PIPESTATUS[0]}
           if [ "$test_status" -ne 0 ]; then
-            node --input-type=module -e 'import {readFileSync} from "node:fs"; const text=readFileSync("test-output.log","utf8").slice(-14000).replaceAll("%","%25").replaceAll("\r","%0D").replaceAll("\n","%0A"); console.log("::error title=Test failure details::"+text);'
+            node --input-type=module -e 'import {readFileSync} from "node:fs"; const text=readFileSync("test-output.log","utf8").slice(-10500); for(let i=0;i<text.length;i+=3500){const part=text.slice(i,i+3500).replaceAll("%","%25").replaceAll("\r","%0D").replaceAll("\n","%0A");console.log("::error title=Test failure details "+(i/3500+1)+"::"+part);}'
           fi
           exit "$test_status"
       - run: npm run build
