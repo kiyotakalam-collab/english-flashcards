@@ -26,7 +26,7 @@
       <div><span class="stat-label">累積誤答</span><p><strong id="wrong-count">—</strong><span>回</span></p></div>
       <div><span class="stat-label">正答率</span><p><strong id="accuracy">—</strong><span id="accuracy-unit">%</span></p></div>
     </section>
-    <nav class="tabs" aria-label="メインメニュー"><button class="tab active" data-panel="study" aria-current="page">学習する</button><button class="tab" data-panel="history">単語と記録</button><button class="tab" data-panel="settings">同期・設定</button></nav>
+    <nav class="tabs" aria-label="メインメニュー"><button class="tab active" data-panel="study" aria-current="page">学習する</button><button class="tab" data-panel="review">復習・定着度</button><button class="tab" data-panel="history">単語と記録</button><button class="tab" data-panel="settings">同期・設定</button></nav>
     <section id="study" class="tab-panel" aria-label="フラッシュカード">
       <div class="study-controls">
         <label class="select-wrap">登録元 <select id="source-filter" aria-label="学習する単語の登録元"><option value="all">すべて</option><option value="ex">準1級EX</option><option value="reading">長文</option></select></label>
@@ -37,11 +37,19 @@
       </div>
       <p class="range-help" id="range-help">1〜308番から選べます。終了を空欄にすると最後まで出題します。</p>
       <p class="range-help" id="order-help" hidden>「累積誤答が多い順」では苦手語を優先するため、No.順・ランダムの切り替えは利用できません。</p>
+      <p id="session-context" class="session-context" role="status" hidden></p>
       <div class="study-meta"><span id="progress">準備しています</span><span id="card-wrong"></span></div>
       <button id="card" class="flashcard" aria-label="意味を表示" aria-expanded="false" disabled><span class="card-label">ENGLISH → JAPANESE</span><span id="front" class="term">読み込み中…</span><span id="meaning" class="meaning" hidden></span><span id="card-source" class="source-tag" aria-label="登録元"></span><span id="card-hint" class="card-hint">タップして意味を確認</span><span class="card-corner" aria-hidden="true">↗</span></button>
       <div class="answer-actions"><button id="wrong" class="answer wrong" disabled><span aria-hidden="true">×</span> 間違えた</button><button id="correct" class="answer correct" disabled><span aria-hidden="true">○</span> 覚えていた</button></div>
       <div class="study-bottom"><span>正解しても、累積誤答回数は残ります。</span><button id="skip" class="text-button" disabled>スキップ →</button></div>
       <div id="session-done" class="session-done" hidden><strong>おつかれさまでした。</strong><p>今日の積み重ねが、次の自信に。</p><button id="again" class="primary">もう一度学習する</button></div>
+    </section>
+    <section id="review" class="tab-panel" aria-label="復習カレンダーと定着度" hidden>
+      <div class="review-heading"><div><p class="eyebrow">YOUR NEXT SMALL STEP</p><h2>復習の予定と、ことばの育ち。</h2></div><label class="select-wrap">登録元<select id="review-source" aria-label="復習の登録元"><option value="all">すべて</option><option value="ex">準1級EX</option><option value="reading">長文</option></select></label></div>
+      <div class="review-today"><div><span class="stat-label">今日までの復習</span><p><strong id="review-due-count">0</strong> 語<span id="review-overdue-count"></span></p></div><button id="review-start-today" class="primary">今日の復習を始める →</button><button id="review-show-due" aria-controls="review-due-words" class="review-show-due">今日までの一覧を見る</button></div>
+      <section class="review-calendar" aria-labelledby="review-month"><div class="calendar-toolbar"><h3 id="review-month" aria-live="polite"></h3><div><button id="review-prev" aria-label="前の月">‹</button><button id="review-current">今月</button><button id="review-next" aria-label="次の月">›</button></div></div><p class="review-caption">数字は復習予定の語数です。日付を選ぶと単語を確認できます。日本時間（JST）</p><div class="calendar-weekdays" aria-hidden="true"><span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span></div><div id="review-days" class="calendar-days" role="group" aria-label="復習日を選択"></div><p class="calendar-key"><span></span>復習予定あり <span class="today-key"></span>今日</p></section>
+      <section class="review-detail" aria-labelledby="review-date-title"><div class="section-top"><h3 id="review-date-title"></h3><span id="review-date-count" class="quiet" aria-live="polite"></span></div><p id="review-date-help" class="review-caption"></p><button id="review-start-date" class="review-target-start">この日の単語を復習する →</button><div id="review-due-words"><ul id="review-date-words" class="review-word-list"></ul></div></section>
+      <section class="review-mastery" aria-labelledby="review-mastery-title"><div class="section-top"><h3 id="review-mastery-title">定着度ダッシュボード</h3><span class="tag">5つのステップ</span></div><p class="review-caption">登録元ごとに、今の定着度を確認。複数の登録元を持つ単語も「すべて」では1語です。</p><div id="review-mastery-sources"></div><p class="review-caption mastery-note">連続正答は新しい復習記録から数えます。過去の累積正答・誤答からは推定しません。非表示の単語は集計対象外です。</p></section>
     </section>
     <section id="history" class="tab-panel" aria-label="単語と学習記録" hidden>
       <div class="section-top"><h2>単語と記録</h2><span class="quiet" id="history-count"></span></div>

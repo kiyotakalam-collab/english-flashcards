@@ -327,13 +327,13 @@ test('application update replaces offline assets while preserving history and un
     await page.evaluate(async () => { const registration = await navigator.serviceWorker.getRegistration(); await registration.update(); });
     await expect(page.locator('#update-app')).toBeVisible();
     await page.locator('#update-app').click();
-    await expect(page.locator('.eyebrow')).toHaveText('A LITTLE PROGRESS, EVERY DAY.');
+    await expect(page.locator('.intro .eyebrow')).toHaveText('A LITTLE PROGRESS, EVERY DAY.');
     expect((await saved(page)).records[0].wrongCount).toBe(1);
     expect(await page.evaluate(() => caches.has('unrelated-app'))).toBe(true);
     const cachesAfter = await page.evaluate(() => caches.keys());
     expect(cachesAfter.filter(key => key.startsWith('kotoba-shell:'))).toEqual(['kotoba-shell:/english-flashcards/:update-test-2']);
     await page.context().setOffline(true); await page.reload();
-    await expect(page.locator('.eyebrow')).toHaveText('A LITTLE PROGRESS, EVERY DAY.');
+    await expect(page.locator('.intro .eyebrow')).toHaveText('A LITTLE PROGRESS, EVERY DAY.');
     await expect(page.locator('#card-wrong')).toContainText('1 回');
   } finally { await page.context().setOffline(false); await new Promise(resolve => server.close(resolve)); }
 });

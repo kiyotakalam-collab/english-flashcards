@@ -1,6 +1,8 @@
 import { STATE_KEY, initializeState, validateState, recordAnswer, emptyRecord, parseFeed, upsertWords, restoreBackup, approveDeactivations, validateFeedUrl, matchesSource, shuffleDeck } from './core.js';
+import { createReviewUI } from './review-ui.js';
 
 const $ = id => document.getElementById(id);
+let reviewUI, targetedSession = null;
 let state, deck = [], index = 0, revealed = false, grading = false;
 let activeNumberById = new Map();
 let syncPromise = null, syncController, installPrompt, registration, updateRequested = false;
@@ -25,7 +27,7 @@ async function transact(operation) {
     try { localStorage.setItem(STATE_KEY, JSON.stringify(next)); }
     catch { throw new Error('端末に保存できません。空き容量・ブラウザの保存設定を確認し、JSONを書き出してください。'); }
     state = next;
-    renderSummary(); renderSettings();
+    renderSummary(); renderSettings(); reviewUI?.render();
     if (!$('history').hidden) renderHistory();
   };
   if (navigator.locks) await navigator.locks.request(STATE_KEY, write);
@@ -50,7 +52,21 @@ function updateOrderControl() {
   $('order').disabled = weak;
   $('order-help').hidden = !weak;
 }
+function startTargetedSession(ids, label, source = 'all') {
+  targetedSession = { ids: [...ids], label, source };
+  const activeWords = state.words.filter(word => word.active && matchesSource(word, source));
+  activeNumberById = new Map(activeWords.map((word, position) => [word.id, position + 1]));
+  const allowed = new Set(activeWords.map(word => word.id));
+  deck = [...new Set(ids)].filter(id => allowed.has(id));
+  index = 0; revealed = false;
+  $('session-context').textContent = `${label} · ${source === 'all' ? 'すべて' : sourceLabel(source)}`;
+  $('session-context').hidden = false;
+  document.querySelector('[data-panel="study"]').click();
+  renderCard(); $('card').focus();
+}
 function start() {
+  targetedSession = null;
+  $('session-context').hidden = true;
   const activeWords = state.words.filter(word => word.active && matchesSource(word, $('source-filter').value));
   activeNumberById = new Map(activeWords.map((word, position) => [word.id, position + 1]));
   const total = activeWords.length;
@@ -200,10 +216,12 @@ function bindEvents() {
     });
     document.querySelectorAll('.tab-panel').forEach(panel => { panel.hidden = panel.id !== button.dataset.panel; });
     if (button.dataset.panel === 'history') renderHistory();
+    if (button.dataset.panel === 'review') reviewUI?.render();
   }));
   $('card').onclick = () => { if (currentWord()) { revealed = !revealed; renderCard(); } };
   $('wrong').onclick = () => grade(false); $('correct').onclick = () => grade(true);
-  $('restart').onclick = $('again').onclick = start;
+  $('restart').onclick = start;
+  $('again').onclick = () => targetedSession ? startTargetedSession(targetedSession.ids, targetedSession.label, targetedSession.source) : start();
   $('mode').onchange = () => { updateOrderControl(); start(); };
   $('order').onchange = start;
   $('source-filter').onchange = () => { $('start-number').value = '1'; $('end-number').value = ''; updateRangeLimits(); start(); };
@@ -267,10 +285,15 @@ function bindEvents() {
   };
   window.addEventListener('online', () => { connection(); sync(); });
   window.addEventListener('offline', connection);
-  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') sync(); });
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState !== 'visible') return;
+    try { state = readLatest(); renderSummary(); renderSettings(); reviewUI?.render(); renderCard(); if (!$('history').hidden) renderHistory(); }
+    catch (error) { notice(error.message, true); }
+    void sync();
+  });
   window.addEventListener('storage', event => {
     if (event.key === STATE_KEY) {
-      try { state = readLatest(); renderSummary(); renderSettings(); renderCard(); if (!$('history').hidden) renderHistory(); }
+      try { state = readLatest(); renderSummary(); renderSettings(); reviewUI?.render(); renderCard(); if (!$('history').hidden) renderHistory(); }
       catch (error) { notice(error.message, true); }
     }
   });
@@ -318,7 +341,8 @@ async function boot() {
     }
     state = initializeState(localStorage, initial);
     $('feed-url').value = state.settings.feedUrl;
-    bindEvents(); updateOrderControl(); renderSummary(); renderSettings(); start();
+    reviewUI = createReviewUI({ getState: () => state, startSession: startTargetedSession });
+    bindEvents(); updateOrderControl(); renderSummary(); renderSettings(); reviewUI?.render(); start();
     void setupOffline(); void sync();
   } catch (error) {
     $('fatal').textContent = `起動できませんでした：${error.message} 保存データは削除していません。元のJSONバックアップを保管し、保存設定とデータ形式を確認してください。`;

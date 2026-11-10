@@ -1,3 +1,5 @@
+import { normalizeSchedule, scheduleAnswer } from './repetition.js';
+
 export const STATE_KEY = 'ex_flashcards_pwa_v2';
 export const LEGACY_KEY = 'study_flashcards_mistakes_v1';
 /**
@@ -110,13 +112,24 @@ export function parseFeed(text) {
 }
 
 export function emptyRecord(id) {
-  return { wordId: id, correctCount: 0, wrongCount: 0, lastReviewedAt: null, lastResult: null };
+  return { wordId: id, correctCount: 0, wrongCount: 0, lastReviewedAt: null, lastResult: null, ...normalizeSchedule(), answerHistory: [] };
+}
+function validateAnswerHistory(history = []) {
+  if (!Array.isArray(history)) throw new Error('解答履歴が不正です。');
+  const seen = new Set();
+  return history.map(event => {
+    const id = required(event?.id, 'answer id');
+    if (seen.has(id) || !['correct', 'wrong'].includes(event.result) ||
+        typeof event.reviewedAt !== 'string' || !Number.isFinite(Date.parse(event.reviewedAt))) throw new Error('解答履歴が不正です。');
+    seen.add(id);
+    return { id, reviewedAt: event.reviewedAt, result: event.result };
+  }).sort((a, b) => Date.parse(a.reviewedAt) - Date.parse(b.reviewedAt) || a.id.localeCompare(b.id));
 }
 function validateRecord(record) {
   const wordId = required(record?.wordId, 'wordId');
   if (record.lastResult !== null && !['correct', 'wrong'].includes(record.lastResult)) throw new Error('lastResult が不正です。');
   if (record.lastReviewedAt !== null && (typeof record.lastReviewedAt !== 'string' || !Number.isFinite(Date.parse(record.lastReviewedAt)))) throw new Error('学習日時が不正です。');
-  return { wordId, correctCount: count(record.correctCount), wrongCount: count(record.wrongCount), lastReviewedAt: record.lastReviewedAt, lastResult: record.lastResult };
+  return { wordId, correctCount: count(record.correctCount), wrongCount: count(record.wrongCount), lastReviewedAt: record.lastReviewedAt, lastResult: record.lastResult, ...normalizeSchedule(record), answerHistory: validateAnswerHistory(record.answerHistory) };
 }
 export function createState(initialWords) {
   return {
@@ -141,9 +154,14 @@ export function recordAnswer(state, id, correct, now = new Date().toISOString())
   if (!next.words.some(word => word.id === id && word.active)) throw new Error('この単語は現在の学習対象ではありません。');
   let record = next.records.find(row => row.wordId === id);
   if (!record) { record = emptyRecord(id); next.records.push(record); }
+  const schedule = scheduleAnswer(record, correct, now);
+  const scheduleTime = new Date(now).toISOString();
   const field = correct ? 'correctCount' : 'wrongCount';
   record[field] = count(record[field] + 1);
-  record.lastReviewedAt = now; record.lastResult = correct ? 'correct' : 'wrong';
+  Object.assign(record, schedule, { lastReviewedAt: scheduleTime, lastResult: correct ? 'correct' : 'wrong' });
+  record.answerHistory = validateAnswerHistory(record.answerHistory);
+  record.answerHistory.push({ id: crypto.randomUUID(), reviewedAt: scheduleTime, result: record.lastResult });
+  record.answerHistory = validateAnswerHistory(record.answerHistory);
   return next;
 }
 export function upsertWords(state, incoming) {
@@ -184,14 +202,32 @@ export function approveDeactivations(state) {
 function mergeRecord(state, incoming) {
   const old = state.records.find(row => row.wordId === incoming.wordId);
   if (!old) { state.records.push(incoming); return; }
+  const events = new Map(validateAnswerHistory(old.answerHistory).map(event => [event.id, event]));
+  for (const event of validateAnswerHistory(incoming.answerHistory)) {
+    const previous = events.get(event.id);
+    if (previous && (Date.parse(previous.reviewedAt) !== Date.parse(event.reviewedAt) || previous.result !== event.result)) {
+      throw new Error('同じ解答IDの履歴が一致しません。');
+    }
+    if (!previous) events.set(event.id, event);
+  }
+  old.answerHistory = [...events.values()].sort((a, b) => Date.parse(a.reviewedAt) - Date.parse(b.reviewedAt) || a.id.localeCompare(b.id));
   old.correctCount = Math.max(old.correctCount, incoming.correctCount);
   old.wrongCount = Math.max(old.wrongCount, incoming.wrongCount);
-  if ((incoming.lastReviewedAt || '') > (old.lastReviewedAt || '')) {
-    old.lastReviewedAt = incoming.lastReviewedAt; old.lastResult = incoming.lastResult;
+  // Select a whole review event, never add streaks or select the largest one.
+  // Compare instants, not ISO spellings (backups may contain timezone offsets).
+  const oldTime = old.lastReviewedAt === null ? -Infinity : Date.parse(old.lastReviewedAt);
+  const incomingTime = incoming.lastReviewedAt === null ? -Infinity : Date.parse(incoming.lastReviewedAt);
+  if (incomingTime > oldTime) {
+    Object.assign(old, normalizeSchedule(incoming), { lastReviewedAt: incoming.lastReviewedAt, lastResult: incoming.lastResult });
+  } else if (incomingTime === oldTime && Number.isFinite(oldTime) && old.lastResult === incoming.lastResult &&
+      !normalizeSchedule(old).nextReviewAt && normalizeSchedule(incoming).nextReviewAt) {
+    // Same known review: a schedule-bearing backup can enrich an older client.
+    Object.assign(old, normalizeSchedule(incoming));
   }
 }
 export function restoreBackup(state, data) {
   const next = clone(state);
+  next.records = next.records.map(validateRecord);
   if (Array.isArray(data)) {
     if (!data.length) throw new Error('旧バックアップが空です。');
     const names = new Map(next.words.map(word => [normalizeWord(word.word), word]));
@@ -227,8 +263,10 @@ export function restoreBackup(state, data) {
 }
 export function initializeState(storage, initialWords) {
   const saved = storage.getItem(STATE_KEY);
-  let state = saved ? validateState(JSON.parse(saved)) : createState(initialWords);
-  let changed = false;
+  const parsed = saved ? JSON.parse(saved) : null;
+  let state = saved ? validateState(parsed) : createState(initialWords);
+  let changed = Boolean(saved && parsed.records.some(record =>
+    ['correctStreak', 'intervalDays', 'nextReviewAt', 'answerHistory'].some(field => record[field] === undefined)));
   if (!state.legacyMigrated) {
     const legacy = storage.getItem(LEGACY_KEY);
     if (legacy) {
