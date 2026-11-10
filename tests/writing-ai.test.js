@@ -83,6 +83,28 @@ test('strict evaluation checks rubric, categories, low confidence and prevents f
   assert.equal((await callOpenAI(request(), {}, async () => new Response('private provider error', { status: 401 }))).status, 503);
 });
 
+test('Japanese explanation policy reaches OpenAI while English corrections and quoted mistakes survive unchanged', async () => {
+  const expected = grade({ status: 'partial', score: 6,
+    correctParts: '主語と目的語の選び方は適切です。',
+    grammarErrors: ['"give" は過去の出来事なので "gave" に修正します。'],
+    meaning: '姉が地図をくれたという意味は伝わっています。',
+    naturalness: '"an old map" とすると冠詞も適切になります。',
+    improved: 'My sister gave an old map to me.',
+    reason: '時制と冠詞を直せば、設問の意味を保った自然な英文になります。', errorCategories: ['tense', 'article'] });
+  let instructions;
+  const response = await callOpenAI({ ...request(), input: 'My sister give old map to me.' }, {}, async (_url, init) => {
+    instructions = JSON.parse(init.body).instructions; return provider(expected);
+  });
+  assert.match(instructions, /All explanatory and evaluative prose MUST be written in natural Japanese, never English/);
+  for (const field of ['correctParts', 'grammarErrors', 'meaning', 'naturalness', 'reason']) assert.ok(instructions.includes(field));
+  assert.match(instructions, /English is allowed ONLY for the student's original English quotations, improved English sentences, and English-specific grammatical examples/);
+  assert.match(instructions, /Do not translate corrected English sentences into Japanese/);
+  const actual = (await response.json()).evaluation;
+  for (const field of ['correctParts', 'grammarErrors', 'meaning', 'naturalness', 'reason', 'improved']) assert.deepEqual(actual[field], expected[field]);
+  assert.deepEqual(actual.errorCategories, ['tense', 'article']);
+  assert.equal(actual.improved, 'My sister gave an old map to me.');
+});
+
 test('durable idempotency handles simultaneous retry, edge restart, conflicts and expired retention', async t => {
   let calls = 0; t.mock.method(globalThis, 'fetch', async () => { calls++; await new Promise(resolve => setTimeout(resolve, 5)); return provider(); });
   const ctx = context(), env = { OPENAI_API_KEY: 'fake' }, service = new GradingService(ctx, env);

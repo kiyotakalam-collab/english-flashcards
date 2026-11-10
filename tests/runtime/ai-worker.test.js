@@ -33,6 +33,8 @@ test('deploy bundle runs in workerd with SQLite Durable Object, authentication, 
   assert.equal(paidCalls, 1);
   assert.equal(upstream[0].url, 'https://api.openai.com/v1/responses'); assert.equal(upstream[0].auth, `Bearer ${key}`);
   assert.equal(upstream[0].body.store, false); assert.equal(upstream[0].body.text.format.strict, true);
+  assert.match(upstream[0].body.instructions, /All explanatory and evaluative prose MUST be written in natural Japanese, never English/);
+  assert.match(upstream[0].body.instructions, /Do not translate corrected English sentences into Japanese/);
   const user = JSON.parse(upstream[0].body.input[0].content); assert.equal(user.question.japanese, '彼は親切だ。'); assert.equal(user.student_answer, 'He is kind.');
   assert.equal((await send('runtime-b')).status, 200);
   assert.equal((await send('runtime-c')).status, 429);
