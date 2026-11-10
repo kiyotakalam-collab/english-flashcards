@@ -126,6 +126,7 @@ test('draft resumes, alternate wording can be manually accepted, and duplicate s
  expect(state.answers[0].mistakeCounted).toBe(false);
  expect(state.textbookProgress).toEqual({'構文80':{confirmedItems:[1]}});
  await page.locator('[data-action="next"]').click();
+ await expect(page.locator('#answer-input')).toBeEditable();
  const nextState=await saved(page),q=nextState.questions.find(q=>q.id===nextState.session.currentQuestionId);
  expect(q.grammar_tags).not.toContain('sentence-pattern');
 });
@@ -163,6 +164,7 @@ test('essay rubric, word count and revision chain keep the original argument and
  await expect(page.locator('#app')).toContainText('元の主張を保持');
  await page.locator('#answer-input').fill(text+' For example, classmates may explain a different solution.');
  await page.locator('[data-action="submit"]').click();
+  await expect(page.locator('#grade-form')).toBeVisible();
  expect((await saved(page)).answers).toHaveLength(2);
  const child=(await saved(page)).answers[1];expect(child.parentAnswerId).toBe(first.id);expect(child.input).toContain(text);
  expect((await saved(page)).answers[0].input).toBe(text);
@@ -213,9 +215,11 @@ test('a wrong answer offers a different context and deferring excludes its gramm
  await open(page);await begin(page);const original=(await saved(page)).session.currentQuestionId;
  await page.locator('#answer-input').fill('A mistaken answer.');await page.locator('[data-action="submit"]').click();await manualGrade(page,'incorrect',0);
  await page.locator('[data-action="variant"]').click();
+ await expect(page.locator('#answer-input')).toBeEditable();
  const s=await saved(page),variant=s.questions.find(q=>q.id===s.session.currentQuestionId);
  expect(variant.id).not.toBe(original);expect(variant.grammar_tags).toContain('sentence-pattern');
  await page.locator('[data-action="defer"]').click();
+ await expect.poll(async()=>(await saved(page)).session.deferredQuestionIds).toContain(variant.id);
  const after=await saved(page);expect(after.session.deferredQuestionIds).toContain(original);expect(after.session.deferredQuestionIds).toContain(variant.id);
  expect(after.session.currentQuestionId).not.toBe(original);
 });
