@@ -1,5 +1,18 @@
 export const STATE_KEY = 'ex_flashcards_pwa_v2';
 export const LEGACY_KEY = 'study_flashcards_mistakes_v1';
+/**
+ * Randomize a quiz without changing the stable vocabulary order or learning records.
+ * Fisher-Yates selects each permutation with equal probability (assuming uniform rng).
+ */
+export function shuffleDeck(ids, rng = Math.random) {
+  const shuffled = [...ids];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 export const normalizeWord = word => word.trim().toLowerCase().replaceAll('ß', 'ss').replaceAll('ς', 'σ');
 const clone = value => structuredClone(value);
 const SOURCE_ORDER = ['ex', 'reading'];
