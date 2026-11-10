@@ -56,4 +56,3 @@ export async function callOpenAI(input, env, fetcher = fetch) {
   } catch (error) { return json({ error: error.name === 'AbortError' ? 'provider_timeout' : 'invalid_provider_response' }, error.name === 'AbortError' ? 504 : 502); }
   finally { clearTimeout(timer); }
 }
-
