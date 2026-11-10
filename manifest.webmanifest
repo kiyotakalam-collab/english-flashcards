@@ -2,16 +2,31 @@
   "id": "./",
   "name": "ことばの記録 — 準1級EX 苦手単語",
   "short_name": "ことばの記録",
-  "description": "苦手な単語を、ひとつずつ。累積誤答を残すオフライン単語帳。",
+  "description": "英単語と英作文をそれぞれの学習エリアで復習する英語学習アプリ。",
   "lang": "ja",
-  "start_url": "./",
+  "start_url": "./portal.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#f6f5f0",
   "theme_color": "#245c4b",
   "icons": [
-    { "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "./icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "./icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }
