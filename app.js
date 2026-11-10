@@ -1,4 +1,4 @@
-import { STATE_KEY, initializeState, validateState, recordAnswer, emptyRecord, parseFeed, upsertWords, restoreBackup, approveDeactivations, validateFeedUrl, matchesSource } from './core.js';
+import { STATE_KEY, initializeState, validateState, recordAnswer, emptyRecord, parseFeed, upsertWords, restoreBackup, approveDeactivations, validateFeedUrl, matchesSource, shuffleDeck } from './core.js';
 
 const $ = id => document.getElementById(id);
 let state, deck = [], index = 0, revealed = false, grading = false;
@@ -45,6 +45,11 @@ function updateRangeLimits() {
   $('start-number').max = String(maximum); $('end-number').max = String(maximum);
   $('range-help').textContent = total ? `選択した登録元の1〜${total}番から出題できます。終了を空欄にすると最後まで出題します。` : 'この登録元に出題できる単語はありません。';
 }
+function updateOrderControl() {
+  const weak = $('mode').value === 'weak';
+  $('order').disabled = weak;
+  $('order-help').hidden = !weak;
+}
 function start() {
   const activeWords = state.words.filter(word => word.active && matchesSource(word, $('source-filter').value));
   activeNumberById = new Map(activeWords.map((word, position) => [word.id, position + 1]));
@@ -58,6 +63,7 @@ function start() {
   const selected = total ? activeWords.slice(first - 1, last) : [];
   deck = selected.filter(word => $('mode').value !== 'missed' || recordFor(word.id).wrongCount > 0).map(word => word.id);
   if ($('mode').value === 'weak') deck.sort((a, b) => recordFor(b).wrongCount - recordFor(a).wrongCount);
+  else if ($('order').value === 'random') deck = shuffleDeck(deck);
   index = 0; revealed = false; renderCard();
 }
 function renderCard() {
@@ -197,7 +203,9 @@ function bindEvents() {
   }));
   $('card').onclick = () => { if (currentWord()) { revealed = !revealed; renderCard(); } };
   $('wrong').onclick = () => grade(false); $('correct').onclick = () => grade(true);
-  $('restart').onclick = $('again').onclick = start; $('mode').onchange = start;
+  $('restart').onclick = $('again').onclick = start;
+  $('mode').onchange = () => { updateOrderControl(); start(); };
+  $('order').onchange = start;
   $('source-filter').onchange = () => { $('start-number').value = '1'; $('end-number').value = ''; updateRangeLimits(); start(); };
   $('skip').onclick = () => { index++; revealed = false; renderCard(); };
   $('search').oninput = $('show-inactive').onchange = $('history-sort').onchange = $('history-source').onchange = renderHistory;
@@ -310,7 +318,7 @@ async function boot() {
     }
     state = initializeState(localStorage, initial);
     $('feed-url').value = state.settings.feedUrl;
-    bindEvents(); renderSummary(); renderSettings(); start();
+    bindEvents(); updateOrderControl(); renderSummary(); renderSettings(); start();
     void setupOffline(); void sync();
   } catch (error) {
     $('fatal').textContent = `起動できませんでした：${error.message} 保存データは削除していません。元のJSONバックアップを保管し、保存設定とデータ形式を確認してください。`;
