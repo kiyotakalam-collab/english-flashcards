@@ -59,6 +59,67 @@ test('starts from a chosen number and stops at the optional ending number', asyn
   await expect(page.locator('#history-rows .history-number')).toHaveText('101');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
+test('range 101-103 randomizes without repetition and retains original No. and mistake history', async ({ page }) => {
+  await open(page);
+  // Fixed RNG makes the permutation deterministic, so this checks real shuffling
+  // rather than merely checking a set of three possible words.
+  await page.evaluate(() => { Math.random = () => 0; });
+  await page.locator('#start-number').fill('101');
+  await page.locator('#end-number').fill('103');
+  await page.locator('#order').selectOption('random');
+  await expect(page.locator('#front')).toHaveText('assure');
+  await expect(page.locator('#progress')).toContainText('No.102 · 01 / 3');
+  await page.locator('#card').click();
+  await page.locator('#wrong').click();
+  await expect(page.locator('#front')).toHaveText('bleak');
+  await expect(page.locator('#progress')).toContainText('No.103 · 02 / 3');
+  await page.locator('#skip').click();
+  await expect(page.locator('#front')).toHaveText('observance');
+  await expect(page.locator('#progress')).toContainText('No.101 · 03 / 3');
+  await page.locator('#skip').click();
+  await expect(page.locator('#session-done')).toBeVisible();
+  await page.locator('#restart').click();
+  await expect(page.locator('#front')).toHaveText('assure');
+  await expect(page.locator('#card-wrong')).toContainText('1 回');
+  await page.locator('#order').selectOption('number');
+  await expect(page.locator('#front')).toHaveText('observance');
+  await expect(page.locator('#progress')).toContainText('No.101 · 01 / 3');
+  expect((await saved(page)).records.find(record=>record.wordId==='assure')).toMatchObject({wrongCount:1,correctCount:0});
+  await page.reload();
+  expect((await saved(page)).records.find(record=>record.wordId==='assure')).toMatchObject({wrongCount:1,correctCount:0});
+});
+
+test('random range uses EX or reading numbers independently and preserves missed-word filtering', async ({page}) => {
+  await open(page);
+  await page.evaluate(key => {
+    const state = JSON.parse(localStorage.getItem(key));
+    state.words.push({id:'reading-one',word:'reading-one',meaning:'一',sources:'reading',active:true,range:'',updated_at:''});
+    state.words.push({id:'reading-two',word:'reading-two',meaning:'二',sources:'reading',active:true,range:'',updated_at:''});
+    localStorage.setItem(key,JSON.stringify(state));
+  }, key);
+  await page.reload();
+  await page.evaluate(() => { Math.random = () => 0; });
+  await page.locator('#source-filter').selectOption('reading');
+  await page.locator('#start-number').fill('1');
+  await page.locator('#end-number').fill('2');
+  await page.locator('#order').selectOption('random');
+  await expect(page.locator('#front')).toHaveText('reading-two');
+  await expect(page.locator('#progress')).toContainText('No.2 · 01 / 2');
+  await page.locator('#card').click();await page.locator('#wrong').click();
+  await expect(page.locator('#front')).toHaveText('reading-one');
+  await page.locator('#mode').selectOption('missed');
+  await expect(page.locator('#progress')).toContainText('No.2 · 01 / 1');
+  await expect(page.locator('#front')).toHaveText('reading-two');
+  await page.locator('#mode').selectOption('weak');
+  await expect(page.locator('#order')).toBeDisabled();
+  await expect(page.locator('#order-help')).toBeVisible();
+  await expect(page.locator('#front')).toHaveText('reading-two');
+  await page.locator('#mode').selectOption('all');
+  await expect(page.locator('#order')).toBeEnabled();
+  await expect(page.locator('#order')).toHaveValue('random');
+  expect((await saved(page)).records.find(record=>record.wordId==='reading-two').wrongCount).toBe(1);
+});
+
 test('history can be sorted by number, cumulative mistakes, and mistake rate', async ({ page }) => {
   await open(page);
   await page.evaluate(key => {

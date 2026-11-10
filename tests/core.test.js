@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { STATE_KEY, LEGACY_KEY, createState, initializeState, recordAnswer, upsertWords, parseFeed, parseCSV, restoreBackup, validateState, validateFeedUrl, approveDeactivations, normalizeSources, mergeSources, matchesSource } from '../core.js';
+import { STATE_KEY, LEGACY_KEY, createState, initializeState, recordAnswer, upsertWords, parseFeed, parseCSV, restoreBackup, validateState, validateFeedUrl, approveDeactivations, normalizeSources, mergeSources, matchesSource, shuffleDeck } from '../core.js';
 
 const initial = JSON.parse(readFileSync(new URL('../initial_words.json', import.meta.url)));
 const memory = entries => {
@@ -170,4 +170,17 @@ test('source feed accepts optional column and multiple sources, rejects unknown 
   for (const value of ['ex|other', 'reading,ex', 4, {}]) {
     assert.throws(() => normalizeSources(value));
   }
+});
+
+test('random quiz shuffles a copy without duplicates, omissions, or changing stable No. order', () => {
+  const source = Array.from({length:20}, (_,i)=>`word-${i+101}`);
+  const baseline = [...source];
+  const random = shuffleDeck(source, () => 0);
+  assert.notDeepEqual(random, baseline);
+  assert.deepEqual(source, baseline);
+  assert.equal(new Set(random).size, source.length);
+  assert.deepEqual([...random].sort(), [...source].sort());
+  assert.deepEqual(shuffleDeck(['only'], () => 0), ['only']);
+  assert.deepEqual(shuffleDeck([], () => 0), []);
+  assert.deepEqual(shuffleDeck(['a','b','c'], () => 0), ['b','c','a']);
 });
