@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f5f3ed">
+<title>英作文マスター | Writing notebook</title>
+<link rel="stylesheet" href="writing.css">
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+<a class="brand" href="writing.html"><span class="brand-mark">W<span>✦</span></span><span>英作文マスター<small>YOUR WRITING NOTEBOOK</small></span></a>
+<div class="nav-caption">WORKSPACE</div>
+<nav aria-label="メインナビゲーション" id="navigation">
+<a href="#dashboard" data-page="dashboard"><span>◫</span>ダッシュボード</a>
+<a href="#short" data-page="short"><span>↗</span>瞬間英作文</a>
+<a href="#grammar" data-page="grammar"><span>▤</span>構文トレーニング</a>
+<a href="#essay" data-page="essay"><span>✎</span>自由英作文</a>
+<a href="#review" data-page="review"><span>↻</span>復習センター <b id="due-badge">0</b></a>
+<a href="#analytics" data-page="analytics"><span>▥</span>弱点分析</a>
+</nav>
+<div class="sidebar-bottom"><p class="local-status">● この端末に自動保存</p><span id="writing-offline" role="status">オフライン準備中</span><button id="theme-toggle" class="quiet">◐ 表示モード</button><a href="index.html">← 単語学習へ戻る</a><a href="index.html">アプリホーム</a></div>
+</aside>
+<main><header class="topbar"><span>ENGLISH / WRITING</span><div><span class="target-date">目標日 2027.02.15 JST</span><button class="quiet" id="manage-open">問題・データ管理</button></div></header><div id="app" tabindex="-1"></div><footer>少しずつ書いて、自分の言葉に。<span>ローカル保存 · 手動フィードバック</span></footer></main>
+</div>
+<dialog id="modal"><div id="modal-body"></div><button id="modal-close" class="modal-close" aria-label="閉じる">×</button></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="writing.js"></script>
+</body></html>
