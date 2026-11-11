@@ -151,6 +151,39 @@ function historyModal(id) {
  const e=feedbackData(answer.evaluation), children=state.answers.filter(a=>a.parentAnswerId===id);
  modal(`<h2>答案と修正の記録</h2><p>${esc(questionText(answer.questionSnapshot))}</p><p class="muted">答案ID ${id} · ${esc(answer.method)} · 書き直し ${revisionDepth(answer)} 回</p><h3>提出した英文</h3><p class="history-answer">${esc(answer.input)}</p>${e.improved?`<h3>改善案との差分</h3><p class="muted">赤い取り消し線：削除、緑：追加（先頭500語まで比較）</p><p class="history-answer">${diffHTML(answer.input,e.improved)}</p>`:''}${children.map(a=>`<h3>書き直した答案</h3><p class="history-answer">${esc(a.input)}</p>${action('history','この答案を見る',`data-id="${a.id}"`)}`).join('')}<h3>採点訂正の監査履歴</h3>${answer.audit.map(a=>`<p class="muted">${esc(a.at)} · ${labels[a.previous.status]} → ${labels[a.evaluation.status]} · ${a.evaluation.score??'—'}点</p>`).join('')||'<p>まだ採点していません。</p>'}${action('grade','この答案の評価を修正',`data-id="${id}"`)}`);
 }
+async function generateNewQuestion(mode,grammar='',newSession=false) {
+ if(generating)return;
+ if(!aiReady()){toast('先にAI添削の接続を設定してください。');return;}
+ generating=true;
+ const controls=[...document.querySelectorAll('#session-form [type="submit"],[data-action="ai-generate"],[data-action="next"]')];
+ controls.forEach(b=>b.disabled=true);
+ toast('AIが新しい問題を作成しています。');
+ try {
+  await draftQueue;
+  const current=state.questions.find(q=>q.id===state.session.currentQuestionId);
+  const tag=grammar||state.settings.grammar||current?.grammar_tags[0]||GRAMMAR[Math.floor(Math.random()*GRAMMAR.length)].id;
+  const recent=state.questions.filter(q=>q.source_detail?.startsWith('AI生成問題')).slice(-8).map(q=>questionText(q).slice(0,350));
+  const connection=aiConnection();
+  const generated=await fetchAIGeneratedQuestion(connection.endpoint,connection.access,{
+    mode,difficulty:state.settings.difficulty,grammarTag:tag,recentPrompts:recent
+  });
+  const now=new Date().toISOString(),id=`writing-ai-${uid()}`;
+  const q={id,mode,japanese:generated.japanese,reference_answers:[generated.reference],
+    grammar_tags:[tag],difficulty:state.settings.difficulty,source:'user',
+    source_detail:'AI生成問題（自動生成・未検証）',explanation:generated.explanation,
+    active:true,created_at:now,updated_at:now};
+  await mutate(s=>{
+    s=Core.addQuestion(s,q);
+    if(newSession||!s.session.id)s=Core.startSession(s);
+    return Core.updateSession(s,{currentQuestionId:id,currentAnswerId:null,draftId:uid(),
+      parentAnswerId:null,position:newSession?1:(s.session.position??0)+1,
+      limit:s.settings.limit??5,deadline:newSession&&mode==='essay'&&s.settings.minutes?
+        new Date(Date.now()+Number(s.settings.minutes)*60000).toISOString():s.session.deadline??null});
+  });
+  navigate(mode);render();toast('新しいAI生成問題を追加しました。');
+ }catch(error){toast(`問題を生成できませんでした：${error.message}`);}
+ finally{generating=false;controls.forEach(b=>{if(b.isConnected)b.disabled=false;});}
+}
 async function startPractice(mode,grammar='') {
  if(state.settings.strategy==='ai')return generateNewQuestion(mode,grammar,true);
  await draftQueue;
