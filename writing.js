@@ -1,4 +1,5 @@
 import * as Core from './writing-core.js';
+import { BANK_TARGET, BANK_BATCH, bankProgress, bankQuestions, isDuplicateQuestion } from './writing-bank.js';
 import { AI_CONFIG_KEY, AI_SESSION_KEY, normalizeEndpoint, fetchAIGrade, fetchAIGeneratedQuestion } from './writing-ai.js';
 import { GRAMMAR, ERROR_CATEGORIES, DIFFICULTIES, QUESTIONS, EXAM_DATE, generateVariant } from './writing-data.js';
 const $ = (s, root = document) => root.querySelector(s);
@@ -14,7 +15,7 @@ function aiConnection() {
 const aiReady = () => {const c=aiConnection();return !!(c.endpoint&&c.access);};
 const labels = {correct:'正解',partial:'部分正解',incorrect:'不正解',pending:'判定保留'};
 const strategies = {adaptive:'おすすめ（適応型）',grammar:'文法別',weak:'弱点優先',new:'未出題',review:'復習期限',random:'登録問題をランダム',ai:'AIで毎回新問題（通信・料金あり）'};
-let generating=false;
+let generating=false, bankFilling=false, bankFeedback='';
 let state, currentPage = location.hash.slice(1) || 'dashboard', reviewTab = 'due', saving = false, timer;
 let loadError = '';
 try { state = Core.initializeState(localStorage, QUESTIONS); } catch(e) { loadError = e.message; }
@@ -50,11 +51,77 @@ function dashboard() {
  return heading('MY LEARNING NOTEBOOK','書くたびに、英語が自分のものに。','今日もひとつ、伝えたいことを英語にしてみましょう。',`<span class="date-chip">目標日まで ${remain} 日</span>`)+`<section class="hero"><span class="eyebrow">A LITTLE PRACTICE, EVERY DAY</span><h2>今日の一文から、はじめよう。</h2><p>文法を確かめ、表現を磨く。あなたのペースで積み重ねましょう。</p>${action('quick-start','短文英作文をはじめる ↗','','primary')}<span class="hero-art">Aa✎</span></section><div class="stats"><div class="stat"><span class="label">これまでの回答</span><div class="number">${state.answers.length}<small>文</small></div><span class="muted">採点済み ${all.length} 件</span></div><div class="stat"><span class="label">正解率</span><div class="number">${pct(all.length?correct/all.length:null)}</div><span class="muted">保存した採点結果に基づく</span></div><div class="stat"><span class="label">期限が来た復習</span><div class="number">${available().filter(due).length}<small>問</small></div><span class="muted">今日の振り返り</span></div><div class="stat"><span class="label">学習した日</span><div class="number">${days}<small>日</small></div><span class="muted">採点済みの学習記録</span></div></div><div class="grid-two"><section class="card"><h2>今日の学習メニュー</h2>${[['short','↗','短文英作文','日本語の意味を、自然な英文へ。'],['grammar','▤','文法トレーニング',`${GRAMMAR.length}カテゴリを、ひとつずつ。`],['essay','✎','自由英作文','主張・理由・具体例をつなげる。']].map(([page,icon,title,sub])=>`<a class="row" href="#${page}"><span class="row-icon">${icon}</span><div class="row-body"><strong>${title}</strong><p>${sub}</p></div><span>↗</span></a>`).join('')}</section><section class="card"><h2>次に伸ばしたいところ</h2>${weak.length?weak.map(s=>`<div class="row"><div class="row-body"><strong>${esc(s.label)}</strong><p>加重得点率 ${pct(s.weightedScore)} · 信頼度 ${pct(s.confidence)}</p><div class="progress"><span style="width:${Math.round(s.mastery*100)}%"></span></div></div>${action('category','練習',`data-id="${s.id}"`)}</div>`).join(''):empty('まだ分析データがありません。<br>採点を記録すると、ここに表示されます。')}<a href="#analytics" class="muted">弱点分析を開く →</a></section></div>${state.session.currentQuestionId?`<section class="card" style="margin-top:20px"><h3>続きから取り組めます</h3><p class="muted">入力中の英文とセッションを保存しています。</p>${action('resume','保存した学習を再開')}</section>`:''}<p class="muted">目標日は学習計画用です。収録問題と20点評価はアプリ独自のもので、公式試験の採点基準ではありません。</p>`;
 }
 function settingsHTML(mode) { const s=state.settings; return `<form id="session-form" class="settings" data-mode="${mode}"><label>問題数<select name="limit">${[5,10,20,0].map(n=>`<option value="${n}" ${Number(s.limit??5)===n?'selected':''}>${n||'無制限'}</option>`).join('')}</select></label><label>出題方針<select name="strategy">${options(Object.entries(strategies).map(([id,label])=>({id,label})),s.strategy??'adaptive')}</select></label><label>難易度<select name="difficulty">${options(DIFFICULTIES,s.difficulty)}</select></label><label>文法<select name="grammar"><option value="">すべて</option>${options(GRAMMAR,s.grammar)}</select></label>${mode==='essay'?`<label>制限時間（任意）<select name="minutes">${[0,10,20,30,40].map(n=>`<option value="${n}" ${Number(s.minutes??0)===n?'selected':''}>${n?`${n}分`:'なし'}</option>`).join('')}</select></label>`:''}<button class="primary" type="submit">新しい練習を開始</button></form>`; }
+function questionBankHTML() {
+ const selectedTag=state.settings.grammar&&GRAMMAR.some(g=>g.id===state.settings.grammar)?state.settings.grammar:GRAMMAR[0].id;
+ const difficulty=state.settings.difficulty;
+ const progress=bankProgress(state,selectedTag,difficulty);
+ const done=progress.missing===0;
+ return `<section class="card" id="ai-question-bank" style="margin-top:18px">
+  <h2>AI問題バンク（文法×難易度ごと20問）</h2>
+  <p class="muted">各文法・難易度について20問を目標に、1回最大${BANK_BATCH}問ずつ生成・保存します。登録済み問題は残し、20問に含めます。生成にはAPI料金が発生します。</p>
+  <form id="bank-form" class="settings">
+  <label>文法<select name="grammar">${options(GRAMMAR,selectedTag)}</select></label>
+  <label>難易度<select name="difficulty">${options(DIFFICULTIES,difficulty)}</select></label>
+  <div class="full" id="bank-progress" role="status">登録済み <strong>${progress.count}</strong> / ${BANK_TARGET}問 （不足 ${progress.missing}問）${bankFilling?'・生成中':''}</div>
+  <button class="primary" type="submit" ${done||!aiReady()||bankFilling?'disabled':''}>${done?'20問達成':`最大${Math.min(BANK_BATCH,progress.missing)}問をAIで補充（有料）`}</button>
+  </form>
+  <p class="muted" id="bank-feedback" role="status">${esc(bankFeedback||(!aiReady()?'先に「AI添削の接続」を設定してください。':'AI生成問題は未検証です。内容を確認して利用してください。'))}</p>
+ </section>`;
+}
+async function fillQuestionBank(form) {
+ if(bankFilling)return;
+ if(!aiReady())throw Error('AI接続が必要です。');
+ const fd=new FormData(form),tag=String(fd.get('grammar')||''),difficulty=String(fd.get('difficulty')||'');
+ if(!GRAMMAR.some(g=>g.id===tag)||!DIFFICULTIES.some(d=>d.id===difficulty))throw Error('文法または難易度が不正です。');
+ const desired=Math.min(BANK_BATCH,bankProgress(state,tag,difficulty).missing);
+ if(!desired)return;
+ bankFilling=true;
+ const button=form.querySelector('[type="submit"]'),inputs=[...form.querySelectorAll('select')];
+ button.disabled=true;inputs.forEach(v=>v.disabled=true);
+ let added=0,failed=0;
+ try{
+  await draftQueue;
+  const conn=aiConnection();
+  for(let i=0;i<desired;i++){
+   const status=$('#bank-progress'),message=$('#bank-feedback');
+   if(status)status.textContent=`生成中 ${i+1}/${desired}件 ・ 登録済み${bankProgress(state,tag,difficulty).count}問 / ${BANK_TARGET}問`;
+   if(message)message.textContent='AI生成にはAPI料金が発生します。';
+   try{
+    const existing=bankQuestions(state,tag,difficulty);
+    const recent=existing.slice(-8).map(q=>questionText(q).slice(0,350));
+    const generated=await fetchAIGeneratedQuestion(conn.endpoint,conn.access,{mode:'short',difficulty,grammarTag:tag,recentPrompts:recent});
+    if(isDuplicateQuestion(state,generated.japanese)){failed++;continue;}
+    const now=new Date().toISOString(),q={id:`writing-ai-${uid()}`,mode:'short',
+      japanese:generated.japanese,reference_answers:[generated.reference],explanation:generated.explanation,
+      source:'user',source_detail:'AI生成問題（自動生成・未検証）',grammar_tags:[tag],
+      difficulty,active:true,created_at:now,updated_at:now};
+    await mutate(s=>{
+      if(isDuplicateQuestion(s,q.japanese)||bankProgress(s,tag,difficulty).missing===0)return s;
+      return Core.addQuestion(s,q);
+    });
+    if(state.questions.some(item=>item.id===q.id))added++;else failed++;
+   }catch(error){failed++;bankFeedback=`問題生成に失敗: ${error.message}`;break;}
+  }
+ }finally{
+  bankFilling=false;
+  const newProgress=bankProgress(state,tag,difficulty);
+  bankFeedback=`今回 ${added}問追加、${failed}問未追加。現在 ${newProgress.count}/${BANK_TARGET}問。${newProgress.missing?'必要に応じて再度補充できます。':'20問に到達しました。'}`;
+  // Preserve the current practice session and the selected bank controls.
+  const liveForm=$('#bank-form');
+  if(liveForm){
+    const progress=$('#bank-progress'),feedback=$('#bank-feedback');
+    if(progress)progress.textContent=`登録済み ${newProgress.count} / ${BANK_TARGET}問 （不足 ${newProgress.missing}問）`;
+    if(feedback)feedback.textContent=bankFeedback;
+    button.disabled=!newProgress.missing;inputs.forEach(v=>v.disabled=false);
+    button.textContent=newProgress.missing?`最大${Math.min(BANK_BATCH,newProgress.missing)}問をAIで補充（有料）`:'20問達成';
+  }
+ }
+}
 function practice(mode) { const session=state.session,q=state.questions.find(q=>q.id===session.currentQuestionId && q.mode===mode && !q.deleted && !q.hidden && q.source!=='textbook_progress');
  const a=session.currentAnswerId?state.answers.find(a=>a.id===session.currentAnswerId):null;
  const parent=session.parentAnswerId?state.answers.find(a=>a.id===session.parentAnswerId):null;
  const draft=q?(state.drafts[q.id]??''):'';
- return heading(mode==='essay'?'ESSAY STUDIO':'SHORT WRITING',mode==='essay'?'考えを、ひとつの英文に。':'短文英作文','正解はひとつとは限りません。意味を保ちながら、自分の言葉で。')+(q?'':settingsHTML(mode))+(q?`<section class="card writing-card"><div class="actions"><span class="pill">${mode==='essay'?'自由英作文':'日本語 → 英語'}</span><span class="pill warm">${esc(DIFFICULTIES.find(d=>d.id===q.difficulty)?.label)}</span><span class="muted">${q.grammar_tags.map(t=>esc(GRAMMAR.find(g=>g.id===t)?.label||t)).join(' / ')} · ${session.position??1}${session.limit?` / ${session.limit}`:''}</span></div><p class="prompt">${esc(questionText(q))}</p>${parent?`<div class="notice">書き直し ${revisionDepth(parent)+1} 回目。元の主張を保持し、表現や論理のつながりを改善しましょう。<details><summary>前の回答を比較用に表示</summary><p class="history-answer">${esc(parent.input)}</p></details></div>`:''}${mode==='essay'?`<p class="muted">目安 ${q.word_min??q.min_words??80}〜${q.word_max??q.max_words??120}語（練習用・未達でも提出できます）</p><div class="rubric">${['内容','構成','文法','語彙'].map(l=>`<span class="pill">${l} 0–5点</span>`).join('')}<span class="muted">計20点・独自の練習基準</span></div>`:''}<label for="answer-input" class="muted">YOUR ANSWER</label><textarea id="answer-input" class="answer-area" lang="en" spellcheck="true" placeholder="Write your answer here…" ${a?'readonly':''}>${esc(a?a.input:draft)}</textarea><div class="editor-meta"><span id="word-count">${wordCount(a?a.input:draft)} words</span><span id="save-state" class="saved">${a?'回答を保存済み':'入力内容を自動保存'}</span><span id="timer-display"></span></div><div class="actions">${a?`${action('grade',a.evaluation.status==='pending'?'採点する':'採点を修正',`data-id="${a.id}"`,'primary')}${action('next','次の問題 →')}`:`${action('submit','採点する','','primary')}${action('defer','あとで取り組む')}`}${aiReady()?action('ai-generate','AIで同じ単元の新問題'):''}${action('end-session','練習を終了')}</div><p class="muted">${aiReady()?'「採点する」で問題文と英文を送信し、AI添削・分類・復習予定を自動保存します。':'AI添削は未接続です。「採点する」で手動評価を開きます。上部の「AI添削の接続」で設定できます。'} Ctrl / ⌘ + Enter でも採点できます。</p>${a?feedbackHTML(a):''}<details style="margin-top:20px"><summary>参考表現・学習メモ（唯一の正解ではありません）</summary>${q.reference_answers.map(v=>`<p>${esc(v)}</p>`).join('')}<p class="muted">${esc(q.explanation)}</p><p class="muted">${esc(q.source_detail||q.source)}</p></details></section>`:`<section class="card">${empty('出題設定を選んで、練習をはじめましょう。<br>以前の下書きは問題ごとに保存されています。')}${session.currentQuestionId?action('resume','保存した学習を再開'):''}</section>`); }
+ return heading(mode==='essay'?'ESSAY STUDIO':'SHORT WRITING',mode==='essay'?'考えを、ひとつの英文に。':'短文英作文','正解はひとつとは限りません。意味を保ちながら、自分の言葉で。')+(q?'':settingsHTML(mode)+(mode==='short'?questionBankHTML():''))+(q?`<section class="card writing-card"><div class="actions"><span class="pill">${mode==='essay'?'自由英作文':'日本語 → 英語'}</span><span class="pill warm">${esc(DIFFICULTIES.find(d=>d.id===q.difficulty)?.label)}</span><span class="muted">${q.grammar_tags.map(t=>esc(GRAMMAR.find(g=>g.id===t)?.label||t)).join(' / ')} · ${session.position??1}${session.limit?` / ${session.limit}`:''}</span></div><p class="prompt">${esc(questionText(q))}</p>${parent?`<div class="notice">書き直し ${revisionDepth(parent)+1} 回目。元の主張を保持し、表現や論理のつながりを改善しましょう。<details><summary>前の回答を比較用に表示</summary><p class="history-answer">${esc(parent.input)}</p></details></div>`:''}${mode==='essay'?`<p class="muted">目安 ${q.word_min??q.min_words??80}〜${q.word_max??q.max_words??120}語（練習用・未達でも提出できます）</p><div class="rubric">${['内容','構成','文法','語彙'].map(l=>`<span class="pill">${l} 0–5点</span>`).join('')}<span class="muted">計20点・独自の練習基準</span></div>`:''}<label for="answer-input" class="muted">YOUR ANSWER</label><textarea id="answer-input" class="answer-area" lang="en" spellcheck="true" placeholder="Write your answer here…" ${a?'readonly':''}>${esc(a?a.input:draft)}</textarea><div class="editor-meta"><span id="word-count">${wordCount(a?a.input:draft)} words</span><span id="save-state" class="saved">${a?'回答を保存済み':'入力内容を自動保存'}</span><span id="timer-display"></span></div><div class="actions">${a?`${action('grade',a.evaluation.status==='pending'?'採点する':'採点を修正',`data-id="${a.id}"`,'primary')}${action('next','次の問題 →')}`:`${action('submit','採点する','','primary')}${action('defer','あとで取り組む')}`}${aiReady()?action('ai-generate','AIで同じ単元の新問題'):''}${action('end-session','練習を終了')}</div><p class="muted">${aiReady()?'「採点する」で問題文と英文を送信し、AI添削・分類・復習予定を自動保存します。':'AI添削は未接続です。「採点する」で手動評価を開きます。上部の「AI添削の接続」で設定できます。'} Ctrl / ⌘ + Enter でも採点できます。</p>${a?feedbackHTML(a):''}<details style="margin-top:20px"><summary>参考表現・学習メモ（唯一の正解ではありません）</summary>${q.reference_answers.map(v=>`<p>${esc(v)}</p>`).join('')}<p class="muted">${esc(q.explanation)}</p><p class="muted">${esc(q.source_detail||q.source)}</p></details></section>`:`<section class="card">${empty('出題設定を選んで、練習をはじめましょう。<br>以前の下書きは問題ごとに保存されています。')}${session.currentQuestionId?action('resume','保存した学習を再開'):''}</section>`); }
 function wordCount(v) { return (v.match(/[A-Za-z0-9]+(?:['’\-][A-Za-z0-9]+)*/g)||[]).length; }
 function revisionDepth(a) { let n=0;const seen=new Set();while(a?.parentAnswerId&&!seen.has(a.id)){seen.add(a.id);n++;a=state.answers.find(x=>x.id===a.parentAnswerId);}return n; }
 function grammarPage() { const gs=stats();return heading('GRAMMAR LIBRARY','文法を、使える知識に。',`${GRAMMAR.length}カテゴリの練習記録と、教材の進捗を分けて管理します。`)+`<section class="card"><div class="section-heading" style="margin-top:0"><h2>教材の学習記録</h2>${action('textbook','手動で記録')}</div><p class="muted">構文80 · 学習済みとして確認した項目だけを記録します。アプリ練習で教材の進捗は増えません。</p><strong>${(state.textbookProgress['構文80']?.confirmedItems??[]).map(n=>`第${n}項`).join('、')||'未記録'}</strong><p class="muted">初期確認：第1項のみ。教材の本文・設問は収録していません。</p></section>`+ [...new Set(GRAMMAR.map(g=>g.group))].map(group=>`<h2 class="group-label">${esc(group)}</h2><div class="grid-three">${GRAMMAR.filter(g=>g.group===group).map(g=>{const s=gs.find(s=>s.id===g.id);return `<section class="card category"><span class="eyebrow">${s.mastered?'MASTERED':s.attempts?'IN PRACTICE':'NOT STARTED'}</span><h3 style="margin-top:10px">${esc(g.label)}</h3><p class="muted">${s.attempts}回答 · 正解率 ${pct(s.accuracy)}</p><div class="progress"><span style="width:${Math.round((s.mastery??0)*100)}%"></span></div><p class="muted">習熟度 ${pct(s.mastery)} · 信頼度 ${pct(s.confidence)}</p>${action('category','この文法を練習 →',`data-id="${g.id}"`)}</section>`;}).join('')}</div>`).join(''); }
@@ -225,7 +292,9 @@ async function startPractice(mode,grammar='') {
  await mutate(s=>{const lastAnsweredId=s.answers.at(-1)?.questionId??null;s=Core.startSession(s);s=Core.updateSettings(s,{mode,grammar,strategy:grammar?'grammar':s.settings.strategy||'adaptive'});let q=choose(s);if(q?.id===lastAnsweredId){const candidates=Core.getCandidates(s,GRAMMAR,{mode:s.settings.mode,difficulty:s.settings.difficulty}).filter(item=>item.source!=='textbook_progress'&&item.id!==lastAnsweredId&&(!s.settings.grammar||item.grammar_tags.includes(s.settings.grammar))&&!s.session.deferredQuestionIds.includes(item.id));if(candidates.length&&s.settings.strategy!=='review'&&s.settings.strategy!=='new')q=candidates[0];}if(q){s=Core.saveDraft(s,q.id,'');}return Core.updateSession(s,{currentQuestionId:q?.id??null,currentAnswerId:null,draftId:uid(),parentAnswerId:null,position:q?1:0,limit:s.settings.limit??5,deadline:mode==='essay'&&s.settings.minutes?new Date(Date.now()+Number(s.settings.minutes)*60000).toISOString():null});});
  navigate(mode);render();
 }
-app.addEventListener('submit',async event=>{if(event.target.id!=='session-form')return;event.preventDefault();const f=new FormData(event.target);try{await mutate(s=>Core.updateSettings(s,{mode:event.target.dataset.mode,limit:Number(f.get('limit')),strategy:f.get('strategy'),difficulty:f.get('difficulty'),grammar:f.get('grammar'),minutes:Number(f.get('minutes')||0)}));await startPractice(event.target.dataset.mode,String(f.get('grammar')||''));}catch(error){toast(error.message);}});
+app.addEventListener('submit',async event=>{
+ if(event.target.id==='bank-form'){event.preventDefault();try{await fillQuestionBank(event.target);}catch(error){bankFeedback=error.message;toast(error.message);}return;}
+ if(event.target.id!=='session-form')return;event.preventDefault();const f=new FormData(event.target);try{await mutate(s=>Core.updateSettings(s,{mode:event.target.dataset.mode,limit:Number(f.get('limit')),strategy:f.get('strategy'),difficulty:f.get('difficulty'),grammar:f.get('grammar'),minutes:Number(f.get('minutes')||0)}));await startPractice(event.target.dataset.mode,String(f.get('grammar')||''));}catch(error){toast(error.message);}});
 document.addEventListener('click',async event=>{
  const button=event.target.closest('[data-action]');if(!button)return;
  const name=button.dataset.action,id=button.dataset.id;
