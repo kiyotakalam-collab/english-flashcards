@@ -88,7 +88,7 @@ test('home exposes writing navigation and returning home preserves writing state
   await expect(page.locator('#app')).not.toBeEmpty();
   const before = await saved(page);
   await page.getByRole('link', { name: 'アプリホーム', exact: true }).click();
-  await expect(page).toHaveURL(/portal\\.html/);
+  await expect(page).toHaveURL(/portal\.html/);
   await page.getByRole('link', { name: /英作文を学習する/ }).click();
   await expect(page.locator('#app')).not.toBeEmpty();
   const after = await saved(page);
