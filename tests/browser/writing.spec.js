@@ -114,6 +114,28 @@ test('starting a new practice clears a previous draft without removing saved ans
   await expect(page.locator('.feedback')).toHaveCount(0);
 });
 
+test('AI generation failure still starts and advances through saved questions', async ({ page }) => {
+ await open(page);
+ await page.evaluate(()=>{
+   const endpoint='https://worker.example/grade',access='test-writing-token-'.repeat(3);
+   localStorage.setItem('kotoba_writing_ai_endpoint_v1',endpoint);
+   sessionStorage.setItem('kotoba_writing_ai_access_v1',JSON.stringify({endpoint,access}));
+ });
+ await page.reload();
+ await page.route('https://worker.example/generate', route=>route.fulfill({status:404,contentType:'application/json',body:'{"error":"not_found"}'}));
+ await nav(page,'short');
+ await page.locator('#session-form [name="difficulty"]').selectOption('basic');
+ await page.locator('#session-form [name="strategy"]').selectOption('ai');
+ await page.locator('#session-form [type="submit"]').click();
+ await expect(page.locator('#answer-input')).toBeEditable();
+ const first=(await saved(page)).session.currentQuestionId;
+ await page.locator('[data-action="defer"]').click();
+ await expect(page.locator('#answer-input')).toBeEditable();
+ const next=(await saved(page)).session.currentQuestionId;
+ expect(next).not.toEqual(first);
+ await expect(page.locator('.writing-card')).toBeVisible();
+});
+
 async function begin(page,mode='short') {
  await nav(page,mode);
  await page.locator('#session-form [name="difficulty"]').selectOption(mode==='essay'?'advanced':'basic');
