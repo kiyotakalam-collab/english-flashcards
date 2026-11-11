@@ -173,6 +173,51 @@ test('AI question bank adds up to five original questions to selected grammar an
  await expect(page.locator('#bank-progress')).toContainText(`${baseline+5} / 20`);
 });
 
+test('external bank JSON import previews before writing, commits only questions and preserves answers',async({page})=>{
+ await open(page);
+ const before=await saved(page);
+ await page.locator('#manage-open').click();
+ const input=page.locator('#bank-import-file');
+ const payload={format:'writing-question-bank-v1',questions:[{
+   id:'bank-relative-pronoun-basic-001',grammar:'relative-pronoun',difficulty:'basic',
+   japanese:'私の父が十年前に建てた小屋は、今も庭に残っている。',
+   reference_answers:['The shed which my father built ten years ago is still in our garden.'],
+   explanation:'関係代名詞which以下がshedを修飾する。'
+ }]};
+ await input.setInputFiles({name:'bank.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(payload))});
+ await expect(page.getByText('問題バンクの取り込み確認')).toBeVisible();
+ await expect(page.getByText('1問を確定して保存')).toBeVisible();
+ expect((await saved(page)).questions).toHaveLength(before.questions.length);
+ await page.getByRole('button',{name:'1問を確定して保存'}).click();
+ await expect.poll(async()=>(await saved(page)).questions.length).toBe(before.questions.length+1);
+ const after=await saved(page);
+ expect(after.answers).toEqual(before.answers);
+ expect(after.settings).toEqual(before.settings);
+ expect(after.textbookProgress).toEqual(before.textbookProgress);
+ await page.locator('#manage-open').click();
+ await page.locator('#bank-import-file').setInputFiles({name:'bank.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(payload))});
+ await expect(page.getByText('重複スキップ')).toBeVisible();
+ await expect(page.getByText('追加なし')).toBeVisible();
+ expect((await saved(page)).questions).toHaveLength(before.questions.length+1);
+});
+test('invalid external bank JSON cannot partially import',async({page})=>{
+ await open(page);
+ const before=await saved(page);
+ await page.locator('#manage-open').click();
+ const payload={format:'writing-question-bank-v1',questions:[
+  {id:'bank-relative-pronoun-basic-111',grammar:'relative-pronoun',difficulty:'basic',
+   japanese:'試験後に私が会った友人は、新しい学校で教えている。',
+   reference_answers:['The friend whom I met after the test teaches at a new school.'],
+   explanation:'関係代名詞の目的格を確認する。'},
+  {id:'bank-relative-pronoun-basic-112',grammar:'nonexistent',difficulty:'basic',
+   japanese:'不正な文法分類を意図した設問。',
+   reference_answers:['This is invalid.'],explanation:'不正な文法です。'}]};
+ await page.locator('#bank-import-file').setInputFiles({name:'bad-bank.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(payload))});
+ await expect(page.getByText('問題バンクの取り込み確認')).toBeVisible();
+ await expect(page.getByText('不正・上限超過')).toBeVisible();
+ await expect(page.locator('[data-action="bank-import-commit"]')).toHaveCount(0);
+ expect((await saved(page)).questions).toHaveLength(before.questions.length);
+});
 async function begin(page,mode='short') {
  await nav(page,mode);
  // The settings form is intentionally hidden while a session is active.
