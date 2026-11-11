@@ -31,8 +31,11 @@ test('preview skips duplicates but rejects bad tags and 20-question overflow ato
  assert.equal(p.ready,false);
  assert.throws(()=>applyBankImport(s,file([item(1),item(2),item(3,{grammar:'nonexistent'})])));
  assert.equal(s.questions.length,66);
- const overcrowded=Array.from({length:21},(_,i)=>item(i+1,{japanese:`第${i+1}回の記念会議では、参加者が異なる議題を選びました。`}));
- const p2=previewBankImport(s,file(overcrowded));
+ const filled=structuredClone(s);
+ for(let i=0;i<20;i++)filled.questions.push({...QUESTIONS[0],
+   id:'existing-relative-'+i,mode:'short',difficulty:'basic',
+   grammar_tags:['relative-pronoun'],japanese:'別枠の既存問題 '+i});
+ const p2=previewBankImport(filled,file([item(77)]));
  assert.ok(p2.errors.some(e=>e.reason.includes('20問')));
 });
 test('import adds only questions and preserves answers, settings and textbook progress',()=>{
