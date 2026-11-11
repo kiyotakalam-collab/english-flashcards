@@ -97,6 +97,23 @@ test('home exposes writing navigation and returning home preserves writing state
   expect(after.textbookProgress).toEqual(before.textbookProgress);
 });
 
+test('starting a new practice clears a previous draft without removing saved answers', async ({ page }) => {
+  await open(page);
+  await nav(page,'short');
+  await page.locator('#session-form [name="difficulty"]').selectOption('basic');
+  await page.locator('#session-form').getByRole('button',{name:'新しい練習を開始'}).click();
+  await expect(page.locator('#session-form')).toHaveCount(0);
+  const firstPrompt = await page.locator('.writing-card .prompt').textContent();
+  await page.locator('#answer-input').fill('Previous unsent draft');
+  await page.getByRole('button',{name:'練習を終了'}).click();
+  await expect(page.locator('#session-form')).toBeVisible();
+  await page.locator('#session-form').getByRole('button',{name:'新しい練習を開始'}).click();
+  await expect(page.locator('#session-form')).toHaveCount(0);
+  await expect(page.locator('#answer-input')).toHaveValue('');
+  await expect(page.locator('.writing-card .prompt')).toHaveText(firstPrompt);
+  await expect(page.locator('.feedback')).toHaveCount(0);
+});
+
 async function begin(page,mode='short') {
  await nav(page,mode);
  await page.locator('#session-form [name="difficulty"]').selectOption(mode==='essay'?'advanced':'basic');
