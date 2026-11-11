@@ -1,5 +1,5 @@
 // Shared contract. No provider credentials belong in this browser-safe module.
-import { ERROR_CATEGORIES } from './writing-data.js';
+import { ERROR_CATEGORIES, GRAMMAR } from './writing-data.js';
 
 export const AI_CONFIG_KEY = 'kotoba_writing_ai_endpoint_v1';
 export const AI_SESSION_KEY = 'kotoba_writing_ai_access_v1';
@@ -103,7 +103,7 @@ export function validateGenerationRequest(value) {
   const {mode, difficulty, grammarTag, recentPrompts} = value || {};
   if (!['short','essay'].includes(mode) || !['basic','standard','advanced','keio'].includes(difficulty) ||
     typeof grammarTag !== 'string' || grammarTag.length > 80 ||
-    !/^[a-z0-9-]{0,80}$/.test(grammarTag) ||
+    (grammarTag!==''&&!GRAMMAR.some(g=>g.id===grammarTag)) ||
     !Array.isArray(recentPrompts) || recentPrompts.length > 8 ||
     recentPrompts.some(t => !string(t, 350, true))) throw Error('問題生成の設定が不正です。');
   return {mode, difficulty, grammarTag, recentPrompts: [...recentPrompts]};
