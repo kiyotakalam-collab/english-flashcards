@@ -1,5 +1,5 @@
 import { GRADE_SCHEMA, validateAIGrade, validateGenerationRequest, validateGeneratedQuestion } from '../../writing-ai.js';
-import { ERROR_CATEGORIES } from '../../writing-data.js';
+import { ERROR_CATEGORIES, GRAMMAR } from '../../writing-data.js';
 
 const MAX_BODY = 40000;
 export const json = (data, status = 200, extra = {}) => new Response(JSON.stringify(data), {
@@ -81,7 +81,7 @@ export async function callGenerateQuestion(input, env, fetcher=fetch) {
       method:'POST',redirect:'manual',signal:controller.signal,
       headers:{Authorization:`Bearer ${env.OPENAI_API_KEY}`,'Content-Type':'application/json'},
       body:JSON.stringify({model,store:false,instructions:GENERATE_INSTRUCTIONS,
-        input:[{role:'user',content:JSON.stringify(request)}],
+        input:[{role:'user',content:JSON.stringify({...request, grammarName:GRAMMAR.find(g=>g.id===request.grammarTag)?.label||'文法全般'})}],
         max_output_tokens:1800,text:{format:{type:'json_schema',name:'new_writing_question',strict:true,schema:GENERATE_SCHEMA}}})
     });
     if(!response.ok)return json({error:'provider_unavailable'},response.status===429?429:503);
