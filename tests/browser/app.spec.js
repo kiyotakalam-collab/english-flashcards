@@ -256,7 +256,7 @@ test('install manifest resolves project-relative URLs and valid PNG icons', asyn
   await open(page);
   const manifestURL = await page.locator('link[rel="manifest"]').evaluate(link => link.href);
   const response = await request.get(manifestURL), manifest = await response.json();
-  expect(new URL(manifest.start_url, manifestURL).pathname).toBe('/english-flashcards/');
+  expect(new URL(manifest.start_url, manifestURL).pathname).toBe('/english-flashcards/portal.html');
   expect(new URL(manifest.scope, manifestURL).pathname).toBe('/english-flashcards/');
   expect(manifest.display).toBe('standalone');
   for (const icon of manifest.icons) {
