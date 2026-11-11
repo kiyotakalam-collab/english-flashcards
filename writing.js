@@ -281,7 +281,7 @@ async function generateNewQuestion(mode,grammar='',newSession=false) {
  if(generating)return;
  if(!aiReady()){toast('先にAI添削の接続を設定してください。');return;}
  generating=true;
- const controls=[...document.querySelectorAll('#session-form [type="submit"],[data-action="ai-generate"],[data-action="next"]')];
+ const controls=[...document.querySelectorAll('#session-form [type="submit"],[data-action="ai-generate"],[data-action="next"],[data-action="defer"]')];
  controls.forEach(b=>b.disabled=true);
  toast('AIが新しい問題を作成しています。');
  try {
