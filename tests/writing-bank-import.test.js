@@ -8,7 +8,7 @@ const state=()=>Core.createState(QUESTIONS);
 const item=(n,patch={})=>({
  id:'bank-relative-pronoun-basic-'+String(n).padStart(3,'0'),
  grammar:'relative-pronoun',difficulty:'basic',
- japanese:`この町で${n}年間働いている人は、別の仕事を探している。`,
+ japanese:n===1?'三年前に私を助けてくれた医師は、今では海外で働いている。':n===2?'私が昨日図書館で借りた本は、その村の歴史について書かれている。':`第${n}回の活動に参加した研究者が、地域の記録を集めている。`,
  reference_answers:[`A person who has worked in this town for ${n} years is looking for another job.`],
  explanation:'関係代名詞whoの節はpersonを修飾する。',
  ...patch
