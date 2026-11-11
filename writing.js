@@ -1,5 +1,6 @@
 import * as Core from './writing-core.js';
 import { BANK_TARGET, BANK_BATCH, bankProgress, bankQuestions, isDuplicateQuestion } from './writing-bank.js';
+import { BANK_IMPORT_FORMAT, BANK_IMPORT_MAX_BYTES, previewBankImport, applyBankImport } from './writing-bank-import.js';
 import { AI_CONFIG_KEY, AI_SESSION_KEY, normalizeEndpoint, fetchAIGrade, fetchAIGeneratedQuestion } from './writing-ai.js';
 import { GRAMMAR, ERROR_CATEGORIES, DIFFICULTIES, QUESTIONS, EXAM_DATE, generateVariant } from './writing-data.js';
 const $ = (s, root = document) => root.querySelector(s);
@@ -15,7 +16,7 @@ function aiConnection() {
 const aiReady = () => {const c=aiConnection();return !!(c.endpoint&&c.access);};
 const labels = {correct:'正解',partial:'部分正解',incorrect:'不正解',pending:'判定保留'};
 const strategies = {adaptive:'おすすめ（適応型）',grammar:'文法別',weak:'弱点優先',new:'未出題',review:'復習期限',random:'登録問題をランダム',ai:'AIで毎回新問題（通信・料金あり）'};
-let generating=false, bankFilling=false, bankFeedback='';
+let generating=false, bankFilling=false, bankFeedback='', pendingBankImport=null;
 let state, currentPage = location.hash.slice(1) || 'dashboard', reviewTab = 'due', saving = false, timer;
 let loadError = '';
 try { state = Core.initializeState(localStorage, QUESTIONS); } catch(e) { loadError = e.message; }
@@ -204,7 +205,29 @@ $('#modal').addEventListener('submit', async event=>{
 });
 function download(text,name) {const url=URL.createObjectURL(new Blob([text],{type:'application/json;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),2000);}
 function manageModal() {
- modal(`<h2>問題・データ管理</h2><p class="muted">英作文専用のデータです。単語や世界史の履歴を操作しません。</p><div class="actions">${action('new-question','問題を追加','','primary')}${action('export','JSONバックアップを書き出す')}<label>JSONを復元<input id="writing-import" type="file" accept=".json,application/json"></label></div><p class="muted">同じ回答IDは重複登録しません。矛盾する採点訂正はデータ保護のため取り込みを中止します。編集・削除された問題も、過去の答案のスナップショットには残ります。</p><div class="question-list">${state.questions.map(q=>`<div class="row"><div class="row-body"><strong>${esc(questionText(q))}</strong><p>${esc(({original:'アプリ独自',user:'ユーザー登録',textbook_progress:'教材進捗用',past_exam_user:'過去問由来のユーザー登録'})[q.source])} · ${q.deleted?'削除済み':q.hidden||!q.active?'非表示':'出題対象'}</p></div>${!q.deleted?`<div class="actions">${action('edit-question','編集',`data-id="${q.id}"`)}${action('hide-question',q.hidden||!q.active?'再表示':'非表示',`data-id="${q.id}"`)}${action('delete-question','削除',`data-id="${q.id}"`)}</div>`:''}</div>`).join('')}</div><p id="import-error" role="alert"></p>`);
+ modal(`<h2>問題・データ管理</h2><p class="muted">英作文専用のデータです。単語や世界史の履歴を操作しません。</p><div class="actions">${action('new-question','問題を追加','','primary')}${action('export','JSONバックアップを書き出す')}<label>問題バンク一括取り込み<input id="bank-import-file" type="file" accept=".json,application/json"></label>${action('bank-template','Work用JSON見本')}<label>JSONを復元<input id="writing-import" type="file" accept=".json,application/json"></label></div><p class="muted">問題バンク取り込みは追加専用です。文法・難易度・重複・20問上限を事前検査し、確認後に保存します。取り込み前にJSONバックアップを保存してください。<br>同じ回答IDは重複登録しません。矛盾する採点訂正はデータ保護のため取り込みを中止します。編集・削除された問題も、過去の答案のスナップショットには残ります。</p><div class="question-list">${state.questions.map(q=>`<div class="row"><div class="row-body"><strong>${esc(questionText(q))}</strong><p>${esc(({original:'アプリ独自',user:'ユーザー登録',textbook_progress:'教材進捗用',past_exam_user:'過去問由来のユーザー登録'})[q.source])} · ${q.deleted?'削除済み':q.hidden||!q.active?'非表示':'出題対象'}</p></div>${!q.deleted?`<div class="actions">${action('edit-question','編集',`data-id="${q.id}"`)}${action('hide-question',q.hidden||!q.active?'再表示':'非表示',`data-id="${q.id}"`)}${action('delete-question','削除',`data-id="${q.id}"`)}</div>`:''}</div>`).join('')}</div><p id="import-error" role="alert"></p>`);
+}
+function showBankImportPreview(raw,name) {
+ const result=previewBankImport(state,raw,new Date().toISOString());
+ pendingBankImport={raw,name};
+ const cells=new Map();
+ for(const q of result.additions){const key=q.grammar_tags[0]+' / '+q.difficulty;cells.set(key,(cells.get(key)||0)+1);}
+ const sample=[...cells].slice(0,12).map(([k,n])=>'<li>'+esc(k)+'：+'+n+'問</li>').join('');
+ const rejected=result.errors.slice(0,12).map(e=>'<li>'+e.row+'行目：'+esc(e.reason)+'</li>').join('');
+ const duplicates=result.duplicates.slice(0,5).map(e=>'<li>'+e.row+'行目：'+esc(e.reason)+'</li>').join('');
+ modal(`<h2>問題バンクの取り込み確認</h2>
+ <p class="muted">ファイル：${esc(name)}。確定前には保存しません。</p>
+ <div class="stats">
+ <div class="stat"><span class="label">提出</span><div class="number">${result.submitted}</div></div>
+ <div class="stat"><span class="label">追加予定</span><div class="number">${result.additions.length}</div></div>
+ <div class="stat"><span class="label">重複スキップ</span><div class="number">${result.duplicates.length}</div></div>
+ <div class="stat"><span class="label">不正・上限超過</span><div class="number">${result.errors.length}</div></div></div>
+ <p class="muted">文法×難易度別の追加数（最大12組を表示）</p><ul>${sample||'<li>追加なし</li>'}</ul>
+ ${rejected?'<h3>修正が必要</h3><ul>'+rejected+'</ul>':''}
+ ${duplicates?'<details><summary>重複例</summary><ul>'+duplicates+'</ul></details>':''}
+ <p class="notice">${result.errors.length?'不正・上限超過があるため取り込めません。':'内容を確認してから確定してください。既存履歴は保持します。'}</p>
+ <div class="actions">${result.ready?action('bank-import-commit',result.additions.length+'問を確定して保存','','primary'):''}
+ ${action('bank-import-cancel','中止')}</div>`);
 }
 function questionModal(id) {
  const q=state.questions.find(q=>q.id===id);
@@ -345,12 +368,39 @@ document.addEventListener('click',async event=>{
   if(name==='edit-question')questionModal(id);
   if(name==='hide-question'){const q=state.questions.find(q=>q.id===id);await mutate(s=>Core.hideQuestion(s,id,!(q.hidden||!q.active)));manageModal();}
   if(name==='delete-question'){if(confirm('出題用データを削除します。過去の答案・累積誤答・スナップショットは保持します。よろしいですか？')){await mutate(s=>Core.deleteQuestion(s,id));manageModal();}}
+  if(name==='bank-template'){
+   download(JSON.stringify({format:BANK_IMPORT_FORMAT,questions:[{
+    id:'bank-relative-pronoun-basic-001',grammar:'relative-pronoun',difficulty:'basic',
+    japanese:'彼女が昨日会った人は教師です。',
+    reference_answers:['The person whom she met yesterday is a teacher.'],
+    explanation:'関係代名詞whomがthe personを修飾する。'
+   }]},null,2),'writing-bank-example.json');
+  }
+  if(name==='bank-import-cancel'){pendingBankImport=null;$('#modal').close();}
+  if(name==='bank-import-commit'){
+   if(!pendingBankImport)throw Error('取り込みファイルを再選択してください。');
+   const raw=pendingBankImport.raw;
+   await draftQueue;
+   let count=0,skips=0;
+   await mutate(s=>{const result=applyBankImport(s,raw);count=result.added;skips=result.duplicates;return result.state;});
+   pendingBankImport=null;$('#modal').close();render();
+   toast(count+'問追加。重複'+skips+'件はスキップしました。');
+  }
   if(name==='export')download(Core.exportBackup(state),`writing-backup-${Core.getJstDayKey()}.json`);
   if(name==='external-grade') {const input=$('#external-feedback').value;const e=JSON.parse(input);e.feedback=JSON.stringify({provenance:'external'});if(typeof e.reason!=='string'||!e.reason.trim())throw Error('意味・文法を比較した採点理由が必要です。');if(typeof e.confidence==='number'&&e.confidence<0.5){e.status='pending';e.score=null;e.rubric=null;toast('確信度が低いため判定保留で保存します。');}await saveGrade(id,e);}
   if(name==='feedback-prompt'){const a=state.answers.find(a=>a.id===id);modal(`<h2>外部添削者への依頼文</h2><p class="muted">必要ならコピーし、添削を依頼してください。元の主張と意味を保った改善案を求めます。</p><textarea rows="14" readonly>${esc(`日本語設問：${questionText(a.questionSnapshot)}\nユーザーの英文：${a.input}\n参考例（唯一の正解ではない）：${a.questionSnapshot.reference_answers.join(' / ')}\n設問と英文の意味、文法、自然さを比較し、正しい別解は認め、意味の取り違えは指摘してください。曖昧ならpending。元の主張を保った改善案を優先してください。JSONで status(correct/partial/incorrect/pending), score(${a.evaluation.maxScore}点満点), correctParts, grammarErrors, meaning, naturalness, improved, reason, errorCategories(${ERROR_CATEGORIES.map(c=>c.id).join(',')}から複数), confidence(0〜1) を返してください。自由英作文ではrubric={content,organization,grammar,vocabulary}各0〜5、合計20（公式採点基準ではない）も付けてください。`)}</textarea>${action('grade','採点に戻る',`data-id="${id}"`)}`);}
  }catch(error){toast(error.message);}
 });
-$('#modal').addEventListener('change',async event=>{if(event.target.id!=='writing-import')return;try{const file=event.target.files?.[0];if(!file)return;if(file.size>10*1024*1024)throw Error('10MB以下のJSONを選択してください。');const text=await file.text();await mutate(s=>Core.importBackup(s,text));render();manageModal();toast('バックアップを統合しました。');}catch(error){toast(`取り込みを中止：${error.message}`);if($('#import-error'))$('#import-error').textContent=error.message;}});
+$('#modal').addEventListener('change',async event=>{ if(event.target.id==='bank-import-file'){
+  try{
+   const file=event.target.files?.[0];if(!file)return;
+   if(file.size>BANK_IMPORT_MAX_BYTES)throw Error('問題JSONは3MB以下にしてください。');
+   showBankImportPreview(await file.text(),file.name);
+  }catch(error){pendingBankImport=null;toast('取り込み前検査に失敗：'+error.message);
+   if($('#import-error'))$('#import-error').textContent=error.message;}
+  return;
+ }
+if(event.target.id!=='writing-import')return;try{const file=event.target.files?.[0];if(!file)return;if(file.size>10*1024*1024)throw Error('10MB以下のJSONを選択してください。');const text=await file.text();await mutate(s=>Core.importBackup(s,text));render();manageModal();toast('バックアップを統合しました。');}catch(error){toast(`取り込みを中止：${error.message}`);if($('#import-error'))$('#import-error').textContent=error.message;}});
 $('#manage-open').onclick=()=>{if(state)manageModal();else {try{const raw=localStorage.getItem(Core.STATE_KEY);if(raw)download(raw,'writing-recovery.json');}catch(error){toast(error.message);}}};
 $('#ai-settings-open').onclick=()=>{if(state)aiSettingsModal();};
 $('#theme-toggle').onclick=async()=>{if(!state)return;try{await draftQueue;await mutate(s=>Core.updateSettings(s,{theme:document.body.classList.contains('dark')?'light':'dark'}));render();}catch(error){toast(error.message);}};
