@@ -151,6 +151,36 @@ function historyModal(id) {
  const e=feedbackData(answer.evaluation), children=state.answers.filter(a=>a.parentAnswerId===id);
  modal(`<h2>答案と修正の記録</h2><p>${esc(questionText(answer.questionSnapshot))}</p><p class="muted">答案ID ${id} · ${esc(answer.method)} · 書き直し ${revisionDepth(answer)} 回</p><h3>提出した英文</h3><p class="history-answer">${esc(answer.input)}</p>${e.improved?`<h3>改善案との差分</h3><p class="muted">赤い取り消し線：削除、緑：追加（先頭500語まで比較）</p><p class="history-answer">${diffHTML(answer.input,e.improved)}</p>`:''}${children.map(a=>`<h3>書き直した答案</h3><p class="history-answer">${esc(a.input)}</p>${action('history','この答案を見る',`data-id="${a.id}"`)}`).join('')}<h3>採点訂正の監査履歴</h3>${answer.audit.map(a=>`<p class="muted">${esc(a.at)} · ${labels[a.previous.status]} → ${labels[a.evaluation.status]} · ${a.evaluation.score??'—'}点</p>`).join('')||'<p>まだ採点していません。</p>'}${action('grade','この答案の評価を修正',`data-id="${id}"`)}`);
 }
+/** Keep the session usable when the generation endpoint is unavailable. */
+async function advanceWithSavedQuestion(mode, grammar='', newSession=false) {
+ await draftQueue;
+ let selected=null;
+ await mutate(s=>{
+   if(newSession||!s.session.id)s=Core.startSession(s);
+   const settings=s.settings;
+   // A completed correct answer can exclude its entire grammar family from
+   // adaptive candidates. For explicit grammar drills that restriction must
+   // not terminate the session if other saved examples exist.
+   const isEligible=q=>q.mode===mode&&q.active!==false&&!q.deleted&&!q.hidden&&
+     q.source!=='textbook_progress'&&q.difficulty===settings.difficulty&&
+     (!grammar||q.grammar_tags.includes(grammar))&&
+     !s.session.deferredQuestionIds.includes(q.id)&&
+     !s.session.answeredQuestionIds.includes(q.id);
+   const candidates=s.questions.filter(isEligible);
+   const different=candidates.filter(q=>q.id!==s.session.currentQuestionId);
+   const pool=different.length?different:candidates;
+   if(!pool.length)return s;
+   const q=pool[Math.floor(Math.random()*pool.length)];
+   selected=q.id;
+   s=Core.saveDraft(s,q.id,'');
+   return Core.updateSession(s,{currentQuestionId:q.id,currentAnswerId:null,
+     draftId:uid(),parentAnswerId:null,
+     position:newSession?1:(s.session.position??0)+1,
+     limit:s.settings.limit??5});
+ });
+ if(selected){navigate(mode);render();}
+ return Boolean(selected);
+}
 async function generateNewQuestion(mode,grammar='',newSession=false) {
  if(generating)return;
  if(!aiReady()){toast('先にAI添削の接続を設定してください。');return;}
@@ -181,7 +211,12 @@ async function generateNewQuestion(mode,grammar='',newSession=false) {
         new Date(Date.now()+Number(s.settings.minutes)*60000).toISOString():s.session.deadline??null});
   });
   navigate(mode);render();toast('新しいAI生成問題を追加しました。');
- }catch(error){toast(`問題を生成できませんでした：${error.message}`);}
+ }catch(error){
+   const recovered=await advanceWithSavedQuestion(mode,grammar,newSession).catch(()=>false);
+   toast(recovered
+     ?'AI問題生成に接続できないため、登録済みの別問題に切り替えました。Cloudflare Workerの再デプロイを確認してください。'
+     :`AI問題生成に失敗しました（${error.message}）。この条件で出せる登録済み問題もありません。Cloudflare Workerを再デプロイするか、文法・難易度を変更してください。`);
+ }
  finally{generating=false;controls.forEach(b=>{if(b.isConnected)b.disabled=false;});}
 }
 async function startPractice(mode,grammar='') {
