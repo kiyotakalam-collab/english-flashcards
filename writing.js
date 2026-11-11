@@ -16,7 +16,7 @@ function aiConnection() {
 const aiReady = () => {const c=aiConnection();return !!(c.endpoint&&c.access);};
 const labels = {correct:'正解',partial:'部分正解',incorrect:'不正解',pending:'判定保留'};
 const strategies = {adaptive:'おすすめ（適応型）',grammar:'文法別',weak:'弱点優先',new:'未出題',review:'復習期限',random:'登録問題をランダム',ai:'AIで毎回新問題（通信・料金あり）'};
-let generating=false, bankFilling=false, bankFeedback='', pendingBankImport=null;
+let generating=false, generationDone=Promise.resolve(), bankFilling=false, bankFeedback='', pendingBankImport=null;
 let state, currentPage = location.hash.slice(1) || 'dashboard', reviewTab = 'due', saving = false, timer;
 let loadError = '';
 try { state = Core.initializeState(localStorage, QUESTIONS); } catch(e) { loadError = e.message; }
@@ -281,6 +281,8 @@ async function generateNewQuestion(mode,grammar='',newSession=false) {
  if(generating)return;
  if(!aiReady()){toast('先にAI添削の接続を設定してください。');return;}
  generating=true;
+ let resolveGeneration;
+ generationDone=new Promise(resolve=>{resolveGeneration=resolve;});
  const controls=[...document.querySelectorAll('#session-form [type="submit"],[data-action="ai-generate"],[data-action="next"],[data-action="defer"]')];
  controls.forEach(b=>b.disabled=true);
  toast('AIが新しい問題を作成しています。');
@@ -313,7 +315,7 @@ async function generateNewQuestion(mode,grammar='',newSession=false) {
      ?'AI問題生成に接続できないため、登録済みの別問題に切り替えました。Cloudflare Workerの再デプロイを確認してください。'
      :`AI問題生成に失敗しました（${error.message}）。この条件で出せる登録済み問題もありません。Cloudflare Workerを再デプロイするか、文法・難易度を変更してください。`);
  }
- finally{generating=false;controls.forEach(b=>{if(b.isConnected)b.disabled=false;});}
+ finally{generating=false;controls.forEach(b=>{if(b.isConnected)b.disabled=false;});resolveGeneration();}
 }
 async function startPractice(mode,grammar='') {
  if(state.settings.strategy==='ai')return generateNewQuestion(mode,grammar,true);
@@ -346,7 +348,7 @@ document.addEventListener('click',async event=>{
   if(name==='grade')return gradeModal(id);
   if(name==='history')return historyModal(id);
   if(name==='ai-generate')return await generateNewQuestion(state.questions.find(q=>q.id===state.session.currentQuestionId)?.mode||state.settings.mode,state.settings.grammar||state.questions.find(q=>q.id===state.session.currentQuestionId)?.grammar_tags[0]||'',false);
-  if(name==='next'){await draftQueue;await nextQuestion();}
+  if(name==='next'){if(generating)await generationDone;await draftQueue;await nextQuestion();}
   if(name==='variant'){
    const previous=state.answers.find(a=>a.id===id);
    const variant=available().find(q=>q.mode===previous.questionSnapshot.mode&&q.id!==previous.questionId&&!state.session.deferredQuestionIds.includes(q.id)&&q.grammar_tags.some(t=>previous.questionSnapshot.grammar_tags.includes(t)));
@@ -357,7 +359,7 @@ document.addEventListener('click',async event=>{
   if(name==='resume')navigate(state.questions.find(q=>q.id===state.session.currentQuestionId)?.mode||'short');
   if(name==='question')await openQuestion(id);
   if(name==='revise'){const a=state.answers.find(a=>a.id===id);await openQuestion(a.questionId,id);}
-  if(name==='defer'){await mutate(s=>Core.deferQuestion(s,s.session.currentQuestionId));await nextQuestion();}
+  if(name==='defer'){if(generating)await generationDone;await mutate(s=>Core.deferQuestion(s,s.session.currentQuestionId));await nextQuestion();}
   if(name==='review-defer'){await mutate(s=>Core.deferQuestion(s,id));render();toast('このセッションでは同じ構文も後回しにします。');}
   if(name==='end-session'){await draftQueue;await mutate(s=>Core.updateSession(s,{currentQuestionId:null,currentAnswerId:null,parentAnswerId:null}));render();}
   if(name==='review-tab'){reviewTab=id;render();}
