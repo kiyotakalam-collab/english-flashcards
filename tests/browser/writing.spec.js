@@ -83,7 +83,7 @@ for (const width of [360, 393]) {
 
 test('home exposes writing navigation and returning home preserves writing state', async ({ page }) => {
   await page.goto('./');
-  await page.locator('.writing-entry').click();
+  await page.locator('a.writing-entry[href="./writing.html"]').click();
   await expect(page).toHaveURL(/writing\.html/);
   await expect(page.locator('#app')).not.toBeEmpty();
   const before = await saved(page);
