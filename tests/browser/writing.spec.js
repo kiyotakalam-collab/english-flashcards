@@ -214,7 +214,7 @@ test('invalid external bank JSON cannot partially import',async({page})=>{
    reference_answers:['This is invalid.'],explanation:'不正な文法です。'}]};
  await page.locator('#bank-import-file').setInputFiles({name:'bad-bank.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(payload))});
  await expect(page.getByText('問題バンクの取り込み確認')).toBeVisible();
- await expect(page.getByText('不正・上限超過')).toBeVisible();
+ await expect(page.getByText('不正・上限超過',{exact:true})).toBeVisible();
  await expect(page.locator('[data-action="bank-import-commit"]')).toHaveCount(0);
  expect((await saved(page)).questions).toHaveLength(before.questions.length);
 });
