@@ -97,3 +97,39 @@ export async function fetchAIGrade(endpoint, access, answer, { fetcher = fetch, 
     throw error;
   } finally { clearTimeout(timer); }
 }
+
+/** Generate-only contract. Do not send previous answers or API credentials. */
+export function validateGenerationRequest(value) {
+  const {mode, difficulty, grammarTag, recentPrompts} = value || {};
+  if (!['short','essay'].includes(mode) || !['basic','standard','advanced','keio'].includes(difficulty) ||
+    typeof grammarTag !== 'string' || grammarTag.length > 80 ||
+    !/^[a-z0-9-]{0,80}$/.test(grammarTag) ||
+    !Array.isArray(recentPrompts) || recentPrompts.length > 8 ||
+    recentPrompts.some(t => !string(t, 350, true))) throw Error('問題生成の設定が不正です。');
+  return {mode, difficulty, grammarTag, recentPrompts: [...recentPrompts]};
+}
+export function validateGeneratedQuestion(value, request) {
+  const v = value || {};
+  if (!string(v.japanese, request.mode === 'short' ? 240 : 650, true) ||
+      !string(v.reference, 1800, true) ||
+      !string(v.explanation, 900, true)) throw Error('AI生成問題の形式が不正です。');
+  if(request.recentPrompts.includes(v.japanese.trim())) throw Error('同じ問題が生成されました。');
+  return {japanese: v.japanese.trim(), reference: v.reference.trim(), explanation: v.explanation.trim()};
+}
+export function generationEndpoint(gradeEndpoint) {
+  return normalizeEndpoint(gradeEndpoint).replace(/\/grade$/, '/generate');
+}
+export async function fetchAIGeneratedQuestion(gradeEndpoint, access, input, {fetcher=fetch,timeout=55000} = {}) {
+  const request=validateGenerationRequest(input);
+  if(typeof access!=='string'||access.length<32||access.length>256||/[\r\n]/.test(access)) throw Error('AI接続コードを確認してください。');
+  const controller=new AbortController(), timer=setTimeout(()=>controller.abort(),timeout);
+  try {
+    const response=await fetcher(generationEndpoint(gradeEndpoint),{method:'POST',credentials:'omit',cache:'no-store',redirect:'error',
+      headers:{'Content-Type':'application/json',Authorization:`Bearer ${access}`},body:JSON.stringify(request),signal:controller.signal});
+    if(!response.ok) throw Error(({401:'AI接続コードが正しくありません。',403:'AIへの接続が許可されていません。',
+      429:'AIの利用上限に達しました。',503:'AI生成サーバーが未対応、または利用できません。',504:'生成が時間切れになりました。'})[response.status]||'AIによる問題生成に失敗しました。');
+    const data=await response.json();
+    return validateGeneratedQuestion(data.question,request);
+  }catch(error){if(error.name==='AbortError')throw Error('AI問題生成が時間切れになりました。');throw error;}
+  finally{clearTimeout(timer);}
+}
