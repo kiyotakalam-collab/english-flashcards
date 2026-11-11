@@ -161,7 +161,7 @@ async function generateNewQuestion(mode,grammar='',newSession=false) {
  try {
   await draftQueue;
   const current=state.questions.find(q=>q.id===state.session.currentQuestionId);
-  const tag=grammar||state.settings.grammar||current?.grammar_tags[0]||GRAMMAR[Math.floor(Math.random()*GRAMMAR.length)].id;
+  const tag=grammar||state.settings.grammar||(!newSession?current?.grammar_tags[0]:null)||GRAMMAR[Math.floor(Math.random()*GRAMMAR.length)].id;
   const recent=state.questions.filter(q=>q.source_detail?.startsWith('AI生成問題')).slice(-8).map(q=>questionText(q).slice(0,350));
   const connection=aiConnection();
   const generated=await fetchAIGeneratedQuestion(connection.endpoint,connection.access,{
