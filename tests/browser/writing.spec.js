@@ -175,6 +175,11 @@ test('AI question bank adds up to five original questions to selected grammar an
 
 async function begin(page,mode='short') {
  await nav(page,mode);
+ // The settings form is intentionally hidden while a session is active.
+ // End that session before starting another; existing answers remain saved.
+ if (await page.locator('[data-action="end-session"]').count()) {
+   await page.locator('[data-action="end-session"]').click();
+ }
  await page.locator('#session-form [name="difficulty"]').selectOption(mode==='essay'?'advanced':'basic');
  await page.locator('#session-form [type="submit"]').click();
  await expect(page.locator('#answer-input')).toBeEditable();
