@@ -136,6 +136,43 @@ test('AI generation failure still starts and advances through saved questions', 
  await expect(page.locator('.writing-card')).toBeVisible();
 });
 
+test('AI question bank adds up to five original questions to selected grammar and difficulty without touching answers', async ({ page }) => {
+ await open(page);
+ await page.evaluate(()=>{
+   const endpoint='https://worker.example/grade',access='test-writing-token-'.repeat(3);
+   localStorage.setItem('kotoba_writing_ai_endpoint_v1',endpoint);
+   sessionStorage.setItem('kotoba_writing_ai_access_v1',JSON.stringify({endpoint,access}));
+ });
+ await page.reload();
+ let calls=0;
+ await page.route('https://worker.example/generate',async route=>{
+   if(route.request().method()==='OPTIONS'){
+     return route.fulfill({status:204,headers:{'access-control-allow-origin':'http://127.0.0.1:4173',
+       'access-control-allow-headers':'Authorization, Content-Type','access-control-allow-methods':'POST, OPTIONS'}});
+   }
+   calls++;
+   const prompt=['海外で生活する人は、異文化への理解を深める。','図書館で働く人は、毎週新しい本を読む。',
+     '昨日見た映画は、私に深い印象を残した。','祖父から受け取った時計は、今も動いている。',
+     '先生が紹介した作家は、多くの読者に愛されている。'][calls-1];
+   const question={japanese:prompt,reference:'A person who lives abroad learns about other cultures.',
+     explanation:'関係代名詞で先行詞を修飾します。'};
+   await route.fulfill({status:200,contentType:'application/json',headers:{'access-control-allow-origin':'*'},
+     body:JSON.stringify({question})});
+ });
+ await nav(page,'short');
+ await page.locator('#bank-form [name="grammar"]').selectOption('relative-pronoun');
+ await page.locator('#bank-form [name="difficulty"]').selectOption('basic');
+ const before=await saved(page);
+ const baseline=before.questions.filter(q=>q.mode==='short'&&q.difficulty==='basic'&&q.grammar_tags.includes('relative-pronoun')).length;
+ await page.locator('#bank-form [type="submit"]').click();
+ await expect.poll(async()=>((await saved(page)).questions.filter(q=>q.mode==='short'&&q.difficulty==='basic'&&q.grammar_tags.includes('relative-pronoun')).length)).toBe(baseline+5);
+ expect(calls).toBe(5);
+ const after=await saved(page);
+ expect(after.answers).toEqual(before.answers);
+ expect(after.questions.filter(q=>q.source_detail?.startsWith('AI生成問題'))).toHaveLength(5);
+ await expect(page.locator('#bank-progress')).toContainText(`${baseline+5} / 20`);
+});
+
 async function begin(page,mode='short') {
  await nav(page,mode);
  await page.locator('#session-form [name="difficulty"]').selectOption(mode==='essay'?'advanced':'basic');
