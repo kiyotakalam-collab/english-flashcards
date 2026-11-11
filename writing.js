@@ -205,7 +205,7 @@ $('#modal').addEventListener('submit', async event=>{
 });
 function download(text,name) {const url=URL.createObjectURL(new Blob([text],{type:'application/json;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),2000);}
 function manageModal() {
- modal(`<h2>問題・データ管理</h2><p class="muted">英作文専用のデータです。単語や世界史の履歴を操作しません。</p><div class="actions">${action('new-question','問題を追加','','primary')}${action('export','JSONバックアップを書き出す')}<label>問題バンク一括取り込み<input id="bank-import-file" type="file" accept=".json,application/json"></label>${action('bank-template','Work用JSON見本')}<label>JSONを復元<input id="writing-import" type="file" accept=".json,application/json"></label></div><p class="muted">問題バンク取り込みは追加専用です。文法・難易度・重複・20問上限を事前検査し、確認後に保存します。取り込み前にJSONバックアップを保存してください。<br>同じ回答IDは重複登録しません。矛盾する採点訂正はデータ保護のため取り込みを中止します。編集・削除された問題も、過去の答案のスナップショットには残ります。</p><div class="question-list">${state.questions.map(q=>`<div class="row"><div class="row-body"><strong>${esc(questionText(q))}</strong><p>${esc(({original:'アプリ独自',user:'ユーザー登録',textbook_progress:'教材進捗用',past_exam_user:'過去問由来のユーザー登録'})[q.source])} · ${q.deleted?'削除済み':q.hidden||!q.active?'非表示':'出題対象'}</p></div>${!q.deleted?`<div class="actions">${action('edit-question','編集',`data-id="${q.id}"`)}${action('hide-question',q.hidden||!q.active?'再表示':'非表示',`data-id="${q.id}"`)}${action('delete-question','削除',`data-id="${q.id}"`)}</div>`:''}</div>`).join('')}</div><p id="import-error" role="alert"></p>`);
+ modal(`<h2>問題・データ管理</h2><p class="muted">英作文専用のデータです。単語や世界史の履歴を操作しません。</p><div class="actions">${action('new-question','問題を追加','','primary')}${action('export','JSONバックアップを書き出す')}<label>問題バンク一括取り込み<input id="bank-import-file" type="file" accept=".json,application/json"></label>${action('bank-template','Work用JSON見本')}${action('bank-inventory','現在の不足数をWork用に出力')}<label>JSONを復元<input id="writing-import" type="file" accept=".json,application/json"></label></div><p class="muted">問題バンク取り込みは追加専用です。文法・難易度・重複・20問上限を事前検査し、確認後に保存します。取り込み前にJSONバックアップを保存してください。<br>同じ回答IDは重複登録しません。矛盾する採点訂正はデータ保護のため取り込みを中止します。編集・削除された問題も、過去の答案のスナップショットには残ります。</p><div class="question-list">${state.questions.map(q=>`<div class="row"><div class="row-body"><strong>${esc(questionText(q))}</strong><p>${esc(({original:'アプリ独自',user:'ユーザー登録',textbook_progress:'教材進捗用',past_exam_user:'過去問由来のユーザー登録'})[q.source])} · ${q.deleted?'削除済み':q.hidden||!q.active?'非表示':'出題対象'}</p></div>${!q.deleted?`<div class="actions">${action('edit-question','編集',`data-id="${q.id}"`)}${action('hide-question',q.hidden||!q.active?'再表示':'非表示',`data-id="${q.id}"`)}${action('delete-question','削除',`data-id="${q.id}"`)}</div>`:''}</div>`).join('')}</div><p id="import-error" role="alert"></p>`);
 }
 function showBankImportPreview(raw,name) {
  const result=previewBankImport(state,raw,new Date().toISOString());
@@ -368,6 +368,15 @@ document.addEventListener('click',async event=>{
   if(name==='edit-question')questionModal(id);
   if(name==='hide-question'){const q=state.questions.find(q=>q.id===id);await mutate(s=>Core.hideQuestion(s,id,!(q.hidden||!q.active)));manageModal();}
   if(name==='delete-question'){if(confirm('出題用データを削除します。過去の答案・累積誤答・スナップショットは保持します。よろしいですか？')){await mutate(s=>Core.deleteQuestion(s,id));manageModal();}}
+  if(name==='bank-inventory'){
+   const cells=GRAMMAR.flatMap(g=>DIFFICULTIES.map(d=>({
+     grammar:g.id,grammar_label:g.label,difficulty:d.id,registered:bankProgress(state,g.id,d.id).count,
+     missing:bankProgress(state,g.id,d.id).missing,target:BANK_TARGET
+   })));
+   download(JSON.stringify({format:'writing-bank-inventory-v1',generated_at:new Date().toISOString(),
+     total_target:GRAMMAR.length*DIFFICULTIES.length*BANK_TARGET,
+     total_missing:cells.reduce((n,c)=>n+c.missing,0),cells},null,2),'writing-bank-inventory.json');
+  }
   if(name==='bank-template'){
    download(JSON.stringify({format:BANK_IMPORT_FORMAT,questions:[{
     id:'bank-relative-pronoun-basic-001',grammar:'relative-pronoun',difficulty:'basic',
