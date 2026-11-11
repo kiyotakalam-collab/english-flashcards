@@ -113,7 +113,7 @@ export function updateSettings(state, patch) {
 }
 function validateSettings(settings) {
  if(settings.limit!==undefined&&![0,5,10,20].includes(settings.limit))fail('Invalid session limit');
- if(settings.strategy!==undefined&&!['adaptive','grammar','weak','new','review','random'].includes(settings.strategy))fail('Invalid question strategy');
+ if(settings.strategy!==undefined&&!['adaptive','grammar','weak','new','review','random','ai'].includes(settings.strategy))fail('Invalid question strategy');
  if(settings.theme!==undefined&&!['light','dark'].includes(settings.theme))fail('Invalid theme');
  if(settings.minutes!==undefined&&(!integer(settings.minutes)||settings.minutes>240))fail('Invalid time limit');
  if(settings.grammar)identifier(settings.grammar,'grammar filter');

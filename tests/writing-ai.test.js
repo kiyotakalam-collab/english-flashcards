@@ -1,8 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import worker, { GradingService } from '../server/ai/worker.js';
-import { callOpenAI, readJSON } from '../server/ai/grading.js';
-import { validateAIRequest, validateAIGrade, fetchAIGrade, normalizeEndpoint } from '../writing-ai.js';
+import { callOpenAI, callGenerateQuestion, readJSON } from '../server/ai/grading.js';
+import { validateAIRequest, validateAIGrade, fetchAIGrade, normalizeEndpoint, validateGenerationRequest, validateGeneratedQuestion, fetchAIGeneratedQuestion, generationEndpoint } from '../writing-ai.js';
 import * as Core from '../writing-core.js';
 import { QUESTIONS } from '../writing-data.js';
 
@@ -148,4 +148,47 @@ test('browser transport rejects response ID mismatch, unsupported endpoints and 
   await assert.rejects(fetchAIGrade('https://test.example/grade', access, answer, { fetcher: async () => { calls++; return new Response('{}', { status: 503 }); } }));
   assert.equal(calls, 1);
   await assert.rejects(fetchAIGrade('https://test.example/grade', access, answer, { fetcher: async () => new Response(JSON.stringify({ answerId: 'different', evaluation: grade() })) }));
+});
+
+test('AI question generation validates topic, varies contexts and never sends provider key to the browser', async () => {
+  const input={mode:'short',difficulty:'advanced',grammarTag:'relative-pronoun',recentPrompts:['私が昨日会った人は医師だ。']};
+  assert.deepEqual(validateGenerationRequest({...input,privateAnswer:'should not leak'}),input);
+  assert.throws(()=>validateGenerationRequest({...input,grammarTag:'not-a-real-grammar'}));
+  assert.equal(generationEndpoint('https://worker.example/grade'),'https://worker.example/generate');
+  const generated={japanese:'この地域で長年働いている人々は、環境の変化に敏感だ。',reference:'People who have worked in this region for years are sensitive to environmental changes.',explanation:'関係代名詞whoがpeopleを修飾します。'};
+  assert.deepEqual(validateGeneratedQuestion(generated,input),generated);
+  assert.throws(()=>validateGeneratedQuestion({...generated,japanese:input.recentPrompts[0]},input));
+  let called;
+  const providerResponse=new Response(JSON.stringify({status:'completed',output:[{type:'message',content:[{type:'output_text',text:JSON.stringify(generated)}]}]}));
+  const response=await callGenerateQuestion(input,{OPENAI_API_KEY:'server-secret'},async (url,options)=>{
+    called={url,headers:options.headers,body:JSON.parse(options.body)};
+    return providerResponse;
+  });
+  assert.equal(response.status,200);
+  assert.equal(called.url,'https://api.openai.com/v1/responses');
+  assert.equal(called.body.store,false);
+  assert.equal(called.body.text.format.strict,true);
+  assert.equal(JSON.parse(called.body.input[0].content).grammarName,'関係代名詞');
+  assert.deepEqual((await response.json()).question,generated);
+  let browserRequest;
+  const client=await fetchAIGeneratedQuestion('https://worker.example/grade',access,input,{fetcher:async (url,options)=>{
+    browserRequest={url,options};return new Response(JSON.stringify({question:generated}),{status:200});
+  }});
+  assert.deepEqual(client,generated);
+  assert.equal(browserRequest.url,'https://worker.example/generate');
+  assert.equal(browserRequest.options.headers.Authorization,`Bearer ${access}`);
+  assert.ok(!browserRequest.options.body.includes('server-secret'));
+});
+
+test('AI generation Worker rejects unauthenticated calls, and uses shared rate limit with grading', async t => {
+  const input={mode:'short',difficulty:'basic',grammarTag:'relative-pronoun',recentPrompts:[]};
+  const ctx=context(),env=envFor(new GradingService(ctx,{OPENAI_API_KEY:'server-only',DAILY_LIMIT:'1'}));
+  let calls=0;
+  t.mock.method(globalThis,'fetch',async()=>{calls++;return new Response(JSON.stringify({status:'completed',output:[{type:'message',content:[{type:'output_text',text:JSON.stringify({japanese:'あの町で育った友人は今教師だ。',reference:'My friend who grew up in that town is now a teacher.',explanation:'関係代名詞whoの用法。'})}]}]}));});
+  const send=(authorization=`Bearer ${access}`)=>new Request('https://worker.example/generate',{method:'POST',
+    headers:{Origin:origin,Authorization:authorization,'Content-Type':'application/json'},body:JSON.stringify(input)});
+  assert.equal((await worker.fetch(send('Bearer invalid'),env)).status,401);
+  assert.equal((await worker.fetch(send(),env)).status,200);
+  assert.equal((await worker.fetch(send(),env)).status,429);
+  assert.equal(calls,1);
 });
