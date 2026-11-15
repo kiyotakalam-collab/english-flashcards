@@ -4,6 +4,7 @@ import { createReviewUI } from './review-ui.js';
 const $ = id => document.getElementById(id);
 let reviewUI, targetedSession = null;
 let state, deck = [], index = 0, revealed = false, grading = false;
+let sessionMistakes = new Set(), retryingMistakes = false;
 let activeNumberById = new Map();
 let syncPromise = null, syncController, installPrompt, registration, updateRequested = false;
 const formatDate = date => date ? new Date(date).toLocaleString('ja-JP') : '未同期';
@@ -53,6 +54,7 @@ function updateOrderControl() {
   $('order-help').hidden = !weak;
 }
 function startTargetedSession(ids, label, source = 'all') {
+  sessionMistakes = new Set(); retryingMistakes = false;
   targetedSession = { ids: [...ids], label, source };
   const activeWords = state.words.filter(word => word.active && matchesSource(word, source));
   activeNumberById = new Map(activeWords.map((word, position) => [word.id, position + 1]));
@@ -65,6 +67,7 @@ function startTargetedSession(ids, label, source = 'all') {
   renderCard(); $('card').focus();
 }
 function start() {
+  sessionMistakes = new Set(); retryingMistakes = false;
   targetedSession = null;
   $('session-context').hidden = true;
   const activeWords = state.words.filter(word => word.active && matchesSource(word, $('source-filter').value));
@@ -82,6 +85,16 @@ function start() {
   else if ($('order').value === 'random') deck = shuffleDeck(deck);
   index = 0; revealed = false; renderCard();
 }
+function startMistakeRetry() {
+  if (!sessionMistakes.size || retryingMistakes) return;
+  retryingMistakes = true;
+  deck = [...sessionMistakes].filter(id => state.words.some(word => word.id === id && word.active));
+  sessionMistakes = new Set(deck);
+  index = 0; revealed = false;
+  $('session-context').textContent = '今回のテストで間違えた単語 · 正解するまで復習';
+  $('session-context').hidden = false;
+  renderCard(); $('card').focus();
+}
 function renderCard() {
   while (index < deck.length && !currentWord()) index++;
   const word = currentWord();
@@ -96,8 +109,10 @@ function renderCard() {
   $('card').setAttribute('aria-expanded', String(revealed));
   $('card').setAttribute('aria-label', word ? `${word.word}：${revealed ? '意味を隠す' : '意味を表示'}` : '学習終了');
   $('correct').disabled = $('wrong').disabled = !word || !revealed || grading;
-  $('skip').disabled = !word || grading;
+  $('skip').disabled = !word || grading || retryingMistakes;
   $('session-done').hidden = !!word || !deck.length;
+  $('retry-mistakes').hidden = retryingMistakes || !!word || sessionMistakes.size === 0;
+  $('session-done-text').textContent = retryingMistakes ? '今回の誤答をすべて正解しました。' : sessionMistakes.size ? `今回間違えた ${sessionMistakes.size} 語を復習できます。` : '今回のテストは終了しました。';
 }
 function renderHistory() {
   const query = $('search').value.trim().toLowerCase();
@@ -161,7 +176,16 @@ async function grade(correct) {
   grading = true; renderCard();
   try {
     await transact(latest => recordAnswer(latest, word.id, correct));
+    if (retryingMistakes) {
+      if (correct) sessionMistakes.delete(word.id);
+    } else if (!correct) sessionMistakes.add(word.id);
     index++; revealed = false;
+    if (retryingMistakes && index >= deck.length && sessionMistakes.size) {
+      // Repeat only still-missed words until each has been answered correctly.
+      deck = [...sessionMistakes].filter(id => state.words.some(item => item.id === id && item.active));
+      sessionMistakes = new Set(deck);
+      index = 0;
+    }
   } catch (error) { notice(error.message, true); }
   finally { grading = false; renderCard(); }
 }
@@ -221,11 +245,12 @@ function bindEvents() {
   $('card').onclick = () => { if (currentWord()) { revealed = !revealed; renderCard(); } };
   $('wrong').onclick = () => grade(false); $('correct').onclick = () => grade(true);
   $('restart').onclick = start;
+  $('retry-mistakes').onclick = startMistakeRetry;
   $('again').onclick = () => targetedSession ? startTargetedSession(targetedSession.ids, targetedSession.label, targetedSession.source) : start();
   $('mode').onchange = () => { updateOrderControl(); start(); };
   $('order').onchange = start;
   $('source-filter').onchange = () => { $('start-number').value = '1'; $('end-number').value = ''; updateRangeLimits(); start(); };
-  $('skip').onclick = () => { index++; revealed = false; renderCard(); };
+  $('skip').onclick = () => { if (retryingMistakes) return; index++; revealed = false; renderCard(); };
   $('search').oninput = $('show-inactive').onchange = $('history-sort').onchange = $('history-source').onchange = renderHistory;
   $('sync-now').onclick = () => sync(true);
   $('sync-form').onsubmit = async event => {
