@@ -373,3 +373,28 @@ test('EX/reading selectors share a card and preserve cumulative mistakes on relo
   expect((await saved(page)).records.find(r => r.wordId==='clumsy')).toMatchObject({wrongCount:1,correctCount:0});
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
+
+
+test('only mistakes from the current test are retried until correct without mixing past errors', async ({ page }) => {
+  await open(page);
+  await page.locator('#end-number').fill('3');
+  await page.locator('#restart').click();
+  await page.locator('#card').click(); await page.locator('#wrong').click();
+  await page.locator('#card').click(); await page.locator('#correct').click();
+  await page.locator('#card').click(); await page.locator('#wrong').click();
+  await expect(page.locator('#retry-mistakes')).toBeVisible();
+  await expect(page.locator('#session-done-text')).toContainText('2 語');
+  await page.locator('#retry-mistakes').click();
+  await expect(page.locator('#progress')).toContainText('01 / 2');
+  await expect(page.locator('#skip')).toBeDisabled();
+  await page.locator('#card').click(); await page.locator('#wrong').click();
+  await page.locator('#card').click(); await page.locator('#correct').click();
+  await expect(page.locator('#progress')).toContainText('01 / 1');
+  await page.locator('#card').click(); await page.locator('#correct').click();
+  await expect(page.locator('#session-done-text')).toContainText('すべて正解');
+  await expect(page.locator('#retry-mistakes')).toBeHidden();
+  const result = await saved(page);
+  expect(result.records.find(record => record.wordId === 'clumsy')).toMatchObject({wrongCount:2, correctCount:1});
+  await page.locator('#again').click();
+  await expect(page.locator('#retry-mistakes')).toBeHidden();
+});
