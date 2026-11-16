@@ -79,7 +79,7 @@ const examples = [
 ];
 export const QUESTIONS = examples.map(([tag,difficulty,japanese,reference_answers,explanation],index)=>({
  id:`writing-original-${String(index+1).padStart(3,'0')}`,mode:'short',japanese,reference_answers,grammar_tags:[tag],difficulty,
- source:'original',source_detail:'アプリ独自作成。教材・過去問の転載ではありません。',explanation,active:true,created_at:created,updated_at:created
+ source:'original',source_detail:'アプリ独自作成。教材・過去問の転載ではありません。',explanation,lesson_ids:tag==='nonrestrictive'?['26']:tag==='relative-adverb'?(reference_answers[0].includes(' where ')?['27']:reference_answers[0].includes(' why ')?['28']:[]):tag==='word-order'&&reference_answers[0].includes('usually')?['31']:[],active:true,created_at:created,updated_at:created
 }));
 for (const [index,japanese] of [
  '学校での学びにおいて、他者との対話はどのような役割を果たすか。自分の意見と理由を英語で述べてください。',

@@ -64,6 +64,9 @@ export function validateQuestion(row) {
   if (!['prompt', 'text', 'question', 'japanese', 'title'].some(k => typeof q[k] === 'string' && q[k].trim())) fail('Question prompt required');
   if (!Array.isArray(q.grammar_tags) || q.grammar_tags.some(t => typeof t !== 'string' || !t.trim()) || new Set(q.grammar_tags).size !== q.grammar_tags.length) fail('Invalid grammar tags');
   q.grammar_tags.forEach(tag=>identifier(tag,'grammar tag'));
+  if (q.lesson_ids !== undefined) {
+    if (!Array.isArray(q.lesson_ids) || q.lesson_ids.some(id => !/^(?:[1-9]|[1-3][0-9]|4[0-5])$/.test(id)) || new Set(q.lesson_ids).size !== q.lesson_ids.length) fail('Invalid lesson IDs');
+  }
   if (!Array.isArray(q.reference_answers) || q.reference_answers.some(v => typeof v !== 'string')) fail('Invalid reference answers');
   for (const k of ['hidden', 'deleted']) if (q[k] !== undefined && typeof q[k] !== 'boolean') fail(`Invalid ${k}`);
   return q;
@@ -117,6 +120,7 @@ function validateSettings(settings) {
  if(settings.theme!==undefined&&!['light','dark'].includes(settings.theme))fail('Invalid theme');
  if(settings.minutes!==undefined&&(!integer(settings.minutes)||settings.minutes>240))fail('Invalid time limit');
  if(settings.grammar)identifier(settings.grammar,'grammar filter');
+ if(settings.lesson!==undefined&&settings.lesson!==''&&!/^(?:[1-9]|[1-3][0-9]|4[0-5])$/.test(settings.lesson))fail('Invalid lesson filter');
 }
 export function startSession(state, id = uid('session')) {
   const s = copy(state); s.session = { id: str(id, 'session id'), deferredQuestionIds: [], answeredQuestionIds: [], lastAnswerId: null }; return s;
