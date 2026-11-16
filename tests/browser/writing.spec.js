@@ -375,3 +375,18 @@ test('a vocabulary-only offline worker upgrades to cache writing without erasing
   await expect(page.locator('#answer-input')).toHaveValue('This draft survives the worker update.');
  }finally{await context.setOffline(false);await new Promise(resolve=>server.close(resolve));}
 });
+
+
+test('textbook lesson taxonomy groups questions without changing legacy grammar and history', async ({ page }) => {
+  await open(page);
+  await nav(page,'grammar');
+  await expect(page.getByText('教材目次で出題を分類（Lesson 1〜45）')).toBeVisible();
+  await expect(page.getByText('Lesson 45', {exact:true})).toBeVisible();
+  const item = page.locator('.category').filter({has:page.getByText('Lesson 27',{exact:true})});
+  await expect(item).toContainText('分類済み 1 問');
+  await item.getByRole('button',{name:'このLessonを練習'}).click();
+  await expect(page.locator('.prompt')).toContainText('ここは私たちが初めて出会った場所');
+  const state = await saved(page);
+  expect(state.settings.lesson).toBe('27');
+  expect(state.questions.length).toBe(66);
+});
