@@ -131,8 +131,7 @@ test('AI generation failure still starts and advances through saved questions', 
  const first=(await saved(page)).session.currentQuestionId;
  await page.locator('[data-action="defer"]').click();
  await expect(page.locator('#answer-input')).toBeEditable();
- const next=(await saved(page)).session.currentQuestionId;
- expect(next).not.toEqual(first);
+ await expect.poll(async () => (await saved(page)).session.currentQuestionId).not.toBe(first);
  await expect(page.locator('.writing-card')).toBeVisible();
 });
 
