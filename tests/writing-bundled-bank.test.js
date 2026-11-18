@@ -16,7 +16,7 @@ test('all 124 cells are audited and completed categories have exactly twenty per
  assert.equal(new Set(qs.map(q=>q.id)).size,qs.length);
  const index=createPromptIndex();
  for(const q of qs){assert.equal(index.has(q.japanese),false,q.id);index.add(q.japanese);assert.ok(q.explanation.trim());assert.ok(q.mode==='essay'||q.reference_answers.length);}
- for(const g of GRAMMAR)for(const d of DIFFICULTIES){const count=bankCount(state,g.id,d.id);assert.ok(count<=20);if(['relative-pronoun','indirect-question','appositive-that','subjunctive','article','modal'].includes(g.id))assert.equal(count,20,`${g.id}/${d.id}`);}
+ for(const g of GRAMMAR)for(const d of DIFFICULTIES){const count=bankCount(state,g.id,d.id);assert.ok(count<=20);if(['relative-pronoun','indirect-question','appositive-that','subjunctive','article','modal','preposition'].includes(g.id))assert.equal(count,20,`${g.id}/${d.id}`);}
 });
 test('upgrade appends once and preserves edited, hidden, deleted questions and all learning data',async()=>{
  const qs=await loadBundledQuestions(QUESTIONS,{fetcher}),store=storage();

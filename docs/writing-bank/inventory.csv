@@ -95,10 +95,10 @@ article,冠詞,basic,3,17,20,0
 article,冠詞,standard,3,17,20,0
 article,冠詞,advanced,2,18,20,0
 article,冠詞,keio,1,19,20,0
-preposition,前置詞,basic,2,0,2,18
-preposition,前置詞,standard,3,0,3,17
-preposition,前置詞,advanced,2,0,2,18
-preposition,前置詞,keio,2,0,2,18
+preposition,前置詞,basic,2,18,20,0
+preposition,前置詞,standard,3,17,20,0
+preposition,前置詞,advanced,2,18,20,0
+preposition,前置詞,keio,2,18,20,0
 countability,可算・不可算,basic,3,0,3,17
 countability,可算・不可算,standard,2,0,2,18
 countability,可算・不可算,advanced,2,0,2,18

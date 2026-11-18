@@ -1,8 +1,8 @@
 {
-  "release": "2026-11-18-711",
-  "registered": 711,
+  "release": "2026-11-18-782",
+  "registered": 782,
   "target": 2480,
-  "missing": 1769,
+  "missing": 1698,
   "duplicates": [],
   "cells": [
     {
@@ -970,40 +970,40 @@
       "label": "前置詞",
       "difficulty": "basic",
       "github_before": 2,
-      "generated": 0,
-      "registered": 2,
+      "generated": 18,
+      "registered": 20,
       "device_registered": null,
-      "missing": 18
+      "missing": 0
     },
     {
       "grammar": "preposition",
       "label": "前置詞",
       "difficulty": "standard",
       "github_before": 3,
-      "generated": 0,
-      "registered": 3,
+      "generated": 17,
+      "registered": 20,
       "device_registered": null,
-      "missing": 17
+      "missing": 0
     },
     {
       "grammar": "preposition",
       "label": "前置詞",
       "difficulty": "advanced",
       "github_before": 2,
-      "generated": 0,
-      "registered": 2,
+      "generated": 18,
+      "registered": 20,
       "device_registered": null,
-      "missing": 18
+      "missing": 0
     },
     {
       "grammar": "preposition",
       "label": "前置詞",
       "difficulty": "keio",
       "github_before": 2,
-      "generated": 0,
-      "registered": 2,
+      "generated": 18,
+      "registered": 20,
       "device_registered": null,
-      "missing": 18
+      "missing": 0
     },
     {
       "grammar": "countability",
