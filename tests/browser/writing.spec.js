@@ -339,12 +339,13 @@ test('problem management adds edits hides and deletes without touching exercise 
  expect((await saved(page)).answers).toHaveLength(0);
 });
 test('a wrong answer offers a different context and deferring excludes its grammar for this session',async({page})=>{
- await open(page);await begin(page);const original=(await saved(page)).session.currentQuestionId;
+ await open(page);await begin(page);const started=await saved(page),original=started.session.currentQuestionId;
+ const originalTags=started.questions.find(q=>q.id===original).grammar_tags;
  await page.locator('#answer-input').fill('A mistaken answer.');await page.locator('[data-action="submit"]').click();await manualGrade(page,'incorrect',0);
  await page.locator('[data-action="variant"]').click();
  await expect(page.locator('#answer-input')).toBeEditable();
  const s=await saved(page),variant=s.questions.find(q=>q.id===s.session.currentQuestionId);
- expect(variant.id).not.toBe(original);expect(variant.grammar_tags).toContain('sentence-pattern');
+ expect(variant.id).not.toBe(original);expect(variant.grammar_tags.some(tag=>originalTags.includes(tag))).toBe(true);
  await page.locator('[data-action="defer"]').click();
  await expect.poll(async()=>(await saved(page)).session.deferredQuestionIds).toContain(variant.id);
  const after=await saved(page);expect(after.session.deferredQuestionIds).toContain(original);expect(after.session.deferredQuestionIds).toContain(variant.id);
