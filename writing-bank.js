@@ -29,3 +29,36 @@ export function bankProgress(state,tag,difficulty) {
   const n=bankCount(state,tag,difficulty);
   return {count:n,target:BANK_TARGET,missing:Math.max(0,BANK_TARGET-n)};
 }
+
+/** Same semantics as isSimilarPrompt, with one-time normalization per entry. */
+export function createPromptIndex(prompts = []) {
+  const exact = new Set(), records = [], inverted = new Map();
+  function add(prompt) {
+    const normal = normalizePrompt(prompt);
+    if (!normal || exact.has(normal)) return;
+    const grams = bigrams(normal), id = records.length;
+    exact.add(normal); records.push({ normal, grams });
+    for (const gram of grams) {
+      if (!inverted.has(gram)) inverted.set(gram, new Set());
+      inverted.get(gram).add(id);
+    }
+  }
+  function has(prompt) {
+    const normal = normalizePrompt(prompt);
+    if (!normal) return false;
+    if (exact.has(normal)) return true;
+    const grams = bigrams(normal), shared = new Map();
+    for (const gram of grams) for (const id of inverted.get(gram) || []) {
+      shared.set(id, (shared.get(id) || 0) + 1);
+    }
+    for (const [id, common] of shared) {
+      const other = records[id];
+      if (2 * common / (grams.size + other.grams.size) >= 0.82) return true;
+      if (Math.min(normal.length, other.normal.length) > 12 &&
+          (normal.includes(other.normal) || other.normal.includes(normal))) return true;
+    }
+    return false;
+  }
+  prompts.forEach(add);
+  return { add, has };
+}

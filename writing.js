@@ -1,3 +1,5 @@
+import { initializeBundledBank } from './writing-bank-loader.js';
+import { WRITING_BANK_RELEASE } from './writing-bank-manifest.js';
 import * as Core from './writing-core.js';
 import { BANK_TARGET, BANK_BATCH, bankProgress, bankQuestions, isDuplicateQuestion } from './writing-bank.js';
 import { BANK_IMPORT_FORMAT, BANK_IMPORT_MAX_BYTES, previewBankImport, applyBankImport } from './writing-bank-import.js';
@@ -18,8 +20,8 @@ const labels = {correct:'正解',partial:'部分正解',incorrect:'不正解',pe
 const strategies = {adaptive:'おすすめ（適応型）',grammar:'文法別',weak:'弱点優先',new:'未出題',review:'復習期限',random:'登録問題をランダム',ai:'AIで毎回新問題（通信・料金あり）'};
 let generating=false, generationDone=Promise.resolve(), bankFilling=false, bankFeedback='', pendingBankImport=null;
 let state, currentPage = location.hash.slice(1) || 'dashboard', reviewTab = 'due', saving = false, timer;
-let loadError = '';
-try { state = Core.initializeState(localStorage, QUESTIONS); } catch(e) { loadError = e.message; }
+let loadError = '', bankLoadError = '';
+try { const boot = await initializeBundledBank(localStorage, QUESTIONS); state = boot.state; bankLoadError = boot.error; } catch(e) { loadError = e.message; }
 const app = $('#app');
 const toast = message => { $('#toast').textContent=message; $('#toast').style.display='block'; clearTimeout(toast.timeout); toast.timeout=setTimeout(()=>$('#toast').style.display='none',4200); };
 async function mutate(fn) { state = await Core.transact(localStorage, fn, {questions:QUESTIONS}); return state; }
@@ -435,6 +437,7 @@ function decorateView() {
   const deadlines=qs.map(q=>schedule(q).dueAt).filter(Boolean).sort();const last=s.observations.at(-1)?.at;
   card.insertAdjacentHTML('beforeend',`<p class="muted grammar-extra">累積誤答 ${s.cumulativeMistakes} 件<br>最終演習 ${last?esc(Core.getJstDayKey(last)):'未演習'}<br>次回復習 ${deadlines.length?esc(Core.getJstDayKey(deadlines[0])):'未設定'}</p>`);
  }
+ if(currentPage==='dashboard'&&!$('#bundled-bank-status'))app.insertAdjacentHTML('beforeend',`<p id="bundled-bank-status" class="${bankLoadError?'notice':'muted'}">${bankLoadError?esc(bankLoadError)+' 保存済みの問題と学習記録はそのまま利用できます。':`収録問題 ${WRITING_BANK_RELEASE.shortCount}問 / 目標${WRITING_BANK_RELEASE.target}問。${WRITING_BANK_RELEASE.complete?'全カテゴリの整備が完了しました。':'問題バンクは整備中です。'}`}</p>`);
  if(currentPage==='grammar'&&!$('#book-records'))app.insertAdjacentHTML('beforeend',`<section class="card" id="book-records"><h2>教材別の実施記録</h2>${Object.entries(state.textbookProgress).map(([book,p])=>`<div class="row"><div><strong>${esc(book)}</strong><p class="muted">${p.confirmedItems.map(n=>`第${n}項`).join('、')||'未記録'}</p></div>${action('textbook-book','編集',`data-id="${esc(book)}"`)}</div>`).join('')}</section>`);
  if(['short','essay'].includes(currentPage)){
   const a=state.answers.find(a=>a.id===state.session.currentAnswerId);const block=$('.feedback',app);

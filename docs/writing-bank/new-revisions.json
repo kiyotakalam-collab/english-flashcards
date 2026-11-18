@@ -1,0 +1,218 @@
+[
+  {
+    "id": "bank-relative-pronoun-basic-completion20261118-014",
+    "before": {
+      "id": "bank-relative-pronoun-basic-completion20261118-014",
+      "grammar": "relative-pronoun",
+      "difficulty": "basic",
+      "japanese": "表紙に何も書かれていないノートを買った。",
+      "reference_answers": [
+        "I bought a notebook whose cover had nothing written on it."
+      ],
+      "explanation": "whose coverはノートの表紙を示す。itはcoverを受ける前置詞onの目的語。 参考英文は一例で、意味を保つ適切な別表現も認める。"
+    },
+    "after": {
+      "id": "bank-relative-pronoun-basic-completion20261118-014",
+      "grammar": "relative-pronoun",
+      "difficulty": "basic",
+      "japanese": "私たちは、窓がすべて閉まっている部屋に入った。",
+      "reference_answers": [
+        "We entered a room whose windows were all closed."
+      ],
+      "explanation": "whose windowsは部屋の窓という所有関係。複数windowsにwereを合わせる。 参考英文は一例で、意味を保つ適切な別表現も認める。"
+    },
+    "reason": "文脈の重複、カテゴリ適合、自然さ・意味対応の再点検による修正"
+  },
+  {
+    "id": "bank-relative-pronoun-keio-completion20261118-003",
+    "before": {
+      "id": "bank-relative-pronoun-keio-completion20261118-003",
+      "grammar": "relative-pronoun",
+      "difficulty": "keio",
+      "japanese": "社会が失うものを考えずに、効率によって得られるものだけを評価することはできない。",
+      "reference_answers": [
+        "We cannot assess only what is gained through efficiency without considering what society loses."
+      ],
+      "explanation": "二つのwhat節はそれぞれ得るものと失うものを表す。主たる焦点は目的語を内包する関係詞what。 参考英文は一例で、意味を保つ適切な別表現も認める。"
+    },
+    "after": {
+      "id": "bank-relative-pronoun-keio-completion20261118-003",
+      "grammar": "relative-pronoun",
+      "difficulty": "keio",
+      "japanese": "効率がもたらす利益を、社会が被る損失から切り離して評価することはできない。",
+      "reference_answers": [
+        "We cannot assess the gains that efficiency brings in isolation from the losses that society incurs."
+      ],
+      "explanation": "二つのthatはbringsとincursの目的語。in isolation fromで切り離した評価を否定する。 参考英文は一例で、意味を保つ適切な別表現も認める。"
+    },
+    "reason": "文脈の重複、カテゴリ適合、自然さ・意味対応の再点検による修正"
+  },
+  {
+    "id": "bank-relative-pronoun-keio-completion20261118-017",
+    "before": {
+      "id": "bank-relative-pronoun-keio-completion20261118-017",
+      "grammar": "relative-pronoun",
+      "difficulty": "keio",
+      "japanese": "ある発見の価値を最初に理解する人が、その発見から最も利益を得る人とは限らない。",
+      "reference_answers": [
+        "The person who first understands the value of a discovery is not necessarily the person who benefits most from it."
+      ],
+      "explanation": "二つのwho節で異なる役割を定義する。firstとmostを区別し、not necessarilyで人物の一致を限定する。 参考英文は一例で、意味を保つ適切な別表現も認める。"
+    },
+    "after": {
+      "id": "bank-relative-pronoun-keio-completion20261118-017",
+      "grammar": "relative-pronoun",
+      "difficulty": "keio",
+      "japanese": "その発見がなされるまで誰も疑わなかった前提が、今では説明を必要としている。",
+      "reference_answers": [
+        "Assumptions that no one questioned until the discovery was made now require an explanation."
+      ],
+      "explanation": "thatはquestionedの目的語。until節とnowで過去と現在の評価を対照する。 参考英文は一例で、意味を保つ適切な別表現も認める。"
+    },
+    "reason": "文脈の重複、カテゴリ適合、自然さ・意味対応の再点検による修正"
+  },
+  {
+    "id": "bank-indirect-question-basic-completion20261118-012",
+    "before": {
+      "id": "bank-indirect-question-basic-completion20261118-012",
+      "grammar": "indirect-question",
+      "difficulty": "basic",
+      "japanese": "どちらの道が短いか、比べてみよう。",
+      "reference_answers": [
+        "Let's compare which route is shorter."
+      ],
+      "explanation": "which routeが主語なのでis shorterを続ける。二つの道の長さを比較する内容。 参考英文は一例で、意味を保つ適切な別表現も認める。"
+    },
+    "after": {
+      "id": "bank-indirect-question-basic-completion20261118-012",
+      "grammar": "indirect-question",
+      "difficulty": "basic",
+      "japanese": "どちらの道が短いか、確かめてみよう。",
+      "reference_answers": [
+        "Let's see which route is shorter."
+      ],
+      "explanation": "which routeが主語なのでis shorterを続ける。 参考英文は一例で、意味を保つ適切な別表現も認める。"
+    },
+    "reason": "文脈の重複、カテゴリ適合、自然さ・意味対応の再点検による修正"
+  },
+  {
+    "id": "bank-indirect-question-advanced-completion20261118-003",
+    "before": {
+      "id": "bank-indirect-question-advanced-completion20261118-003",
+      "grammar": "indirect-question",
+      "difficulty": "advanced",
+      "japanese": "その資料がいつ書かれたのか分からなければ、そこに描かれた出来事をいつのことだと考えるべきかも分からない。",
+      "reference_answers": [
+        "If we do not know when the document was written, we cannot tell when the events it describes should be dated to."
+      ],
+      "explanation": "二つのwhenは作成年代と記述出来事の年代。文書の記述内容を表す関係節も区別する。 参考英文は一例で、意味を保つ適切な別表現も認める。"
+    },
+    "after": {
+      "id": "bank-indirect-question-advanced-completion20261118-003",
+      "grammar": "indirect-question",
+      "difficulty": "advanced",
+      "japanese": "その資料がいつ書かれたのか分からなければ、そこに描かれた出来事がいつ起きたかも分からない。",
+      "reference_answers": [
+        "If we do not know when the document was written, we cannot tell when the events it describes took place."
+      ],
+      "explanation": "二つのwhenは作成年代と出来事の時点。it describesはeventsの関係節。 参考英文は一例で、意味を保つ適切な別表現も認める。"
+    },
+    "reason": "文脈の重複、カテゴリ適合、自然さ・意味対応の再点検による修正"
+  },
+  {
+    "id": "bank-indirect-question-advanced-completion20261118-014",
+    "before": {
+      "id": "bank-indirect-question-advanced-completion20261118-014",
+      "grammar": "indirect-question",
+      "difficulty": "advanced",
+      "japanese": "彼がその結果を予想していたのか、結果を見た後で予想していたと言い始めたのかは、区別しなければならない。",
+      "reference_answers": [
+        "We must distinguish whether he had predicted the result or only began claiming that he had after seeing it."
+      ],
+      "explanation": "hadは後半ではhad predictedの省略。予測そのものと結果後の主張を区別する。 参考英文は一例で、意味を保つ適切な別表現も認める。"
+    },
+    "after": {
+      "id": "bank-indirect-question-advanced-completion20261118-014",
+      "grammar": "indirect-question",
+      "difficulty": "advanced",
+      "japanese": "結果を見る前に彼が何を予想していたのかは、当時の記録を読まなければ分からない。",
+      "reference_answers": [
+        "We cannot know what he had predicted before seeing the result unless we read the records from that time."
+      ],
+      "explanation": "whatはhad predictedの目的語。beforeで予想の先行、unlessで確認条件を表す。 参考英文は一例で、意味を保つ適切な別表現も認める。"
+    },
+    "reason": "文脈の重複、カテゴリ適合、自然さ・意味対応の再点検による修正"
+  },
+  {
+    "id": "bank-appositive-that-standard-completion20261118-004",
+    "before": {
+      "id": "bank-appositive-that-standard-completion20261118-004",
+      "grammar": "appositive-that",
+      "difficulty": "standard",
+      "japanese": "子供も意見を言えるという点で、二人は一致していた。",
+      "reference_answers": [
+        "They agreed on the point that children should also be allowed to express their views."
+      ],
+      "explanation": "pointの内容に許可を表す受動を置く。alsoで子供も含める。 参考英文は一例で、意味を保つ適切な別表現も認める。"
+    },
+    "after": {
+      "id": "bank-appositive-that-standard-completion20261118-004",
+      "grammar": "appositive-that",
+      "difficulty": "standard",
+      "japanese": "子供にも意見を言うことを認めるべきだという点で、二人は一致していた。",
+      "reference_answers": [
+        "They agreed on the point that children should also be allowed to express their views."
+      ],
+      "explanation": "pointの内容に許可を表す受動を置く。alsoで子供も含める。 参考英文は一例で、意味を保つ適切な別表現も認める。"
+    },
+    "reason": "言えるという事実と許可すべきという規範を一致させる。"
+  },
+  {
+    "id": "bank-appositive-that-keio-completion20261118-005",
+    "before": {
+      "id": "bank-appositive-that-keio-completion20261118-005",
+      "grammar": "appositive-that",
+      "difficulty": "keio",
+      "japanese": "苦しみは本人にしか分からないという考えは、他者に配慮する責任をなくすものではない。",
+      "reference_answers": [
+        "The idea that only individuals can fully know their own suffering does not remove our responsibility to care about others."
+      ],
+      "explanation": "onlyは当事者にかかり、fullyは分かる程度を示す。内容節と主節の否定を区別する。 参考英文は一例で、意味を保つ適切な別表現も認める。"
+    },
+    "after": {
+      "id": "bank-appositive-that-keio-completion20261118-005",
+      "grammar": "appositive-that",
+      "difficulty": "keio",
+      "japanese": "苦しみは本人にしか分からないという考えは、他者に配慮する責任をなくすものではない。",
+      "reference_answers": [
+        "The idea that only the person who suffers can understand that suffering does not remove our responsibility to care about others."
+      ],
+      "explanation": "ideaの内容は、苦しみを理解できる主体を当事者に限定する考え。主節はその考えによって配慮する責任がなくなることを否定する。参考英文は一例で、意味を保つ適切な別表現も認める。"
+    },
+    "reason": "onlyの対象と苦しみの経験者を明示し、日本語にないfullyを除く。"
+  },
+  {
+    "id": "bank-indirect-question-advanced-completion20261118-014",
+    "before": {
+      "id": "bank-indirect-question-advanced-completion20261118-014",
+      "grammar": "indirect-question",
+      "difficulty": "advanced",
+      "japanese": "結果を見る前に彼が何を予想していたのかは、当時の記録を読まなければ分からない。",
+      "reference_answers": [
+        "We cannot know what he had predicted before seeing the result unless we read the records from that time."
+      ],
+      "explanation": "whatはhad predictedの目的語。beforeで予想の先行、unlessで確認条件を表す。 参考英文は一例で、意味を保つ適切な別表現も認める。"
+    },
+    "after": {
+      "id": "bank-indirect-question-advanced-completion20261118-014",
+      "grammar": "indirect-question",
+      "difficulty": "advanced",
+      "japanese": "結果を見る前に彼が何を予想していたのかは、当時の記録を読まなければ分からない。",
+      "reference_answers": [
+        "We cannot know what he had predicted before he saw the result unless we read the records from that time."
+      ],
+      "explanation": "whatはhad predictedの目的語。beforeで予想の先行、unlessで確認条件を表す。 参考英文は一例で、意味を保つ適切な別表現も認める。"
+    },
+    "reason": "結果を見る前という修飾が誰の行為にかかるか明示する。"
+  }
+]

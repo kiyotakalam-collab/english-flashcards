@@ -1,0 +1,1248 @@
+{
+  "format": "writing-question-bank-v1",
+  "questions": [
+    {
+      "id": "bank-sentence-pattern-basic-batch02-001",
+      "grammar": "sentence-pattern",
+      "difficulty": "basic",
+      "japanese": "私はそのドアを開けたままにした。",
+      "reference_answers": [
+        "I left the door open."
+      ],
+      "explanation": "leave + O + Cで「OをCの状態にしておく」。openはdoorの状態を示す形容詞で、openedとはしない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-sentence-pattern-standard-batch02-001",
+      "grammar": "sentence-pattern",
+      "difficulty": "standard",
+      "japanese": "その修理には、私が予想していた額の2倍のお金がかかった。",
+      "reference_answers": [
+        "The repair cost me twice as much as I had expected."
+      ],
+      "explanation": "cost + 人 + 金額の文型。twice as muchで金額の2倍を示し、予想が支出に先行するのでhad expectedを用いる。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-sentence-pattern-advanced-batch02-001",
+      "grammar": "sentence-pattern",
+      "difficulty": "advanced",
+      "japanese": "私は、彼が会議で挙げた例では、その二つの現象が関連しているという十分な証拠にはならないと思う。",
+      "reference_answers": [
+        "I do not consider the example he gave at the meeting sufficient evidence that the two phenomena are related."
+      ],
+      "explanation": "consider + O + Cで、exampleを目的語、sufficient evidence以下を補語にする。that節は証拠の内容を示す。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-sentence-pattern-keio-batch02-001",
+      "grammar": "sentence-pattern",
+      "difficulty": "keio",
+      "japanese": "何かを長く続けたという事実だけで、その活動が本人にとって有意義になるわけではない。",
+      "reference_answers": [
+        "The mere fact that someone has continued an activity for a long time does not make it meaningful to that person."
+      ],
+      "explanation": "make + O + Cのitはactivityを受け、meaningfulが補語。「長く続けた事実だけでは」という限定はthe mere factで表す。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-tense-basic-batch02-001",
+      "grammar": "tense",
+      "difficulty": "basic",
+      "japanese": "彼が帰ってきたとき、私は夕食を作っていた。",
+      "reference_answers": [
+        "I was making dinner when he came home."
+      ],
+      "explanation": "帰宅時に進行していた動作はwas making。帰宅という出来事はcameで表し、夕食の完成までは述べない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-tense-standard-batch02-001",
+      "grammar": "tense",
+      "difficulty": "standard",
+      "japanese": "私はこの映画を以前に見たことがあるが、どこで見たかは覚えていない。",
+      "reference_answers": [
+        "I have seen this movie before, but I do not remember where I saw it."
+      ],
+      "explanation": "経験は現在完了、見た場所という過去の具体的事情は過去形で表す。where節内は平叙文の語順。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-tense-advanced-batch02-001",
+      "grammar": "tense",
+      "difficulty": "advanced",
+      "japanese": "その会社が設立されたときには、彼女はすでに数年にわたり、同じ製品を自宅で作っていた。",
+      "reference_answers": [
+        "By the time the company was established, she had already been making the same product at home for several years."
+      ],
+      "explanation": "過去の設立時を基準に、それ以前から数年間続いていた活動をhad been makingで示す。by the time節の過去形と主節の過去完了進行形を区別する。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-tense-keio-batch02-001",
+      "grammar": "tense",
+      "difficulty": "keio",
+      "japanese": "私たちが過去を語る言葉は変わってきたが、だからといって、過去の出来事そのものが変わったわけではない。",
+      "reference_answers": [
+        "The language we use to describe the past has changed, but that does not mean that the events themselves have changed."
+      ],
+      "explanation": "二つの現在完了は現在とのつながりを表す。変化を認めるのは言葉で、出来事の変化はdoes not mean以下で否定する。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-modal-basic-batch02-001",
+      "grammar": "modal",
+      "difficulty": "basic",
+      "japanese": "この薬を飲んだら、車を運転してはいけません。",
+      "reference_answers": [
+        "You must not drive after taking this medicine."
+      ],
+      "explanation": "must notは強い禁止。after takingで服用後という条件を示す。need notでは運転が不要という別の意味になる。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-modal-standard-batch02-001",
+      "grammar": "modal",
+      "difficulty": "standard",
+      "japanese": "彼女は昔はよく一人で旅行したものだが、今は家族と行くほうを好む。",
+      "reference_answers": [
+        "She used to travel alone a lot, but now she prefers to travel with her family."
+      ],
+      "explanation": "used toで現在とは異なる過去の習慣を表す。後半のnowとの対比を保つ。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-modal-advanced-batch02-001",
+      "grammar": "modal",
+      "difficulty": "advanced",
+      "japanese": "彼がわざとその情報を隠したのかもしれないが、単に忘れていただけの可能性もある。",
+      "reference_answers": [
+        "He may have deliberately withheld the information, but he may simply have forgotten it."
+      ],
+      "explanation": "may have + 過去分詞で二つの過去の可能性を並べる。故意だと断定せず、単なる忘却の可能性も保つ。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-modal-keio-batch02-001",
+      "grammar": "modal",
+      "difficulty": "keio",
+      "japanese": "専門家同士で意見が分かれているとしても、どの判断にも同じだけの根拠があると考えるべきではない。",
+      "reference_answers": [
+        "Even if experts disagree, we should not assume that every judgment is equally well supported."
+      ],
+      "explanation": "should not assumeは判断上の戒め。even ifは譲歩条件で、専門家の不一致から根拠の同等性を導かない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-passive-basic-batch02-001",
+      "grammar": "passive",
+      "difficulty": "basic",
+      "japanese": "この写真は、父が若かったころに撮られた。",
+      "reference_answers": [
+        "This photograph was taken when my father was young."
+      ],
+      "explanation": "写真は撮られる対象なのでwas taken。when節は撮影時期を示し、父が撮影者だとは述べていない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-passive-standard-batch02-001",
+      "grammar": "passive",
+      "difficulty": "standard",
+      "japanese": "私は道に迷った観光客に、駅への行き方を尋ねられた。",
+      "reference_answers": [
+        "I was asked by a lost tourist how to get to the station."
+      ],
+      "explanation": "ask + 人 + 疑問詞句の人を主語にした受動。byは尋ねた側、who was lostはtouristを修飾する。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-passive-advanced-batch02-001",
+      "grammar": "passive",
+      "difficulty": "advanced",
+      "japanese": "その資料は、専門家の確認を受けるまでは、一般に公開されないことになっている。",
+      "reference_answers": [
+        "The document is not to be made public until it has been checked by an expert."
+      ],
+      "explanation": "is not to be made publicで公開しないという取り決めを示す。until節のhas been checkedは確認の完了を表す。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-passive-keio-batch02-001",
+      "grammar": "passive",
+      "difficulty": "keio",
+      "japanese": "ある集団の歴史が教科書にほとんど記されていないからといって、その集団が歴史に影響を与えなかったとは言えない。",
+      "reference_answers": [
+        "The fact that a group's history is barely mentioned in textbooks does not mean that the group had no influence on history."
+      ],
+      "explanation": "is mentionedの受動で記述される対象を主語にする。barelyの少なさとhad no influenceという主張の否定を区別する。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-infinitive-basic-batch02-001",
+      "grammar": "infinitive",
+      "difficulty": "basic",
+      "japanese": "何か冷たい飲み物が欲しい。",
+      "reference_answers": [
+        "I would like something cold to drink."
+      ],
+      "explanation": "somethingは形容詞coldを後置し、その後に用途を示すto drinkを置く。drink something coldとも表現できる。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-infinitive-standard-batch02-001",
+      "grammar": "infinitive",
+      "difficulty": "standard",
+      "japanese": "私は、その作業を一人で終えるのは無理だと分かった。",
+      "reference_answers": [
+        "I found it impossible to finish the task on my own."
+      ],
+      "explanation": "find it + 形容詞 + to doで作業の実行可能性を判断する。on my ownは一人で、impossibleの否定的意味を保つ。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-infinitive-advanced-batch02-001",
+      "grammar": "infinitive",
+      "difficulty": "advanced",
+      "japanese": "彼女はその職を引き受けたことを後悔しているようだが、私には一度もそう言っていない。",
+      "reference_answers": [
+        "She seems to regret having accepted the position, but she has never said so to me."
+      ],
+      "explanation": "seems to regretは現在の推測。後悔の対象はそれ以前の就任なのでhaving acceptedで時を明示する。soは後悔の内容を受ける。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-infinitive-keio-batch02-001",
+      "grammar": "infinitive",
+      "difficulty": "keio",
+      "japanese": "人の記憶を理解するには、何を覚えているかだけでなく、何を忘れようとしているかにも目を向ける必要がある。",
+      "reference_answers": [
+        "To understand a person's memory, we need to consider not only what they remember but also what they are trying to forget."
+      ],
+      "explanation": "目的のTo understandとneed to considerを分け、try to forgetで忘れようとする試みを表す。not only A but also Bを並列にする。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-gerund-basic-batch02-001",
+      "grammar": "gerund",
+      "difficulty": "basic",
+      "japanese": "彼は、手伝ってくれた私に感謝した。",
+      "reference_answers": [
+        "He thanked me for helping him."
+      ],
+      "explanation": "thank + 人 + for -ingでその人の行為への感謝を表す。helpingの動作主はme、助けられた側はhim。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-gerund-standard-batch02-001",
+      "grammar": "gerund",
+      "difficulty": "standard",
+      "japanese": "私は以前より早く起きることに慣れてきた。",
+      "reference_answers": [
+        "I am getting used to getting up earlier than before."
+      ],
+      "explanation": "be/get used toのtoは前置詞なのでgetting。am gettingで慣れる過程、earlier than beforeで以前との比較を示す。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-gerund-advanced-batch02-001",
+      "grammar": "gerund",
+      "difficulty": "advanced",
+      "japanese": "その計画に反対する人々は、住民に相談せずに決定が下されたことにも不満を抱いていた。",
+      "reference_answers": [
+        "Those opposed to the plan were also unhappy about the decision having been made without any consultation with the residents."
+      ],
+      "explanation": "aboutの後にthe decision having been madeという受動動名詞節を置く。決定が不満より前であることを完了形で明示する。without any consultation with ...は住民への相談なしという決定時の状況。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-gerund-keio-batch02-001",
+      "grammar": "gerund",
+      "difficulty": "keio",
+      "japanese": "批判されるのを避けるために何も発言しないでいると、誤解を解く機会まで失うことがある。",
+      "reference_answers": [
+        "If you say nothing to avoid being criticized, you may also lose the opportunity to clear up misunderstandings."
+      ],
+      "explanation": "avoidの後は受動動名詞being criticized。「批判される」と「批判する」を逆にしない。mayとalsoで可能性と追加の損失を示す。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-participle-basic-batch02-001",
+      "grammar": "participle",
+      "difficulty": "basic",
+      "japanese": "あそこで遊んでいる子供たちに、この箱を渡してください。",
+      "reference_answers": [
+        "Please give this box to the children playing over there."
+      ],
+      "explanation": "playing over thereがchildrenを後ろから修飾する。子供たちが遊ぶ側なので現在分詞を用いる。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-participle-standard-batch02-001",
+      "grammar": "participle",
+      "difficulty": "standard",
+      "japanese": "私は道に落ちていた財布を警察に届けた。",
+      "reference_answers": [
+        "I took a wallet lying in the road to the police."
+      ],
+      "explanation": "lyingはlieの現在分詞でwalletを修飾する。財布は置かれている状態で、layingとはしない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-participle-advanced-batch02-001",
+      "grammar": "participle",
+      "difficulty": "advanced",
+      "japanese": "修正を加えた報告書は、当初提案された案と、最終的に承認された案の違いを明確にしている。",
+      "reference_answers": [
+        "The revised report makes clear the difference between the plan originally proposed and the one finally approved."
+      ],
+      "explanation": "revisedはreportを、proposedとapprovedはそれぞれの案を修飾する。the oneはplanの繰り返しを避ける。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-participle-keio-batch02-001",
+      "grammar": "participle",
+      "difficulty": "keio",
+      "japanese": "広く共有されている考え方でも、それを支える証拠が十分だとは限らない。",
+      "reference_answers": [
+        "Even a widely shared belief is not necessarily supported by sufficient evidence."
+      ],
+      "explanation": "sharedはbeliefの修飾、supportedは主節の受動。evenとnot necessarilyによって普及度と根拠の十分さを区別する。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-relative-pronoun-basic-batch02-001",
+      "grammar": "relative-pronoun",
+      "difficulty": "basic",
+      "japanese": "私が欲しい自転車は、この店では売っていない。",
+      "reference_answers": [
+        "The bicycle that I want is not sold at this shop.",
+        "The bicycle I want is not sold at this shop."
+      ],
+      "explanation": "wantの目的語に相当する関係代名詞thatは省略できる。関係節内にitを重複させない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-relative-pronoun-standard-batch02-001",
+      "grammar": "relative-pronoun",
+      "difficulty": "standard",
+      "japanese": "これは、表紙は傷んでいるが、中のページはきれいな本です。",
+      "reference_answers": [
+        "This is a book whose cover is damaged but whose pages are clean."
+      ],
+      "explanation": "whoseを二つ並べ、coverとpagesがそれぞれbookに属することを示す。単数coverと複数pagesの一致を分ける。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-relative-pronoun-advanced-batch02-001",
+      "grammar": "relative-pronoun",
+      "difficulty": "advanced",
+      "japanese": "私たちは、自分たちの結論に反する結果を出した研究も、検討から外すべきではない。",
+      "reference_answers": [
+        "We should not exclude from consideration studies that have produced results contrary to our conclusion."
+      ],
+      "explanation": "that節はstudiesを修飾し、contrary toはresultsを修飾する。exclude A from considerationの目的語が長いため後置している。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-relative-pronoun-keio-batch02-001",
+      "grammar": "relative-pronoun",
+      "difficulty": "keio",
+      "japanese": "ある社会で普通だと見なされている振る舞いが、その社会の外で暮らす人々にも理解されるとは限らない。",
+      "reference_answers": [
+        "Behavior that is considered normal in one society is not necessarily understood by people who live outside that society."
+      ],
+      "explanation": "that節とwho節がそれぞれbehaviorとpeopleを修飾する。not necessarilyで社会の外での理解を断定しない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-relative-adverb-basic-batch02-001",
+      "grammar": "relative-adverb",
+      "difficulty": "basic",
+      "japanese": "日曜日は、父が料理をする日です。",
+      "reference_answers": [
+        "Sunday is the day when my father cooks."
+      ],
+      "explanation": "whenはdayを先行詞として時を表す。関係節はmy father cooksで文が完結する。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-relative-adverb-standard-batch02-001",
+      "grammar": "relative-adverb",
+      "difficulty": "standard",
+      "japanese": "彼女がその申し出を断った理由を、私は後になって知った。",
+      "reference_answers": [
+        "I later learned the reason why she had turned down the offer."
+      ],
+      "explanation": "whyはreasonを修飾し、断ったことは知った時点より前なのでhad turned down。laterは知った時を示す。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-relative-adverb-advanced-batch02-001",
+      "grammar": "relative-adverb",
+      "difficulty": "advanced",
+      "japanese": "その作家が晩年を過ごした村には、彼がなぜそこを選んだのかを示す資料がほとんど残っていない。",
+      "reference_answers": [
+        "In the village where the writer spent his final years, few records remain to show why he chose to live there."
+      ],
+      "explanation": "whereは村を修飾する関係副詞。why節は理由を尋ねる名詞節で、二つの働きを区別する。few recordsは資料の少なさを示す。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-relative-adverb-keio-batch02-001",
+      "grammar": "relative-adverb",
+      "difficulty": "keio",
+      "japanese": "人々が互いに助け合う地域では、困難は必ずしも個人だけが背負うものとは見なされない。",
+      "reference_answers": [
+        "In communities where people help one another, difficulties are not necessarily seen as burdens for individuals to bear alone."
+      ],
+      "explanation": "whereはcommunitiesを修飾する。not necessarilyとaloneを保ち、個人の負担が全くないと強めない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-nonrestrictive-basic-batch02-001",
+      "grammar": "nonrestrictive",
+      "difficulty": "basic",
+      "japanese": "私たちは京都に行ったが、そこには古い寺がたくさんある。",
+      "reference_answers": [
+        "We went to Kyoto, where there are many old temples."
+      ],
+      "explanation": "特定された地名Kyotoに、コンマ付きwhere節でその場所の情報を補足する。where節内はthere are many old templesで文が完結する。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-nonrestrictive-standard-batch02-001",
+      "grammar": "nonrestrictive",
+      "difficulty": "standard",
+      "japanese": "私たちは最後のバスに乗り遅れたので、1時間歩かなければならなかった。",
+      "reference_answers": [
+        "We missed the last bus, which meant that we had to walk for an hour."
+      ],
+      "explanation": "whichは前節全体を受ける非制限用法。1時間は歩く長さなのでfor an hourとし、待ち時間にはしない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-nonrestrictive-advanced-batch02-001",
+      "grammar": "nonrestrictive",
+      "difficulty": "advanced",
+      "japanese": "その博物館の館長は、私たちの訪問日は不在だったが、改装の目的を事前に手紙で説明してくれていた。",
+      "reference_answers": [
+        "The museum's director, who was away on the day of our visit, had explained the purpose of the renovation to us in a letter beforehand."
+      ],
+      "explanation": "コンマ付きwho節は館長についての補足。訪問日より前の説明にはhad explainedを用いる。不在だった日と手紙で説明した時点を区別する。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-nonrestrictive-keio-batch02-001",
+      "grammar": "nonrestrictive",
+      "difficulty": "keio",
+      "japanese": "その調査には農村部の住民も含まれていたが、その多くは、都市を前提に作られた質問では自分たちの事情が十分に伝わらないと感じていた。",
+      "reference_answers": [
+        "The survey also included rural residents, many of whom felt that questions designed for urban areas did not adequately capture their circumstances."
+      ],
+      "explanation": "many of whomは参加した農村部の住民のうちの多くを示す。designed for urban areasはquestionsを修飾し、felt以下はその人々の認識であって、全住民についての断定ではない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-noun-clause-basic-batch02-001",
+      "grammar": "noun-clause",
+      "difficulty": "basic",
+      "japanese": "私が一番好きなのは、この静かな時間です。",
+      "reference_answers": [
+        "What I like best is this quiet time."
+      ],
+      "explanation": "what I like bestという名詞節全体が主語。whatはlikeの目的語の働きも持ち、the thing whichに相当する。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-noun-clause-standard-batch02-001",
+      "grammar": "noun-clause",
+      "difficulty": "standard",
+      "japanese": "その店が明日も開いているかどうかは、天気次第だ。",
+      "reference_answers": [
+        "Whether the shop will be open tomorrow as well depends on the weather."
+      ],
+      "explanation": "whether節を主語に置く。名詞節なので未来のwillを使える。天気という条件はdepends onの目的語。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-noun-clause-advanced-batch02-001",
+      "grammar": "noun-clause",
+      "difficulty": "advanced",
+      "japanese": "彼が約束したことと、実際にできることの間には、大きな隔たりがあった。",
+      "reference_answers": [
+        "There was a large gap between what he had promised and what he could actually do."
+      ],
+      "explanation": "二つのwhat節をbetweenの後で並列にする。約束が先行するhad promisedと、当時の能力could doを区別する。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-noun-clause-keio-batch02-001",
+      "grammar": "noun-clause",
+      "difficulty": "keio",
+      "japanese": "何を理解することに価値があるかは、それがすぐに役に立つかどうかだけでは決められない。",
+      "reference_answers": [
+        "What is worth understanding cannot be determined solely by whether it is immediately useful."
+      ],
+      "explanation": "What is worth understandingという名詞節を主語、whether節を前置詞byの目的語に置く。solelyで、即時の有用性だけを基準にすることを否定する。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-indirect-question-basic-batch02-001",
+      "grammar": "indirect-question",
+      "difficulty": "basic",
+      "japanese": "何を持っていけばよいか教えてください。",
+      "reference_answers": [
+        "Please tell me what I should bring.",
+        "Please tell me what to bring."
+      ],
+      "explanation": "間接疑問ではwhat I should bringの語順。主語が文脈で明らかなのでwhat to bringへの言い換えも可能。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-indirect-question-standard-batch02-001",
+      "grammar": "indirect-question",
+      "difficulty": "standard",
+      "japanese": "彼は、どうすればその機械を安全に止められるのかと私に尋ねた。",
+      "reference_answers": [
+        "He asked me how he could stop the machine safely."
+      ],
+      "explanation": "howの後はhe could stopで平叙文語順。尋ねた相手はme、機械を止める動作主はhe。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-indirect-question-advanced-batch02-001",
+      "grammar": "indirect-question",
+      "difficulty": "advanced",
+      "japanese": "いつその規則が変更されたのかよりも、なぜ誰にも変更が知らされなかったのかを確認したい。",
+      "reference_answers": [
+        "I want to find out why no one was told about the change, rather than when the rule was changed."
+      ],
+      "explanation": "why節とwhen節はいずれも平叙文語順の受動。確認したい焦点は通知がなかった理由で、変更時期ではない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-indirect-question-keio-batch02-001",
+      "grammar": "indirect-question",
+      "difficulty": "keio",
+      "japanese": "誰の声が最も大きいかを知ることと、誰の声が届いていないかを知ることは、同じではない。",
+      "reference_answers": [
+        "Knowing whose voice is loudest is not the same as knowing whose voice is not being heard."
+      ],
+      "explanation": "whose voiceが両方の疑問節の主語。loudestとnot being heardの対比で、声量と意見の届き方を区別する。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-appositive-that-basic-batch02-001",
+      "grammar": "appositive-that",
+      "difficulty": "basic",
+      "japanese": "私は、彼が来ないという知らせを聞いた。",
+      "reference_answers": [
+        "I heard the news that he would not come."
+      ],
+      "explanation": "that節はnewsの内容で、he would not comeという完結した文が続く。wouldは過去の聞いた時点から見た未来。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-appositive-that-standard-batch02-001",
+      "grammar": "appositive-that",
+      "difficulty": "standard",
+      "japanese": "彼女は、何も知らなかったという主張を繰り返した。",
+      "reference_answers": [
+        "She repeated her claim that she had known nothing."
+      ],
+      "explanation": "that節はclaimの内容。知らなかったのは主張を繰り返す以前なのでhad known。主張の真偽は断定しない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-appositive-that-advanced-batch02-001",
+      "grammar": "appositive-that",
+      "difficulty": "advanced",
+      "japanese": "その研究が資金を失うかもしれないという懸念から、私たちは別の支援者を探し始めた。",
+      "reference_answers": [
+        "The concern that the research might lose its funding led us to start looking for another sponsor."
+      ],
+      "explanation": "concernの内容をthat節で示し、mightで可能性を保つ。懸念が支援者探しの原因であり、資金喪失が確定したとはしない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-appositive-that-keio-batch02-001",
+      "grammar": "appositive-that",
+      "difficulty": "keio",
+      "japanese": "失敗は常に努力不足の結果だという思い込みは、人が助けを求めるのをためらわせることがある。",
+      "reference_answers": [
+        "The assumption that failure always results from a lack of effort can make people hesitate to seek help."
+      ],
+      "explanation": "that節はassumptionの内容。alwaysはその思い込みの内部、canはためらいが生じる可能性を表す。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-conjunction-basic-batch02-001",
+      "grammar": "conjunction",
+      "difficulty": "basic",
+      "japanese": "忙しくても、朝食は食べるようにしている。",
+      "reference_answers": [
+        "Even when I am busy, I try to eat breakfast."
+      ],
+      "explanation": "even whenは実際に繰り返す状況への譲歩。try toで心がけを表し、必ず食べると断定しない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-conjunction-standard-batch02-001",
+      "grammar": "conjunction",
+      "difficulty": "standard",
+      "japanese": "彼から返事が来たらすぐに、あなたに知らせます。",
+      "reference_answers": [
+        "As soon as I hear back from him, I will let you know."
+      ],
+      "explanation": "未来の時を示すas soon as節は現在形hearを使う。返事を受ける側はI、知らせる相手はyou。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-conjunction-advanced-batch02-001",
+      "grammar": "conjunction",
+      "difficulty": "advanced",
+      "japanese": "その提案は理論上は魅力的だが、実行するとなると、私たちにはない設備が必要になる。",
+      "reference_answers": [
+        "Although the proposal is attractive in theory, putting it into practice would require equipment we do not have."
+      ],
+      "explanation": "although節と主節で理論と実行を対比する。wouldは実施した場合の帰結で、設備を既に導入したとはしない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-conjunction-keio-batch02-001",
+      "grammar": "conjunction",
+      "difficulty": "keio",
+      "japanese": "ある習慣を理解するには、それが生まれた事情を知る必要があるが、その事情を知ることは、その習慣を正当化することとは限らない。",
+      "reference_answers": [
+        "To understand a custom, we need to know the circumstances in which it arose, but knowing those circumstances does not necessarily justify the custom."
+      ],
+      "explanation": "butは理解に必要な知識と正当化の違いを結ぶ。in whichの修飾先はcircumstances。not necessarilyを保つ。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-participial-clause-basic-batch02-001",
+      "grammar": "participial-clause",
+      "difficulty": "basic",
+      "japanese": "窓を開けると、彼は大きく息を吸った。",
+      "reference_answers": [
+        "Opening the window, he took a deep breath."
+      ],
+      "explanation": "Openingの意味上の主語は主節のhe。窓を開ける動作とその直後の深呼吸をつなぐ。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-participial-clause-standard-batch02-001",
+      "grammar": "participial-clause",
+      "difficulty": "standard",
+      "japanese": "時間がほとんど残っていなかったので、私たちは急いで結論をまとめた。",
+      "reference_answers": [
+        "With little time remaining, we hurried to draw a conclusion."
+      ],
+      "explanation": "with + 名詞 + 現在分詞で付帯状況を示す。remainingの主語はtimeで、主節のweとは別。littleで時間の少なさを保つ。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-participial-clause-advanced-batch02-001",
+      "grammar": "participial-clause",
+      "difficulty": "advanced",
+      "japanese": "何度も修理されたにもかかわらず、その古い時計は正確に動かず、結局交換された。",
+      "reference_answers": [
+        "Although repaired many times, the old clock did not keep accurate time and was eventually replaced."
+      ],
+      "explanation": "Although repairedはalthough it had been repairedに相当し、修理される主語はclock。譲歩のalthoughを残して関係を明示する。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-participial-clause-keio-batch02-001",
+      "grammar": "participial-clause",
+      "difficulty": "keio",
+      "japanese": "十分な情報を持たないまま判断を迫られ、彼女は、すぐに結論を出すよりも不確かさを認めるほうを選んだ。",
+      "reference_answers": [
+        "Pressed to make a judgment without enough information, she chose to acknowledge the uncertainty rather than reach an immediate conclusion."
+      ],
+      "explanation": "Pressedはsheを主語とする受動の分詞構文。rather thanで二つの行為を対比し、判断を求められた状況を保つ。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-subjunctive-basic-batch02-001",
+      "grammar": "subjunctive",
+      "difficulty": "basic",
+      "japanese": "もっと背が高ければ、一番上の棚に手が届くのに。",
+      "reference_answers": [
+        "If I were taller, I could reach the top shelf."
+      ],
+      "explanation": "現在の事実に反する条件はwere taller、実現しない能力はcould reach。現在の話なのでhad beenにはしない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-subjunctive-standard-batch02-001",
+      "grammar": "subjunctive",
+      "difficulty": "standard",
+      "japanese": "あのとき写真を撮っておけばよかった。",
+      "reference_answers": [
+        "I wish I had taken a photograph then."
+      ],
+      "explanation": "I wish + 過去完了で過去に実現しなかった行為への後悔を表す。I hopeとは時間と意味が違う。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-subjunctive-advanced-batch02-001",
+      "grammar": "subjunctive",
+      "difficulty": "advanced",
+      "japanese": "彼がもっと注意深い人なら、昨日あの重要な点を見落とさなかっただろう。",
+      "reference_answers": [
+        "If he were more careful, he would not have overlooked that important point yesterday."
+      ],
+      "explanation": "普段の性質はwere more careful、過去の反事実の結果はwould not have overlooked。性質と昨日の失敗を分ける混合仮定法。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-subjunctive-keio-batch02-001",
+      "grammar": "subjunctive",
+      "difficulty": "keio",
+      "japanese": "もし異なる立場の人の話を聞いていなかったら、私たちは今も、自分たちの経験がすべての人に共通すると考えていただろう。",
+      "reference_answers": [
+        "If we had not listened to people in different positions, we would still believe that everyone shared our experiences."
+      ],
+      "explanation": "過去の聞く行為に対する反事実と、今も続く仮想の信念を組み合わせる。stillとeveryoneの範囲を保つ。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-comparison-basic-batch02-001",
+      "grammar": "comparison",
+      "difficulty": "basic",
+      "japanese": "この問題は、見た目ほど難しくない。",
+      "reference_answers": [
+        "This problem is not as difficult as it looks."
+      ],
+      "explanation": "not as + 形容詞 + asで見た目より難しくないことを表す。比較するのは実際の難しさと外見上の難しさ。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-comparison-standard-batch02-001",
+      "grammar": "comparison",
+      "difficulty": "standard",
+      "japanese": "私にとっては、速く終えることより、間違いを減らすことのほうが大切だ。",
+      "reference_answers": [
+        "For me, reducing mistakes is more important than finishing quickly."
+      ],
+      "explanation": "比較する二つを動名詞句でそろえる。速さ自体を無価値とせず、重要性の優先順位を表す。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-comparison-advanced-batch02-001",
+      "grammar": "comparison",
+      "difficulty": "advanced",
+      "japanese": "同じ資料を読んでも、専門知識のある人が、必ずしも初めて読む人より多くの疑問を持つわけではない。",
+      "reference_answers": [
+        "Even when reading the same material, experts do not necessarily have more questions than first-time readers."
+      ],
+      "explanation": "even whenで共通条件を示し、not necessarilyが比較の成立を限定する。more questionsの比較対象は初読者の疑問の数。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-comparison-keio-batch02-001",
+      "grammar": "comparison",
+      "difficulty": "keio",
+      "japanese": "意見の一致が得られるかどうかよりも、意見が分かれる理由を互いに説明できるかどうかのほうが、対話では重要なことがある。",
+      "reference_answers": [
+        "In dialogue, being able to explain to one another why we disagree can matter more than whether we reach agreement."
+      ],
+      "explanation": "can matter moreで「重要なことがある」という可能性を示す。比較対象は理由説明の能力と合意の成立で、常にそうだとしない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-cleft-basic-batch02-001",
+      "grammar": "cleft",
+      "difficulty": "basic",
+      "japanese": "私がその知らせを聞いたのは、月曜日だった。",
+      "reference_answers": [
+        "It was on Monday that I heard the news."
+      ],
+      "explanation": "強調される時の句はon Monday。It was ... thatの枠組みに入れてもonを落とさない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-cleft-standard-batch02-001",
+      "grammar": "cleft",
+      "difficulty": "standard",
+      "japanese": "彼がその仕事を辞めたのは、給料が低かったからではない。",
+      "reference_answers": [
+        "It was not because the pay was low that he left the job."
+      ],
+      "explanation": "notの範囲はbecause節。仕事を辞めたことは前提として、低賃金が理由であることを否定する。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-cleft-advanced-batch02-001",
+      "grammar": "cleft",
+      "difficulty": "advanced",
+      "japanese": "彼女が、誰も気づかなかった誤りを見つけることができたのは、その記録を何度も読み直したからだった。",
+      "reference_answers": [
+        "It was because she had reread the records many times that she was able to find the error no one else had noticed."
+      ],
+      "explanation": "because節全体を強調し、再読が発見に先行するのでhad rereadを用いる。no one elseで彼女以外の未発見を示す。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-cleft-keio-batch02-001",
+      "grammar": "cleft",
+      "difficulty": "keio",
+      "japanese": "他者との違いをなくすことではなく、その違いが生じた背景を考えることこそが、理解への第一歩である。",
+      "reference_answers": [
+        "It is considering the background to our differences, rather than eliminating them, that is the first step toward understanding others."
+      ],
+      "explanation": "動名詞句を強調部分に置く。rather thanは排除される選択肢を示し、themはdifferencesを受ける。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-inversion-basic-batch02-001",
+      "grammar": "inversion",
+      "difficulty": "basic",
+      "japanese": "彼女は泳げますし、私も泳げます。",
+      "reference_answers": [
+        "She can swim, and so can I."
+      ],
+      "explanation": "肯定への同意はso + 助動詞 + 主語。前半のcanに合わせ、so do Iにはしない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-inversion-standard-batch02-001",
+      "grammar": "inversion",
+      "difficulty": "standard",
+      "japanese": "その箱の中には、古い手紙が何通か入っていた。",
+      "reference_answers": [
+        "Inside the box were several old letters.",
+        "There were several old letters inside the box."
+      ],
+      "explanation": "場所の句を前置する倒置では主語lettersが動詞の後ろに来る。複数主語に合わせてwere。通常のthere構文も可能。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-inversion-advanced-batch02-001",
+      "grammar": "inversion",
+      "difficulty": "advanced",
+      "japanese": "彼女は説明を終えるとすぐに、聴衆から質問を受けた。",
+      "reference_answers": [
+        "No sooner had she finished her explanation than someone in the audience asked her a question."
+      ],
+      "explanation": "No soonerの前置でhad sheと倒置し、thanを対応させる。whenとの混同を避け、質問の順序を保つ。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-inversion-keio-batch02-001",
+      "grammar": "inversion",
+      "difficulty": "keio",
+      "japanese": "受け継いできた考え方を疑って初めて、自分が何を理由にそれを信じていたのかが見えてくることがある。",
+      "reference_answers": [
+        "Only by questioning ideas we have inherited can we sometimes see why we believed them."
+      ],
+      "explanation": "Only by句を前置すると主節がcan weの語順になる。sometimesで頻度を抑え、why節で信念の理由を表す。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-inanimate-subject-basic-batch02-001",
+      "grammar": "inanimate-subject",
+      "difficulty": "basic",
+      "japanese": "その音で、赤ちゃんが目を覚ました。",
+      "reference_answers": [
+        "The noise woke the baby."
+      ],
+      "explanation": "原因のnoiseを主語にし、wakeの他動詞用法で赤ちゃんが目覚めた結果を表す。赤ちゃんが音を起こしたと逆にしない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-inanimate-subject-standard-batch02-001",
+      "grammar": "inanimate-subject",
+      "difficulty": "standard",
+      "japanese": "地図があったので、私たちは道に迷わずに村を見つけることができた。",
+      "reference_answers": [
+        "The map enabled us to find the village without getting lost."
+      ],
+      "explanation": "enable + O + to doで可能になった行為を示す。withoutの後はgettingで、道に迷わずという状況を保つ。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-inanimate-subject-advanced-batch02-001",
+      "grammar": "inanimate-subject",
+      "difficulty": "advanced",
+      "japanese": "記録を詳しく調べた結果、契約が結ばれる前に何件かの支払いが行われていたことが分かった。",
+      "reference_answers": [
+        "A detailed examination of the records revealed that several payments had been made before the contract was signed."
+      ],
+      "explanation": "調査を表すA detailed examinationを主語に、revealedで判明した内容をthat節につなぐ。支払いと契約の順序はhad been made before ... was signedで示す。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-inanimate-subject-keio-batch02-001",
+      "grammar": "inanimate-subject",
+      "difficulty": "keio",
+      "japanese": "同じ失敗を繰り返した経験によって、彼は、説明の分かりやすさと内容の正しさを区別するようになった。",
+      "reference_answers": [
+        "Repeated experience of the same failure led him to distinguish the clarity of an explanation from its correctness."
+      ],
+      "explanation": "経験を主語にlead + O + to doで判断の変化を示す。distinguish A from Bで明快さと正しさを分ける。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-formal-it-basic-batch02-001",
+      "grammar": "formal-it",
+      "difficulty": "basic",
+      "japanese": "毎日少しずつ練習することが大切です。",
+      "reference_answers": [
+        "It is important to practice a little every day."
+      ],
+      "explanation": "Itは形式主語でto practice以下が真の内容。a littleとevery dayの少量・頻度を保つ。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-formal-it-standard-batch02-001",
+      "grammar": "formal-it",
+      "difficulty": "standard",
+      "japanese": "彼女は、自分の意見が誤解されたのを残念に思った。",
+      "reference_answers": [
+        "She thought it unfortunate that her opinion had been misunderstood."
+      ],
+      "explanation": "think it + 形容詞 + that節で形式目的語。誤解が先に起きたのでhad been misunderstood。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-formal-it-advanced-batch02-001",
+      "grammar": "formal-it",
+      "difficulty": "advanced",
+      "japanese": "その資料を読んでもなお、実際に誰がその決定を下したのかは明らかにならなかった。",
+      "reference_answers": [
+        "Even after reading the document, we still found it unclear who had actually made the decision."
+      ],
+      "explanation": "found it unclearのitは後ろのwho節を受ける。evenとstillで読んでも解消しなかった不明さを示す。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-formal-it-keio-batch02-001",
+      "grammar": "formal-it",
+      "difficulty": "keio",
+      "japanese": "自分の経験を一般化する前に、それがどのような条件のもとで得られたのかを考えることが必要である。",
+      "reference_answers": [
+        "It is necessary to consider the conditions under which we gained our experience before generalizing from it."
+      ],
+      "explanation": "Itの内容はto consider以下。under whichはconditionsを修飾し、before句は一般化に先立つ検討を示す。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-causative-basic-batch02-001",
+      "grammar": "causative",
+      "difficulty": "basic",
+      "japanese": "父は私に、そのかばんを自分で運ぶよう強いた。",
+      "reference_answers": [
+        "My father made me carry the bag myself."
+      ],
+      "explanation": "make + 人 + 原形で強制の使役。myselfはmeと対応し、ほかの人に頼まず自分で運ぶという意味。carryの前にtoを置かない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-causative-standard-batch02-001",
+      "grammar": "causative",
+      "difficulty": "standard",
+      "japanese": "私は、美容師に髪を短く切ってもらった。",
+      "reference_answers": [
+        "I had my hair cut short by a hairdresser."
+      ],
+      "explanation": "have + O + 過去分詞は依頼したサービスを表す。cutは原形と同形の過去分詞で、shortは仕上がりの状態。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-causative-advanced-batch02-001",
+      "grammar": "causative",
+      "difficulty": "advanced",
+      "japanese": "彼女は、生徒たちが異なる二つの解き方を比較できるように、まず生徒たち自身にその問題を解かせた。",
+      "reference_answers": [
+        "She first had the students solve the problem themselves so that they could compare two different methods."
+      ],
+      "explanation": "had + 生徒 + solveで行為をさせ、themselvesで自分でを示す。so that節のcouldはその目的で可能になる比較。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-causative-keio-batch02-001",
+      "grammar": "causative",
+      "difficulty": "keio",
+      "japanese": "聞き手に結論だけを受け入れさせようとするのではなく、そこに至る理由を自分で検討できるようにすべきだ。",
+      "reference_answers": [
+        "Rather than trying to make listeners accept only the conclusion, we should enable them to examine the reasoning behind it for themselves."
+      ],
+      "explanation": "make + 人 + 原形とenable + 人 + to doの形を区別する。onlyは結論だけにかかり、for themselvesは聞き手自身の検討。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-perception-basic-batch02-001",
+      "grammar": "perception",
+      "difficulty": "basic",
+      "japanese": "私は地面が揺れるのを感じた。",
+      "reference_answers": [
+        "I felt the ground shake."
+      ],
+      "explanation": "feel + O + 動詞の原形で地面が揺れる動作を知覚したことを表す。the groundはshakeの意味上の主語で、to shakeとはしない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-perception-standard-batch02-001",
+      "grammar": "perception",
+      "difficulty": "standard",
+      "japanese": "何かが焦げているにおいがしたが、煙は見えなかった。",
+      "reference_answers": [
+        "I could smell something burning, but I could not see any smoke."
+      ],
+      "explanation": "smell + O + -ingで何かが焦げているにおいを知覚する。somethingがburningの意味上の主語。嗅覚と視覚を対比し、煙の存在自体を否定する訳にはしない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-perception-advanced-batch02-001",
+      "grammar": "perception",
+      "difficulty": "advanced",
+      "japanese": "彼女は、自分の提案が議論もされずに退けられるのを見て、発言をやめてしまった。",
+      "reference_answers": [
+        "She saw her proposal dismissed without discussion and stopped speaking."
+      ],
+      "explanation": "see + O + 過去分詞で提案が退けられることを知覚したと表す。without discussionで議論なし、stopped speakingで発言中止。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-perception-keio-batch02-001",
+      "grammar": "perception",
+      "difficulty": "keio",
+      "japanese": "自分の言葉が意図とは違う意味で繰り返されているのを聞いて、彼は、発言を説明し直す必要を感じた。",
+      "reference_answers": [
+        "Hearing his own words being repeated with a meaning he had not intended, he felt the need to explain his remarks again."
+      ],
+      "explanation": "hear + O + being + 過去分詞で繰り返されている場面を表す。Hearingとheの主語を対応させ、意図とのずれを修飾節で示す。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-article-basic-batch02-001",
+      "grammar": "article",
+      "difficulty": "basic",
+      "japanese": "私は毎日、バスで学校に通っている。",
+      "reference_answers": [
+        "I go to school by bus every day."
+      ],
+      "explanation": "学校に通う目的のto schoolと交通手段のby busでは通常冠詞を付けない。建物として特定する場合のthe schoolとは区別する。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-article-standard-batch02-001",
+      "grammar": "article",
+      "difficulty": "standard",
+      "japanese": "彼は、昼食後に1時間ピアノを練習する。",
+      "reference_answers": [
+        "He practices the piano for an hour after lunch."
+      ],
+      "explanation": "楽器のthe piano、時間のan hour、食事名after lunchの無冠詞を区別する。hourの語頭は母音なのでan。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-article-advanced-batch02-001",
+      "grammar": "article",
+      "difficulty": "advanced",
+      "japanese": "この町には病院が一つしかないが、私はその病院の隣にある薬局で働いている。",
+      "reference_answers": [
+        "There is only one hospital in this town, and I work at the pharmacy next to it."
+      ],
+      "explanation": "初めにonly one hospitalで対象を特定する。the pharmacyはその病院の隣にあるという修飾で特定し、itはhospitalを受ける。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-article-keio-batch02-001",
+      "grammar": "article",
+      "difficulty": "keio",
+      "japanese": "ある文化について一冊の本を読んだだけで、その文化を理解したと思い込むのは危険だ。",
+      "reference_answers": [
+        "It is dangerous to assume that you understand a culture merely because you have read one book about it."
+      ],
+      "explanation": "a cultureである一つの文化を導入し、itで再言及する。one bookは一冊だけという数量への焦点。merely becauseで根拠の不足を示す。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-preposition-basic-batch02-001",
+      "grammar": "preposition",
+      "difficulty": "basic",
+      "japanese": "この写真を見ると、夏休みを思い出す。",
+      "reference_answers": [
+        "This photograph reminds me of the summer vacation."
+      ],
+      "explanation": "remind + 人 + of + 事柄。写真が思い出すのではなく、私に記憶を呼び起こさせる構造。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-preposition-standard-batch02-001",
+      "grammar": "preposition",
+      "difficulty": "standard",
+      "japanese": "私は彼が遅れたことではなく、私に連絡しなかったことに腹を立てた。",
+      "reference_answers": [
+        "I was angry with him not for being late but for failing to contact me."
+      ],
+      "explanation": "angry withは怒る相手、forは理由。forの後は動名詞を置き、怒りの理由の対比を保つ。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-preposition-advanced-batch02-001",
+      "grammar": "preposition",
+      "difficulty": "advanced",
+      "japanese": "私たちは、短期的な利益を犠牲にしてでも、長期的な信頼を守ることにした。",
+      "reference_answers": [
+        "We decided to preserve long-term trust even at the expense of short-term profits."
+      ],
+      "explanation": "at the expense ofで代償となるものを示す。守る対象は信頼、犠牲になる対象は利益で、方向を逆にしない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-preposition-keio-batch02-001",
+      "grammar": "preposition",
+      "difficulty": "keio",
+      "japanese": "ある行動を評価するときには、結果だけに基づく判断と、意図を考慮した判断とを区別する必要がある。",
+      "reference_answers": [
+        "When evaluating an action, we need to distinguish a judgment based solely on its results from one that takes the actor's intentions into account."
+      ],
+      "explanation": "based onは判断の根拠、distinguish A from Bは区別、take A into accountは考慮。itsはactionを受け、意図の持ち主は行為者なのでthe actorと明示する。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-countability-basic-batch02-001",
+      "grammar": "countability",
+      "difficulty": "basic",
+      "japanese": "机の上には、家具のカタログが2冊ある。",
+      "reference_answers": [
+        "There are two furniture catalogs on the desk."
+      ],
+      "explanation": "furnitureは不可算で名詞修飾にも複数形を付けない。数える対象はcatalogsなのでtwoとareに対応する。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-countability-standard-batch02-001",
+      "grammar": "countability",
+      "difficulty": "standard",
+      "japanese": "彼女は、質問に答える前に二つの助言を私にくれた。",
+      "reference_answers": [
+        "She gave me two pieces of advice before answering the question."
+      ],
+      "explanation": "adviceは不可算なのでtwo advicesとはしない。個々の助言はtwo pieces of advice。before answeringの動作主はshe。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-countability-advanced-batch02-001",
+      "grammar": "countability",
+      "difficulty": "advanced",
+      "japanese": "その論文には、多くの研究が引用されているが、独自の研究はほとんど含まれていない。",
+      "reference_answers": [
+        "The paper cites many studies but contains little original research."
+      ],
+      "explanation": "個々の研究成果は可算studies、研究活動・内容一般は不可算research。manyとlittleを使い分ける。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-countability-keio-batch02-001",
+      "grammar": "countability",
+      "difficulty": "keio",
+      "japanese": "同じ情報から出発しても、研究者が立てる問いが異なれば、得られる知識も異なることがある。",
+      "reference_answers": [
+        "Even when researchers start with the same information, different questions can lead to different kinds of knowledge."
+      ],
+      "explanation": "informationとknowledgeは不可算で、種類を区別するときはkinds of knowledgeと表せる。questionsは可算名詞。even whenとcanで共通の出発点と結果の可能性を保つ。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-number-basic-batch02-001",
+      "grammar": "number",
+      "difficulty": "basic",
+      "japanese": "二人とも歯を磨いてから寝た。",
+      "reference_answers": [
+        "Both of them brushed their teeth before going to bed."
+      ],
+      "explanation": "toothの複数はteeth。二人の所有物なのでtheirを用いる。before goingの主語はboth of them。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-number-standard-batch02-001",
+      "grammar": "number",
+      "difficulty": "standard",
+      "japanese": "この店の二つの入口は、どちらも午後8時に閉まる。",
+      "reference_answers": [
+        "Both entrances to this shop close at eight in the evening."
+      ],
+      "explanation": "both + 複数名詞、動詞closeを対応させる。二つともという意味をeither oneなどに変えない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-number-advanced-batch02-001",
+      "grammar": "number",
+      "difficulty": "advanced",
+      "japanese": "各参加者は、話し合いが始まる前に、それぞれ異なる二つの立場を説明するよう求められた。",
+      "reference_answers": [
+        "Each participant was asked to explain two different positions before the discussion began."
+      ],
+      "explanation": "eachの後は単数participantでwas。twoの後は複数positions。参加者の人数と説明する立場の数を区別する。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-number-keio-batch02-001",
+      "grammar": "number",
+      "difficulty": "keio",
+      "japanese": "個人の選択の積み重ねが、本人たちの誰も意図しなかった社会的な結果を生むことがある。",
+      "reference_answers": [
+        "Individual choices can collectively produce social consequences that none of the people making those choices intended."
+      ],
+      "explanation": "choicesとconsequencesを複数にし、collectivelyで積み重ねを示す。noneで誰も意図しない範囲、canで可能性を保つ。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-agreement-basic-batch02-001",
+      "grammar": "agreement",
+      "difficulty": "basic",
+      "japanese": "私の靴は、どちらもまだぬれている。",
+      "reference_answers": [
+        "Both of my shoes are still wet."
+      ],
+      "explanation": "both of my shoesは複数主語なのでare。stillはぬれた状態の継続を示す。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-agreement-standard-batch02-001",
+      "grammar": "agreement",
+      "difficulty": "standard",
+      "japanese": "窓のそばに立っている女の子たちの一人は、私のいとこです。",
+      "reference_answers": [
+        "One of the girls standing by the window is my cousin."
+      ],
+      "explanation": "主語の中心はoneなのでis。standingは複数girlsを修飾し、動詞の単複を決める中心ではない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-agreement-advanced-batch02-001",
+      "grammar": "agreement",
+      "difficulty": "advanced",
+      "japanese": "会議室に残された書類のどれ一つとして、その会社が実際に誰に所有されているかを示していない。",
+      "reference_answers": [
+        "Not one of the documents left in the meeting room shows who actually owns the company."
+      ],
+      "explanation": "Not oneが主語の中心なのでshows。documentsとwho節内の主語に引きずられない。所有者の説明を能動態で表してもよい。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-agreement-keio-batch02-001",
+      "grammar": "agreement",
+      "difficulty": "keio",
+      "japanese": "私たちが当たり前だと思っている前提の一つが、異なる文化では議論の対象になることがある。",
+      "reference_answers": [
+        "One of the assumptions we take for granted is sometimes a subject of debate in another culture."
+      ],
+      "explanation": "主語の中心はOneなのでis。途中の複数assumptionsや関係節のweに一致させない。sometimesで異なる文化で議論の対象になる場合があることを表す。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-verb-usage-basic-batch02-001",
+      "grammar": "verb-usage",
+      "difficulty": "basic",
+      "japanese": "母は私に、窓を閉めるように頼んだ。",
+      "reference_answers": [
+        "My mother asked me to close the window."
+      ],
+      "explanation": "ask + 人 + to doで依頼を表す。asked to meやasked me closeとはしない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-verb-usage-standard-batch02-001",
+      "grammar": "verb-usage",
+      "difficulty": "standard",
+      "japanese": "私は、彼女にその本を貸したのか、それとも彼女から借りたのか、覚えていない。",
+      "reference_answers": [
+        "I do not remember whether I lent her the book or borrowed it from her."
+      ],
+      "explanation": "lendは貸す側、borrowは借りる側。lend + 人 + 物とborrow + 物 + from + 人の方向を区別する。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-verb-usage-advanced-batch02-001",
+      "grammar": "verb-usage",
+      "difficulty": "advanced",
+      "japanese": "彼は、その変更が利用者に与える影響については言及したが、追加費用が誰にかかるかは説明しなかった。",
+      "reference_answers": [
+        "He mentioned the impact the change would have on users but did not explain who would bear the additional cost."
+      ],
+      "explanation": "mentionは直接目的語を取る。explainの後は疑問詞節で説明内容を示す。変更の影響は過去から見たwould have。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-verb-usage-keio-batch02-001",
+      "grammar": "verb-usage",
+      "difficulty": "keio",
+      "japanese": "相手の主張を正確に言い換えられることは、その主張に賛成することを意味しない。",
+      "reference_answers": [
+        "Being able to restate another person's argument accurately does not mean agreeing with it."
+      ],
+      "explanation": "meanの目的語をagreeingという動名詞で表す。agree withのwithを保ち、言い換え能力と賛同を区別する。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-word-order-basic-batch02-001",
+      "grammar": "word-order",
+      "difficulty": "basic",
+      "japanese": "私はそんなに重い箱を運べない。",
+      "reference_answers": [
+        "I cannot carry such a heavy box."
+      ],
+      "explanation": "such + a + 形容詞 + 単数名詞の順。soを使うならso heavy a boxとなり、so a heavy boxとはしない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-word-order-standard-batch02-001",
+      "grammar": "word-order",
+      "difficulty": "standard",
+      "japanese": "彼女は私よりずっと速くその質問に答えた。",
+      "reference_answers": [
+        "She answered the question much faster than I did."
+      ],
+      "explanation": "muchは比較級fasterの前。速さを表すので動詞answeredを修飾し、比較対象は私が答える速さ。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-word-order-advanced-batch02-001",
+      "grammar": "word-order",
+      "difficulty": "advanced",
+      "japanese": "彼が私に渡したのは、その会議に参加した全員の意見をまとめた、短い報告書だった。",
+      "reference_answers": [
+        "What he gave me was a short report summarizing the opinions of everyone who had attended the meeting."
+      ],
+      "explanation": "a short reportの後にsummarizing以下を置く。who節はeveryoneを修飾し、reportに直接つながない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-word-order-keio-batch02-001",
+      "grammar": "word-order",
+      "difficulty": "keio",
+      "japanese": "人々が自分に都合のよい情報だけを選ぶとき、問題は情報の量よりも、何を除外しているかにある。",
+      "reference_answers": [
+        "When people select only information that suits them, the problem lies less in how much information they have than in what they leave out."
+      ],
+      "explanation": "onlyは選ばれる情報の範囲を限定する。less in A than in Bで問題の中心をBに置き、二つの名詞節を並列にする。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-collocation-basic-batch02-001",
+      "grammar": "collocation",
+      "difficulty": "basic",
+      "japanese": "彼は私に、同じ間違いを繰り返さないようにと言った。",
+      "reference_answers": [
+        "He told me not to make the same mistake again."
+      ],
+      "explanation": "make a mistakeという連語とtell + 人 + not to doを組み合わせる。notの位置はtoの前。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-collocation-standard-batch02-001",
+      "grammar": "collocation",
+      "difficulty": "standard",
+      "japanese": "私は、その仕事の経験を積むために、夏休みにそこで働いた。",
+      "reference_answers": [
+        "I worked there during the summer vacation to gain experience in the job."
+      ],
+      "explanation": "gain experienceで経験を積む。to gainは働いた目的で、実際に得た経験の量までは述べない。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-collocation-advanced-batch02-001",
+      "grammar": "collocation",
+      "difficulty": "advanced",
+      "japanese": "その発見は、これまで無関係だと思われていた二つの出来事のつながりに、新たな光を当てた。",
+      "reference_answers": [
+        "The discovery shed new light on the connection between two events previously thought to be unrelated."
+      ],
+      "explanation": "shed light onは理解を深めるという連語。previously thought to be unrelatedはeventsを修飾し、以前の評価を示す。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    },
+    {
+      "id": "bank-collocation-keio-batch02-001",
+      "grammar": "collocation",
+      "difficulty": "keio",
+      "japanese": "見解の違いを埋めるには、共通の結論を急ぐより、双方がどのような経験から出発しているのかを確かめるほうが役に立つことがある。",
+      "reference_answers": [
+        "To bridge differences of opinion, it can be more useful to examine the experiences each side starts from than to rush toward a shared conclusion."
+      ],
+      "explanation": "bridge differences of opinionで見解の隔たりを埋める。比較する二つの不定詞句をそろえ、canで有用性を可能性にとどめる。 参考英文は一例。意味を保つ文法的に適切な別表現も認める。"
+    }
+  ]
+}
