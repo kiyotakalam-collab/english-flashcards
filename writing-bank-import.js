@@ -1,6 +1,6 @@
 import { GRAMMAR, DIFFICULTIES } from './writing-data.js';
 import { validateQuestion, validateState } from './writing-core.js';
-import { BANK_TARGET, bankCount, isSimilarPrompt } from './writing-bank.js';
+import { BANK_TARGET, bankCount, createPromptIndex } from './writing-bank.js';
 
 export const BANK_IMPORT_FORMAT = 'writing-question-bank-v1';
 export const BANK_IMPORT_MAX = GRAMMAR.length * DIFFICULTIES.length * BANK_TARGET;
@@ -24,7 +24,7 @@ export function parseBankImport(json) {
   }
   return parsed.questions;
 }
-function convert(row, now) {
+export function convertBankQuestion(row, now) {
   if (!row || Array.isArray(row) || typeof row !== 'object' ||
       Object.keys(row).some(k => !allowed.has(k))) throw Error('未対応の項目が含まれています。');
   const id=requireText(row.id, 150, 'ID');
@@ -50,23 +50,23 @@ export function previewBankImport(state, raw, now='2026-11-11T00:00:00.000Z') {
   const rows=parseBankImport(raw);
   const errors=[], duplicates=[], additions=[];
   const ids=new Set(state.questions.map(q=>q.id));
-  const prompts=state.questions.map(q=>q.japanese);
+  const prompts=createPromptIndex(state.questions.map(q=>q.japanese));
   const counts=new Map();
   for (const g of GRAMMAR) for(const d of DIFFICULTIES)
     counts.set(`${g.id}:${d.id}`,bankCount(state,g.id,d.id));
   for (let i=0;i<rows.length;i++) {
     let q;
-    try { q=convert(rows[i],now); }
+    try { q=convertBankQuestion(rows[i],now); }
     catch(e) { errors.push({row:i+1,reason:e.message});continue; }
     const k=`${q.grammar_tags[0]}:${q.difficulty}`;
     if(ids.has(q.id)) {duplicates.push({row:i+1,reason:'IDが既に存在'});continue;}
-    if(prompts.some(p=>isSimilarPrompt(p,q.japanese))) {
+    if(prompts.has(q.japanese)) {
       duplicates.push({row:i+1,reason:'同一または類似する問題文'});continue;
     }
     if(counts.get(k)>=BANK_TARGET) {
       errors.push({row:i+1,reason:`${k}は20問の上限に達しています。`});continue;
     }
-    ids.add(q.id);prompts.push(q.japanese);counts.set(k,counts.get(k)+1);additions.push(q);
+    ids.add(q.id);prompts.add(q.japanese);counts.set(k,counts.get(k)+1);additions.push(q);
   }
   const cells=[...counts].map(([key,count])=>({key,count,missing:Math.max(0,BANK_TARGET-count)}));
   return {submitted:rows.length,additions,duplicates,errors,cells,

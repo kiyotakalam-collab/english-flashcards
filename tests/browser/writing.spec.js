@@ -1,3 +1,4 @@
+import { WRITING_BANK_RELEASE } from '../../writing-bank-manifest.js';
 import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import { createServer } from 'node:http';
@@ -13,7 +14,7 @@ const nav = (page, screen) => page.locator(`#navigation [data-page="${screen}"]`
 async function open(page) {
   await page.goto('writing.html');
   await expect(page.locator('#app')).not.toBeEmpty();
-  await expect.poll(async () => (await saved(page))?.questions.length).toBe(66);
+  await expect.poll(async () => (await saved(page))?.questions.length).toBe(WRITING_BANK_RELEASE.shortCount+4);
 }
 
 async function noOverflow(page) {
@@ -62,10 +63,10 @@ for (const width of [360, 393]) {
     page.on('pageerror', error => errors.push(error.message));
     await open(page);
     const state = await saved(page);
-    expect(state.questions.filter(q => q.mode === 'short')).toHaveLength(62);
+    expect(state.questions.filter(q => q.mode === 'short')).toHaveLength(WRITING_BANK_RELEASE.shortCount);
     expect(state.questions.filter(q => q.mode === 'essay')).toHaveLength(4);
     expect(state.questions.every(q => q.source === 'original')).toBe(true);
-    expect(new Set(state.questions.map(q => q.id)).size).toBe(66);
+    expect(new Set(state.questions.map(q => q.id)).size).toBe(WRITING_BANK_RELEASE.shortCount+4);
     expect(state.questions.every(q => q.grammar_tags.length > 0 && q.source_detail)).toBe(true);
     expect(state.textbookProgress).toEqual({ '構文80': { confirmedItems: [1] } });
     for (const screen of ['dashboard', 'short', 'grammar', 'essay', 'review', 'analytics']) {
@@ -130,6 +131,7 @@ test('AI generation failure still starts and advances through saved questions', 
  await expect(page.locator('#answer-input')).toBeEditable();
  const first=(await saved(page)).session.currentQuestionId;
  await page.locator('[data-action="defer"]').click();
+ await expect.poll(async()=>(await saved(page)).session.currentQuestionId).not.toBe(first);
  await expect(page.locator('#answer-input')).toBeEditable();
  const next=(await saved(page)).session.currentQuestionId;
  expect(next).not.toEqual(first);
@@ -160,12 +162,12 @@ test('AI question bank adds up to five original questions to selected grammar an
      body:JSON.stringify({question})});
  });
  await nav(page,'short');
- await page.locator('#bank-form [name="grammar"]').selectOption('relative-pronoun');
+ await page.locator('#bank-form [name="grammar"]').selectOption('sentence-pattern');
  await page.locator('#bank-form [name="difficulty"]').selectOption('basic');
  const before=await saved(page);
- const baseline=before.questions.filter(q=>q.mode==='short'&&q.difficulty==='basic'&&q.grammar_tags.includes('relative-pronoun')).length;
+ const baseline=before.questions.filter(q=>q.mode==='short'&&q.difficulty==='basic'&&q.grammar_tags.includes('sentence-pattern')).length;
  await page.locator('#bank-form [type="submit"]').click();
- await expect.poll(async()=>((await saved(page)).questions.filter(q=>q.mode==='short'&&q.difficulty==='basic'&&q.grammar_tags.includes('relative-pronoun')).length)).toBe(baseline+5);
+ await expect.poll(async()=>((await saved(page)).questions.filter(q=>q.mode==='short'&&q.difficulty==='basic'&&q.grammar_tags.includes('sentence-pattern')).length)).toBe(baseline+5);
  expect(calls).toBe(5);
  const after=await saved(page);
  expect(after.answers).toEqual(before.answers);
@@ -179,10 +181,10 @@ test('external bank JSON import previews before writing, commits only questions 
  await page.locator('#manage-open').click();
  const input=page.locator('#bank-import-file');
  const payload={format:'writing-question-bank-v1',questions:[{
-   id:'bank-relative-pronoun-basic-001',grammar:'relative-pronoun',difficulty:'basic',
-   japanese:'私の父が十年前に建てた小屋は、今も庭に残っている。',
-   reference_answers:['The shed which my father built ten years ago is still in our garden.'],
-   explanation:'関係代名詞which以下がshedを修飾する。'
+   id:'bank-participle-basic-external-001',grammar:'participle',difficulty:'basic',
+   japanese:'庭に建てられた小屋は、今も使われている。',
+   reference_answers:['The shed built in our garden is still in use.'],
+   explanation:'過去分詞built以下がshedを修飾する。'
  }]};
  await input.setInputFiles({name:'bank.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(payload))});
  await expect(page.getByText('問題バンクの取り込み確認')).toBeVisible();
@@ -325,7 +327,7 @@ test('problem management adds edits hides and deletes without touching exercise 
  await page.locator('#question-form [name="references"]').fill('I study here every morning.');
  await page.locator('#question-form [name="grammar"][value="tense"]').check();
  await page.locator('#question-form [type="submit"]').click();
- await expect.poll(async()=>(await saved(page)).questions.length).toBe(67);
+ await expect.poll(async()=>(await saved(page)).questions.length).toBe(WRITING_BANK_RELEASE.shortCount+5);
  let q=(await saved(page)).questions.at(-1);
  await page.locator(`[data-action="edit-question"][data-id="${q.id}"]`).click();
  await page.locator('#question-form [name="japanese"]').fill('私は毎晩ここで勉強します。');
@@ -338,12 +340,13 @@ test('problem management adds edits hides and deletes without touching exercise 
  expect((await saved(page)).answers).toHaveLength(0);
 });
 test('a wrong answer offers a different context and deferring excludes its grammar for this session',async({page})=>{
- await open(page);await begin(page);const original=(await saved(page)).session.currentQuestionId;
+ await open(page);await begin(page);const started=await saved(page),original=started.session.currentQuestionId;
+ const originalTags=started.questions.find(q=>q.id===original).grammar_tags;
  await page.locator('#answer-input').fill('A mistaken answer.');await page.locator('[data-action="submit"]').click();await manualGrade(page,'incorrect',0);
  await page.locator('[data-action="variant"]').click();
  await expect(page.locator('#answer-input')).toBeEditable();
  const s=await saved(page),variant=s.questions.find(q=>q.id===s.session.currentQuestionId);
- expect(variant.id).not.toBe(original);expect(variant.grammar_tags).toContain('sentence-pattern');
+ expect(variant.id).not.toBe(original);expect(variant.grammar_tags.some(tag=>originalTags.includes(tag))).toBe(true);
  await page.locator('[data-action="defer"]').click();
  await expect.poll(async()=>(await saved(page)).session.deferredQuestionIds).toContain(variant.id);
  const after=await saved(page);expect(after.session.deferredQuestionIds).toContain(original);expect(after.session.deferredQuestionIds).toContain(variant.id);
@@ -375,3 +378,42 @@ test('a vocabulary-only offline worker upgrades to cache writing without erasing
   await expect(page.locator('#answer-input')).toHaveValue('This draft survives the worker update.');
  }finally{await context.setOffline(false);await new Promise(resolve=>server.close(resolve));}
 });
+
+test('bundled release upgrades an old device without changing its saved answer, draft, progress or deletion',async({page})=>{
+ await open(page);
+ const before=await page.evaluate(async()=>{
+  const C=await import('./writing-core.js');const D=await import('./writing-data.js');
+  let s=C.createState(D.QUESTIONS);
+  s=C.submitAnswer(s,{id:'before-release-answer',questionId:D.QUESTIONS[0].id,input:'Preserve this answer.'});
+  s=C.gradeAnswer(s,'before-release-answer',{status:'incorrect',score:2,rubric:null,errorCategories:['tense'],feedback:'Existing assessment.'});
+  s=C.saveDraft(s,D.QUESTIONS[1].id,'Draft before the new release');
+  s=C.setTextbookProgress(s,'構文80',[1,5]);
+  s=C.updateSettings(s,{difficulty:'keio',grammar:'relative-pronoun',theme:'dark'});
+  s=C.deleteQuestion(s,D.QUESTIONS[2].id);
+  localStorage.setItem(C.STATE_KEY,C.exportBackup(s));return s;
+ });
+ await page.reload();
+ await expect.poll(async()=>(await saved(page)).questions.length).toBe(WRITING_BANK_RELEASE.shortCount+4);
+ const after=await saved(page);
+ for(const key of ['answers','drafts','settings','textbookProgress','session'])expect(after[key]).toEqual(before[key]);
+ expect(after.questions.find(q=>q.id===before.questions[2].id).deleted).toBe(true);
+ const count=after.questions.length;
+ await page.reload();expect((await saved(page)).questions.length).toBe(count);
+ await noOverflow(page);
+});
+
+for(const difficulty of ['basic','standard','advanced','keio']){
+ test(`bundled bank serves ${difficulty} relative-clause practice and keeps drafts on restart`,async({page})=>{
+  await open(page);await nav(page,'short');
+  await page.locator('#session-form [name="grammar"]').selectOption('relative-pronoun');
+  await page.locator('#session-form [name="difficulty"]').selectOption(difficulty);
+  await page.locator('#session-form [name="strategy"]').selectOption('grammar');
+  await page.locator('#session-form [type="submit"]').click();
+  await expect(page.locator('#answer-input')).toBeEditable();
+  const s=await saved(page),q=s.questions.find(q=>q.id===s.session.currentQuestionId);
+  expect(q.difficulty).toBe(difficulty);expect(q.grammar_tags).toContain('relative-pronoun');
+  await page.locator('#answer-input').fill('Persistent practice draft.');
+  await expect.poll(async()=>Object.values((await saved(page)).drafts)).toContain('Persistent practice draft.');
+  await page.reload();await expect(page.locator('#answer-input')).toHaveValue('Persistent practice draft.');
+ });
+}
