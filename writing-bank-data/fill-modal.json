@@ -1,0 +1,705 @@
+{
+  "format": "writing-question-bank-v1",
+  "questions": [
+    {
+      "id": "bank-modal-basic-fill-001",
+      "grammar": "modal",
+      "difficulty": "basic",
+      "japanese": "ここで写真を撮ってもいいですか。",
+      "reference_answers": [
+        "May I take pictures here?"
+      ],
+      "explanation": "May I ...? は許可を求める。能力を尋ねているわけではない。"
+    },
+    {
+      "id": "bank-modal-basic-fill-002",
+      "grammar": "modal",
+      "difficulty": "basic",
+      "japanese": "彼女は五歳のとき、もう泳げた。",
+      "reference_answers": [
+        "She could already swim when she was five."
+      ],
+      "explanation": "過去の一般的な能力には could。already が早い時期からの能力を示す。"
+    },
+    {
+      "id": "bank-modal-basic-fill-003",
+      "grammar": "modal",
+      "difficulty": "basic",
+      "japanese": "明日は雪が降るかもしれない。",
+      "reference_answers": [
+        "It may snow tomorrow."
+      ],
+      "explanation": "may は降雪の可能性。will のように予報を断定しない。"
+    },
+    {
+      "id": "bank-modal-basic-fill-004",
+      "grammar": "modal",
+      "difficulty": "basic",
+      "japanese": "声を少し小さくしていただけますか。",
+      "reference_answers": [
+        "Could you speak a little more quietly, please?"
+      ],
+      "explanation": "Could you ...? は丁寧な依頼。現在の場面で使え、過去の能力には限られない。"
+    },
+    {
+      "id": "bank-modal-basic-fill-005",
+      "grammar": "modal",
+      "difficulty": "basic",
+      "japanese": "この箱を持ち上げましょうか。",
+      "reference_answers": [
+        "Shall I lift this box?"
+      ],
+      "explanation": "Shall I ...? は話し手が申し出る表現。"
+    },
+    {
+      "id": "bank-modal-basic-fill-006",
+      "grammar": "modal",
+      "difficulty": "basic",
+      "japanese": "そろそろ休んだほうがいいよ。",
+      "reference_answers": [
+        "You should take a break soon."
+      ],
+      "explanation": "should は助言を表す。義務を示す must よりも穏やか。"
+    },
+    {
+      "id": "bank-modal-basic-fill-007",
+      "grammar": "modal",
+      "difficulty": "basic",
+      "japanese": "ユウはまだ家にいるはずだ。",
+      "reference_answers": [
+        "Yu should still be at home."
+      ],
+      "explanation": "現在の見込みを should で表す。still は在宅状態の継続にかかる。"
+    },
+    {
+      "id": "bank-modal-basic-fill-008",
+      "grammar": "modal",
+      "difficulty": "basic",
+      "japanese": "明日は制服を着る必要はありません。",
+      "reference_answers": [
+        "You do not need to wear your uniform tomorrow."
+      ],
+      "explanation": "do not need to は不要。着用の禁止を伝える文とは意味が異なる。"
+    },
+    {
+      "id": "bank-modal-basic-fill-009",
+      "grammar": "modal",
+      "difficulty": "basic",
+      "japanese": "一緒に始めましょうか。",
+      "reference_answers": [
+        "Shall we start together?"
+      ],
+      "explanation": "Shall we ...? は一緒にすることを提案する。"
+    },
+    {
+      "id": "bank-modal-basic-fill-010",
+      "grammar": "modal",
+      "difficulty": "basic",
+      "japanese": "荷物は私が持ちます。",
+      "reference_answers": [
+        "I will carry the bags."
+      ],
+      "explanation": "この will は話し手のその場の意志・申し出を表す。"
+    },
+    {
+      "id": "bank-modal-basic-fill-011",
+      "grammar": "modal",
+      "difficulty": "basic",
+      "japanese": "窓を閉めようとしたが、どうしても閉まらなかった。",
+      "reference_answers": [
+        "I tried to close the window, but it would not close."
+      ],
+      "explanation": "物を主語にした would not は、過去に試しても動かなかったことを表せる。"
+    },
+    {
+      "id": "bank-modal-basic-fill-012",
+      "grammar": "modal",
+      "difficulty": "basic",
+      "japanese": "何か温かいものが飲みたいです。",
+      "reference_answers": [
+        "I would like something hot to drink."
+      ],
+      "explanation": "would like は希望を丁寧に示す。to drink は something を説明する。"
+    },
+    {
+      "id": "bank-modal-basic-fill-013",
+      "grammar": "modal",
+      "difficulty": "basic",
+      "japanese": "そんなはずはない。",
+      "reference_answers": [
+        "That cannot be true."
+      ],
+      "explanation": "cannot は「あり得ない」という強い否定の推量を表せる。"
+    },
+    {
+      "id": "bank-modal-basic-fill-014",
+      "grammar": "modal",
+      "difficulty": "basic",
+      "japanese": "町では夏でも夜は冷えることがある。",
+      "reference_answers": [
+        "In town, it can get cold at night even in summer."
+      ],
+      "explanation": "can は時折起こり得ることを表す。夏の夜に常に冷えるという意味ではない。"
+    },
+    {
+      "id": "bank-modal-basic-fill-015",
+      "grammar": "modal",
+      "difficulty": "basic",
+      "japanese": "私は雨がやむまで外に出るのを待たなければならなかった。",
+      "reference_answers": [
+        "I had to wait until the rain stopped before going outside."
+      ],
+      "explanation": "過去の必要・義務には had to を使う。until は待機の終点を示す。"
+    },
+    {
+      "id": "bank-modal-basic-fill-016",
+      "grammar": "modal",
+      "difficulty": "basic",
+      "japanese": "この席は使えます。",
+      "reference_answers": [
+        "You can use this seat."
+      ],
+      "explanation": "この can は相手が座席を利用できるという許可を表す。"
+    },
+    {
+      "id": "bank-modal-basic-fill-017",
+      "grammar": "modal",
+      "difficulty": "basic",
+      "japanese": "日曜日には早起きしなくてもよいのがうれしい。",
+      "reference_answers": [
+        "I am glad I do not have to get up early on Sundays."
+      ],
+      "explanation": "do not have to は必要性の否定。on Sundays は毎週の状況を示す。"
+    },
+    {
+      "id": "bank-modal-standard-fill-001",
+      "grammar": "modal",
+      "difficulty": "standard",
+      "japanese": "彼はその日、ようやく一人で自転車に乗れた。",
+      "reference_answers": [
+        "That day, he finally managed to ride a bicycle on his own."
+      ],
+      "explanation": "一回の具体的な成功には managed to や was able to が自然。一般的能力の could と使い分ける。"
+    },
+    {
+      "id": "bank-modal-standard-fill-002",
+      "grammar": "modal",
+      "difficulty": "standard",
+      "japanese": "彼女はもう着いているはずだが、まだ連絡がない。",
+      "reference_answers": [
+        "She should have arrived by now, but we have not heard from her yet."
+      ],
+      "explanation": "should have arrived は到着の見込み。後半は今まで連絡がないことを示す。"
+    },
+    {
+      "id": "bank-modal-standard-fill-003",
+      "grammar": "modal",
+      "difficulty": "standard",
+      "japanese": "念のため傘を持っていったほうがいい。",
+      "reference_answers": [
+        "You had better take an umbrella, just in case."
+      ],
+      "explanation": "had better の後は動詞原形。対策を取らない場合の問題をほのめかす助言。"
+    },
+    {
+      "id": "bank-modal-standard-fill-004",
+      "grammar": "modal",
+      "difficulty": "standard",
+      "japanese": "そんなに急いで答える必要はなかったのに。",
+      "reference_answers": [
+        "You need not have answered so quickly."
+      ],
+      "explanation": "need not have answered は実際には急いで答えたという読みを伴う。"
+    },
+    {
+      "id": "bank-modal-standard-fill-005",
+      "grammar": "modal",
+      "difficulty": "standard",
+      "japanese": "せっかくここまで来たのだから、ついでに展示も見よう。",
+      "reference_answers": [
+        "Now that we have come this far, we might as well see the exhibition too."
+      ],
+      "explanation": "might as well は状況を踏まえて「せっかくだから」と提案する。"
+    },
+    {
+      "id": "bank-modal-standard-fill-006",
+      "grammar": "modal",
+      "difficulty": "standard",
+      "japanese": "彼は昨日、鍵を返すことになっていた。",
+      "reference_answers": [
+        "He was supposed to return the key yesterday."
+      ],
+      "explanation": "was supposed to は過去の時点で予定・期待されていた行為を表す。"
+    },
+    {
+      "id": "bank-modal-standard-fill-007",
+      "grammar": "modal",
+      "difficulty": "standard",
+      "japanese": "初めての人には簡単だとは言い切れない。",
+      "reference_answers": [
+        "We cannot say for certain that it is easy for beginners."
+      ],
+      "explanation": "cannot say for certain は断言の可否を否定する。簡単ではないと断定する訳とは異なる。"
+    },
+    {
+      "id": "bank-modal-standard-fill-008",
+      "grammar": "modal",
+      "difficulty": "standard",
+      "japanese": "彼女が以前そこに住んでいたのであれば、道を知っているはずだ。",
+      "reference_answers": [
+        "If she used to live there, she should know the way."
+      ],
+      "explanation": "used to は過去の居住、should は現在の見込み。条件節の内容は既知とは限らない。"
+    },
+    {
+      "id": "bank-modal-standard-fill-009",
+      "grammar": "modal",
+      "difficulty": "standard",
+      "japanese": "手伝いたい気持ちはあるが、今日は行けそうにない。",
+      "reference_answers": [
+        "I'd like to help, but I probably will not be able to come today."
+      ],
+      "explanation": "would like は希望。未来の能力・都合の否定は will not be able to で表せる。"
+    },
+    {
+      "id": "bank-modal-standard-fill-010",
+      "grammar": "modal",
+      "difficulty": "standard",
+      "japanese": "叔父は夕食後に昔の旅の話をよくしてくれたものだ。",
+      "reference_answers": [
+        "After dinner, my uncle would often tell me stories about his travels long ago."
+      ],
+      "explanation": "過去の場面が与えられているとき、would は反復した行為を表せる。"
+    },
+    {
+      "id": "bank-modal-standard-fill-011",
+      "grammar": "modal",
+      "difficulty": "standard",
+      "japanese": "理由を何度尋ねても、彼は何も言おうとしなかった。",
+      "reference_answers": [
+        "No matter how many times we asked him why, he would not say a word."
+      ],
+      "explanation": "would not は過去の拒否。no matter how many times は回数を問わない譲歩。"
+    },
+    {
+      "id": "bank-modal-standard-fill-012",
+      "grammar": "modal",
+      "difficulty": "standard",
+      "japanese": "この小包は明日までに届ける必要はないが、今週中には届けなければならない。",
+      "reference_answers": [
+        "This parcel does not have to be delivered by tomorrow, but it must be delivered by the end of the week."
+      ],
+      "explanation": "不要と義務を対比する。どちらも届けられる側を主語にした助動詞付きの受動態。"
+    },
+    {
+      "id": "bank-modal-standard-fill-013",
+      "grammar": "modal",
+      "difficulty": "standard",
+      "japanese": "これ以上遅れるくらいなら、私は昼食を抜くほうがいい。",
+      "reference_answers": [
+        "I would rather skip lunch than be any later."
+      ],
+      "explanation": "would rather A than B で選好を示す。両方の動詞を原形にする。"
+    },
+    {
+      "id": "bank-modal-standard-fill-014",
+      "grammar": "modal",
+      "difficulty": "standard",
+      "japanese": "もしかすると、彼女は私を別の人と間違えているのかもしれない。",
+      "reference_answers": [
+        "She might be mistaking me for someone else."
+      ],
+      "explanation": "might be -ing は現在起こっている可能性。mistake A for B で人違いを表す。"
+    },
+    {
+      "id": "bank-modal-standard-fill-015",
+      "grammar": "modal",
+      "difficulty": "standard",
+      "japanese": "そんなに重い荷物を一人で運んだはずがない。",
+      "reference_answers": [
+        "You can't have carried such a heavy load on your own."
+      ],
+      "explanation": "can't have ＋過去分詞で、過去の行為があり得ないと推量する。"
+    },
+    {
+      "id": "bank-modal-standard-fill-016",
+      "grammar": "modal",
+      "difficulty": "standard",
+      "japanese": "契約に署名する前に、費用を確認すべきだった。",
+      "reference_answers": [
+        "We should have checked the cost before signing the contract."
+      ],
+      "explanation": "should have ＋過去分詞で過去の行為に対する反省を表す。"
+    },
+    {
+      "id": "bank-modal-standard-fill-017",
+      "grammar": "modal",
+      "difficulty": "standard",
+      "japanese": "このペンは時々書けなくなる。",
+      "reference_answers": [
+        "This pen will sometimes stop working."
+      ],
+      "explanation": "will は物の反復する傾向にも使える。sometimes とともに常時の不具合を意味しない。"
+    },
+    {
+      "id": "bank-modal-advanced-fill-001",
+      "grammar": "modal",
+      "difficulty": "advanced",
+      "japanese": "彼女は返事をしなかったが、私の質問がよく聞こえなかったのかもしれない。",
+      "reference_answers": [
+        "She did not reply, but she might not have heard my question clearly."
+      ],
+      "explanation": "might not have heard は聞こえなかった可能性。返答しなかった理由を断定しない。"
+    },
+    {
+      "id": "bank-modal-advanced-fill-002",
+      "grammar": "modal",
+      "difficulty": "advanced",
+      "japanese": "もし彼が予定どおり出発したのであれば、もう山を越えているはずだ。",
+      "reference_answers": [
+        "If he left on schedule, he should have crossed the mountains by now."
+      ],
+      "explanation": "到達時点を by now とし、完了した見込みを should have で表す。"
+    },
+    {
+      "id": "bank-modal-advanced-fill-003",
+      "grammar": "modal",
+      "difficulty": "advanced",
+      "japanese": "濡れた足跡が裏口から続いている。誰かがそこから入ったに違いない。",
+      "reference_answers": [
+        "Wet footprints lead from the back door. Someone must have come in that way."
+      ],
+      "explanation": "現在の証拠から過去の行為を強く推量する must have come in。"
+    },
+    {
+      "id": "bank-modal-advanced-fill-004",
+      "grammar": "modal",
+      "difficulty": "advanced",
+      "japanese": "届いた書類に目を通すのは後でもよかったが、受領確認だけはすぐに送らなければならなかった。",
+      "reference_answers": [
+        "We could have looked over the documents later, but we had to acknowledge receipt immediately."
+      ],
+      "explanation": "過去に選べた行為を could have、実際に課されていた義務を had to で示す。"
+    },
+    {
+      "id": "bank-modal-advanced-fill-005",
+      "grammar": "modal",
+      "difficulty": "advanced",
+      "japanese": "彼の話が本当なら、届いた後で誰かがその箱を開けたはずはない。",
+      "reference_answers": [
+        "If his account is true, no one can have opened the box after it arrived."
+      ],
+      "explanation": "can have と否定主語を組み合わせ、過去の開封の可能性を否定する。"
+    },
+    {
+      "id": "bank-modal-advanced-fill-006",
+      "grammar": "modal",
+      "difficulty": "advanced",
+      "japanese": "私たちは申請が認められない可能性にも備えておくべきだった。",
+      "reference_answers": [
+        "We should have prepared for the possibility that our application might be rejected."
+      ],
+      "explanation": "should have で過去の準備への反省、might be rejected で当時の不確実性を表す。"
+    },
+    {
+      "id": "bank-modal-advanced-fill-007",
+      "grammar": "modal",
+      "difficulty": "advanced",
+      "japanese": "彼が一人で決める必要はなかった。しかし、相談すべき相手が誰か分からなかったのだろう。",
+      "reference_answers": [
+        "He did not have to decide on his own. But he probably did not know whom he should consult."
+      ],
+      "explanation": "did not have to は義務の欠如。should consult は相談が適切な相手を示す。"
+    },
+    {
+      "id": "bank-modal-advanced-fill-008",
+      "grammar": "modal",
+      "difficulty": "advanced",
+      "japanese": "暗くなる前に町に着けるかもしれないが、そこで泊まれるとは限らない。",
+      "reference_answers": [
+        "We may reach the town before dark, but we may not be able to stay there overnight."
+      ],
+      "explanation": "may not be able to は滞在できない可能性。許可の禁止と読まない。"
+    },
+    {
+      "id": "bank-modal-advanced-fill-009",
+      "grammar": "modal",
+      "difficulty": "advanced",
+      "japanese": "なぜ彼女が今になってその話を持ち出したのか、どうしても理解できない。",
+      "reference_answers": [
+        "I just cannot understand why she should bring up the subject now of all times."
+      ],
+      "explanation": "why ... should は理由への驚き・当惑を表せる。now of all times は今という時点を強調する。"
+    },
+    {
+      "id": "bank-modal-advanced-fill-010",
+      "grammar": "modal",
+      "difficulty": "advanced",
+      "japanese": "応募資格を満たしていたのだから、彼女にも選考を受ける機会が与えられるべきだった。",
+      "reference_answers": [
+        "She should have been given a chance to be considered, since she met the requirements."
+      ],
+      "explanation": "should have been given は過去に与えられるべきだった機会。since 節でその根拠を表す。"
+    },
+    {
+      "id": "bank-modal-advanced-fill-011",
+      "grammar": "modal",
+      "difficulty": "advanced",
+      "japanese": "彼の今回の説明は前の説明と食い違っている。両方が正しいはずはない。",
+      "reference_answers": [
+        "His latest explanation contradicts his earlier one. The two cannot both be correct."
+      ],
+      "explanation": "cannot both は二つとも正しい可能性を否定する。どちらも誤りとは断定しない。"
+    },
+    {
+      "id": "bank-modal-advanced-fill-012",
+      "grammar": "modal",
+      "difficulty": "advanced",
+      "japanese": "来場者は登録を求められることがあるが、登録しても入場できるとは限らない。",
+      "reference_answers": [
+        "Visitors may be required to register, but registration does not necessarily guarantee entry."
+      ],
+      "explanation": "may be required は義務を課される可能性。may が許可を伝える文ではない。"
+    },
+    {
+      "id": "bank-modal-advanced-fill-013",
+      "grammar": "modal",
+      "difficulty": "advanced",
+      "japanese": "部品は先週発送されることになっていたが、実際に発送されたかどうか私は知らない。",
+      "reference_answers": [
+        "The parts were supposed to be shipped last week, but I do not know whether they actually were."
+      ],
+      "explanation": "were supposed to be shipped で過去の予定。実際に発送されたかどうかは後半で保留する。"
+    },
+    {
+      "id": "bank-modal-advanced-fill-014",
+      "grammar": "modal",
+      "difficulty": "advanced",
+      "japanese": "こうした地図は正確な道案内になるとは限らない。最近の変化が反映されていないことがあるからだ。",
+      "reference_answers": [
+        "Maps like these may not guide you accurately, because they can fail to reflect recent changes."
+      ],
+      "explanation": "may not は道案内の不確実性。can fail は変化を反映しない事例が起こり得ることを示す。"
+    },
+    {
+      "id": "bank-modal-advanced-fill-015",
+      "grammar": "modal",
+      "difficulty": "advanced",
+      "japanese": "その時点で私たちが誤りに気づけたとは思わないが、疑問を持つことくらいはできたはずだ。",
+      "reference_answers": [
+        "I do not think we could have spotted the error at that point, but we should at least have been able to ask questions."
+      ],
+      "explanation": "could have は過去の可能性。should ... have been able to は期待される最低限の能力を示す。"
+    },
+    {
+      "id": "bank-modal-advanced-fill-016",
+      "grammar": "modal",
+      "difficulty": "advanced",
+      "japanese": "仮に停電が起きても、ドアは内側から開けられるようになっているはずだ。",
+      "reference_answers": [
+        "Even if there is a power failure, it should still be possible to open the door from the inside."
+      ],
+      "explanation": "should で仕様上の見込みを示す。even if は停電しても成立するという仮定上の譲歩。"
+    },
+    {
+      "id": "bank-modal-advanced-fill-017",
+      "grammar": "modal",
+      "difficulty": "advanced",
+      "japanese": "彼は聞こえていないふりをしていただけかもしれない。実際に何も聞こえなかったとは言い切れない。",
+      "reference_answers": [
+        "He may simply have been pretending not to hear. We cannot say that he definitely heard nothing."
+      ],
+      "explanation": "may have been pretending は過去の進行中の可能性。cannot say が断定を抑える。"
+    },
+    {
+      "id": "bank-modal-advanced-fill-018",
+      "grammar": "modal",
+      "difficulty": "advanced",
+      "japanese": "明日の朝までに返事がなければ、私たちは別の場所を予約しなければならなくなるだろう。",
+      "reference_answers": [
+        "If we do not hear back by tomorrow morning, we will have to book another place."
+      ],
+      "explanation": "will have to で条件成立後に生じる義務。by は返答の期限を示す。"
+    },
+    {
+      "id": "bank-modal-keio-fill-001",
+      "grammar": "modal",
+      "difficulty": "keio",
+      "japanese": "記録に残らない出来事でも、後の世代の価値観に影響を与えることがある。",
+      "reference_answers": [
+        "Even events that leave no written record can shape the values of later generations."
+      ],
+      "explanation": "can はあり得る作用を述べる。すべての出来事が影響するとはしない。"
+    },
+    {
+      "id": "bank-modal-keio-fill-002",
+      "grammar": "modal",
+      "difficulty": "keio",
+      "japanese": "善意で始めた活動であっても、誰かの選択肢を狭めてしまうかもしれない。",
+      "reference_answers": [
+        "Even an effort undertaken with good intentions may end up limiting someone else's choices."
+      ],
+      "explanation": "may end up -ing は意図しなかった結果の可能性を示す。"
+    },
+    {
+      "id": "bank-modal-keio-fill-003",
+      "grammar": "modal",
+      "difficulty": "keio",
+      "japanese": "説明が簡潔だからといって、そこで無視された事情まで無関係だと考える必要はない。",
+      "reference_answers": [
+        "We need not conclude that the circumstances left out of an explanation are irrelevant just because the explanation is concise."
+      ],
+      "explanation": "need not conclude でその結論を出す必要のなさを示す。無関係の可能性自体を否定しない。"
+    },
+    {
+      "id": "bank-modal-keio-fill-004",
+      "grammar": "modal",
+      "difficulty": "keio",
+      "japanese": "経験をたとえ経験を他人に正確に伝えられないとしても、その経験に価値がないことにはならない。",
+      "reference_answers": [
+        "We may be unable to convey an experience accurately to others, but that does not make the experience worthless."
+      ],
+      "explanation": "may be unable to で伝達できない場合を想定。but で伝達可能性と価値を切り離す。"
+    },
+    {
+      "id": "bank-modal-keio-fill-005",
+      "grammar": "modal",
+      "difficulty": "keio",
+      "japanese": "結果を知った後では、当時の人も同じ結果を予測できたはずだと思いがちだ。",
+      "reference_answers": [
+        "Once we know the outcome, we tend to assume that people at the time should have been able to predict it as well."
+      ],
+      "explanation": "should have been able to が過去に可能だったはずという期待。話し手自身の断定でなく assume の内容。"
+    },
+    {
+      "id": "bank-modal-keio-fill-006",
+      "grammar": "modal",
+      "difficulty": "keio",
+      "japanese": "事実には同意できても、その事実をどう評価すべきかまで一致するとは限らない。",
+      "reference_answers": [
+        "We may agree on the facts without agreeing on how they should be assessed."
+      ],
+      "explanation": "may が二つの一致の分離を可能性として示す。should be assessed は評価のあり方を問う。"
+    },
+    {
+      "id": "bank-modal-keio-fill-007",
+      "grammar": "modal",
+      "difficulty": "keio",
+      "japanese": "証言の違いは、うそをついた結果とは限らない。それぞれが別のことに注意を向けていたのかもしれない。",
+      "reference_answers": [
+        "Differences in testimony need not be the result of lying. The witnesses may have been paying attention to different things."
+      ],
+      "explanation": "need not と may have been -ing で、原因を断定せず過去の別の可能性を示す。"
+    },
+    {
+      "id": "bank-modal-keio-fill-008",
+      "grammar": "modal",
+      "difficulty": "keio",
+      "japanese": "証拠を十分に説明できない段階では、結論を急ぐよりも判断を保留するほうが望ましい。",
+      "reference_answers": [
+        "While we are still unable to explain the evidence adequately, we should suspend judgment rather than rush to a conclusion."
+      ],
+      "explanation": "should で望ましい判断を表す。unable は判断停止の条件となる現在の能力の限界。"
+    },
+    {
+      "id": "bank-modal-keio-fill-009",
+      "grammar": "modal",
+      "difficulty": "keio",
+      "japanese": "制度の欠点を指摘する人を、その制度を廃止したい人だと思い込んではいけない。",
+      "reference_answers": [
+        "We must not assume that anyone who points out flaws in a system wants to abolish it."
+      ],
+      "explanation": "must not が禁止するのは思い込み。廃止したい人が一人もいないという主張ではない。"
+    },
+    {
+      "id": "bank-modal-keio-fill-010",
+      "grammar": "modal",
+      "difficulty": "keio",
+      "japanese": "すべての変更を一度に行う必要はなく、効果を調べながら段階的に進めてもよい。",
+      "reference_answers": [
+        "We need not make all the changes at once. We can introduce them gradually while assessing their effects."
+      ],
+      "explanation": "need not は一括実施が不要であること、can は段階的実施が可能であることを示す。"
+    },
+    {
+      "id": "bank-modal-keio-fill-011",
+      "grammar": "modal",
+      "difficulty": "keio",
+      "japanese": "歴史を単独の原因で説明する仮説は分かりやすいが、その分かりやすさを証拠と混同してはならない。",
+      "reference_answers": [
+        "A hypothesis that explains history in terms of a single cause is easy to understand, but we must not mistake that clarity for evidence."
+      ],
+      "explanation": "must not の対象は mistake A for B。分かりやすいこと自体は肯定する。"
+    },
+    {
+      "id": "bank-modal-keio-fill-012",
+      "grammar": "modal",
+      "difficulty": "keio",
+      "japanese": "悪い結果が起きなかったとしても、もっと早く危険を知らせるべきだったという批判は成り立つ。",
+      "reference_answers": [
+        "Even if nothing bad happened, it is still fair to say that people should have been warned about the danger earlier."
+      ],
+      "explanation": "should have been warned は過去に行われるべきだった警告。譲歩節の結果と区別する。"
+    },
+    {
+      "id": "bank-modal-keio-fill-013",
+      "grammar": "modal",
+      "difficulty": "keio",
+      "japanese": "自分の意見がどう変わったかを説明しなければ、何を学んだのかが相手に伝わらないかもしれない。",
+      "reference_answers": [
+        "Unless you explain how your views have changed, others may not understand what you have learned."
+      ],
+      "explanation": "unless による条件と may not による否定的な可能性を区別する。"
+    },
+    {
+      "id": "bank-modal-keio-fill-014",
+      "grammar": "modal",
+      "difficulty": "keio",
+      "japanese": "相手が意見を述べなかっただけで、その相手には意見がなかったはずだとは言えない。",
+      "reference_answers": [
+        "We cannot conclude that someone must have had no opinion merely because they did not express one."
+      ],
+      "explanation": "must have had no opinion は過去の強い推量。その推論を外側の cannot conclude が退ける。"
+    },
+    {
+      "id": "bank-modal-keio-fill-015",
+      "grammar": "modal",
+      "difficulty": "keio",
+      "japanese": "新しい基準を適用したら、当時は評価されなかった作品にも別の価値が見いだされるかもしれない。",
+      "reference_answers": [
+        "If we apply new criteria, we may discover a different kind of value even in works that went unappreciated at the time."
+      ],
+      "explanation": "may が発見を可能性として示す。even in は対象に当時の未評価作品を含める。"
+    },
+    {
+      "id": "bank-modal-keio-fill-016",
+      "grammar": "modal",
+      "difficulty": "keio",
+      "japanese": "同じ情報を持つ人同士でも、何を信頼してよいかについて判断が分かれうる。",
+      "reference_answers": [
+        "Even people with the same information can disagree about what they can trust."
+      ],
+      "explanation": "最初の can は不一致の可能性。後の can は何を信頼できるかという判断内容。"
+    },
+    {
+      "id": "bank-modal-keio-fill-017",
+      "grammar": "modal",
+      "difficulty": "keio",
+      "japanese": "一つの事例でうまくいった方法を、条件の異なる場所でも使えると期待すべきではない。",
+      "reference_answers": [
+        "We should not expect a method that worked in one case to be usable elsewhere under different conditions."
+      ],
+      "explanation": "should not expect が戒めるのは通用するという期待。必ず失敗するという予測にはしない。"
+    },
+    {
+      "id": "bank-modal-keio-fill-018",
+      "grammar": "modal",
+      "difficulty": "keio",
+      "japanese": "個人に責任を求める前に、その人が実際に何を変えられたのかを考えるべきだ。",
+      "reference_answers": [
+        "Before holding individuals responsible, we should consider what they could actually have changed."
+      ],
+      "explanation": "should は現在の判断上の助言。could have changed は当時可能だった変更の範囲。"
+    }
+  ]
+}
