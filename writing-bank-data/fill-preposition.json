@@ -1,0 +1,715 @@
+{
+  "format": "writing-question-bank-v1",
+  "questions": [
+    {
+      "id": "bank-preposition-basic-fill-001",
+      "grammar": "preposition",
+      "difficulty": "basic",
+      "japanese": "私は昼食後に友人と会った。",
+      "reference_answers": [
+        "I met up with a friend after lunch."
+      ],
+      "explanation": "after の後に基準となる出来事 lunch を置く。"
+    },
+    {
+      "id": "bank-preposition-basic-fill-002",
+      "grammar": "preposition",
+      "difficulty": "basic",
+      "japanese": "会議は月曜日の朝に始まります。",
+      "reference_answers": [
+        "The meeting starts on Monday morning."
+      ],
+      "explanation": "曜日で特定した朝は on Monday morning。一般の朝なら in the morning。"
+    },
+    {
+      "id": "bank-preposition-basic-fill-003",
+      "grammar": "preposition",
+      "difficulty": "basic",
+      "japanese": "私は7時までに駅に着きます。",
+      "reference_answers": [
+        "I will get to the station by seven."
+      ],
+      "explanation": "by は到着の期限。until なら状態や動作がその時まで続くことを表す。"
+    },
+    {
+      "id": "bank-preposition-basic-fill-004",
+      "grammar": "preposition",
+      "difficulty": "basic",
+      "japanese": "彼女は窓の向こうの庭を見ていた。",
+      "reference_answers": [
+        "She was looking at the garden beyond the window."
+      ],
+      "explanation": "look at は注視の対象。beyond は窓より向こう側を示す。"
+    },
+    {
+      "id": "bank-preposition-basic-fill-005",
+      "grammar": "preposition",
+      "difficulty": "basic",
+      "japanese": "私は彼の返事を待っています。",
+      "reference_answers": [
+        "I am waiting for his reply."
+      ],
+      "explanation": "待っている対象は wait for の for で示す。"
+    },
+    {
+      "id": "bank-preposition-basic-fill-006",
+      "grammar": "preposition",
+      "difficulty": "basic",
+      "japanese": "彼は自分の名前を鉛筆で書いた。",
+      "reference_answers": [
+        "He wrote his name in pencil."
+      ],
+      "explanation": "筆記材料で示す in pencil。道具を明示する with a pencil も可。"
+    },
+    {
+      "id": "bank-preposition-basic-fill-007",
+      "grammar": "preposition",
+      "difficulty": "basic",
+      "japanese": "猫がソファの下から出てきた。",
+      "reference_answers": [
+        "The cat came out from under the sofa."
+      ],
+      "explanation": "from under で出発点がソファの下だと示す。"
+    },
+    {
+      "id": "bank-preposition-basic-fill-008",
+      "grammar": "preposition",
+      "difficulty": "basic",
+      "japanese": "川に沿って歩こう。",
+      "reference_answers": [
+        "Let's walk along the river."
+      ],
+      "explanation": "along は川に沿った移動。across なら横断になる。"
+    },
+    {
+      "id": "bank-preposition-basic-fill-009",
+      "grammar": "preposition",
+      "difficulty": "basic",
+      "japanese": "彼女は父親に似ている。",
+      "reference_answers": [
+        "She looks like her father."
+      ],
+      "explanation": "like は似ている対象を示す。look at は見る対象。"
+    },
+    {
+      "id": "bank-preposition-basic-fill-010",
+      "grammar": "preposition",
+      "difficulty": "basic",
+      "japanese": "その本は私のものです。",
+      "reference_answers": [
+        "The book belongs to me."
+      ],
+      "explanation": "所有者には belong to。to の後では目的格 me を使う。"
+    },
+    {
+      "id": "bank-preposition-basic-fill-011",
+      "grammar": "preposition",
+      "difficulty": "basic",
+      "japanese": "私は音楽に興味があります。",
+      "reference_answers": [
+        "I am interested in music."
+      ],
+      "explanation": "関心の対象には interested in を使う。"
+    },
+    {
+      "id": "bank-preposition-basic-fill-012",
+      "grammar": "preposition",
+      "difficulty": "basic",
+      "japanese": "彼は立ったまま私のそばにいた。",
+      "reference_answers": [
+        "He stood beside me."
+      ],
+      "explanation": "beside は「すぐそばに」。besides は「〜に加えて」。"
+    },
+    {
+      "id": "bank-preposition-basic-fill-013",
+      "grammar": "preposition",
+      "difficulty": "basic",
+      "japanese": "かばんを床から拾い上げてください。",
+      "reference_answers": [
+        "Please pick up the bag from the floor."
+      ],
+      "explanation": "from はかばんを持ち上げる前の位置を示す。"
+    },
+    {
+      "id": "bank-preposition-basic-fill-014",
+      "grammar": "preposition",
+      "difficulty": "basic",
+      "japanese": "店は銀行と郵便局の間にある。",
+      "reference_answers": [
+        "The shop is between the bank and the post office."
+      ],
+      "explanation": "二つの場所を between A and B で示す。"
+    },
+    {
+      "id": "bank-preposition-basic-fill-015",
+      "grammar": "preposition",
+      "difficulty": "basic",
+      "japanese": "机の向こう側に届くよう、机の上に腕を伸ばした。",
+      "reference_answers": [
+        "I reached across the desk."
+      ],
+      "explanation": "across は机のこちら側から向こう側に向かう動きを示す。"
+    },
+    {
+      "id": "bank-preposition-basic-fill-016",
+      "grammar": "preposition",
+      "difficulty": "basic",
+      "japanese": "その封筒に切手を貼った。",
+      "reference_answers": [
+        "I put a stamp on the envelope."
+      ],
+      "explanation": "on は表面への接触を表す。in にすると封筒の中になる。"
+    },
+    {
+      "id": "bank-preposition-basic-fill-017",
+      "grammar": "preposition",
+      "difficulty": "basic",
+      "japanese": "そのバスは学校の前を通る。",
+      "reference_answers": [
+        "The bus goes past the school."
+      ],
+      "explanation": "past は学校のそばを通過する動き。学校が行き先という意味ではない。"
+    },
+    {
+      "id": "bank-preposition-basic-fill-018",
+      "grammar": "preposition",
+      "difficulty": "basic",
+      "japanese": "駅からホテルまでは歩いて行った。",
+      "reference_answers": [
+        "I walked from the station to the hotel."
+      ],
+      "explanation": "from は出発点、to は到達点。"
+    },
+    {
+      "id": "bank-preposition-standard-fill-001",
+      "grammar": "preposition",
+      "difficulty": "standard",
+      "japanese": "私は弟と部屋を共有しているが、その部屋の掃除は私の担当だ。",
+      "reference_answers": [
+        "I share the room with my younger brother, but I am responsible for cleaning it."
+      ],
+      "explanation": "with は共有する相手。for は責任の対象となる行為。"
+    },
+    {
+      "id": "bank-preposition-standard-fill-002",
+      "grammar": "preposition",
+      "difficulty": "standard",
+      "japanese": "彼女は試合に出られなかった理由を、監督に説明した。",
+      "reference_answers": [
+        "She explained to the coach why she had been unable to play in the game."
+      ],
+      "explanation": "説明を受ける人には to。in the game は試合への参加を示す。"
+    },
+    {
+      "id": "bank-preposition-standard-fill-003",
+      "grammar": "preposition",
+      "difficulty": "standard",
+      "japanese": "私は夕食のお礼に、彼女に花を贈った。",
+      "reference_answers": [
+        "I gave her flowers to thank her for dinner."
+      ],
+      "explanation": "thank A for B の for は謝意を向ける理由。"
+    },
+    {
+      "id": "bank-preposition-standard-fill-004",
+      "grammar": "preposition",
+      "difficulty": "standard",
+      "japanese": "弟はその絵を本物と間違えた。",
+      "reference_answers": [
+        "My younger brother mistook the painting for the original."
+      ],
+      "explanation": "mistake A for B の for は、A を何と取り違えたかを示す。"
+    },
+    {
+      "id": "bank-preposition-standard-fill-005",
+      "grammar": "preposition",
+      "difficulty": "standard",
+      "japanese": "誰かがこの箱を机の下から棚の上へ移した。",
+      "reference_answers": [
+        "Someone moved the box from under the desk to the top of the shelf."
+      ],
+      "explanation": "出発点は from under、到達点は to。位置の前置詞と方向を区別する。"
+    },
+    {
+      "id": "bank-preposition-standard-fill-006",
+      "grammar": "preposition",
+      "difficulty": "standard",
+      "japanese": "彼女は雨の中を歩いてきたので、服がぬれていた。",
+      "reference_answers": [
+        "Her clothes were wet because she had walked here in the rain."
+      ],
+      "explanation": "in the rain は雨天の中で。移動の理由を for the rain で表す形にはしない。"
+    },
+    {
+      "id": "bank-preposition-standard-fill-007",
+      "grammar": "preposition",
+      "difficulty": "standard",
+      "japanese": "彼は予算の大半を食料に使い、残りを宿泊費に充てた。",
+      "reference_answers": [
+        "He spent most of his budget on food and put the rest toward accommodation."
+      ],
+      "explanation": "spend A on B は支出先。put A toward B は資金を何に充てるかを示す。"
+    },
+    {
+      "id": "bank-preposition-standard-fill-008",
+      "grammar": "preposition",
+      "difficulty": "standard",
+      "japanese": "その建物は学校ではなく、市役所として使われている。",
+      "reference_answers": [
+        "The building is used as a town hall rather than as a school."
+      ],
+      "explanation": "機能・役割は as。類似を表す like と区別する。"
+    },
+    {
+      "id": "bank-preposition-standard-fill-009",
+      "grammar": "preposition",
+      "difficulty": "standard",
+      "japanese": "その列車に乗るために、私たちは日の出前に家を出た。",
+      "reference_answers": [
+        "We left home before sunrise to catch the train."
+      ],
+      "explanation": "before は基準時より前。to catch は目的を示す不定詞。"
+    },
+    {
+      "id": "bank-preposition-standard-fill-010",
+      "grammar": "preposition",
+      "difficulty": "standard",
+      "japanese": "私は、混雑を避けるために裏口から入った。",
+      "reference_answers": [
+        "I entered through the back door to avoid the crowd."
+      ],
+      "explanation": "through は通過した経路。from は出発点を示す。"
+    },
+    {
+      "id": "bank-preposition-standard-fill-011",
+      "grammar": "preposition",
+      "difficulty": "standard",
+      "japanese": "この棒は何に使うのですか。",
+      "reference_answers": [
+        "What is this stick used for?"
+      ],
+      "explanation": "目的・用途を尋ねる use A for B。what が for の目的語に当たる。"
+    },
+    {
+      "id": "bank-preposition-standard-fill-012",
+      "grammar": "preposition",
+      "difficulty": "standard",
+      "japanese": "私たちは毛布を持ち寄り、参加者に配った。",
+      "reference_answers": [
+        "We brought blankets and handed them out to the participants."
+      ],
+      "explanation": "hand A out to B の to は配布を受ける相手を導く。"
+    },
+    {
+      "id": "bank-preposition-standard-fill-013",
+      "grammar": "preposition",
+      "difficulty": "standard",
+      "japanese": "彼女は地図を頼りに、駅から市場まで歩いた。",
+      "reference_answers": [
+        "She relied on a map to walk from the station to the market."
+      ],
+      "explanation": "頼る対象は rely on。from ... to ... は移動の両端を示す。"
+    },
+    {
+      "id": "bank-preposition-standard-fill-014",
+      "grammar": "preposition",
+      "difficulty": "standard",
+      "japanese": "昨夜は何度も車の音で目が覚めた。",
+      "reference_answers": [
+        "I was woken up several times last night by the sound of cars."
+      ],
+      "explanation": "受動で目を覚まさせた原因には by。of は音の発生源を示す。"
+    },
+    {
+      "id": "bank-preposition-standard-fill-015",
+      "grammar": "preposition",
+      "difficulty": "standard",
+      "japanese": "彼の父は大工で、その技術を祖父から学んだ。",
+      "reference_answers": [
+        "His father is a carpenter and learned the trade from his own father."
+      ],
+      "explanation": "from は技術を教わった相手。his own father で父親本人の父を示す。"
+    },
+    {
+      "id": "bank-preposition-standard-fill-016",
+      "grammar": "preposition",
+      "difficulty": "standard",
+      "japanese": "夏の間は、週末を除いて毎日開館している。",
+      "reference_answers": [
+        "During the summer, it is open every day except on weekends."
+      ],
+      "explanation": "during は期間、on は曜日のまとまり。except はその例外を示す。"
+    },
+    {
+      "id": "bank-preposition-standard-fill-017",
+      "grammar": "preposition",
+      "difficulty": "standard",
+      "japanese": "明日まで回答を待てますが、金曜を過ぎてからは受け取れません。",
+      "reference_answers": [
+        "We can wait until tomorrow for your reply, but we cannot accept it after Friday."
+      ],
+      "explanation": "until は待つ期間の終点。after は受け付けられない期間の始まりを示す。"
+    },
+    {
+      "id": "bank-preposition-advanced-fill-001",
+      "grammar": "preposition",
+      "difficulty": "advanced",
+      "japanese": "その案の欠点を指摘したことを理由に、彼女は会議から外された。",
+      "reference_answers": [
+        "She was excluded from the meeting for pointing out a weakness in the proposal."
+      ],
+      "explanation": "exclude A from B は排除元、for -ing は措置の理由。"
+    },
+    {
+      "id": "bank-preposition-advanced-fill-002",
+      "grammar": "preposition",
+      "difficulty": "advanced",
+      "japanese": "彼らはその変更を新たな負担ではなく、制度を見直す機会とみなした。",
+      "reference_answers": [
+        "They regarded the change as an opportunity to review the system rather than as a new burden."
+      ],
+      "explanation": "regard A as B の as は評価内容。対比する双方を as でそろえられる。"
+    },
+    {
+      "id": "bank-preposition-advanced-fill-003",
+      "grammar": "preposition",
+      "difficulty": "advanced",
+      "japanese": "彼は情報の出どころを明かさないまま、報道の正確さを主張した。",
+      "reference_answers": [
+        "He insisted on the accuracy of the report without revealing where the information had come from."
+      ],
+      "explanation": "insist on は主張の対象。without -ing は伴わなかった行為を示す。"
+    },
+    {
+      "id": "bank-preposition-advanced-fill-004",
+      "grammar": "preposition",
+      "difficulty": "advanced",
+      "japanese": "試験の直前まで、その規則が受験者全員に当てはまるとは知らなかった。",
+      "reference_answers": [
+        "Until just before the exam, I did not know that the rule applied to all candidates."
+      ],
+      "explanation": "until は知らない状態の終点。apply to は規則の適用対象。"
+    },
+    {
+      "id": "bank-preposition-advanced-fill-005",
+      "grammar": "preposition",
+      "difficulty": "advanced",
+      "japanese": "その店の売り上げは一年前に比べて増えたが、利益は増えていない。",
+      "reference_answers": [
+        "Sales at the shop have risen compared with a year ago, but profits have not increased."
+      ],
+      "explanation": "compared with に比較の基準を置く。後半では利益について別の変化を述べる。"
+    },
+    {
+      "id": "bank-preposition-advanced-fill-006",
+      "grammar": "preposition",
+      "difficulty": "advanced",
+      "japanese": "私たちは代表者の代わりに発言したが、代表者に代わって決定を下す権限はなかった。",
+      "reference_answers": [
+        "We spoke on behalf of the representative but had no authority to make decisions in their place."
+      ],
+      "explanation": "on behalf of は代表して行う行為。in someone's place は人の代わりを務めること。"
+    },
+    {
+      "id": "bank-preposition-advanced-fill-007",
+      "grammar": "preposition",
+      "difficulty": "advanced",
+      "japanese": "その作家は小説で知られていたが、批評家には短い随筆のほうが高く評価されていた。",
+      "reference_answers": [
+        "The writer was known for their novels, but their short essays were more highly regarded by critics."
+      ],
+      "explanation": "known for は知名度の理由。受動の by は評価する人々を示す。"
+    },
+    {
+      "id": "bank-preposition-advanced-fill-008",
+      "grammar": "preposition",
+      "difficulty": "advanced",
+      "japanese": "建物の高さは制限されているが、地下に何階設けるかについては規定がない。",
+      "reference_answers": [
+        "There is a limit on the height of the building, but there is no rule about how many floors it can have below ground."
+      ],
+      "explanation": "limit on は制約の対象。below ground は地面より下の位置を示す。"
+    },
+    {
+      "id": "bank-preposition-advanced-fill-009",
+      "grammar": "preposition",
+      "difficulty": "advanced",
+      "japanese": "その学校は生徒の意見をもとに規則を作ったが、保護者には相談しなかった。",
+      "reference_answers": [
+        "The school based its rules on the students' views but did not consult with their parents."
+      ],
+      "explanation": "base A on B の on は根拠。consult with は相談する相手を取る。"
+    },
+    {
+      "id": "bank-preposition-advanced-fill-010",
+      "grammar": "preposition",
+      "difficulty": "advanced",
+      "japanese": "雨にもかかわらず、選手たちは開始から終了まで予定どおり競技を行った。",
+      "reference_answers": [
+        "Despite the rain, the athletes competed as scheduled from start to finish."
+      ],
+      "explanation": "despite は前置詞なので名詞句を直接取る。from ... to ... は期間の両端。"
+    },
+    {
+      "id": "bank-preposition-advanced-fill-011",
+      "grammar": "preposition",
+      "difficulty": "advanced",
+      "japanese": "この契約のもとでは、利用者が故意に壊した部品を会社が無償で交換する義務はない。",
+      "reference_answers": [
+        "Under this contract, the company is under no obligation to provide free replacements for parts that users have deliberately damaged."
+      ],
+      "explanation": "under は契約の条件のもとで、replacement for の for は、どの部品の交換かを示す。free は replacement の費用がかからないことを表す。"
+    },
+    {
+      "id": "bank-preposition-advanced-fill-012",
+      "grammar": "preposition",
+      "difficulty": "advanced",
+      "japanese": "統計がどの集団のデータに基づいているのかを考えずに、結論を全体に広げるべきではない。",
+      "reference_answers": [
+        "We should not generalize the conclusion to the whole population without considering which group's data the statistics are based on."
+      ],
+      "explanation": "generalize A to B の to は適用範囲。疑問句を前に出しても based on の on は残る。"
+    },
+    {
+      "id": "bank-preposition-advanced-fill-013",
+      "grammar": "preposition",
+      "difficulty": "advanced",
+      "japanese": "私たちは予約時に料金の半額を支払い、残りは到着時に支払うことになっている。",
+      "reference_answers": [
+        "We paid half the fee when we booked, and the remainder is due on arrival."
+      ],
+      "explanation": "on arrival で到着時という支払時点。due は支払いの期限が来ることを表す。"
+    },
+    {
+      "id": "bank-preposition-advanced-fill-014",
+      "grammar": "preposition",
+      "difficulty": "advanced",
+      "japanese": "その計画は、燃料の価格が急に上がる場合に備えて、見直せるようにしておく必要がある。",
+      "reference_answers": [
+        "The plan needs to be flexible enough to be revised in the event of a sudden rise in fuel prices."
+      ],
+      "explanation": "in the event of は事態の発生に備える条件。rise in の in は上昇する項目。"
+    },
+    {
+      "id": "bank-preposition-advanced-fill-015",
+      "grammar": "preposition",
+      "difficulty": "advanced",
+      "japanese": "彼女は賞を受け取ったが、成功は主に同僚のおかげだと述べた。",
+      "reference_answers": [
+        "She accepted the award but attributed her success mainly to her colleagues."
+      ],
+      "explanation": "attribute A to B は結果 A の原因・功績を B に帰す。"
+    },
+    {
+      "id": "bank-preposition-advanced-fill-016",
+      "grammar": "preposition",
+      "difficulty": "advanced",
+      "japanese": "彼らは不具合が出た機械の代わりに、前の型を一時的に使うことにした。",
+      "reference_answers": [
+        "They decided to use the previous model temporarily in place of the machine that had malfunctioned."
+      ],
+      "explanation": "in place of は代替されるものを導く。temporarily は使う期間を限定する。"
+    },
+    {
+      "id": "bank-preposition-advanced-fill-017",
+      "grammar": "preposition",
+      "difficulty": "advanced",
+      "japanese": "その案が実行可能かどうかは、必要な人員を期限内に確保できるかにかかっている。",
+      "reference_answers": [
+        "Whether the proposal is feasible depends on whether we can secure the necessary staff by the deadline."
+      ],
+      "explanation": "on は depend の補語を導く。by は確保の期限で、確保が続く期間ではない。"
+    },
+    {
+      "id": "bank-preposition-advanced-fill-018",
+      "grammar": "preposition",
+      "difficulty": "advanced",
+      "japanese": "その書類は、関係者以外には許可なく渡さないようにしてください。",
+      "reference_answers": [
+        "Please do not give the document to anyone outside the group involved without permission."
+      ],
+      "explanation": "to は受け手、outside は関係者の範囲外、without は許可を欠く条件に使う。"
+    },
+    {
+      "id": "bank-preposition-keio-fill-001",
+      "grammar": "preposition",
+      "difficulty": "keio",
+      "japanese": "過去の慣習を現在の基準だけで裁くと、それが生まれた背景を見失うことがある。",
+      "reference_answers": [
+        "Judging past customs solely by present-day standards can make us lose sight of the circumstances in which they arose."
+      ],
+      "explanation": "by は判断基準、in which は慣習が生まれた背景を示す。"
+    },
+    {
+      "id": "bank-preposition-keio-fill-002",
+      "grammar": "preposition",
+      "difficulty": "keio",
+      "japanese": "研究者は比較に不都合な例を除いて結論を出した。その結果、その結論は実際よりも確かなものに見えた。",
+      "reference_answers": [
+        "The researchers reached a conclusion by excluding cases that complicated the comparison. As a result, it seemed more certain than it really was."
+      ],
+      "explanation": "by -ing は結論に至った方法。as a result はそれがもたらした結果をつなぐ。"
+    },
+    {
+      "id": "bank-preposition-keio-fill-003",
+      "grammar": "preposition",
+      "difficulty": "keio",
+      "japanese": "家族の状況によっては、誰でも利用できるはずの制度が、実際には利用しにくいことがある。",
+      "reference_answers": [
+        "Depending on a family's circumstances, a system that is supposed to be accessible to everyone can be difficult to use in practice."
+      ],
+      "explanation": "depending on は条件、accessible to は利用できる人。in practice は建前と実際を分ける。"
+    },
+    {
+      "id": "bank-preposition-keio-fill-004",
+      "grammar": "preposition",
+      "difficulty": "keio",
+      "japanese": "反対意見を封じることなく対話を続けるには、意見の違いと相手への敵意を区別する必要がある。",
+      "reference_answers": [
+        "To keep a dialogue going without silencing dissent, we need to distinguish disagreement from hostility toward the other person."
+      ],
+      "explanation": "without は伴わない行為、from は区別、toward は感情が向かう相手。"
+    },
+    {
+      "id": "bank-preposition-keio-fill-005",
+      "grammar": "preposition",
+      "difficulty": "keio",
+      "japanese": "予定を広く知らせることで参加しやすくなる反面、個人の予定まで公開してしまうことがある。",
+      "reference_answers": [
+        "By publicizing the schedule, we can make it easier for people to take part, sometimes at the cost of revealing their personal plans."
+      ],
+      "explanation": "by -ing は手段、at the cost of -ing はその手段に伴う代償を表す。"
+    },
+    {
+      "id": "bank-preposition-keio-fill-006",
+      "grammar": "preposition",
+      "difficulty": "keio",
+      "japanese": "言葉の選び方にかかわらず、聞き手は発言を自分の経験に照らして解釈する。",
+      "reference_answers": [
+        "Regardless of the choice of words, listeners interpret a remark in light of their own experiences."
+      ],
+      "explanation": "regardless of は影響しない条件。in light of は解釈のよりどころ。"
+    },
+    {
+      "id": "bank-preposition-keio-fill-007",
+      "grammar": "preposition",
+      "difficulty": "keio",
+      "japanese": "人を、何を達成したかで評価することと、どんな制約のもとで行動したかで評価することは違う。",
+      "reference_answers": [
+        "Judging people by what they achieved differs from judging them by the constraints under which they acted."
+      ],
+      "explanation": "by は評価基準、differ from は比較対象、under は制約下の行為を表す。"
+    },
+    {
+      "id": "bank-preposition-keio-fill-008",
+      "grammar": "preposition",
+      "difficulty": "keio",
+      "japanese": "規則がどのように作られたかとは別に、実際にどう運用されたかも調べる価値がある。",
+      "reference_answers": [
+        "Apart from how the rules were made, it is also worth examining how they were applied in practice."
+      ],
+      "explanation": "apart from はここでは検討項目を追加する。in practice は実際の運用を示す。"
+    },
+    {
+      "id": "bank-preposition-keio-fill-009",
+      "grammar": "preposition",
+      "difficulty": "keio",
+      "japanese": "この出来事は、地元の人々にとっては損失だったが、遠くから見る人にとっては単なる変化に見えた。",
+      "reference_answers": [
+        "To local people, the event was a loss, but to those observing from afar, it appeared to be merely a change."
+      ],
+      "explanation": "文頭の to は事態を見る立場を示し、from afar は離れた観察位置を表す。"
+    },
+    {
+      "id": "bank-preposition-keio-fill-010",
+      "grammar": "preposition",
+      "difficulty": "keio",
+      "japanese": "その共同体は外部と接触することで変化したが、外部の価値観をすべて受け入れたわけではない。",
+      "reference_answers": [
+        "The community changed through contact with the outside world, but it did not adopt all the values it encountered."
+      ],
+      "explanation": "through は変化をもたらす過程。contact with は接触する相手を示す。"
+    },
+    {
+      "id": "bank-preposition-keio-fill-011",
+      "grammar": "preposition",
+      "difficulty": "keio",
+      "japanese": "他者への共感は、事実を確認する代わりにはならない。しかし、何を確認すべきかの手がかりにはなる。",
+      "reference_answers": [
+        "Empathy for others is no substitute for checking the facts. It can, however, give us a clue as to what we should check."
+      ],
+      "explanation": "empathy for は共感の対象、substitute for は代替される行為、as to は手がかりの内容。"
+    },
+    {
+      "id": "bank-preposition-keio-fill-012",
+      "grammar": "preposition",
+      "difficulty": "keio",
+      "japanese": "過去の制度を理解するには、例外であった事例を、典型的な事例と並べて考える必要がある。",
+      "reference_answers": [
+        "To understand an institution of the past, we need to consider exceptional cases alongside typical ones."
+      ],
+      "explanation": "alongside は並べて検討する対象。ones は cases を受ける。"
+    },
+    {
+      "id": "bank-preposition-keio-fill-013",
+      "grammar": "preposition",
+      "difficulty": "keio",
+      "japanese": "集団への忠誠心から、個人が自分の疑問を押し殺すことがある。",
+      "reference_answers": [
+        "Out of loyalty to a group, individuals sometimes suppress their own doubts."
+      ],
+      "explanation": "out of は行為の動機。loyalty to の to は忠誠を向ける対象。"
+    },
+    {
+      "id": "bank-preposition-keio-fill-014",
+      "grammar": "preposition",
+      "difficulty": "keio",
+      "japanese": "何を例外とみなすかによって、規則の意味そのものが変わることがある。",
+      "reference_answers": [
+        "The meaning of a rule itself can change according to what we treat as an exception."
+      ],
+      "explanation": "according to は変化が左右される条件。treat A as B の as は分類を示す。"
+    },
+    {
+      "id": "bank-preposition-keio-fill-015",
+      "grammar": "preposition",
+      "difficulty": "keio",
+      "japanese": "新しい道具を与えるだけでは不十分であり、人々には、それを使うかどうかを選ぶ余地が必要だ。",
+      "reference_answers": [
+        "Providing new tools is not enough in itself. People also need some freedom of choice about whether to use them."
+      ],
+      "explanation": "in itself はそれだけでは、about は選択の対象。"
+    },
+    {
+      "id": "bank-preposition-keio-fill-016",
+      "grammar": "preposition",
+      "difficulty": "keio",
+      "japanese": "効率を理由に手順を省く前に、その手順が誰を守るためにあるのか考えるべきだ。",
+      "reference_answers": [
+        "Before skipping a step in the name of efficiency, we should consider whom that step is meant to protect."
+      ],
+      "explanation": "in the name of は掲げられた理由や目的を示す。"
+    },
+    {
+      "id": "bank-preposition-keio-fill-017",
+      "grammar": "preposition",
+      "difficulty": "keio",
+      "japanese": "その芸術作品は、作者個人の経験を超えて、その時代に共通する不安を表現している。",
+      "reference_answers": [
+        "The work of art goes beyond the artist's personal experience to express anxieties shared by people of that era."
+      ],
+      "explanation": "beyond は範囲を超えること。shared by は不安を共有する人々を示す。"
+    },
+    {
+      "id": "bank-preposition-keio-fill-018",
+      "grammar": "preposition",
+      "difficulty": "keio",
+      "japanese": "異なる立場の人たちの合意は、対立を隠した結果ではなく、前提を明らかにした結果かもしれない。",
+      "reference_answers": [
+        "Agreement among people with different views may come from clarifying assumptions rather than from concealing disagreements."
+      ],
+      "explanation": "among は複数の人の間、with は立場の違い、come from は合意の由来を表す。"
+    }
+  ]
+}

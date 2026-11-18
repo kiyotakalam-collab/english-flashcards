@@ -1,0 +1,715 @@
+{
+  "format": "writing-question-bank-v1",
+  "questions": [
+    {
+      "id": "bank-article-basic-fill-001",
+      "grammar": "article",
+      "difficulty": "basic",
+      "japanese": "私は音楽家になりたい。",
+      "reference_answers": [
+        "I want to be a musician."
+      ],
+      "explanation": "職業を表す単数可算名詞には a を置く。"
+    },
+    {
+      "id": "bank-article-basic-fill-002",
+      "grammar": "article",
+      "difficulty": "basic",
+      "japanese": "その駅まで歩くと、1時間かかる。",
+      "reference_answers": [
+        "It takes an hour to walk to the station."
+      ],
+      "explanation": "hour は h を発音しないので an を使う。駅は文脈で特定されている。"
+    },
+    {
+      "id": "bank-article-basic-fill-003",
+      "grammar": "article",
+      "difficulty": "basic",
+      "japanese": "鍵を探している。台所のテーブルの上を見てくれる？",
+      "reference_answers": [
+        "I am looking for my keys. Could you check the kitchen table?"
+      ],
+      "explanation": "聞き手がどのテーブルか分かるので the kitchen table。"
+    },
+    {
+      "id": "bank-article-basic-fill-004",
+      "grammar": "article",
+      "difficulty": "basic",
+      "japanese": "私は朝食に卵を一つ食べた。",
+      "reference_answers": [
+        "I had an egg for breakfast."
+      ],
+      "explanation": "egg は母音で始まるので an。食事を表す for breakfast は通常無冠詞。"
+    },
+    {
+      "id": "bank-article-basic-fill-005",
+      "grammar": "article",
+      "difficulty": "basic",
+      "japanese": "私たちは今、月を見ている。",
+      "reference_answers": [
+        "We are looking at the moon now."
+      ],
+      "explanation": "通常、地球から見える月は一つに特定されるので the moon。"
+    },
+    {
+      "id": "bank-article-basic-fill-006",
+      "grammar": "article",
+      "difficulty": "basic",
+      "japanese": "父は毎朝コーヒーを飲む。",
+      "reference_answers": [
+        "My father drinks coffee every morning."
+      ],
+      "explanation": "飲み物としての coffee は不可算。杯数や種類を表していないので冠詞は不要。"
+    },
+    {
+      "id": "bank-article-basic-fill-007",
+      "grammar": "article",
+      "difficulty": "basic",
+      "japanese": "その犬は部屋のいちばん暖かい場所を選んだ。",
+      "reference_answers": [
+        "The dog chose the warmest spot in the room."
+      ],
+      "explanation": "最上級で一つの場所を特定する the warmest spot。"
+    },
+    {
+      "id": "bank-article-basic-fill-008",
+      "grammar": "article",
+      "difficulty": "basic",
+      "japanese": "右手に入口があります。",
+      "reference_answers": [
+        "There is an entrance on the right."
+      ],
+      "explanation": "入口は初出なので an。方向の「右に」は on the right。"
+    },
+    {
+      "id": "bank-article-basic-fill-009",
+      "grammar": "article",
+      "difficulty": "basic",
+      "japanese": "私の妹は大学生です。",
+      "reference_answers": [
+        "My younger sister is a university student."
+      ],
+      "explanation": "university の語頭は /j/ で始まるため a を使う。"
+    },
+    {
+      "id": "bank-article-basic-fill-010",
+      "grammar": "article",
+      "difficulty": "basic",
+      "japanese": "その二つのかばんのうち、赤いほうをください。",
+      "reference_answers": [
+        "I'll take the red one, please."
+      ],
+      "explanation": "目の前に二つある場面では the red one が該当する一方を指す。"
+    },
+    {
+      "id": "bank-article-basic-fill-011",
+      "grammar": "article",
+      "difficulty": "basic",
+      "japanese": "次は私の番だ。",
+      "reference_answers": [
+        "It is my turn next."
+      ],
+      "explanation": "my が名詞を限定するので、さらに the を加える必要はない。"
+    },
+    {
+      "id": "bank-article-basic-fill-012",
+      "grammar": "article",
+      "difficulty": "basic",
+      "japanese": "音楽を聞くと落ち着く。",
+      "reference_answers": [
+        "Listening to music calms me down."
+      ],
+      "explanation": "特定の曲や音源を指さない music は無冠詞。"
+    },
+    {
+      "id": "bank-article-basic-fill-013",
+      "grammar": "article",
+      "difficulty": "basic",
+      "japanese": "この本の最初のページを読んでください。",
+      "reference_answers": [
+        "Please read the first page of this book."
+      ],
+      "explanation": "順序で一枚に特定する the first page。"
+    },
+    {
+      "id": "bank-article-basic-fill-014",
+      "grammar": "article",
+      "difficulty": "basic",
+      "japanese": "私は彼女にもう一度機会を与えた。",
+      "reference_answers": [
+        "I gave her a second chance."
+      ],
+      "explanation": "a second chance は「もう一度の機会」。the second chance には、特定された二回目という読みがある。"
+    },
+    {
+      "id": "bank-article-basic-fill-015",
+      "grammar": "article",
+      "difficulty": "basic",
+      "japanese": "火をつける前に、その窓を開けてください。",
+      "reference_answers": [
+        "Please open the window before lighting a fire."
+      ],
+      "explanation": "指示する窓は既知なので the。これから起こす火は a fire。"
+    },
+    {
+      "id": "bank-article-basic-fill-016",
+      "grammar": "article",
+      "difficulty": "basic",
+      "japanese": "私たちは夕食後に散歩に出た。",
+      "reference_answers": [
+        "We went for a walk after dinner."
+      ],
+      "explanation": "一度の散歩は a walk。食事時を示す after dinner は無冠詞。"
+    },
+    {
+      "id": "bank-article-basic-fill-017",
+      "grammar": "article",
+      "difficulty": "basic",
+      "japanese": "彼女はアメリカに住んでいる。",
+      "reference_answers": [
+        "She lives in the United States."
+      ],
+      "explanation": "国名 United States は慣用的に the を伴う。"
+    },
+    {
+      "id": "bank-article-standard-fill-001",
+      "grammar": "article",
+      "difficulty": "standard",
+      "japanese": "私たちは宿の近くでパン屋を一軒見つけた。翌朝、その店でパンを買った。",
+      "reference_answers": [
+        "We found a bakery near our inn. The next morning, we bought bread at the bakery."
+      ],
+      "explanation": "初出は a bakery、再言及は the bakery。買ったパンの量を数えない bread は無冠詞。"
+    },
+    {
+      "id": "bank-article-standard-fill-002",
+      "grammar": "article",
+      "difficulty": "standard",
+      "japanese": "この部屋で使ってよい電話は一台しかない。",
+      "reference_answers": [
+        "There is only one phone we are allowed to use in this room."
+      ],
+      "explanation": "only one が台数を一台に限定する。one の前に a は置かない。"
+    },
+    {
+      "id": "bank-article-standard-fill-003",
+      "grammar": "article",
+      "difficulty": "standard",
+      "japanese": "彼女は料理人だが、今日は厨房の責任者として働いている。",
+      "reference_answers": [
+        "She is a cook, but today she is working as head of the kitchen."
+      ],
+      "explanation": "職業には a cook。as に続く責任者の役割は as head of ... と無冠詞でも表せる。"
+    },
+    {
+      "id": "bank-article-standard-fill-004",
+      "grammar": "article",
+      "difficulty": "standard",
+      "japanese": "私は駅から家までバスで帰ったが、友人はそのバスを逃した。",
+      "reference_answers": [
+        "I went home from the station by bus, but my friend missed the bus."
+      ],
+      "explanation": "手段の by bus は無冠詞。後半は利用した便を特定して the bus。"
+    },
+    {
+      "id": "bank-article-standard-fill-005",
+      "grammar": "article",
+      "difficulty": "standard",
+      "japanese": "買ったのは地図ではなく、この地域について書かれた案内書だった。",
+      "reference_answers": [
+        "I bought a guidebook about this area rather than a map."
+      ],
+      "explanation": "guidebook と map はそれぞれ一冊・一枚を種類として示し、どちらも a を取る。"
+    },
+    {
+      "id": "bank-article-standard-fill-006",
+      "grammar": "article",
+      "difficulty": "standard",
+      "japanese": "彼の説明を一つも理解できなかったわけではない。まず最初の説明は分かった。",
+      "reference_answers": [
+        "It is not that I understood none of his explanations. I understood the first one, for a start."
+      ],
+      "explanation": "順序で特定する the first one。for a start はまず一例を挙げる表現。"
+    },
+    {
+      "id": "bank-article-standard-fill-007",
+      "grammar": "article",
+      "difficulty": "standard",
+      "japanese": "安全な飲み水は欠かせないが、私たちに渡された水は安全に飲めるものではなかった。",
+      "reference_answers": [
+        "Safe drinking water is essential, but the water we were given was not safe to drink."
+      ],
+      "explanation": "一般の飲み水は無冠詞。渡された水を関係節で特定すると the water。"
+    },
+    {
+      "id": "bank-article-standard-fill-008",
+      "grammar": "article",
+      "difficulty": "standard",
+      "japanese": "先生は宿題を出したが、ほかの授業の宿題より少なかった。",
+      "reference_answers": [
+        "The teacher gave us homework, but it was less than the homework for our other classes."
+      ],
+      "explanation": "宿題一般・初出の分量は homework。比較対象として指定すれば不可算名詞にも the が付く。"
+    },
+    {
+      "id": "bank-article-standard-fill-009",
+      "grammar": "article",
+      "difficulty": "standard",
+      "japanese": "同じバンドのギタリストが二人来た。二人のうち背の高いほうが私の兄だ。",
+      "reference_answers": [
+        "Two guitarists from the same band came. The taller of the two is my older brother."
+      ],
+      "explanation": "the same と、二人から選ぶ the taller of the two を使う。"
+    },
+    {
+      "id": "bank-article-standard-fill-010",
+      "grammar": "article",
+      "difficulty": "standard",
+      "japanese": "誰かが私の机にメモを置いた。メモを書いた人は名前を残さなかった。",
+      "reference_answers": [
+        "Someone left a note on my desk. The person who wrote the note did not leave a name."
+      ],
+      "explanation": "初出のメモは a note。既出のメモと特定の筆者には the を使う。"
+    },
+    {
+      "id": "bank-article-standard-fill-011",
+      "grammar": "article",
+      "difficulty": "standard",
+      "japanese": "彼は幼いころの一時期を病院で過ごした。今はその病院の近くで働いている。",
+      "reference_answers": [
+        "He spent part of his childhood in hospital. He now works near the hospital."
+      ],
+      "explanation": "英式では患者としての in hospital は無冠詞。米式の in the hospital も自然。後半は施設を特定する。"
+    },
+    {
+      "id": "bank-article-standard-fill-012",
+      "grammar": "article",
+      "difficulty": "standard",
+      "japanese": "その学校では、子供たちは芸術を通じて自分の考えを表現する方法を学ぶ。",
+      "reference_answers": [
+        "At that school, children learn how to express their ideas through art."
+      ],
+      "explanation": "複数 children と活動一般の art は無冠詞。that が school を限定する。"
+    },
+    {
+      "id": "bank-article-standard-fill-013",
+      "grammar": "article",
+      "difficulty": "standard",
+      "japanese": "彼らはしばらく沈黙していたが、突然、大きな音がした。",
+      "reference_answers": [
+        "They were silent for a while, but suddenly there was a loud noise."
+      ],
+      "explanation": "for a while は慣用表現。noise は一回の音として数える場合 a を取る。"
+    },
+    {
+      "id": "bank-article-standard-fill-014",
+      "grammar": "article",
+      "difficulty": "standard",
+      "japanese": "その国の首都は、全国最大の都市ではない。",
+      "reference_answers": [
+        "The capital of that country is not its largest city."
+      ],
+      "explanation": "一つに定まる首都には the。its が限定する largest city には the を重ねない。"
+    },
+    {
+      "id": "bank-article-standard-fill-015",
+      "grammar": "article",
+      "difficulty": "standard",
+      "japanese": "彼女は母親になって初めて、親の立場からその問題を考えた。",
+      "reference_answers": [
+        "Only after becoming a mother did she consider the issue from a parent's perspective."
+      ],
+      "explanation": "一人の母親・親としての立場を a mother と a parent's perspective で表す。"
+    },
+    {
+      "id": "bank-article-standard-fill-016",
+      "grammar": "article",
+      "difficulty": "standard",
+      "japanese": "私たちは同じ列車に乗ったが、同じ車両には乗らなかった。",
+      "reference_answers": [
+        "We took the same train, but we were not in the same car."
+      ],
+      "explanation": "一致する対象を示す same の前には通常 the が付く。"
+    },
+    {
+      "id": "bank-article-standard-fill-017",
+      "grammar": "article",
+      "difficulty": "standard",
+      "japanese": "その展覧会は週に一度、入場無料になる。",
+      "reference_answers": [
+        "Admission to the exhibition is free once a week."
+      ],
+      "explanation": "入場一般は無冠詞の admission。頻度を示す once a week の a は「一週につき」を表す。"
+    },
+    {
+      "id": "bank-article-advanced-fill-001",
+      "grammar": "article",
+      "difficulty": "advanced",
+      "japanese": "ある読み手にとって皮肉に聞こえる表現が、別の読み手には単なる冗談に聞こえることがある。",
+      "reference_answers": [
+        "An expression that sounds ironic to one reader may sound like a mere joke to another."
+      ],
+      "explanation": "初出の表現と、一つの冗談としての分類には不定冠詞。one と another が読み手を区別する。"
+    },
+    {
+      "id": "bank-article-advanced-fill-002",
+      "grammar": "article",
+      "difficulty": "advanced",
+      "japanese": "研究者たちが必要としていたのは、追加の時間ではなく、データを検証するための方法だった。",
+      "reference_answers": [
+        "What the researchers needed was a way to verify the data, not more time."
+      ],
+      "explanation": "方法は種類を限定しないので a way。既に扱っているデータは the data。"
+    },
+    {
+      "id": "bank-article-advanced-fill-003",
+      "grammar": "article",
+      "difficulty": "advanced",
+      "japanese": "地図では川が一本しか示されていなかったが、実際に見えたのは、川の主流ではなく、そこに流れ込む支流だった。",
+      "reference_answers": [
+        "The map showed only one river, but what we actually saw was a tributary flowing into it, not the main river itself."
+      ],
+      "explanation": "支流は初出の a tributary。地図の記述で特定された主流は the main river。"
+    },
+    {
+      "id": "bank-article-advanced-fill-004",
+      "grammar": "article",
+      "difficulty": "advanced",
+      "japanese": "この部屋には午後の光が入るが、写真を撮るには、その光が強すぎる。",
+      "reference_answers": [
+        "Afternoon light comes into this room, but the light is too bright for taking photographs."
+      ],
+      "explanation": "光一般の性質として導入する afternoon light は無冠詞。部屋に入る光を指し直すと the light。"
+    },
+    {
+      "id": "bank-article-advanced-fill-005",
+      "grammar": "article",
+      "difficulty": "advanced",
+      "japanese": "結果の差を説明する仮説は複数あるが、私たちはそのうち最も検証しやすいものから調べた。",
+      "reference_answers": [
+        "There are several hypotheses that explain the difference in the results, but we began with the one that was easiest to test."
+      ],
+      "explanation": "特定の結果の差には the。the one 以下が仮説の集合から一つを指定する。"
+    },
+    {
+      "id": "bank-article-advanced-fill-006",
+      "grammar": "article",
+      "difficulty": "advanced",
+      "japanese": "この映画の舞台は実在の村だが、登場人物が泊まる宿は架空のものである。",
+      "reference_answers": [
+        "The film is set in a real village, but the inn where the characters stay is fictional."
+      ],
+      "explanation": "村の名前を特定しない導入は a real village。作中で泊まる宿は関係節で特定する。"
+    },
+    {
+      "id": "bank-article-advanced-fill-007",
+      "grammar": "article",
+      "difficulty": "advanced",
+      "japanese": "閉館後も美術館の外に列ができていた。列の先頭にいた人は、翌朝の入場券を待っていた。",
+      "reference_answers": [
+        "There was a line outside the museum even after it closed. The person at the front of the line was waiting for a ticket for the next morning."
+      ],
+      "explanation": "初出の列は a line。続く the line は再言及で、at the front が人物を絞る。"
+    },
+    {
+      "id": "bank-article-advanced-fill-008",
+      "grammar": "article",
+      "difficulty": "advanced",
+      "japanese": "その記録は、訓練を受けていない人にとっては単なる数字の集まりに見えるかもしれない。",
+      "reference_answers": [
+        "To a person without training, the record may look like a mere collection of numbers."
+      ],
+      "explanation": "一般化した一人の読み手と一つの集まりに a。対象として示された記録は the record。"
+    },
+    {
+      "id": "bank-article-advanced-fill-009",
+      "grammar": "article",
+      "difficulty": "advanced",
+      "japanese": "彼は大学の学長に選ばれたとき、教員の一人として働き続けることも約束した。",
+      "reference_answers": [
+        "When he was elected president of the university, he also promised to continue working as a member of the faculty."
+      ],
+      "explanation": "elect O president の役職補語は通常無冠詞。集団の一員を導入する a member と区別する。"
+    },
+    {
+      "id": "bank-article-advanced-fill-010",
+      "grammar": "article",
+      "difficulty": "advanced",
+      "japanese": "私が日記で出会ったのは、歴史の教科書では見ることのなかった、その戦争の一面だった。",
+      "reference_answers": [
+        "In the diary, I encountered an aspect of the war that I had never seen in history textbooks."
+      ],
+      "explanation": "an aspect は複数あり得る一面。the war は対象となる戦争を指し、history textbooks は一般の複数。"
+    },
+    {
+      "id": "bank-article-advanced-fill-011",
+      "grammar": "article",
+      "difficulty": "advanced",
+      "japanese": "入口がいくつもある建物では、出口と入口が同じとは限らない。",
+      "reference_answers": [
+        "In a building with several entrances, the exit is not necessarily the same as the entrance."
+      ],
+      "explanation": "一般的な一例を示す a building。the exit と the entrance は利用時に問題となる出口・入口。"
+    },
+    {
+      "id": "bank-article-advanced-fill-012",
+      "grammar": "article",
+      "difficulty": "advanced",
+      "japanese": "彼女は実験で物質を一つ作り出したが、その物質はすでに報告されていたと後で分かった。",
+      "reference_answers": [
+        "She produced a substance in the experiment, but later found that it had already been reported."
+      ],
+      "explanation": "a substance は話し手が特定の名称を示さず導入する名詞句。再言及は it で行う。"
+    },
+    {
+      "id": "bank-article-advanced-fill-013",
+      "grammar": "article",
+      "difficulty": "advanced",
+      "japanese": "彼は信頼できる情報源を探したが、読んだ記事の著者の名前しか見つけられなかった。",
+      "reference_answers": [
+        "He looked for a reliable source but found only the name of the author of the article he had read."
+      ],
+      "explanation": "どれでもよい情報源は a。読んだ記事、その著者、その名前は順に特定されるので the が自然。"
+    },
+    {
+      "id": "bank-article-advanced-fill-014",
+      "grammar": "article",
+      "difficulty": "advanced",
+      "japanese": "その公園には、小さな池に続く道と、展望台に通じる道がある。私たちは後者を選んだ。",
+      "reference_answers": [
+        "The park has a path leading to a small pond and another leading to an observation deck. We chose the latter."
+      ],
+      "explanation": "初出の道と行き先を a/an で導入。the latter が後で挙げた道を指す。"
+    },
+    {
+      "id": "bank-article-advanced-fill-015",
+      "grammar": "article",
+      "difficulty": "advanced",
+      "japanese": "その共同体の歴史は、同じ地域で語られてきたさまざまな歴史のうちの一つにすぎない。",
+      "reference_answers": [
+        "The history of that community is just one of the many histories that have been told in the same area."
+      ],
+      "explanation": "特定の共同体の歴史には the。異なる語りとして数える histories は複数形にできる。"
+    },
+    {
+      "id": "bank-article-advanced-fill-016",
+      "grammar": "article",
+      "difficulty": "advanced",
+      "japanese": "報告書によると、事故の原因は一つではなかったが、最大の要因は明らかだった。",
+      "reference_answers": [
+        "According to the report, the accident had more than one cause, but the most important factor was clear."
+      ],
+      "explanation": "原因の個数は more than one cause。最上級で特定される要因には the。"
+    },
+    {
+      "id": "bank-article-advanced-fill-017",
+      "grammar": "article",
+      "difficulty": "advanced",
+      "japanese": "私たちは川岸で鳥の声を聞いたが、その声がどの鳥のものか分からなかった。",
+      "reference_answers": [
+        "We heard a bird calling on the riverbank, but we could not tell which bird it was."
+      ],
+      "explanation": "種類が未特定の鳥は初出の a bird。which が bird を限定するので冠詞を置かない。"
+    },
+    {
+      "id": "bank-article-advanced-fill-018",
+      "grammar": "article",
+      "difficulty": "advanced",
+      "japanese": "私は当時働いていた町で、週に数回、その町で唯一の公共図書館を利用した。",
+      "reference_answers": [
+        "I used the only public library in the town where I was working at the time several times a week."
+      ],
+      "explanation": "the only で施設を一つに限定。a week は頻度の単位を表す。"
+    },
+    {
+      "id": "bank-article-keio-fill-001",
+      "grammar": "article",
+      "difficulty": "keio",
+      "japanese": "知識は判断を助けるが、判断そのものに代わるものではない。",
+      "reference_answers": [
+        "Knowledge can inform judgment, but it is no substitute for judgment itself."
+      ],
+      "explanation": "能力・働きとしての knowledge と judgment を一般に述べるので無冠詞。no substitute は代用にならないことを表す。"
+    },
+    {
+      "id": "bank-article-keio-fill-002",
+      "grammar": "article",
+      "difficulty": "keio",
+      "japanese": "一つの失敗を、その人が将来も失敗し続ける証拠として扱うべきではない。",
+      "reference_answers": [
+        "We should not treat a single failure as evidence that the person will continue to fail."
+      ],
+      "explanation": "一件の失敗は a single failure。evidence はここでは不可算なので冠詞を付けない。"
+    },
+    {
+      "id": "bank-article-keio-fill-003",
+      "grammar": "article",
+      "difficulty": "keio",
+      "japanese": "人が自分の経験を語るとき、その語りは過去の記録であると同時に、現在の解釈でもある。",
+      "reference_answers": [
+        "When people tell stories about their experiences, the stories are both records of the past and interpretations made in the present."
+      ],
+      "explanation": "話を複数で導入し、次に the stories と受ける。時間領域を表す the past / the present に注意する。"
+    },
+    {
+      "id": "bank-article-keio-fill-004",
+      "grammar": "article",
+      "difficulty": "keio",
+      "japanese": "沈黙には、同意のしるしとしての沈黙と、意見を言いにくい状況から生まれる沈黙がある。",
+      "reference_answers": [
+        "Silence can be a sign of agreement, or it can result from circumstances that make it difficult to speak up."
+      ],
+      "explanation": "沈黙・同意という現象は無冠詞。一つのしるしとして分類する a sign には冠詞を置く。"
+    },
+    {
+      "id": "bank-article-keio-fill-005",
+      "grammar": "article",
+      "difficulty": "keio",
+      "japanese": "公平さを目指して作られた規則でも、その規則が公平な結果を生むとは限らない。",
+      "reference_answers": [
+        "Even a rule designed to promote fairness does not necessarily produce fair results."
+      ],
+      "explanation": "一般化した規則の一例に a。抽象的な目的 fairness と複数の結果 fair results は無冠詞。"
+    },
+    {
+      "id": "bank-article-keio-fill-006",
+      "grammar": "article",
+      "difficulty": "keio",
+      "japanese": "多数派の意見は、社会全体の意見の一部にすぎない。",
+      "reference_answers": [
+        "The opinion of the majority is only part of the range of views in society as a whole."
+      ],
+      "explanation": "the majority は対象となる多数派。society as a whole は社会全体という一般表現で冠詞を付けない。"
+    },
+    {
+      "id": "bank-article-keio-fill-007",
+      "grammar": "article",
+      "difficulty": "keio",
+      "japanese": "文化を一つの枠に収めようとすると、その内部にある違いが見えにくくなる。",
+      "reference_answers": [
+        "Trying to fit a culture into a single framework can make the differences within it harder to see."
+      ],
+      "explanation": "a culture は一つの文化。the differences within it はその文化内部に範囲を限った違い。"
+    },
+    {
+      "id": "bank-article-keio-fill-008",
+      "grammar": "article",
+      "difficulty": "keio",
+      "japanese": "ある人の一時的な譲歩を、すべての争点についての合意だと見なしてはならない。",
+      "reference_answers": [
+        "We should not interpret a person's temporary concession as agreement on every issue."
+      ],
+      "explanation": "不特定の人を a person で示す。ここでの agreement は合意という状態なので無冠詞。"
+    },
+    {
+      "id": "bank-article-keio-fill-009",
+      "grammar": "article",
+      "difficulty": "keio",
+      "japanese": "研究のある分野では当然の前提が、別の分野では検証すべき仮説となることがある。",
+      "reference_answers": [
+        "An assumption taken for granted in one field of research may be a hypothesis to be tested in another."
+      ],
+      "explanation": "一つの前提・仮説を an assumption / a hypothesis で表す。research は研究活動一般として無冠詞。"
+    },
+    {
+      "id": "bank-article-keio-fill-010",
+      "grammar": "article",
+      "difficulty": "keio",
+      "japanese": "被害を数字に置き換えると比較はしやすくなるが、数字に表れない損失もある。",
+      "reference_answers": [
+        "Expressing harm in numbers makes comparison easier, but some losses are not captured by the numbers."
+      ],
+      "explanation": "被害や比較という一般概念は無冠詞。the numbers は被害を数値化した結果を指す。"
+    },
+    {
+      "id": "bank-article-keio-fill-011",
+      "grammar": "article",
+      "difficulty": "keio",
+      "japanese": "他人の話に耳を傾けることは、その人が示した解釈を唯一の解釈として受け入れることではない。",
+      "reference_answers": [
+        "Listening to someone's story does not mean accepting their interpretation as the only possible one."
+      ],
+      "explanation": "所有を示す someone's / their と冠詞は重ねない。the only possible one は一つに限定する。"
+    },
+    {
+      "id": "bank-article-keio-fill-012",
+      "grammar": "article",
+      "difficulty": "keio",
+      "japanese": "物事を正確に説明するためには、詳しさを増すことより、適切な例を一つ選ぶことが効果的な場合がある。",
+      "reference_answers": [
+        "To explain something accurately, choosing a suitable example can sometimes be more effective than adding detail."
+      ],
+      "explanation": "適切な例を一つ選ぶので a suitable example。量としての detail には冠詞を付けない。"
+    },
+    {
+      "id": "bank-article-keio-fill-013",
+      "grammar": "article",
+      "difficulty": "keio",
+      "japanese": "正確さを重視することと、完全な説明を求めることは、別の要求である。",
+      "reference_answers": [
+        "Valuing accuracy and demanding a complete account are two different demands."
+      ],
+      "explanation": "accuracy は抽象的な性質として無冠詞。一つの説明として数える account には a を置く。"
+    },
+    {
+      "id": "bank-article-keio-fill-014",
+      "grammar": "article",
+      "difficulty": "keio",
+      "japanese": "調査が答えを与えてくれたとしても、研究者が最初に立てた問いの答えであるとは限らない。",
+      "reference_answers": [
+        "Even if a study provides an answer, it may not be the answer to the question the researchers originally asked."
+      ],
+      "explanation": "ある答えを an answer で導入。特定の問いに対応する答えは the answer。"
+    },
+    {
+      "id": "bank-article-keio-fill-015",
+      "grammar": "article",
+      "difficulty": "keio",
+      "japanese": "法律の目的の一つは、意見を持つことと、その意見を他人に押しつけることとの間に線を引くことだ。",
+      "reference_answers": [
+        "One purpose of law is to draw a line between holding an opinion and imposing that opinion on others."
+      ],
+      "explanation": "制度一般の law は無冠詞。比喩の境界は a line、意見を an opinion で導入し that opinion で受ける。"
+    },
+    {
+      "id": "bank-article-keio-fill-016",
+      "grammar": "article",
+      "difficulty": "keio",
+      "japanese": "地位が高いというだけで、ある人の判断がその分野の専門家の判断より信頼できることにはならない。",
+      "reference_answers": [
+        "A person's high status alone does not make their judgment more reliable than that of an expert in the field."
+      ],
+      "explanation": "a person や an expert は不特定の一人。the field は問題となっている分野を示す。"
+    },
+    {
+      "id": "bank-article-keio-fill-017",
+      "grammar": "article",
+      "difficulty": "keio",
+      "japanese": "過去を知ることは、現在を評価するための材料になるが、将来についての決定を代わりに下してくれるわけではない。",
+      "reference_answers": [
+        "Knowing the past can help us assess the present, but it cannot make decisions about the future for us."
+      ],
+      "explanation": "the past / present / future はそれぞれ時の領域。個々の決定を限定せず decisions とする。"
+    },
+    {
+      "id": "bank-article-keio-fill-018",
+      "grammar": "article",
+      "difficulty": "keio",
+      "japanese": "対話の目的が相互理解にある場合、結論を急ぐことはその目的に反するかもしれない。",
+      "reference_answers": [
+        "When the purpose of a dialogue is mutual understanding, rushing to a conclusion may work against that purpose."
+      ],
+      "explanation": "a dialogue は個別の対話を一般化した用法。目的は the purpose、相互理解は無冠詞。"
+    },
+    {
+      "id": "bank-article-keio-fill-019",
+      "grammar": "article",
+      "difficulty": "keio",
+      "japanese": "一人の住民にとっての不便が、その地域のすべての住民に共通する問題とは限らない。",
+      "reference_answers": [
+        "What is an inconvenience for one resident is not necessarily a problem shared by all the residents of the area."
+      ],
+      "explanation": "個別の不便・問題に an/a。all the residents はその地域に対象を絞る。"
+    }
+  ]
+}
