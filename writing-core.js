@@ -218,11 +218,13 @@ export function gradeAnswer(state, answerId, grade, now = Date.now()) {
   return refreshSchedules(s);
 }
 export function getMistakeCount(state, questionId) { return state.answers.filter(a => a.mistakeCounted && (!questionId || a.questionId === questionId)).length; }
-export function getCandidates(state, grammar = [], { now = Date.now(), mode = state.settings.mode, difficulty, source } = {}) {
+export function getCandidates(state, grammar = [], { now = Date.now(), mode = state.settings.mode, difficulty, source, grammarId, unlearnedOnly = false } = {}) {
   const at = time(now), important = new Set(grammar.filter(g => g.important).map(g => g.id));
   const last = state.answers.find(a => a.id === state.session.lastAnswerId);
+  const attempted = new Set(state.answers.map(a => a.questionId));
   let rows = state.questions.filter(q => q.active && q.source !== 'textbook_progress' && !q.hidden && !q.deleted && !state.session.deferredQuestionIds.includes(q.id)
-    && (!mode || mode === 'all' || q.mode === mode) && (!difficulty || q.difficulty === difficulty) && (!source || q.source === source))
+    && (!mode || mode === 'all' || q.mode === mode) && (!difficulty || q.difficulty === difficulty) && (!source || q.source === source)
+    && (!grammarId || q.grammar_tags.includes(grammarId)) && (!unlearnedOnly || !attempted.has(q.id)))
     .map(q => {
       const events = state.answers.filter(a => a.questionId === q.id && a.evaluation.status !== 'pending');
       const schedule = getReviewSchedule(state, q.id), recent = events.at(-1), reasons = [];
@@ -237,7 +239,12 @@ export function getCandidates(state, grammar = [], { now = Date.now(), mode = st
       if (q.id === last?.questionId) priority -= 200;
       return { ...copy(q), priority, reasons, reviewSchedule: schedule };
     });
-  if(last?.evaluation.status==='correct') rows=rows.filter(q=>!q.grammar_tags.some(t=>last.questionSnapshot.grammar_tags.includes(t)));
+  if(last?.evaluation.status==='correct') {
+    const diverse = rows.filter(q=>!q.grammar_tags.some(t=>last.questionSnapshot.grammar_tags.includes(t)));
+    // Prefer a different construction, but never abandon unseen questions in the
+    // selected grammar/difficulty simply because the previous answer was correct.
+    if (diverse.length || !unlearnedOnly) rows = diverse;
+  }
   if (last && ['partial', 'incorrect'].includes(last.evaluation.status) && rows.some(q => q.id !== last.questionId && q.grammar_tags.some(t => last.questionSnapshot.grammar_tags.includes(t)))) rows = rows.filter(q => q.id !== last.questionId);
   return rows.sort((a, b) => b.priority - a.priority || a.id.localeCompare(b.id));
 }

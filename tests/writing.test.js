@@ -130,6 +130,25 @@ test('defer excludes throughout current session and resets only with new session
   assert.ok(!W.getCandidates(s, grammar, { now: T + 100 * DAY }).some(q => q.id === 'q1'));
   s = W.startSession(s, 'new'); assert.ok(W.getCandidates(s, grammar, { now: T }).some(q => q.id === 'q1'));
 });
+test('unlearned-only excludes every submitted answer including pending, keeps drafts and never changes history', () => {
+  let s = W.createState([1, 2, 3, 4].map(n => question(`q${n}`)));
+  s = grade(submit(s, 'correct', 'q1'), 'correct', 'correct');
+  s = grade(submit(s, 'wrong', 'q2'), 'wrong', 'incorrect');
+  s = submit(s, 'pending', 'q3');
+  s = W.saveDraft(s, 'q4', 'Not submitted yet.');
+  s = W.startSession(s);
+  const before = JSON.stringify(s);
+  assert.deepEqual(W.getCandidates(s, grammar, { now: T, unlearnedOnly: true }).map(q => q.id), ['q4']);
+  assert.equal(JSON.stringify(s), before);
+  s = submit(s, 'last', 'q4');
+  assert.deepEqual(W.getCandidates(s, grammar, { now: T, unlearnedOnly: true }), []);
+});
+test('unlearned-only prefers diversity but completes the selected grammar after a correct answer', () => {
+  const s = grade(submit(state()), 'a1', 'correct');
+  assert.deepEqual(W.getCandidates(s, grammar, { now: T, unlearnedOnly: true }).map(q => q.id), ['q3']);
+  assert.deepEqual(W.getCandidates(s, grammar, { now: T, unlearnedOnly: true, grammarId: 'g1' }).map(q => q.id), ['q2']);
+  assert.deepEqual(W.getCandidates(s, grammar, { now: T, unlearnedOnly: true, difficulty: 'keio' }), []);
+});
 test('textbook progress is never an exercise candidate even when confirmed', () => {
   const s = W.createState([1, 2, 3].map(n => question(`text${n}`, ['g1'], { source: 'textbook_progress', textbook_item: n })));
   assert.deepEqual(W.getCandidates(s, grammar, { now: T }), []);

@@ -239,6 +239,52 @@ async function manualGrade(page,status,score,reason='設問と意味・文法を
  await form.locator('[type="submit"]').click();
  await expect(page.locator('#modal')).not.toBeVisible();
 }
+for (const mode of ['short', 'essay']) {
+ test(`unlearned-only ${mode} honors grammar, excludes pending, exhausts unseen questions and survives reload`, async ({ page }) => {
+  await open(page);
+  await page.evaluate(async mode => {
+   const W = await import('./writing-core.js'), { QUESTIONS } = await import('./writing-data.js');
+   const base = QUESTIONS.find(q => q.mode === mode), now = Date.now();
+   const questions = ['correct', 'wrong', 'pending', 'fresh-a', 'fresh-b'].map(name => ({ ...base, id: `unlearned-${name}` }));
+   const existing = W.initializeState(localStorage).questions.map(q => ({ ...q, active: false }));
+   let s = W.createState([...existing, ...questions]);
+   for (const result of ['correct', 'wrong', 'pending']) {
+    s = W.submitAnswer(s, { id: `old-${result}`, questionId: `unlearned-${result}`, input: 'An earlier answer.' }, now);
+    if (result !== 'pending') s = W.gradeAnswer(s, `old-${result}`, { status: result === 'wrong' ? 'incorrect' : 'correct' }, now);
+   }
+   s = W.saveDraft(s, 'unlearned-fresh-a', 'My saved draft.');
+   W.saveState(localStorage, s);
+  }, mode);
+  await page.reload(); await nav(page, mode);
+  const original = await saved(page), base = original.questions.find(q => q.id === 'unlearned-correct');
+  await page.locator('#session-form [name="strategy"]').selectOption({ label: '未学習のみ' });
+  await page.locator('#session-form [name="difficulty"]').selectOption(base.difficulty);
+  await page.locator('#session-form [name="grammar"]').selectOption(base.grammar_tags[0]);
+  await page.locator('#session-form [type="submit"]').click();
+  await expect(page.locator('#answer-input')).toBeEditable();
+  expect((await saved(page)).session.currentQuestionId).toBe('unlearned-fresh-a');
+  expect((await saved(page)).settings.strategy).toBe('new');
+  expect((await saved(page)).answers).toEqual(original.answers);
+  await expect(page.locator('#answer-input')).toHaveValue('My saved draft.');
+  await page.locator('[data-action="submit"]').click();
+  // A correct answer must not prematurely end this grammar-only session.
+  await manualGrade(page, 'correct', mode === 'essay' ? 0 : 10);
+  await page.locator('[data-action="next"]').click(); await expect(page.locator('#answer-input')).toBeEditable();
+  expect((await saved(page)).session.currentQuestionId).toBe('unlearned-fresh-b');
+  await page.locator('#answer-input').fill('A second new answer.'); await page.locator('[data-action="submit"]').click();
+  await expect(page.locator('#grade-form')).toBeVisible(); await page.locator('#modal-close').click();
+  await page.locator('[data-action="next"]').click();
+  await expect(page.locator('#app')).toContainText('この条件で出題できる未学習問題はありません');
+  await expect(page.locator('#answer-input')).toHaveCount(0);
+  await page.reload(); await expect(page.locator('#session-form [name="strategy"]')).toHaveValue('new');
+  await page.locator('#session-form [type="submit"]').click();
+  await expect.poll(async () => (await saved(page)).session.currentQuestionId).toBe(null);
+  const after = await saved(page);
+  expect(after.answers).toHaveLength(5); expect(after.answers.slice(0, 3)).toEqual(original.answers);
+  expect(after.textbookProgress).toEqual(original.textbookProgress);
+  expect(await page.evaluate(() => window.writingStorageAudit())).toEqual({ accesses: [], vocabulary });
+ });
+}
 test('draft resumes, alternate wording can be manually accepted, and duplicate submit saves one event',async({page})=>{
  await open(page);await begin(page);
  const text='My elder sister gave an old map to me.';
