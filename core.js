@@ -114,6 +114,11 @@ export function parseFeed(text) {
 export function emptyRecord(id) {
   return { wordId: id, correctCount: 0, wrongCount: 0, lastReviewedAt: null, lastResult: null, ...normalizeSchedule(), answerHistory: [] };
 }
+/** A zero-count placeholder is still new; legacy counts and answer metadata are history. */
+export function isUnlearned(record) {
+  return !record || !(record.correctCount > 0 || record.wrongCount > 0 ||
+    record.lastReviewedAt || record.lastResult || record.answerHistory?.length);
+}
 function validateAnswerHistory(history = []) {
   if (!Array.isArray(history)) throw new Error('解答履歴が不正です。');
   const seen = new Set();

@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { STATE_KEY, LEGACY_KEY, createState, initializeState, recordAnswer, upsertWords, parseFeed, parseCSV, restoreBackup, validateState, validateFeedUrl, approveDeactivations, normalizeSources, mergeSources, matchesSource, shuffleDeck } from '../core.js';
+import { STATE_KEY, LEGACY_KEY, createState, initializeState, recordAnswer, emptyRecord, isUnlearned, upsertWords, parseFeed, parseCSV, restoreBackup, validateState, validateFeedUrl, approveDeactivations, normalizeSources, mergeSources, matchesSource, shuffleDeck } from '../core.js';
 
 const initial = JSON.parse(readFileSync(new URL('../initial_words.json', import.meta.url)));
 const memory = entries => {
@@ -9,6 +9,19 @@ const memory = entries => {
   return { getItem: key => map.get(key) ?? null, setItem: (key, value) => map.set(key, value) };
 };
 const grade = (state, correct) => recordAnswer(state, 'clumsy', correct);
+test('unlearned vocabulary respects old counters and saved history without changing any record', () => {
+  assert.equal(isUnlearned(undefined), true);
+  assert.equal(isUnlearned(emptyRecord('placeholder')), true);
+  for (const history of [{ correctCount: 1 }, { wrongCount: 4 }, { lastReviewedAt: '2026-11-01T00:00:00Z' },
+    { lastResult: 'correct' }, { answerHistory: [{ id: 'past', reviewedAt: '2026-11-01T00:00:00Z', result: 'wrong' }] }]) {
+    const record = { ...emptyRecord('word'), ...history }, snapshot = JSON.stringify(record);
+    assert.equal(isUnlearned(record), false); assert.equal(JSON.stringify(record), snapshot);
+  }
+  const learned = grade(createState(initial), true);
+  const synced = upsertWords(learned, [{ ...initial[0], meaning: '変更した訳' }, { id: 'new-sync', word: 'new-sync', meaning: '新語' }]).state;
+  assert.equal(isUnlearned(synced.records.find(r => r.wordId === 'clumsy')), false);
+  assert.equal(isUnlearned(synced.records.find(r => r.wordId === 'new-sync')), true);
+});
 test('all 308 original words and translations are preserved without duplicates', () => {
   const state = createState(initial);
   assert.equal(state.words.length, 308);

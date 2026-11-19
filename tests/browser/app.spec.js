@@ -59,6 +59,80 @@ test('starts from a chosen number and stops at the optional ending number', asyn
   await expect(page.locator('#history-rows .history-number')).toHaveText('101');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
+
+test('unlearned vocabulary excludes correct and legacy wrong records, keeps skips new and stops when exhausted', async ({ page }) => {
+  await open(page);
+  await page.evaluate(async key => {
+    const C = await import('./core.js');
+    let state = JSON.parse(localStorage.getItem(key));
+    state = C.recordAnswer(state, state.words[0].id, true);
+    state.records.push({ ...C.emptyRecord(state.words[1].id), wrongCount: 7 });
+    state.records.push(C.emptyRecord(state.words[2].id));
+    localStorage.setItem(key, JSON.stringify(state));
+  }, key);
+  await page.reload(); await expect(page.locator('#word-count')).toHaveText('308');
+  const before = await saved(page);
+  await page.locator('#end-number').fill('4');
+  await page.locator('#mode').selectOption({ label: '未学習のみ' });
+  await expect(page.locator('#front')).toHaveText(before.words[2].word);
+  await expect(page.locator('#progress')).toContainText('No.3 · 01 / 2');
+  await page.locator('#skip').click(); await expect(page.locator('#front')).toHaveText(before.words[3].word);
+  expect((await saved(page)).records).toEqual(before.records);
+  await page.locator('#restart').click(); await expect(page.locator('#front')).toHaveText(before.words[2].word);
+  await page.locator('#card').click(); await page.locator('#wrong').click();
+  await expect(page.locator('#front')).toHaveText(before.words[3].word);
+  await page.locator('#card').click(); await page.locator('#correct').click();
+  await expect(page.locator('#session-done')).toBeVisible();
+  await page.locator('#again').click(); await expect(page.locator('#front')).toHaveText('対象の単語はありません');
+  await expect(page.locator('#correct')).toBeDisabled(); await expect(page.locator('#wrong')).toBeDisabled();
+  const after = await saved(page);
+  expect(after.records.find(r => r.wordId === before.words[0].id)).toEqual(before.records[0]);
+  expect(after.records.find(r => r.wordId === before.words[1].id)).toEqual(before.records[1]);
+  expect(after.records.find(r => r.wordId === before.words[2].id)).toMatchObject({ wrongCount: 1, correctCount: 0 });
+  await page.reload(); await expect(page.locator('#word-count')).toHaveText('308');
+  await page.locator('#end-number').fill('4'); await page.locator('#mode').selectOption('unlearned');
+  await expect(page.locator('#front')).toHaveText('対象の単語はありません');
+});
+
+test('unlearned vocabulary combines reading source, stable number range and random order without duplicates', async ({ page }) => {
+  await open(page);
+  await page.evaluate(async key => {
+    const C = await import('./core.js'); let state = JSON.parse(localStorage.getItem(key));
+    state = C.upsertWords(state, [{ ...state.words[0], sources: 'ex|reading' },
+      { id: 'fresh-reading-one', word: 'fresh-reading-one', meaning: '一', sources: 'reading' },
+      { id: 'fresh-reading-two', word: 'fresh-reading-two', meaning: '二', sources: 'reading' },
+      { id: 'hidden-reading', word: 'hidden-reading', meaning: '非表示', sources: 'reading' }]).state;
+    state.words.find(w => w.id === 'hidden-reading').active = false;
+    state = C.recordAnswer(state, state.words[0].id, true); localStorage.setItem(key, JSON.stringify(state));
+  }, key);
+  await page.reload(); await expect(page.locator('#word-count')).toHaveText('310');
+  const before = (await saved(page)).records[0];
+  await page.evaluate(() => { Math.random = () => 0; });
+  await page.locator('#source-filter').selectOption('reading'); await page.locator('#end-number').fill('3');
+  await page.locator('#mode').selectOption('unlearned'); await page.locator('#order').selectOption('random');
+  await expect(page.locator('#front')).toHaveText('fresh-reading-two'); await expect(page.locator('#progress')).toContainText('No.3 · 01 / 2');
+  await page.locator('#skip').click(); await expect(page.locator('#front')).toHaveText('fresh-reading-one');
+  await expect(page.locator('#progress')).toContainText('No.2 · 02 / 2');
+  await page.locator('#card').click(); await page.locator('#correct').click();
+  await expect(page.locator('#session-done')).toBeVisible();
+  await page.locator('#order').selectOption('number'); await expect(page.locator('#front')).toHaveText('fresh-reading-two');
+  await expect(page.locator('#progress')).toContainText('No.3 · 01 / 1');
+  expect((await saved(page)).records[0]).toEqual(before);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+test('explicit current-test mistake retry still works after an unlearned-only vocabulary session', async ({ page }) => {
+  await open(page); await page.locator('#end-number').fill('1'); await page.locator('#mode').selectOption('unlearned');
+  await page.locator('#card').click(); await page.locator('#wrong').click();
+  await expect(page.locator('#retry-mistakes')).toBeVisible(); await page.locator('#retry-mistakes').click();
+  await expect(page.locator('#front')).toHaveText('clumsy');
+  await page.locator('#card').click(); await page.locator('#wrong').click();
+  await expect(page.locator('#front')).toHaveText('clumsy');
+  await page.locator('#card').click(); await page.locator('#correct').click();
+  await expect(page.locator('#session-done-text')).toContainText('すべて正解');
+  await page.locator('#again').click(); await expect(page.locator('#front')).toHaveText('対象の単語はありません');
+  expect((await saved(page)).records[0]).toMatchObject({ wrongCount: 2, correctCount: 1 });
+});
 test('range 101-103 randomizes without repetition and retains original No. and mistake history', async ({ page }) => {
   await open(page);
   // Fixed RNG makes the permutation deterministic, so this checks real shuffling

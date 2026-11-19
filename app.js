@@ -1,4 +1,4 @@
-import { STATE_KEY, initializeState, validateState, recordAnswer, emptyRecord, parseFeed, upsertWords, restoreBackup, approveDeactivations, validateFeedUrl, matchesSource, shuffleDeck } from './core.js';
+import { STATE_KEY, initializeState, validateState, recordAnswer, emptyRecord, isUnlearned, parseFeed, upsertWords, restoreBackup, approveDeactivations, validateFeedUrl, matchesSource, shuffleDeck } from './core.js';
 import { createReviewUI } from './review-ui.js';
 
 const $ = id => document.getElementById(id);
@@ -80,7 +80,11 @@ function start() {
   $('start-number').value = String(first);
   if ($('end-number').value) $('end-number').value = String(last);
   const selected = total ? activeWords.slice(first - 1, last) : [];
-  deck = selected.filter(word => $('mode').value !== 'missed' || recordFor(word.id).wrongCount > 0).map(word => word.id);
+  deck = selected.filter(word => {
+    const record = recordFor(word.id);
+    return ($('mode').value !== 'missed' || record.wrongCount > 0) &&
+      ($('mode').value !== 'unlearned' || isUnlearned(record));
+  }).map(word => word.id);
   if ($('mode').value === 'weak') deck.sort((a, b) => recordFor(b).wrongCount - recordFor(a).wrongCount);
   else if ($('order').value === 'random') deck = shuffleDeck(deck);
   index = 0; revealed = false; renderCard();

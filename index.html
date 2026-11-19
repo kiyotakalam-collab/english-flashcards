@@ -32,7 +32,7 @@
     <section id="study" class="tab-panel" aria-label="フラッシュカード">
       <div class="study-controls">
         <label class="select-wrap">登録元 <select id="source-filter" aria-label="学習する単語の登録元"><option value="all">すべて</option><option value="ex">準1級EX</option><option value="reading">長文</option></select></label>
-        <label class="select-wrap">出題対象 <select id="mode"><option value="all">すべての単語</option><option value="missed">誤答経験のある単語</option><option value="weak">累積誤答が多い順</option></select></label>
+        <label class="select-wrap">出題対象 <select id="mode"><option value="all">すべての単語</option><option value="unlearned">未学習のみ</option><option value="missed">誤答経験のある単語</option><option value="weak">累積誤答が多い順</option></select></label>
         <label class="select-wrap">出題順 <select id="order" aria-label="範囲内の出題順"><option value="number">No.順</option><option value="random">ランダム（重複なし）</option></select></label>
         <fieldset class="range-picker"><legend>出題番号</legend><label>開始<input id="start-number" type="number" inputmode="numeric" min="1" value="1" aria-label="開始番号"></label><span aria-hidden="true">〜</span><label>終了<input id="end-number" type="number" inputmode="numeric" min="1" placeholder="最後" aria-label="終了番号"></label></fieldset>
         <button id="restart" class="range-start">この範囲で開始 ↻</button>
