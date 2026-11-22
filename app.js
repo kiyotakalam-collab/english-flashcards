@@ -1,8 +1,9 @@
 import { STATE_KEY, initializeState, validateState, recordAnswer, emptyRecord, isUnlearned, parseFeed, upsertWords, restoreBackup, approveDeactivations, validateFeedUrl, matchesSource, shuffleDeck } from './core.js';
 import { createReviewUI } from './review-ui.js';
+import { createListeningUI } from './listening-ui.js';
 
 const $ = id => document.getElementById(id);
-let reviewUI, targetedSession = null;
+let reviewUI, listeningUI, targetedSession = null;
 let state, deck = [], index = 0, revealed = false, grading = false;
 let sessionMistakes = new Set(), retryingMistakes = false;
 let activeNumberById = new Map();
@@ -40,6 +41,7 @@ function renderSummary() {
   $('wrong-count').textContent = total.wrong.toLocaleString();
   $('accuracy').textContent = total.correct + total.wrong ? (100 * total.correct / (total.correct + total.wrong)).toFixed(1) : '—';
   updateRangeLimits();
+  listeningUI?.refresh();
 }
 function updateRangeLimits() {
   if (!state) return;
@@ -372,6 +374,7 @@ async function boot() {
     $('feed-url').value = state.settings.feedUrl;
     reviewUI = createReviewUI({ getState: () => state, startSession: startTargetedSession });
     bindEvents(); updateOrderControl(); renderSummary(); renderSettings(); reviewUI?.render(); start();
+    listeningUI = createListeningUI({ getState: () => state });
     void setupOffline(); void sync();
   } catch (error) {
     $('fatal').textContent = `起動できませんでした：${error.message} 保存データは削除していません。元のJSONバックアップを保管し、保存設定とデータ形式を確認してください。`;

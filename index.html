@@ -10,6 +10,7 @@
   <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icons/icon-192.png">
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./listening.css">
   <script type="module" src="./app.js"></script>
 </head>
 <body>
@@ -28,7 +29,7 @@
       <div><span class="stat-label">累積誤答</span><p><strong id="wrong-count">—</strong><span>回</span></p></div>
       <div><span class="stat-label">正答率</span><p><strong id="accuracy">—</strong><span id="accuracy-unit">%</span></p></div>
     </section>
-    <nav class="tabs" aria-label="メインメニュー"><button class="tab active" data-panel="study" aria-current="page">学習する</button><button class="tab" data-panel="review">復習・定着度</button><button class="tab" data-panel="history">単語と記録</button><button class="tab" data-panel="settings">同期・設定</button></nav>
+    <nav class="tabs" aria-label="メインメニュー"><button class="tab active" data-panel="study" aria-current="page">学習する</button><button class="tab" data-panel="listening">聞き流し</button><button class="tab" data-panel="review">復習・定着度</button><button class="tab" data-panel="history">単語と記録</button><button class="tab" data-panel="settings">同期・設定</button></nav>
     <section id="study" class="tab-panel" aria-label="フラッシュカード">
       <div class="study-controls">
         <label class="select-wrap">登録元 <select id="source-filter" aria-label="学習する単語の登録元"><option value="all">すべて</option><option value="ex">準1級EX</option><option value="reading">長文</option></select></label>
@@ -45,6 +46,35 @@
       <div class="answer-actions"><button id="wrong" class="answer wrong" disabled><span aria-hidden="true">×</span> 間違えた</button><button id="correct" class="answer correct" disabled><span aria-hidden="true">○</span> 覚えていた</button></div>
       <div class="study-bottom"><span>正解しても、累積誤答回数は残ります。</span><button id="skip" class="text-button" disabled>スキップ →</button></div>
       <div id="session-done" class="session-done" hidden><strong>学習結果</strong><p id="session-done-text">今回のテストは終了しました。</p><button id="retry-mistakes" class="primary" hidden>今回間違えた単語だけ復習する</button><button id="again" class="primary">もう一度学習する</button></div>
+    </section>
+    <section id="listening" class="tab-panel" aria-label="単語の音声聞き流し" hidden>
+      <section class="settings-card listening-card">
+        <p class="eyebrow">LISTEN, LITTLE BY LITTLE.</p><h2>英語のあとに、日本語訳。</h2>
+        <p class="quiet">聞きたい範囲を選び、耳から復習。聞き流しでは正答・誤答や復習予定を記録しません。</p>
+        <form id="listening-form">
+          <div class="listening-settings">
+            <label>登録元<select id="listen-source"><option value="all">すべて</option><option value="ex">準1級EX</option><option value="reading">長文</option></select></label>
+            <label>再生対象<select id="listen-mode"><option value="all">すべての単語</option><option value="unlearned">未学習のみ</option><option value="missed">誤答経験のある単語</option></select></label>
+            <label>開始番号<input id="listen-start" type="number" inputmode="numeric" min="1" value="1" required></label>
+            <label>終了番号<input id="listen-end" type="number" inputmode="numeric" min="1" placeholder="最後まで"></label>
+            <label>読み上げ速度<select id="listen-rate"><option value="0.75">ゆっくり（0.75倍）</option><option value="1" selected>標準（1倍）</option><option value="1.25">1.25倍</option><option value="1.5">1.5倍</option></select></label>
+            <label>英語 → 訳の間隔<select id="listen-translation-delay"><option value="500">0.5秒</option><option value="1000" selected>1秒</option><option value="2000">2秒</option><option value="3000">3秒</option></select></label>
+            <label>次の単語までの間隔<select id="listen-word-delay"><option value="500">0.5秒</option><option value="1000">1秒</option><option value="1500" selected>1.5秒</option><option value="3000">3秒</option><option value="5000">5秒</option></select></label>
+            <label>英語の音声<select id="listen-en-voice"><option value="">端末のおすすめ</option></select></label>
+            <label>日本語の音声<select id="listen-ja-voice"><option value="">端末のおすすめ</option></select></label>
+          </div>
+          <p id="listen-range-help" class="field-help"></p>
+          <label class="checkbox"><input id="listen-loop" type="checkbox">選んだ範囲をくり返す</label>
+          <label class="checkbox"><input id="listen-awake" type="checkbox" checked>再生中の自動消灯を防ぐ（対応端末）</label>
+          <button id="listen-play" class="primary" type="submit">この範囲を再生</button>
+        </form>
+      </section>
+      <section class="settings-card listening-now" aria-label="聞き流しプレーヤー">
+        <p id="listen-progress" class="quiet"></p><h3 id="listen-word">英語 → 日本語訳</h3><p id="listen-meaning">範囲を選んで再生してください。</p>
+        <p id="listen-status" class="notice" role="status">再生待ち</p>
+        <div class="listening-actions"><button id="listen-prev" type="button" disabled>前の単語</button><button id="listen-pause" type="button" disabled>一時停止</button><button id="listen-next" type="button" disabled>次の単語</button><button id="listen-stop" type="button" disabled>停止</button></div>
+      </section>
+      <p class="quiet">端末の英語・日本語の読み上げ音声を使います。音声によっては通信が必要です。画面を開いた状態で利用してください。画面オフや他のアプリへの切り替え時は一時停止し、戻って「再開」で続けられます。</p>
     </section>
     <section id="review" class="tab-panel" aria-label="復習カレンダーと定着度" hidden>
       <div class="review-heading"><div><p class="eyebrow">YOUR NEXT SMALL STEP</p><h2>復習の予定と、ことばの育ち。</h2></div><label class="select-wrap">登録元<select id="review-source" aria-label="復習の登録元"><option value="all">すべて</option><option value="ex">準1級EX</option><option value="reading">長文</option></select></label></div>
