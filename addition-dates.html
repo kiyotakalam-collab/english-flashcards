@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<meta name="theme-color" content="#245c4b"><title>単語の追加日を整理</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#293c35;background:#f6f5f0}*{box-sizing:border-box}body{margin:0;padding:24px;min-height:100vh;display:grid;place-items:center}.card{width:min(100%,540px);padding:28px;background:#fffefa;border:1px solid #dedfd6;border-radius:16px}h1{font-size:24px;line-height:1.5}p{font-size:14px;line-height:1.9;overflow-wrap:anywhere}button,a.action{display:block;width:100%;margin:14px 0;padding:15px;border:1px solid #245c4b;border-radius:9px;background:#245c4b;color:white;font:600 15px sans-serif;text-align:center;text-decoration:none;min-height:48px;cursor:pointer}button.secondary{background:transparent;color:#245c4b}button:disabled{opacity:.4;cursor:default}#status{padding:14px;background:#edf2e8;border-radius:8px}#status.error{background:#fff0e9;color:#9a422f}.quiet{color:#68766c;font-size:12px}button:focus-visible,a:focus-visible{outline:3px solid #b38c45;outline-offset:3px}
+</style>
+</head>
+<body><main class="card">
+<h1>単語の追加日を<br>11月1日にそろえる</h1>
+<p><strong>2026年11月23日追加分の記録は残し、それ以前と追加日不明の単語を2026年11月1日にそろえます。</strong>後日追加した単語の日付も残します。</p>
+<p>非表示の単語も含めて整理します。単語・訳・番号順・正答・誤答・復習予定は変更しません。</p>
+<p id="preview">この端末の単語を確認しています…</p>
+<button id="apply" disabled>11月1日にそろえる</button>
+<button id="undo" class="secondary" disabled>今回の追加日の整理を元に戻す</button>
+<p id="status" role="status" aria-live="polite">準備中…</p>
+<a class="action" href="./index.html">単語画面へ戻る</a>
+<p class="quiet">このページを開くだけでは変更しません。操作はこのChrome内の単語データだけに適用します。追加日の元の値はこの端末に退避し、元に戻すときもその後の学習履歴は残します。表示が古い場合は<a href="./refresh.html">履歴を保って最新版に更新</a>できます。</p>
+</main>
+<script type="module">
+import { WORD_STORAGE_KEY, readWordState, previewDateRepair, applyDateRepair, undoDateRepair, hasDateUndo } from './addition-dates.js';
+const apply=document.getElementById('apply'),undo=document.getElementById('undo'),status=document.getElementById('status');let busy=false;
+function message(text,error=false){status.textContent=text;status.classList.toggle('error',error);}
+function refresh(){
+  try{const p=previewDateRepair(readWordState(localStorage));document.getElementById('preview').textContent=`全${p.total}語のうち、変更対象は${p.changes.length}語です。11月23日以降の${p.preserved}語はそのまま残します。`;apply.disabled=busy||!p.changes.length;undo.disabled=busy||!hasDateUndo(localStorage);return p;}
+  catch(error){apply.disabled=undo.disabled=true;message(error.message,true);return null;}
+}
+async function run(operation){
+  if(busy)return;busy=true;apply.disabled=undo.disabled=true;
+  try{const execute=()=>operation();const result=navigator.locks?await navigator.locks.request(WORD_STORAGE_KEY,execute):execute();refresh();message(result);}
+  catch(error){message(`変更できませんでした：${error.message}`,true);}
+  finally{busy=false;refresh();}
+}
+apply.onclick=()=>run(()=>{const result=applyDateRepair(localStorage);return `${result.changes.length}語の追加日を2026年11月1日にそろえました。11月23日以降の追加日と学習履歴はそのままです。`;});
+undo.onclick=()=>run(()=>`${undoDateRepair(localStorage)}語の追加日を元に戻しました。その後の学習履歴は維持しています。`);
+window.addEventListener('storage',event=>{if(event.key===WORD_STORAGE_KEY&&!busy)refresh();});
+const initial=refresh();if(initial)message(initial.changes.length?'確認できました。上のボタンを1回押すと適用します。':'整理済みです。変更が必要な単語はありません。');
+</script></body></html>
