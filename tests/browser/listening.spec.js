@@ -78,6 +78,20 @@ test('late-arriving voices populate controls and missing Japanese voice reports 
   await page.locator('#listen-ja-voice').selectOption('new-ja'); await page.locator('#listen-end').fill('1');
   await page.locator('#listen-play').click(); await expect(page.locator('#listen-status')).toContainText('英語を読み上げ');
 });
+test('today-only listening uses recorded additions and leaves all learning data intact', async ({ page }) => {
+  await page.clock.setFixedTime(new Date('2026-11-22T15:10:00Z')); await open(page);
+  await page.evaluate(async key => {
+    const C = await import('./core.js'); let s = JSON.parse(localStorage.getItem(key));
+    s = C.upsertWords(s, [{ id: 'old-read', word: 'old-read', meaning: '前日', sources: 'reading' }], '2026-11-22T14:00:00Z').state;
+    s = C.upsertWords(s, [{ id: 'new-read', word: 'new-read', meaning: '今日', sources: 'reading' }], '2026-11-22T15:00:00Z').state;
+    localStorage.setItem(key, JSON.stringify(s));
+  }, key);
+  await page.reload(); await page.locator('[data-panel="listening"]').click(); const before = await saved(page);
+  await page.locator('#listen-source').selectOption('reading'); await page.locator('#listen-end').fill('2'); await page.locator('#listen-mode').selectOption('today');
+  await page.locator('#listen-play').click(); await expect(page.locator('#listen-word')).toHaveText('new-read');
+  await expect(page.locator('#listen-progress')).toContainText('No.2 · 1 / 1');
+  await page.locator('#listen-stop').click(); expect(await saved(page)).toBe(before);
+});
 test('cached listening modules start offline and retain all saved learning records', async ({ page, context }) => {
   await open(page); await expect(page.locator('#offline-status')).toContainText('準備ができました'); const before = await saved(page);
   await context.setOffline(true); await page.reload(); await page.locator('[data-panel="listening"]').click();

@@ -1,4 +1,4 @@
-import { normalizeSchedule, scheduleAnswer } from './repetition.js';
+import { normalizeSchedule, scheduleAnswer, tokyoDateKey } from './repetition.js';
 
 export const STATE_KEY = 'ex_flashcards_pwa_v2';
 export const LEGACY_KEY = 'study_flashcards_mistakes_v1';
@@ -50,6 +50,32 @@ function activeValue(value) {
   if (value === false || String(value).trim().toLowerCase() === 'false') return false;
   throw new Error('active は TRUE または FALSE にしてください。');
 }
+function addedAt(value) {
+  if (value === undefined || value === null || value === '') return undefined;
+  if (typeof value !== 'string') throw new Error('追加日が不正です。');
+  if (!value.trim()) return undefined;
+  const text = value.trim(), day = text.slice(0, 10);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || !Number.isFinite(Date.parse(day + 'T00:00:00Z')) ||
+      new Date(day + 'T00:00:00Z').toISOString().slice(0, 10) !== day ||
+      (text.length !== 10 && !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2}(?:\.\d{1,3})?)?(?:Z|[+-]\d{2}:\d{2})$/.test(text))) throw new Error('追加日は日付またはタイムゾーン付き日時にしてください。');
+  const date = new Date(text.length === 10 ? text + 'T00:00:00+09:00' : text);
+  if (!Number.isFinite(date.getTime())) throw new Error('追加日が不正です。');
+  return date.toISOString();
+}
+export function isAddedToday(word, now = new Date()) {
+  if (!word?.added_at) return false;
+  try { return tokyoDateKey(word.added_at) === tokyoDateKey(now); } catch { return false; }
+}
+/** Explicit user annotation for historical rows whose addition day was never saved. */
+export function markAddedToday(state, ids, now = new Date().toISOString()) {
+  const targets = new Set(ids), known = new Set(state.words.map(word => word.id));
+  if (!targets.size || [...targets].some(id => !known.has(id))) throw new Error('追加日を指定する単語が見つかりません。');
+  const date = addedAt(now instanceof Date ? now.toISOString() : now);
+  if (!date) throw new Error('追加日が不正です。');
+  const next = clone(state);
+  next.words = next.words.map(word => targets.has(word.id) && !word.added_at ? { ...word, added_at: date } : word);
+  return next;
+}
 export function validateWords(rows) {
   if (!Array.isArray(rows) || !rows.length || rows.length > 50000) throw new Error('単語データは1〜50,000件の配列が必要です。');
   const ids = new Map(), names = new Map();
@@ -59,6 +85,8 @@ export function validateWords(rows) {
       id: required(row.id, 'id'), word: required(row.word, 'word'), meaning: required(row.meaning, 'meaning'),
       range: String(row.range ?? '').trim(), active: activeValue(row.active), updated_at: String(row.updated_at ?? '').trim(), sources: normalizeSources(row.sources)
     };
+    const date = addedAt(row.added_at);
+    if (date) word.added_at = date;
     const previous = ids.get(word.id), normalized = normalizeWord(word.word);
     if (previous && JSON.stringify(previous) !== JSON.stringify(word)) throw new Error(`id が重複しています: ${word.id}`);
     if (names.has(normalized) && names.get(normalized) !== word.id) throw new Error(`同じ単語に異なるidがあります: ${word.word}`);
@@ -169,8 +197,10 @@ export function recordAnswer(state, id, correct, now = new Date().toISOString())
   record.answerHistory = validateAnswerHistory(record.answerHistory);
   return next;
 }
-export function upsertWords(state, incoming) {
+export function upsertWords(state, incoming, now = new Date().toISOString()) {
   incoming = validateWords(incoming);
+  const date = addedAt(now instanceof Date ? now.toISOString() : now);
+  if (!date) throw new Error('追加日が不正です。');
   const next = clone(state), ids = new Map(next.words.map(word => [word.id, word]));
   const names = new Map(next.words.map(word => [normalizeWord(word.word), word.id]));
   // Resolve by id only. A new id for an existing spelling is a source error,
@@ -191,9 +221,10 @@ export function upsertWords(state, incoming) {
       if (!word.active && old.active) pending.add(word.id);
       else pending.delete(word.id);
       const replacement = { ...word, sources: mergeSources(old.sources, word.sources), active: word.active ? true : old.active };
+      if (old.added_at) replacement.added_at = old.added_at;
       if (JSON.stringify(old) !== JSON.stringify(replacement)) updated++;
       next.words[next.words.findIndex(row => row.id === word.id)] = replacement;
-    } else { next.words.push(word); added++; }
+    } else { next.words.push({ ...word, added_at: word.added_at || date }); added++; }
   }
   next.settings.pendingDeactivations = [...pending];
   return { state: next, added, updated };
@@ -258,7 +289,10 @@ export function restoreBackup(state, data) {
     // a corrected translation, spelling, activation or synchronization settings.
     for (const word of backup.words) {
       const existing = next.words.find(row => row.id === word.id);
-      if (existing) existing.sources = mergeSources(existing.sources, word.sources);
+      if (existing) {
+        existing.sources = mergeSources(existing.sources, word.sources);
+        if (!existing.added_at && word.added_at) existing.added_at = word.added_at;
+      }
       else next.words.push(word);
     }
     validateWords(next.words);

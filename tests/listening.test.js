@@ -39,6 +39,14 @@ test('source-relative range, filters and stable No. are read-only and do not inc
   for (const range of [{ start: 0 }, { start: 2, end: 1 }, { end: 9 }, { start: 1.5 }, { start: 'bad' }]) assert.throws(() => createListeningDeck(state, range));
   assert.equal(JSON.stringify(state), before);
 });
+test('listening today-only uses addition day and retains source No. without including edits', () => {
+  const state = { words: [{ id: 'old', word: 'old', meaning: '旧', active: true, sources: 'reading', updated_at: '2026-11-23' },
+    { id: 'new', word: 'new', meaning: '新', active: true, sources: 'reading', added_at: '2026-11-22T15:00:00Z' }], records: [] };
+  const before = JSON.stringify(state);
+  assert.deepEqual(createListeningDeck(state, { source: 'reading', mode: 'today', start: 1, end: 2, now: '2026-11-23T00:00:00Z' }).map(w => [w.id, w.number]), [['new', 2]]);
+  assert.deepEqual(createListeningDeck(state, { mode: 'today', now: '2026-11-23T15:00:00Z' }), []);
+  assert.equal(JSON.stringify(state), before);
+});
 test('speaks English then Japanese with separate gaps and ends at the last selected word', () => {
   const f = fixture(); f.start({ rate: 1.25 });
   assert.equal(f.spoken[0].text, 'observe'); assert.equal(f.spoken[0].lang, 'en-US'); assert.equal(f.spoken[0].rate, 1.25);

@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { STATE_KEY, LEGACY_KEY, createState, initializeState, recordAnswer, emptyRecord, isUnlearned, upsertWords, parseFeed, parseCSV, restoreBackup, validateState, validateFeedUrl, approveDeactivations, normalizeSources, mergeSources, matchesSource, shuffleDeck } from '../core.js';
+import { STATE_KEY, LEGACY_KEY, createState, initializeState, recordAnswer, emptyRecord, isUnlearned, isAddedToday, markAddedToday, upsertWords, parseFeed, parseCSV, restoreBackup, validateState, validateFeedUrl, approveDeactivations, normalizeSources, mergeSources, matchesSource, shuffleDeck } from '../core.js';
 
 const initial = JSON.parse(readFileSync(new URL('../initial_words.json', import.meta.url)));
 const memory = entries => {
@@ -9,6 +9,53 @@ const memory = entries => {
   return { getItem: key => map.get(key) ?? null, setItem: (key, value) => map.set(key, value) };
 };
 const grade = (state, correct) => recordAnswer(state, 'clumsy', correct);
+test('addition day is stamped only on new IDs; edits and repeated synchronization never reset it', () => {
+  const beforeMidnight = '2026-11-22T14:59:59Z', afterMidnight = '2026-11-22T15:00:00Z';
+  const base = grade(createState(initial), false), records = JSON.stringify(base.records);
+  const a = { id: 'added-a', word: 'added-a', meaning: '昨日追加' }, b = { id: 'added-b', word: 'added-b', meaning: '今日追加', updated_at: '2000-01-01' };
+  let s = upsertWords(base, [a], beforeMidnight).state;
+  const feed = [{ ...initial[0], meaning: '今日修正しただけ', updated_at: afterMidnight }, { ...a, meaning: '今日修正' }, b];
+  s = upsertWords(s, feed, afterMidnight).state;
+  assert.equal(isAddedToday(s.words.find(w => w.id === a.id), afterMidnight), false);
+  assert.equal(isAddedToday(s.words.find(w => w.id === b.id), afterMidnight), true);
+  assert.equal(isAddedToday(s.words[0], afterMidnight), false);
+  assert.equal(s.words.find(w => w.id === a.id).added_at, '2026-11-22T14:59:59.000Z');
+  const repeated = upsertWords(s, feed, '2026-11-23T15:00:00Z');
+  assert.equal(repeated.added, 0); assert.equal(repeated.updated, 0); assert.deepEqual(repeated.state, s);
+  assert.equal(JSON.stringify(s.records), records); assert.equal(base.words.length, 308);
+});
+test('addition day uses Tokyo midnight, validates metadata and never infers old dates from updated_at', () => {
+  const word = { id: 'dated', word: 'dated', meaning: '日付', added_at: '2026-11-23' };
+  const normalized = validateState(upsertWords(createState(initial), [word]).state).words.at(-1);
+  assert.equal(normalized.added_at, '2026-11-22T15:00:00.000Z');
+  assert.equal(isAddedToday(normalized, '2026-11-22T14:59:59Z'), false);
+  assert.equal(isAddedToday(normalized, '2026-11-22T15:00:00Z'), true);
+  assert.equal(isAddedToday(normalized, '2026-11-23T14:59:59Z'), true);
+  assert.equal(isAddedToday(normalized, '2026-11-23T15:00:00Z'), false);
+  assert.equal(isAddedToday({ updated_at: '2026-11-23T00:00:00+09:00' }, '2026-11-23'), false);
+  const s = createState(initial), before = JSON.stringify(s);
+  for (const added_at of ['2026-02-30', '2026-13-01', '2026-11-23T12:00:00', 'bad', 123]) assert.throws(() => upsertWords(s, [{ ...word, added_at }]));
+  assert.equal(JSON.stringify(s), before);
+  const loaded = initializeState(memory({ [STATE_KEY]: JSON.stringify({ ...s, legacyMigrated: true }) }), initial);
+  assert.ok(loaded.words.every(w => w.added_at === undefined));
+});
+test('addition metadata survives backups; old backups preserve known dates and remain unknown when missing', () => {
+  let s = upsertWords(createState(initial), [{ id: 'dated', word: 'dated', meaning: '新語' }], '2026-11-22T15:00:00Z').state;
+  s = recordAnswer(s, 'dated', false);
+  const restored = restoreBackup(createState(initial), JSON.parse(JSON.stringify(s)));
+  assert.equal(restored.words.at(-1).added_at, '2026-11-22T15:00:00.000Z'); assert.equal(restored.records[0].wrongCount, 1);
+  const old = JSON.parse(JSON.stringify(s)); delete old.words.at(-1).added_at;
+  assert.equal(restoreBackup(restored, old).words.at(-1).added_at, restored.words.at(-1).added_at);
+  const unknown = restoreBackup(createState(initial), old); assert.equal(unknown.words.at(-1).added_at, undefined);
+  assert.deepEqual(restoreBackup(restored, s), restored);
+});
+test('explicit range annotation fills unknown dates only, without altering order, old dates or study history', () => {
+  const s = grade(createState(initial), false); s.words[1].added_at = '2026-01-01T00:00:00.000Z';
+  const before = JSON.stringify(s), updated = markAddedToday(s, [s.words[0].id, s.words[1].id], '2026-11-22T15:00:00Z');
+  assert.equal(updated.words[0].added_at, '2026-11-22T15:00:00.000Z'); assert.equal(updated.words[1].added_at, s.words[1].added_at);
+  assert.deepEqual(updated.records, s.records); assert.deepEqual(updated.words.map(w => w.id), s.words.map(w => w.id));
+  assert.equal(JSON.stringify(s), before); assert.throws(() => markAddedToday(s, ['missing']));
+});
 test('unlearned vocabulary respects old counters and saved history without changing any record', () => {
   assert.equal(isUnlearned(undefined), true);
   assert.equal(isUnlearned(emptyRecord('placeholder')), true);

@@ -1,8 +1,8 @@
-import { isUnlearned, matchesSource } from './core.js';
+import { isUnlearned, isAddedToday, matchesSource } from './core.js';
 
 /** Take a read-only snapshot, retaining the No. of the selected source. */
-export function createListeningDeck(state, { source = 'all', mode = 'all', start = 1, end = '' } = {}) {
-  if (!['all', 'ex', 'reading'].includes(source) || !['all', 'unlearned', 'missed'].includes(mode)) throw Error('聞き流しの条件が不正です。');
+export function createListeningDeck(state, { source = 'all', mode = 'all', start = 1, end = '', now = new Date() } = {}) {
+  if (!['all', 'ex', 'reading'].includes(source) || !['all', 'today', 'unlearned', 'missed'].includes(mode)) throw Error('聞き流しの条件が不正です。');
   const words = state.words.filter(word => word.active && matchesSource(word, source));
   if (!words.length) return [];
   const first = Number(start), last = String(end).trim() ? Number(end) : words.length;
@@ -10,10 +10,11 @@ export function createListeningDeck(state, { source = 'all', mode = 'all', start
     throw Error(`開始・終了番号を1〜${words.length}の範囲で指定してください。終了は開始以上にしてください。`);
   }
   const records = new Map(state.records.map(record => [record.wordId, record]));
-  return words.map((word, index) => ({ id: word.id, word: word.word, meaning: word.meaning, number: index + 1 }))
+  return words.map((word, index) => ({ id: word.id, word: word.word, meaning: word.meaning, number: index + 1, added_at: word.added_at }))
     .slice(first - 1, last).filter(word => {
       const record = records.get(word.id);
-      return (mode !== 'unlearned' || isUnlearned(record)) && (mode !== 'missed' || record?.wrongCount > 0);
+      return (mode !== 'unlearned' || isUnlearned(record)) && (mode !== 'missed' || record?.wrongCount > 0) &&
+        (mode !== 'today' || isAddedToday(word, now));
     });
 }
 

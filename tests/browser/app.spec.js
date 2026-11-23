@@ -60,6 +60,62 @@ test('starts from a chosen number and stops at the optional ending number', asyn
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
+test('today-only vocabulary tracks new syncs in Japan time without treating edits as additions', async ({ page }) => {
+  await page.clock.setFixedTime(new Date('2026-11-22T15:05:00Z'));
+  await open(page); await page.locator('#card').click(); await page.locator('#wrong').click();
+  const before = await saved(page);
+  const feed = [{ ...before.words[0], meaning: '今日修正しただけ', updated_at: '2026-11-23T00:05:00+09:00' },
+    { id: 'today-a', word: 'today-a', meaning: '今日A', sources: 'reading' }, { id: 'today-b', word: 'today-b', meaning: '今日B', sources: 'reading' }];
+  await setupSync(page, feed);
+  await page.getByRole('button', { name: '学習する', exact: true }).click();
+  await page.locator('#mode').selectOption({ label: '今日追加した単語のみ' });
+  await expect(page.locator('#front')).toHaveText('today-a'); await expect(page.locator('#progress')).toContainText('No.309 · 01 / 2');
+  expect((await saved(page)).records).toEqual(before.records);
+  await page.locator('#start-number').fill('309'); await page.locator('#end-number').fill('310');
+  await page.evaluate(() => { Math.random = () => 0; }); await page.locator('#order').selectOption('random');
+  await expect(page.locator('#front')).toHaveText('today-b');
+  await page.locator('#card').click(); await page.locator('#correct').click(); await expect(page.locator('#front')).toHaveText('today-a');
+  await page.locator('#skip').click(); await expect(page.locator('#session-done')).toBeVisible();
+  const afterStudy = await saved(page); expect(afterStudy.records.find(r => r.wordId === 'clumsy')).toEqual(before.records[0]);
+  const date = afterStudy.words.find(w => w.id === 'today-a').added_at;
+  await settings(page); await page.locator('#sync-now').click(); await expect(page.locator('#sync-now')).toBeEnabled();
+  expect((await saved(page)).words.find(w => w.id === 'today-a').added_at).toBe(date);
+  await page.reload(); await expect(page.locator('#word-count')).toHaveText('310');
+  await page.getByRole('button', { name: '学習する', exact: true }).click(); await page.locator('#mode').selectOption('today');
+  await expect(page.locator('#progress')).toContainText('01 / 2');
+  await page.clock.setFixedTime(new Date('2026-11-23T15:05:00Z'));
+  await settings(page); await page.locator('#sync-now').click(); await expect(page.locator('#sync-now')).toBeEnabled();
+  await page.getByRole('button', { name: '学習する', exact: true }).click(); await page.locator('#restart').click();
+  await expect(page.locator('#front')).toHaveText('対象の単語はありません');
+  expect((await saved(page)).words.find(w => w.id === 'today-a').added_at).toBe(date);
+});
+
+test('previously added undated words can be explicitly assigned to today by range without overwriting history', async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 851 });
+  await page.clock.setFixedTime(new Date('2026-11-22T15:10:00Z')); await open(page);
+  await page.evaluate(async key => {
+    const C = await import('./core.js'); let s = JSON.parse(localStorage.getItem(key));
+    const extra = C.validateWords([{ id: 'undated', word: 'undated', meaning: '追加日不明' },
+      { id: 'past-date', word: 'past-date', meaning: '以前の追加', added_at: '2026-11-21' }]);
+    s.words.push(...extra); s = C.recordAnswer(s, 'undated', false); localStorage.setItem(key, JSON.stringify(s));
+  }, key);
+  await page.reload(); await expect(page.locator('#word-count')).toHaveText('310'); const before = await saved(page);
+  await page.locator('#mode').selectOption('today'); await expect(page.locator('#front')).toHaveText('対象の単語はありません');
+  await page.locator('#today-date-tools summary').click(); await page.locator('#mark-added-today').click();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await expect(page.locator('#notice')).toContainText('終了番号は空欄にしない'); expect((await saved(page)).records).toEqual(before.records);
+  await page.locator('#start-number').fill('309'); await page.locator('#end-number').fill('310');
+  page.once('dialog', dialog => dialog.dismiss()); await page.locator('#mark-added-today').click();
+  expect((await saved(page)).words).toEqual(before.words);
+  page.once('dialog', dialog => dialog.accept()); await page.locator('#mark-added-today').click();
+  await expect(page.locator('#front')).toHaveText('undated'); await expect(page.locator('#progress')).toContainText('No.309 · 01 / 1');
+  const after = await saved(page); expect(after.records).toEqual(before.records);
+  expect(after.words.find(w => w.id === 'past-date').added_at).toBe(before.words.find(w => w.id === 'past-date').added_at);
+  await page.reload(); await expect(page.locator('#word-count')).toHaveText('310'); await page.locator('#mode').selectOption('today');
+  await expect(page.locator('#front')).toHaveText('undated');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
 test('unlearned vocabulary excludes correct and legacy wrong records, keeps skips new and stops when exhausted', async ({ page }) => {
   await open(page);
   await page.evaluate(async key => {

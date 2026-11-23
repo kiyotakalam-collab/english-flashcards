@@ -33,13 +33,15 @@
     <section id="study" class="tab-panel" aria-label="フラッシュカード">
       <div class="study-controls">
         <label class="select-wrap">登録元 <select id="source-filter" aria-label="学習する単語の登録元"><option value="all">すべて</option><option value="ex">準1級EX</option><option value="reading">長文</option></select></label>
-        <label class="select-wrap">出題対象 <select id="mode"><option value="all">すべての単語</option><option value="unlearned">未学習のみ</option><option value="missed">誤答経験のある単語</option><option value="weak">累積誤答が多い順</option></select></label>
+        <label class="select-wrap">出題対象 <select id="mode"><option value="all">すべての単語</option><option value="today">今日追加した単語のみ</option><option value="unlearned">未学習のみ</option><option value="missed">誤答経験のある単語</option><option value="weak">累積誤答が多い順</option></select></label>
         <label class="select-wrap">出題順 <select id="order" aria-label="範囲内の出題順"><option value="number">No.順</option><option value="random">ランダム（重複なし）</option></select></label>
         <fieldset class="range-picker"><legend>出題番号</legend><label>開始<input id="start-number" type="number" inputmode="numeric" min="1" value="1" aria-label="開始番号"></label><span aria-hidden="true">〜</span><label>終了<input id="end-number" type="number" inputmode="numeric" min="1" placeholder="最後" aria-label="終了番号"></label></fieldset>
         <button id="restart" class="range-start">この範囲で開始 ↻</button>
       </div>
       <p class="range-help" id="range-help">1〜308番から選べます。終了を空欄にすると最後まで出題します。</p>
       <p class="range-help" id="order-help" hidden>「累積誤答が多い順」では苦手語を優先するため、No.順・ランダムの切り替えは利用できません。</p>
+      <p class="range-help" id="today-help" hidden>追加日は日本時間で判定し、選択中の登録元・番号範囲の今日追加分だけが対象です。新しく同期した単語の追加日は自動保存します。追加日が不明な過去の単語は対象外です。</p>
+      <details id="today-date-tools" hidden><summary>すでに今日追加した単語を指定する</summary><p class="quiet">この機能を入れる前の追加日は記録されていません。上の「登録元」と開始・終了番号で今日追加した範囲を選んでください。日付が不明な単語だけに追加日を記録し、正答・誤答や復習予定は変えません。</p><button id="mark-added-today" type="button">この番号範囲を今日の追加分にする</button></details>
       <p id="session-context" class="session-context" role="status" hidden></p>
       <div class="study-meta"><span id="progress">準備しています</span><span id="card-wrong"></span></div>
       <button id="card" class="flashcard" aria-label="意味を表示" aria-expanded="false" disabled><span class="card-label">ENGLISH → JAPANESE</span><span id="front" class="term">読み込み中…</span><span id="meaning" class="meaning" hidden></span><span id="card-source" class="source-tag" aria-label="登録元"></span><span id="card-hint" class="card-hint">タップして意味を確認</span><span class="card-corner" aria-hidden="true">↗</span></button>
@@ -54,7 +56,7 @@
         <form id="listening-form">
           <div class="listening-settings">
             <label>登録元<select id="listen-source"><option value="all">すべて</option><option value="ex">準1級EX</option><option value="reading">長文</option></select></label>
-            <label>再生対象<select id="listen-mode"><option value="all">すべての単語</option><option value="unlearned">未学習のみ</option><option value="missed">誤答経験のある単語</option></select></label>
+            <label>再生対象<select id="listen-mode"><option value="all">すべての単語</option><option value="today">今日追加した単語のみ</option><option value="unlearned">未学習のみ</option><option value="missed">誤答経験のある単語</option></select></label>
             <label>開始番号<input id="listen-start" type="number" inputmode="numeric" min="1" value="1" required></label>
             <label>終了番号<input id="listen-end" type="number" inputmode="numeric" min="1" placeholder="最後まで"></label>
             <label>読み上げ速度<select id="listen-rate"><option value="0.75">ゆっくり（0.75倍）</option><option value="1" selected>標準（1倍）</option><option value="1.25">1.25倍</option><option value="1.5">1.5倍</option></select></label>

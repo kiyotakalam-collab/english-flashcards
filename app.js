@@ -1,4 +1,4 @@
-import { STATE_KEY, initializeState, validateState, recordAnswer, emptyRecord, isUnlearned, parseFeed, upsertWords, restoreBackup, approveDeactivations, validateFeedUrl, matchesSource, shuffleDeck } from './core.js';
+import { STATE_KEY, initializeState, validateState, recordAnswer, emptyRecord, isUnlearned, isAddedToday, markAddedToday, parseFeed, upsertWords, restoreBackup, approveDeactivations, validateFeedUrl, matchesSource, shuffleDeck } from './core.js';
 import { createReviewUI } from './review-ui.js';
 import { createListeningUI } from './listening-ui.js';
 
@@ -54,6 +54,7 @@ function updateOrderControl() {
   const weak = $('mode').value === 'weak';
   $('order').disabled = weak;
   $('order-help').hidden = !weak;
+  $('today-help').hidden = $('today-date-tools').hidden = $('mode').value !== 'today';
 }
 function startTargetedSession(ids, label, source = 'all') {
   sessionMistakes = new Set(); retryingMistakes = false;
@@ -82,10 +83,12 @@ function start() {
   $('start-number').value = String(first);
   if ($('end-number').value) $('end-number').value = String(last);
   const selected = total ? activeWords.slice(first - 1, last) : [];
+  const now = new Date();
   deck = selected.filter(word => {
     const record = recordFor(word.id);
     return ($('mode').value !== 'missed' || record.wrongCount > 0) &&
-      ($('mode').value !== 'unlearned' || isUnlearned(record));
+      ($('mode').value !== 'unlearned' || isUnlearned(record)) &&
+      ($('mode').value !== 'today' || isAddedToday(word, now));
   }).map(word => word.id);
   if ($('mode').value === 'weak') deck.sort((a, b) => recordFor(b).wrongCount - recordFor(a).wrongCount);
   else if ($('order').value === 'random') deck = shuffleDeck(deck);
@@ -251,6 +254,18 @@ function bindEvents() {
   $('card').onclick = () => { if (currentWord()) { revealed = !revealed; renderCard(); } };
   $('wrong').onclick = () => grade(false); $('correct').onclick = () => grade(true);
   $('restart').onclick = start;
+  $('mark-added-today').onclick = async () => {
+    try {
+      const words = state.words.filter(word => word.active && matchesSource(word, $('source-filter').value));
+      const first = Number($('start-number').value), last = Number($('end-number').value);
+      if (!$('end-number').value.trim() || !Number.isInteger(first) || !Number.isInteger(last) || first < 1 || last < first || last > words.length) throw new Error('先に、今日追加した単語の開始番号と終了番号を指定してください。終了番号は空欄にしないでください。');
+      const ids = words.slice(first - 1, last).filter(word => !word.added_at).map(word => word.id);
+      if (!ids.length) { notice('この範囲の追加日はすでに記録されています。変更しませんでした。'); return; }
+      if (!confirm(`No.${first}〜${last}のうち、追加日が不明な${ids.length}語を今日の追加分として記録します。すでに追加日がある単語と学習履歴は変更しません。よろしいですか？`)) return;
+      await transact(latest => markAddedToday(latest, ids));
+      start(); notice(`${ids.length}語の追加日を今日として記録しました。学習履歴はそのままです。`);
+    } catch (error) { notice(error.message, true); }
+  };
   $('retry-mistakes').onclick = startMistakeRetry;
   $('again').onclick = () => targetedSession ? startTargetedSession(targetedSession.ids, targetedSession.label, targetedSession.source) : start();
   $('mode').onchange = () => { updateOrderControl(); start(); };
