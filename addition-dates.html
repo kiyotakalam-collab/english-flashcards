@@ -9,9 +9,10 @@
 </head>
 <body><main class="card">
 <h1>単語の追加日を<br>11月1日にそろえる</h1>
-<p><strong>2026年11月23日追加分の記録は残し、それ以前と追加日不明の単語を2026年11月1日にそろえます。</strong>後日追加した単語の日付も残します。</p>
+<p><strong>2026年11月23日追加分の記録は残し、それ以前の日付が記録された単語を2026年11月1日にそろえます。追加日不明の単語は変更しません。</strong>後日追加した単語の日付も残します。</p>
 <p>非表示の単語も含めて整理します。単語・訳・番号順・正答・誤答・復習予定は変更しません。</p>
 <p id="preview">この端末の単語を確認しています…</p>
+<p><a href="./addition-date-recovery.html">今日追加した単語も11/1になった場合はこちらで修復</a></p>
 <button id="apply" disabled>11月1日にそろえる</button>
 <button id="undo" class="secondary" disabled>今回の追加日の整理を元に戻す</button>
 <p id="status" role="status" aria-live="polite">準備中…</p>
@@ -23,7 +24,7 @@ import { WORD_STORAGE_KEY, readWordState, previewDateRepair, applyDateRepair, un
 const apply=document.getElementById('apply'),undo=document.getElementById('undo'),status=document.getElementById('status');let busy=false;
 function message(text,error=false){status.textContent=text;status.classList.toggle('error',error);}
 function refresh(){
-  try{const p=previewDateRepair(readWordState(localStorage));document.getElementById('preview').textContent=`全${p.total}語のうち、変更対象は${p.changes.length}語です。11月23日以降の${p.preserved}語はそのまま残します。`;apply.disabled=busy||!p.changes.length;undo.disabled=busy||!hasDateUndo(localStorage);return p;}
+  try{const p=previewDateRepair(readWordState(localStorage));document.getElementById('preview').textContent=`全${p.total}語のうち、変更対象は${p.changes.length}語です。11月23日以降の${p.preserved}語と、追加日不明の${p.unknown}語はそのまま残します。`;apply.disabled=busy||!p.changes.length;undo.disabled=busy||!hasDateUndo(localStorage);return p;}
   catch(error){apply.disabled=undo.disabled=true;message(error.message,true);return null;}
 }
 async function run(operation){

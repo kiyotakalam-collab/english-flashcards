@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<meta name="theme-color" content="#245c4b"><title>今日追加した単語の日付を修復</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#293c35;background:#f6f5f0}*{box-sizing:border-box}body{margin:0;padding:18px}.card{max-width:620px;margin:auto;padding:22px;background:#fffefa;border:1px solid #dedfd6;border-radius:16px}h1{font-size:24px;line-height:1.5}p,label{font-size:14px;line-height:1.8}button,input,select{font:inherit}button{display:block;width:100%;margin:12px 0;padding:14px;border:1px solid #245c4b;border-radius:9px;background:#245c4b;color:white;min-height:48px;cursor:pointer}button.secondary{background:transparent;color:#245c4b}button:disabled{opacity:.4;cursor:default}input:not([type=checkbox]),select{width:100%;min-width:0;padding:12px;border:1px solid #b8c6bd;border-radius:8px;background:white;color:#293c35}input[type=checkbox]{width:24px;height:24px;flex-shrink:0}.range{display:flex;gap:12px}.range label{flex:1;min-width:0}#words{max-height:440px;overflow:auto;border:1px solid #dedfd6;border-radius:8px}.word{display:flex;align-items:center;gap:12px;padding:12px;border-bottom:1px solid #eee;overflow-wrap:anywhere}.word span{min-width:0}.word small{display:block;color:#68766c}#status{padding:14px;background:#edf2e8;border-radius:8px;overflow-wrap:anywhere}.error{color:#9a422f}.quiet{color:#68766c;font-size:12px}a{color:#245c4b}#chosen{white-space:pre-line;overflow-wrap:anywhere}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #b38c45;outline-offset:2px}
+</style>
+</head>
+<body><main class="card">
+<h1>今日追加した単語の日付を修復</h1>
+<p>11/1になった単語・追加日不明の単語から、<strong>2026年11月23日に追加した単語だけ</strong>を選んでください。選んだ単語の追加日だけを11/23に直します。他の単語・学習履歴・誤答数・復習予定は変えません。</p>
+<p class="quiet">追加日不明のデータから今日の単語を自動で区別することはできません。初めから選択されている単語はありません。すでに11/23以降の日付がある単語は変更しません。</p>
+<label>登録元<select id="source"><option value="all">すべて</option><option value="ex">準1級EX</option><option value="reading">長文</option></select></label>
+<p class="quiet">番号は「単語と記録」の同じ登録元のNo.順に対応します。非表示の単語には番号がありません。検索しても番号は変わりません。</p>
+<div class="range"><label>開始番号<input id="first" type="number" min="1" inputmode="numeric"></label><label>終了番号<input id="last" type="number" min="1" inputmode="numeric"></label></div>
+<button id="select-range" class="secondary" disabled>この番号範囲を選択に追加</button>
+<label>単語・訳で検索<input id="search" type="search" placeholder="単語名でも選べます"></label>
+<p id="count"></p><div id="words" aria-label="日付を修復する単語"></div>
+<p id="chosen" aria-live="polite">選択なし</p>
+<button id="save" disabled>選んだ単語を11/23追加に直す</button>
+<button id="clear" class="secondary" disabled>選択を解除</button>
+<p id="status" role="status">この端末のデータを確認しています…</p>
+<details><summary>日付の変更を元に戻す</summary>
+<button id="undo-correction" class="secondary" disabled>このページで行った日付修復を元に戻す</button>
+<button id="undo-original" class="secondary" disabled>最初の11/1への一括変更を元に戻す</button>
+<p class="quiet">どちらも追加日だけを戻します。後から増えた学習履歴は残ります。</p></details>
+<p><a href="./index.html">単語画面へ戻る</a></p>
+<p class="quiet">いつもアプリを使っているChromeで開いてください。開くだけではデータを変更しません。</p>
+</main>
+<script type="module">
+import { WORD_STORAGE_KEY, readWordState, undoDateRepair, hasDateUndo } from './addition-dates.js';
+import { canCorrect, correctAdditionDates, hasCorrectionUndo, undoCorrection } from './addition-date-recovery.js';
+const $=id=>document.getElementById(id),selected=new Set();let state=null,busy=false;
+function message(text,error=false){$('status').textContent=text;$('status').classList.toggle('error',error);}
+function matches(word){const tags=Array.isArray(word.sources)?word.sources:String(word.sources||'').split('|');return $('source').value==='all'||tags.map(t=>t.trim().toLowerCase()).includes($('source').value);}
+function dateLabel(word){if(!word.added_at)return '追加日不明';const value=word.added_at.length===10?word.added_at+'T00:00:00+09:00':word.added_at;return '追加日 '+new Intl.DateTimeFormat('ja-JP',{timeZone:'Asia/Tokyo',year:'numeric',month:'numeric',day:'numeric'}).format(new Date(value));}
+function updateSelection(){
+  const words=state?.words.filter(w=>selected.has(w.id))||[];
+  $('chosen').textContent=words.length?`選択した${words.length}語：\n${words.map(w=>w.word).join('、')}`:'選択なし';
+  $('save').disabled=busy||!words.length;$('clear').disabled=busy||!words.length;
+}
+function render(){
+  const fragment=document.createDocumentFragment(),numbers=new Map();let number=0;
+  for(const word of state.words)if(word.active&&matches(word))numbers.set(word.id,++number);
+  const query=$('search').value.trim().toLowerCase();let visible=0;
+  for(const word of state.words){
+    if(!matches(word)||!`${word.word} ${word.meaning}`.toLowerCase().includes(query))continue;
+    visible++;const label=document.createElement('label');label.className='word';
+    const checkbox=document.createElement('input');checkbox.type='checkbox';checkbox.dataset.id=word.id;checkbox.checked=selected.has(word.id);checkbox.disabled=busy||!canCorrect(word);
+    checkbox.onchange=()=>{if(checkbox.checked)selected.add(word.id);else selected.delete(word.id);updateSelection();};
+    const text=document.createElement('span'),name=document.createElement('strong'),detail=document.createElement('small');
+    name.textContent=`${numbers.has(word.id)?'No.'+numbers.get(word.id):'非表示'} ${word.word}`;
+    detail.textContent=`${word.meaning} ／ ${dateLabel(word)}${canCorrect(word)?'':'（11/23以降・変更対象外）'}`;
+    text.append(name,detail);label.append(checkbox,text);fragment.append(label);
+  }
+  $('words').replaceChildren(fragment);$('count').textContent=`${visible}語を表示`;$('select-range').disabled=busy;updateSelection();
+}
+function refresh(){
+  try{state=readWordState(localStorage);const eligible=new Set(state.words.filter(canCorrect).map(w=>w.id));for(const id of selected)if(!eligible.has(id))selected.delete(id);render();$('undo-original').disabled=busy||!hasDateUndo(localStorage);$('undo-correction').disabled=busy||!hasCorrectionUndo(localStorage);return true;}
+  catch(error){state=null;for(const id of ['save','select-range','undo-original','undo-correction','clear'])$(id).disabled=true;$('words').replaceChildren();message(error.message,true);return false;}
+}
+async function run(operation){
+  if(busy)return;busy=true;refresh();
+  try{const result=navigator.locks?await navigator.locks.request(WORD_STORAGE_KEY,operation):operation();message(result);}
+  catch(error){message(`変更できませんでした：${error.message}`,true);}
+  finally{busy=false;refresh();}
+}
+$('source').onchange=()=>{if(state)render();};$('search').oninput=()=>{if(state)render();};
+$('select-range').onclick=()=>{
+  if(!state||busy)return;const first=Number($('first').value),last=Number($('last').value),words=state.words.filter(w=>w.active&&matches(w));
+  if(!Number.isInteger(first)||!Number.isInteger(last)||first<1||last<first||last>words.length){message('表示中の登録元の開始番号と終了番号を入力してください。',true);return;}
+  for(const word of words.slice(first-1,last))if(canCorrect(word))selected.add(word.id);render();message('選択した単語を確認して、11/23追加に直すボタンを押してください。');
+};
+$('clear').onclick=()=>{selected.clear();if(state)render();};
+$('save').onclick=()=>{const ids=[...selected];return run(()=>`${correctAdditionDates(localStorage,ids)}語の追加日を2026年11月23日に直しました。学習履歴はそのままです。`);};
+$('undo-original').onclick=()=>run(()=>`${undoDateRepair(localStorage)}語の元の追加日を復元しました。`);
+$('undo-correction').onclick=()=>run(()=>`${undoCorrection(localStorage)}語の日付修復を元に戻しました。`);
+window.addEventListener('storage',event=>{if(!busy&&[WORD_STORAGE_KEY,null].includes(event.key))refresh();});
+if(refresh())message('今日追加した単語を選んでください。まだデータは変更していません。');
+</script></body></html>

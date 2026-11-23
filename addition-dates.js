@@ -26,14 +26,16 @@ function validate(state) {
 }
 export function previewDateRepair(state) {
   validate(state);
-  const changes = []; let preserved = 0;
+  const changes = []; let preserved = 0, unknown = 0;
   for (const word of state.words) {
     const added = day(word.added_at);
+    // Unknown dates may include today's additions. Never infer an old date.
+    if (!added) { unknown++; continue; }
     if (added && added >= KEEP_FROM) { preserved++; continue; }
     if (added === BASE_DAY) continue;
     changes.push({ id: word.id, hadDate: Object.hasOwn(word, 'added_at'), value: word.added_at ?? null });
   }
-  return { changes, preserved, total: state.words.length };
+  return { changes, preserved, unknown, total: state.words.length };
 }
 export function normalizeHistoricalDates(state) {
   const preview = previewDateRepair(state), ids = new Set(preview.changes.map(row => row.id));
