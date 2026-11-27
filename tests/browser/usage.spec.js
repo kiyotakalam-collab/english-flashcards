@@ -6,6 +6,7 @@ async function open(page) { await page.goto('usage.html'); await expect(page.loc
 async function start(page) { await page.locator('#start').click(); await expect(page.locator('#answer-input')).toBeEditable(); }
 async function grade(page, text) { await page.locator('#answer-input').fill(text); await page.locator('#answer-input').press('Enter'); await expect(page.locator('#feedback')).toBeVisible(); }
 async function next(page) { await page.locator('#next').click(); await expect.poll(async () => (await saved(page)).session.phase).not.toBe('feedback'); }
+async function review(page) { await page.locator('#review').click(); await expect.poll(async () => (await saved(page)).session.mode).toBe('review'); await expect(page.locator('#answer-input')).toBeEditable(); }
 
 test('home, vocabulary and writing provide real links to the independent usage mode', async ({ page }) => {
   await page.goto('portal.html');await expect(page.locator('a[href="./usage.html"]')).toBeVisible();await page.locator('a[href="./usage.html"]').click();await expect(page.locator('h1')).toContainText('使える形');
@@ -18,19 +19,19 @@ test('Japanese only before answering; strict preposition grading, cosmetic varia
   await page.reload();await start(page);await expect(page.locator('#question-japanese')).toHaveText('Aが利用できる');
   await expect(page.locator('#exercise')).not.toContainText('be available');await expect(page.locator('#exercise')).not.toContainText('This service');
   await grade(page,'be available for A');await expect(page.locator('.verdict')).toHaveText('不正解');await expect(page.locator('#feedback')).toContainText('be available to A');await expect(page.locator('#feedback')).toContainText('This service is available to students.');
-  await page.locator('#next').press('Enter');await expect(page.locator('#exercise')).toContainText('今回のテスト結果');await page.locator('#review').click();
+  await page.locator('#next').press('Enter');await expect(page.locator('#exercise')).toContainText('今回のテスト結果');await review(page);
   await grade(page,'  BE　AVAILABLE　TO　～.  ');await expect(page.locator('.verdict')).toHaveText('正解');await next(page);await expect(page.locator('#exercise')).toContainText('誤答復習が完了');await expect(page.locator('#wrong-count')).toHaveText('1');
 });
 test('only this test mistakes repeat until correct; older errors never leak into the next review set', async ({ page }) => {
   test.setTimeout(60000);await open(page);await start(page);
   for(let i=0;i<10;i++){const q=question(await saved(page));await grade(page,i<2?'wrong':q.English);await next(page);}
-  await expect(page.locator('#review-summary')).toContainText('10問中 2問に誤答');await page.locator('#review').click();
+  await expect(page.locator('#review-summary')).toContainText('10問中 2問に誤答');await review(page);
   const first=question(await saved(page));await grade(page,'wrong again');await next(page);
   await grade(page,question(await saved(page)).English);await next(page);
   expect(question(await saved(page)).id).toBe(first.id);await expect(page.locator('#review-summary')).toContainText('1問');
   await grade(page,first.English);await next(page);await expect(page.locator('#review')).toBeDisabled();await expect(page.locator('#exercise')).toContainText('誤答復習が完了');await expect(page.locator('#wrong-count')).toHaveText('3');
   await start(page);for(let i=0;i<10;i++){await grade(page,i===0?'wrong':question(await saved(page)).English);await next(page);}
-  await page.locator('#review').click();const s=await saved(page);expect(s.session.queue).toEqual(s.tests[1].wrongIds);expect(s.session.queue).toHaveLength(1);expect(s.tests[0].wrongIds).toHaveLength(2);
+  await review(page);const s=await saved(page);expect(s.session.queue).toEqual(s.tests[1].wrongIds);expect(s.session.queue).toHaveLength(1);expect(s.tests[0].wrongIds).toHaveLength(2);
 });
 test('manager adds and edits original expressions, rejects duplicates including inactive variants, and safely renders text', async ({ page }) => {
   await open(page);await page.locator('[data-page="items"]').click();
