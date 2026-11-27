@@ -125,7 +125,13 @@ function bind() {
   };
   window.addEventListener('storage', event => {
     if (event.key !== Core.STATE_KEY) return;
-    try { state = Core.readState(localStorage); summary(); if (screen !== 'study' || document.activeElement?.id !== 'answer-input') show(screen); }
+    try {
+      const previous = state.session, editing = document.activeElement?.id === 'answer-input';
+      state = Core.readState(localStorage); summary();
+      const changed = previous?.id !== state.session?.id || previous?.index !== state.session?.index || previous?.phase !== state.session?.phase;
+      if (screen !== 'study' || !editing || changed) show(screen);
+      if (editing && changed) notice('別の画面で演習が進みました。最新の問題と保存済みの結果を表示しています。');
+    }
     catch (error) { notice(error.message, true); }
   });
 }

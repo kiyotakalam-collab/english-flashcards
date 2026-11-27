@@ -82,3 +82,10 @@ test('an installed old shell shows the update action before claiming offline rea
   await page.locator('#update-app').click();await expect(page.locator('#offline-status')).toContainText('準備ができました');await expect(page.locator('#answer-input')).toHaveValue('keep my draft');
   await context.setOffline(true);await page.reload();await expect(page.locator('#answer-input')).toHaveValue('keep my draft');
 });
+test('a second tab advancing the session cannot leave an old prompt attached to the next answer', async ({page,context})=>{
+  await open(page);await start(page);const other=await context.newPage();await other.goto('usage.html');await expect(other.locator('#answer-input')).toBeEditable();
+  await page.locator('#answer-input').fill('first question draft');await expect.poll(async()=>(await saved(page)).session.draft).toBe('first question draft');
+  await grade(other,question(await saved(other)).English);await next(other);
+  const q=question(await saved(other));await expect(page.locator('#question-japanese')).toHaveText(q.Japanese);await expect(page.locator('#answer-input')).toHaveValue('');
+  await grade(page,q.English);expect((await saved(page)).attempts).toHaveLength(2);expect((await saved(page)).attempts.every(a=>a.correct)).toBe(true);
+});
