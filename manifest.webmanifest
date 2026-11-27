@@ -2,7 +2,7 @@
   "id": "./",
   "name": "ことばの記録 — 準1級EX 苦手単語",
   "short_name": "ことばの記録",
-  "description": "英単語と英作文をそれぞれの学習エリアで復習する英語学習アプリ。",
+  "description": "英単語・英作文・語法をそれぞれの学習エリアで復習する英語学習アプリ。",
   "lang": "ja",
   "start_url": "./portal.html",
   "scope": "./",

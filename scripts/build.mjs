@@ -2,7 +2,7 @@ import { WRITING_BANK_RELEASE } from '../writing-bank-manifest.js';
 import { mkdir, readFile, writeFile, copyFile, rm } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 
-const assets = ['index.html', 'portal.html', 'writing.html', 'writing.js', 'writing-ai.js', 'writing-bank.js', 'writing-bank-import.js', 'writing-bank-loader.js', 'writing-bank-manifest.js', ...WRITING_BANK_RELEASE.files, 'writing.css', 'writing-core.js', 'writing-data.js', 'refresh.html', 'addition-dates.html', 'addition-dates.js', 'addition-date-recovery.html', 'addition-date-recovery.js', 'styles.css', 'app.js', 'listening.js', 'listening-ui.js', 'listening.css', 'core.js', 'repetition.js', 'review-ui.js', 'initial_words.json', 'manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png'];
+const assets = ['index.html', 'portal.html', 'usage.html', 'usage.css', 'usage.js', 'usage-core.js', 'usage-data.js', 'writing.html', 'writing.js', 'writing-ai.js', 'writing-bank.js', 'writing-bank-import.js', 'writing-bank-loader.js', 'writing-bank-manifest.js', ...WRITING_BANK_RELEASE.files, 'writing.css', 'writing-core.js', 'writing-data.js', 'refresh.html', 'addition-dates.html', 'addition-dates.js', 'addition-date-recovery.html', 'addition-date-recovery.js', 'styles.css', 'app.js', 'listening.js', 'listening-ui.js', 'listening.css', 'core.js', 'repetition.js', 'review-ui.js', 'initial_words.json', 'manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png'];
 await rm('dist', { recursive: true, force: true });
 await mkdir('dist/icons', { recursive: true });
 const hash = createHash('sha256');

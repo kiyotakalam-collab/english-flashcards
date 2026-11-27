@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#245c4b"><meta name="description" content="日本語から英語の語法を取り出す記述式トレーニング。今回のテストの誤答だけを反復。">
+<title>語法マスター | Usage notebook</title>
+<link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./usage.css"><script type="module" src="./usage.js"></script>
+</head>
+<body>
+<header class="site-header"><a class="brand" href="./portal.html"><span class="brand-mark" aria-hidden="true">u.</span><span>語法マスター<small>YOUR USAGE NOTEBOOK</small></span></a><a class="home-link" href="./portal.html">ホームへ</a></header>
+<main>
+<section class="intro"><p class="eyebrow">JAPANESE → ENGLISH</p><h1>使える形を、<br>すぐに取り出す。</h1><p class="muted">日本語を見て、語法を正確な英語で。1回3〜10分の反復を。</p></section>
+<div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+<div id="fatal" class="notice error" role="alert" hidden></div>
+<section class="stats" aria-label="語法学習の合計"><div>出題対象<strong id="item-count">—</strong></div><div>回答数<strong id="attempt-count">—</strong></div><div>累積誤答<strong id="wrong-count">—</strong></div></section>
+<nav class="tabs" aria-label="語法マスターのメニュー"><button data-page="study" aria-current="page">学習する</button><button data-page="items">語法の管理</button><button data-page="history">学習記録</button></nav>
+<section id="study" class="panel">
+<form id="setup" class="card"><h2>テストをはじめる</h2><div class="settings"><label>出題数<select id="count"><option value="10">10問</option><option value="20">20問</option><option value="30">30問</option><option value="all">全問</option></select></label><label>カテゴリー<select id="category"><option value="all">すべて</option></select></label></div><p class="muted" id="pool-note"></p><button class="primary" id="start" type="submit">ランダムでテスト開始</button><p class="help">新しいテストを始めると、誤答復習の対象もそのテストに切り替わります。過去の回答履歴は残ります。</p></form>
+<section id="exercise" aria-label="記述式の演習"></section>
+<section class="card review-card"><h2>今回のテストの誤答復習</h2><p id="review-summary" class="muted">まだテストを受けていません。</p><button id="review" disabled>今回の誤答だけを復習</button><p class="help">正解した語法は復習セットから外れます。過去のテストで間違えた語法をまとめて出すことはありません。</p></section>
+</section>
+<section id="items" class="panel" hidden>
+<section class="card"><h2 id="editor-title">語法を追加</h2><p class="muted">添削で出てきた表現を、そのまま次の練習へ。</p>
+<form id="item-form"><input id="edit-id" type="hidden">
+<label>日本語<input id="japanese" required maxlength="500" placeholder="例：Aを頼りにする"></label>
+<label>覚える英語<input id="english" required maxlength="500" lang="en" autocapitalize="off" spellcheck="false" placeholder="例：rely on A"></label>
+<p class="help">変数は A・B・C または ～・人・もので記入してください。冠詞の a は小文字で登録します。主語・動詞の型は S V と書けます。</p>
+<label>短い例文<input id="example" required maxlength="1000" lang="en" placeholder="例：You can rely on me."></label>
+<label>カテゴリー<select id="item-category"></select></label><label class="checkbox"><input id="active" type="checkbox" checked>出題対象にする</label>
+<div class="actions"><button class="primary" id="save-item" type="submit">語法を保存</button><button id="cancel-edit" type="button">新規入力に戻す</button></div>
+<p class="help">大文字・スペース・変数表記などの違いを含め、同じ英語表現は重複登録できません。非表示にしても履歴は残ります。</p></form></section>
+<section class="card"><h2>登録した語法</h2><label>日本語・英語で検索<input id="item-search" type="search" placeholder="例：available"></label><div id="item-list"></div></section>
+</section>
+<section id="history" class="panel" hidden><section class="card"><h2>最近のテスト</h2><div id="test-history"></div></section><section class="card"><h2>回答履歴</h2><p class="muted">誤答は正解しても消えません。テストと誤答復習を分けて記録しています。</p><div id="answer-history"></div></section><section class="card"><h2>語法のバックアップ</h2><p class="muted">語法・回答・途中の演習をJSONで保存できます。他のアプリのデータは含みません。</p><div class="actions"><button id="export">JSONを書き出す</button><label class="file-button">JSONを取り込む<input id="import" type="file" accept="application/json,.json"></label></div><p class="help">取り込みは追加・統合です。同じ回答は二重に数えず、同じテストは履歴が新しい側に合わせ、異なる履歴に分岐していれば中止します。</p></section></section>
+<footer><span id="offline-status" role="status">オフライン準備中</span><button id="update-app" hidden>最新版に更新</button><p>この端末に自動保存 · <a href="./writing.html">英作文へ</a> · <a href="./portal.html">ホームへ</a></p></footer>
+</main>
+</body></html>
